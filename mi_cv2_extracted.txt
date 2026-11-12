@@ -1,0 +1,75 @@
+=== PAGE 1 ===
+Matematika pro informatiku (2026/2027) – cvičení 2
+1
+Cvičení 2
+Pojmy potřebné pro zvládnutí cvičení: Formální kontext, derivační operátory (·)↑a (·)↓,
+uzávěrový systém a uzávěrový operátor cl, formální koncept, konceptuální svaz, asociační pra-
+vidla (podpora, spolehlivost, zdvih), µ -velikost podpory, Rymon tree a prořezávání (pruning).
+Příklad 1:
+Mějme základní množinu X = {1, 2, 3, 4} a systém jejích podmnožin C1 =
+{{1, 2}, {1, 3}, {1, 2, 3}, X}.
+a) Ověřte, zda je systém C1 uzávěrovým systémem na množině X.
+b) Ověřte, zda je systém C2 = C1 ∪{1} uzávěrovým systémem na množině X.
+c) Ověřte, zda je systém C3 = C2 \ {1, 2} uzávěrovým systémem na množině X.
+d) Pomocí vztahu clC(Y) = T{Z ∈C | Y ⊆Z} spočítejte uzávěry množin Y1 = {2}, Y2 = {2, 3}
+a Y3 = {1, 2}.
+e) Diskutujte monotonicitu, extenzionalitu a idempotentnost uzávěrových operátorů na spočtených
+uzávěrech (všech možných).
+Příklad 2:
+Uvažujme formální kontext K = (G, M, I) reprezentující nákupní košíky jako ob-
+jekty G = {o1, o2, o3, o4, o5} a atributy M = {Notebook (N), Myš (M), Klávesnice (K), Monitor (D)}.
+Datová incidence I je dána tabulkou:
+I
+N
+M
+K
+D
+o1
+×
+×
+o2
+×
+×
+×
+o3
+×
+×
+×
+o4
+×
+×
+o5
+×
+×
+×
+×
+a) Určete derivaci B↓a uzávěr cl(B) = B↓↑pro atributovou množinu B = {N}. Je B uzavřená?
+b) Určete derivaci A↑a uzávěr cl(A) = A↑↓pro množinu objektů A = {o1, o2}. Je A uzavřená?
+c) Ověřte vlastnost extenzivity B ⊆cl(B) na množině B = {M,D} a zda je množina {M, D} je
+uzavřená.
+Příklad 3:
+Pro formální kontext z předchozího příkladu nalezněte všechny formální kon-
+cepty.
+a) Určete všechny formální koncepty (Ai, Bi) tvořící úplný svaz L(K). Například pomocí al-
+goritmu jedinečných průniků.
+b) Nakreslete výsledný konceptuální svaz na základě uspořádání konceptů.
+c) Určete vlastnosti nalezeného konceptuálního svazu (ohraničenost, úplnost, modularitu,
+distributivitu a komplementaritu).
+
+=== PAGE 2 ===
+2
+Matematika pro informatiku (2026/2027) – cvičení 2
+Příklad 4:
+Uvažujme asociační pravidla nad dříve zadaným formálním kontextem.
+a) Vypočtěte supp, conf a lift pro asociační pravidlo {N} =⇒{M}.
+b) Vypočtěte supp, conf a lift pro asociační pravidlo {K} =⇒{D}.
+c) Porovnejte obě pravidla a určete, které z nich je silnější.
+Příklad 5:
+Uvažujme algoritmus Apriori s lexikografickým uspořádáním atributů N <L
+M <L K <L D a prahem podpory µ ≥0,4 pro dříve zadaný formální kontext.
+a) Nakreslete Ramon tree pro všechny podmnožiny množiny položek s nenulovou podporou
+a hodnoty podpory k daným podmnožinám spočítejte.
+b) Pokud je práh podpory µ = 0.5, tak prořežte v Rymon tree nepotřebné větve. Tedy to, co
+se už v algoritmu Apriori nedává do množiny možných kandidátů.
+c) V Rymon tree zvýrazněte množiny položek, které patří do uzávěrového systému intentů.
+d) Vypočtěte spolehlivost VŠECH asociačních pravidel s požadovanou podporou (µ ≥0.4).

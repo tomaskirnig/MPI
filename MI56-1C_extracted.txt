@@ -1,0 +1,326 @@
+=== PAGE 1 ===
+Matematika pro informatiku
+1
+Algebry a uspořádané množiny
+V této kapitole zavedeme základní pojmy algebry a teorie uspořádaných množin. Cílem je ukázat
+konstrukci algebraických struktur od grupoidů až po vektorové prostory a zároveň vysvětlit
+vlastnosti uspořádání, svazů a Booleových algeber, které nám umožní matematicky uchopit a
+strukturovat data.
+1.1
+Základní pojmy
+Definice 1.1 (Kartézský součin, relace, funkce a operace). Nechť A, B, A1, ..., An jsou množiny:
+• Kartézský součin: A1 × · · · × An = {(a1, ..., an) | ai ∈Ai pro i ∈{1, ..., n}}. Pro n kopií
+téže množiny píšeme An.
+• Relace: n-ární relace R je podmnožina R ⊆A1 × · · · × An. Pro n = 2 jde o binární relaci.
+Je-li A = B, jde o homogenní binární relaci a píšeme aRb ⇐⇒(a, b) ∈R.
+• Funkce (Zobrazení): Zobrazení f : A →B je binární relace f ⊆A × B splňující ∀a ∈
+A ∃!b ∈B : (a, b) ∈f (značíme f(a) = b).
+• Operace: n-ární operace ω na množině A je zobrazení ω : An →A. Speciálně: unární (n = 1),
+binární (n = 2), nulární (n = 0, odpovídá výběru konstantního prvku z A).
+Definice 1.2 (Vlastnosti binární operace). Nechť G je neprázdná množina a ◦: G × G →G je
+binární operace na G. Řekneme, že operace ◦je:
+• Uzavřená na G: ∀a, b ∈G : a ◦b ∈G.
+• Asociativní: ∀a, b, c ∈G : (a ◦b) ◦c = a ◦(b ◦c).
+• Komutativní: ∀a, b ∈G : a ◦b = b ◦a.
+• Idempotentní: ∀a ∈G : a ◦a = a.
+• S jednotkovým (neutrálním) prvkem: Existuje prvek e ∈G takový, že ∀a ∈G : a ◦e =
+e ◦a = a.
+• S nulovým (agresivním) prvkem: Existuje prvek z ∈G takový, že ∀a ∈G : a◦z = z◦a = z.
+• S inverzními prvky: Ke každému prvku a ∈G existuje prvek a−1 ∈G takový, že a ◦a−1 =
+a−1 ◦a = e, kde e je neutrální prvek operace ◦.
+Dále pro dvě binární operace + a · na téže množině G definujeme:
+• Oboustrannou distributivitu operace · vůči operaci +, pokud pro všechny a, b, c ∈G platí:
+a · (b + c) = (a · b) + (a · c)
+a
+(b + c) · a = (b · a) + (c · a)
+Definice 1.3 (Relační a algebraická struktura). Nechť M je neprázdná množina (tzv. nosič):
+• Relační struktura: Je dvojice (M, R), kde R = {R1, R2, ...} je množina relací na M (např.
+uspořádaná množina (P, ≤) nebo graf (V, E)).
+• Algebraická struktura (Algebra): Je dvojice (M, Ω), kde Ω= {ω1, ω2, ...} je množina
+operací na M (např. grupa (G, ·,−1 , e) nebo svaz (L, ∧, ∨)).
+1
+
+
+=== PAGE 2 ===
+Typ struktury (tzv. signatura) určuje počty a arity jednotlivých relací a operací.
+Definice 1.4 (Ekvivalence, kongruence a faktorová množina). Relace ekvivalence ϵ na mno-
+žině A je binární relace tvořící relační strukturu (A, ϵ), která je:
+• reflexivní: ∀a ∈A : (a, a) ∈ϵ,
+• symetrická: ∀a, b ∈A : (a, b) ∈ϵ =⇒(b, a) ∈ϵ,
+• tranzitivní: ∀a, b, c ∈A : ((a, b) ∈ϵ ∧(b, c) ∈ϵ) =⇒(a, c) ∈ϵ.
+Relace ϵ dělí množinu A na disjunktní třídy ekvivalence [a] = {x ∈A | (a, x) ∈ϵ}, které tvoří
+faktorovou množinu A/ϵ.
+Ekvivalence ϵ na algebře se nazývá kongruence, pokud zachovává její operace, tj. pro všechna
+a, b, a1, a2, b1, b2 ∈A platí:
+• pro unární operaci f: (a, b) ∈ϵ =⇒(f(a), f(b)) ∈ϵ,
+• pro binární operaci ◦: ((a1, a2) ∈ϵ ∧(b1, b2) ∈ϵ) =⇒(a1 ◦b1, a2 ◦b2) ∈ϵ.
+Příklad 1.1 (Kongruence modulo p). Relace a ≡b (mod p) ⇐⇒p | (a −b) je kongruence na
+algebře (Z, +, ·). Faktorová množina Zp = Z/≡p= {[0], [1], ..., [p−1]} tvoří množinu zbytkových
+tříd. V Z5 platí [3] + [4] = [7] = [2] a [3] · [4] = [12] = [2].
+Definice 1.5 (Podalgebra, homomorfismus a izomorfismus). Nechť A = (M, ΩA) a B = (N, ΩB)
+jsou algebraické struktury stejného typu.
+• Podalgebra: Podmnožina P ⊆M tvoří podalgebru, je-li uzavřená vůči všem operacím z ΩA
+(např. podsvaz, podgrupa, podprostor).
+• Homomorfismus: Zobrazení h : M →N zachovávající operace. Pro každou n-ární operaci
+ω ∈Ωa prvky a1, ..., an ∈M platí:
+h(ωA(a1, ..., an)) = ωB(h(a1), ..., h(an))
+Speciálně pro dvě grupy A = (M, eM,−1 , ◦M) a B = (N, eN,−1 , ◦N) je zobrazení h : M →N
+homomorfismem, pokud platí:
+1. h(eM) = eN,
+2. ∀a ∈M : h(a−1) = (h(a))−1,
+3. ∀a, b ∈M : h(a ◦M b) = h(a) ◦N h(b).
+• Izomorfismus: Bijektivní homomorfismus. Existuje-li izomorfismus mezi algebrami A a B,
+říkáme, že jsou izomorfní (A ∼= B).
+1.2
+Částečně uspořádaná množina (Poset)
+Definice 1.6 (Poset, porovnatelnost, závory, infimum a supremum). Částečně uspořádaná
+množina neboli poset (z angl. partially ordered set) je relační struktura (P, ≤), kde P je
+neprázdná množina a ≤⊆P × P je homogenní binární relace částečného uspořádání, tj. relace:
+• reflexivní: ∀a ∈P : a ≤a,
+• antisymetrická: ∀a, b ∈P : (a ≤b ∧b ≤a) =⇒a = b,
+• tranzitivní: ∀a, b, c ∈P : (a ≤b ∧b ≤c) =⇒a ≤c.
+V posetu (P, ≤) zavádíme následující pojmy:
+• Prvky a, b ∈P jsou porovnatelné, pokud a ≤b nebo b ≤a; jinak jsou neporovnatelné
+(značíme a ∥b).
+• Nechť A ⊆P. Prvek x ∈A je
+- minimální (∀y ∈A : y ≤x =⇒y = x),
+- maximální (∀y ∈A : x ≤y =⇒y = x),
+- nejmenší (∀y ∈A : x ≤y),
+2
+
+
+=== PAGE 3 ===
+- největší (∀y ∈A : y ≤x).
+• Prvek x ∈P je dolní závora množiny A, pokud ∀a ∈A : x ≤a. Prvek x ∈P je horní
+závora množiny A, pokud ∀a ∈A : a ≤x.
+• Největší dolní závora množiny A v P (pokud existuje) se nazývá infimum množiny A a značí
+se inf A.
+• Nejmenší horní závora množiny A v P (pokud existuje) se nazývá supremum množiny A a
+značí se sup A.
+Definice 1.7 (Pokrývání a Hasseův diagram). Řekneme, že prvek b ∈P pokrývá prvek a ∈P
+(značíme a ⋖b), pokud a < b a neexistuje žádný prvek c ∈P takový, že a < c < b.
+Hasseův diagram konečného posetu (P, ≤) je orientovaný graf, jehož vrcholy jsou prvky mno-
+žiny P a hrana vede od a k b právě tehdy, když a ⋖b. Graf se kreslí tak, že prvek b je umístěn
+výše než prvek a.
+Příklad 1.2. Vlastnosti a struktura posetů:
+1. (N, ≤) je poset přirozených čísel s běžným uspořádáním.
+2. (P(M), ⊆) je potenční množina uspořádaná množinovou inkluzí. V (P({1, 2}), ⊆) tvoří
+Hasseův diagram čtverec, kde {1} ∥{2}, ∅je nejmenší a {1, 2} největší prvek.
+3. Pro A = {2, 3} v (N+, |) je množinou dolních závor {1} (inf A = 1 = gcd(2, 3)) a množinou
+horních závor {6, 12, 18, ...} (sup A = 6 = lcm(2, 3)).
+1.3
+Svaz (Lattice)
+Definice 1.8 (Svaz). Svaz L lze definovat dvěma ekvivalentními způsoby:
+• Relačně: Jako uspořádanou množinu (L, ≤), ve které pro každé dva prvky a, b ∈L existuje
+infimum a ∧b = inf{a, b} (průsek) a supremum a ∨b = sup{a, b} (spojení).
+• Algebraicky: Jako algebru (L, ∧, ∨) se dvěma binárními operacemi, které jsou komutativní,
+asociativní, idempotentní a splňují zákony absorpce (a ∧(a ∨b) = a, a ∨(a ∧b) = a).
+Oba přístupy jsou ekvivalentní, přičemž uspořádání a svazové operace jsou svázány vztahem:
+a ≤b ⇐⇒a ∧b = a ⇐⇒a ∨b = b
+Definice 1.9 (Speciální typy svazů). Nechť L je svaz. Rozlišujeme následující speciální typy
+svazů:
+• Ohraničený svaz: Obsahuje nejmenší prvek 0L (svazová nula) a největší prvek 1L (svazová
+jednotka).
+• Úplný svaz: Pro libovolnou podmnožinu S ⊆L (i prázdnou či nekonečnou) existuje infimum
+⋀S a supremum ⋁S. Každý úplný svaz je ohraničený.
+• Modulární svaz: Pro všechny a, b, c ∈L splňuje podmínku: a ≤c =⇒a∨(b∧c) = (a∨b)∧c.
+• Distributivní svaz: Pro všechny a, b, c ∈L splňuje identitu a ∧(b ∨c) = (a ∧b) ∨(a ∧c) (a
+duálně a ∨(b ∧c) = (a ∨b) ∧(a ∨c)).
+• Komplementární svaz: Je ohraničený svaz (L, ∧, ∨, 0, 1), ve kterém ke každému prvku a ∈L
+existuje alespoň jeden prvek a′ ∈L (tzv. komplement nebo doplňkový prvek) takový, že:
+a ∧a′ = 0
+a
+a ∨a′ = 1
+Příklad 1.3. Konkrétní algebry jako svazy a podsvazy:
+1. (P(M), ∩, ∪) je úplný, ohraničený a distributivní svaz s nejmenším prvkem 0 = ∅a nej-
+větším prvkem 1 = M.
+2. Množina dělitelů D12 = {1, 2, 3, 4, 6, 12} s operacemi (gcd, lcm) tvoří ohraničený podsvaz
+svazu (N+, gcd, lcm).
+3
+
+
+=== PAGE 4 ===
+3. Svaz podprostorů (L(V ), ∩, +) vektorového prostoru V je modulární, ale není obecně dis-
+tributivní.
+4. V libovolném ohraničeném svazu L s prvkem 0 a 1 platí pro prázdnou množinu inf ∅= 1
+a sup ∅= 0 (vakuová platnost závor).
+5. Protipříklady nedistributivních svazů: Svaz N5 (pětiúhelník) je nejmenší svaz, který není
+modulární. Svaz M3 (diamant) je modulární, ale není distributivní. Svaz je distributivní
+právě tehdy, když neobsahuje podsvaz izomorfní s N5 ani M3.
+1.4
+Booleova algebra
+Definice 1.10 (Booleova algebra, atomy a princip duality). Booleova algebra je struktura
+(B, ∧, ∨, ¬, 0, 1), kde (B, ∧, ∨, 0, 1) je distributivní ohraničený svaz a unární operace komple-
+mentu ¬ splňuje a ∧¬a = 0 a a ∨¬a = 1. Platí De Morganovy zákony.
+Princip duality: Záměnou operací ∧⇐⇒∨a prvků 0 ⇐⇒1 v libovolné platné identitě
+Booleovy algebry získáme identitu, která je rovněž platná.
+Prvek a > 0 je atom, pokud neexistuje x ∈B takové, že 0 < x < a. Booleova algebra je
+atomická, pokud je každý její prvek supremem atomů, které pod ním leží.
+Příklad 1.4. Příklady Booleových algeber:
+1. Dvouprvková Booleova algebra B = ({0, 1}, ∧, ∨, ¬, 0, 1).
+2. Potenční algebra (P(M), ∩, ∪, \, ∅, M), kde atomy tvoří jednoprvkové množiny {m} pro
+m ∈M.
+1.5
+Od algeber s jednou operací po vektorové prostory
+Definice 1.11 (Algebraické struktury). Nechť G je neprázdná množina a ◦je binární operace
+na G:
+• Grupoid: Struktura (G, ◦), kde operace ◦je uzavřená na G.
+• Pologrupa (semigrupa): Asociativní grupoid.
+• Monoid: Semigrupa s neutrálním prvkem e.
+• Grupa: Monoid, kde ke každému a ∈G existuje inverzní prvek a−1. Je-li operace ◦komuta-
+tivní, jde o abelovskou grupu.
+• Okruh: Struktura (R, +, ·), kde (R, +) je abelovská grupa, (R, ·) je pologrupa a operace · je
+oboustranně distributivní vůči +.
+• Unitární okruh je okruh s jednotkovým prvkem 1̸ = 0 vzhledem k násobení.
+• Dělitelé nuly: Prvek a̸ = 0 okruhu (R, +, ·) se nazývá netriviální dělitel nuly, pokud existuje
+prvek b̸ = 0 takový, že a · b = 0 nebo b · a = 0.
+• Obor integrity je komutativní unitární okruh bez dělitelů nuly, kde pro každé a, b ∈R platí:
+a · b = 0 =⇒a = 0 ∨b = 0
+• Těleso / Pole (Field): Komutativní okruh (F, +, ·) s 0̸ = 1, kde (F \{0}, ·) tvoří abelovskou
+grupu. (V české terminologii se někdy rozlišuje nekomutativní těleso a komutativní těleso
+neboli pole).
+• Charakteristika tělesa: Nejmenší číslo k ∈N+ takové, že k ·1 = 1 + 1 + · · · + 1
+
+
+
+k-krát
+= 0. Pokud
+takové k neexistuje, je charakteristika 0 (např. v R, Q). Pro těleso zbytkových tříd Zp platí
+char(Zp) = p.
+Příklad 1.5. Uvažujme množinu zbytkových tříd po dělení číslem 5: Z5 = {[0], [1], [2], [3], [4]}.
+Struktura (Z5, +) tvoří abelovskou grupu:
+4
+
+
+=== PAGE 5 ===
+Aditivní grupa (Z5, +)
++
+[0]
+[1]
+[2]
+[3]
+[4]
+[0]
+[0]
+[1]
+[2]
+[3]
+[4]
+[1]
+[1]
+[2]
+[3]
+[4]
+[0]
+[2]
+[2]
+[3]
+[4]
+[0]
+[1]
+[3]
+[3]
+[4]
+[0]
+[1]
+[2]
+[4]
+[4]
+[0]
+[1]
+[2]
+[3]
+Multiplikativní grupa (Z5 \ {[0]}, ·)
+·
+[1]
+[2]
+[3]
+[4]
+[1]
+[1]
+[2]
+[3]
+[4]
+[2]
+[2]
+[4]
+[1]
+[3]
+[3]
+[3]
+[1]
+[4]
+[2]
+[4]
+[4]
+[3]
+[2]
+[1]
+Tabulka 1: Cayleyho tabulky pro (Z5, +) a (Z5 \ {[0]}, ·)
+• Uzavřenost a asociativita: Operace je definována předpisem [a] + [b] = [a + b] na třídách
+ekvivalence celých čísel.
+• Komutativita: Tabulka je symetrická podle hlavní diagonály.
+• Neutrální prvek: Prvek [0], neboť ∀x ∈Z5 : x + [0] = x.
+• Inverzní prvky: Množina opačných prvků: −[0] = [0], −[1] = [4], −[2] = [3], −[3] = [2],
+−[4] = [1].
+Struktura Z∗
+5 = (Z5 \ {[0]}, ·) tvoří abelovskou grupu:
+• Uzavřenost a asociativita: Násobení [a] · [b] = [a · b] nemá pro prvočíslo 5 dělitele nuly mimo
+[0].
+• Komutativita: Tabulka je symetrická podle hlavní diagonály.
+• Neutrální prvek: Jednotkový prvek [1], neboť ∀x ∈Z∗
+5 : x · [1] = x.
+• Inverzní prvky: [1]−1 = [1], [2]−1 = [3], [3]−1 = [2], [4]−1 = [4].
+• Cykličnost: Grupa je generována např. prvkem [2], jelikož [2]1 = [2], [2]2 = [4], [2]3 = [3],
+[2]4 = [1].
+Příklad 1.6 (Ověření kongruence na Z∗
+5). Mějme algebru G = (Z∗
+5, ·). Ověřujeme podmínku
+kongruence pro dvě relace ekvivalence:
+(a1, a2) ∈ϵ ∧(b1, b2) ∈ϵ =⇒(a1 · b1, a2 · b2) ∈ϵ
+• První ekvivalence: Relace ϵ1 indukuje rozklad G/ϵ1 =
+{{[1], [3]}, {[2], [4]}
+}. Volme ekvi-
+valentní dvojice ([1], [3]) ∈ϵ1 a ([1], [3]) ∈ϵ1. Pro jejich součiny platí [1] · [1] = [1] a
+[3] · [3] = [9] = [4]. Jelikož ([1], [4]) ∉ϵ1, relace ϵ1 není kongruencí.
+• Druhá ekvivalence: Relace ϵ2 indukuje rozklad G/ϵ2 =
+{{[1], [4]}, {[2], [3]}
+}. Tato relace
+je kongruencí, neboť součin libovolných prvků z tříd splňuje: T1 · T1 ⊆T1, T1 · T2 ⊆T2 a
+T2 · T2 ⊆T1.
+Definice 1.12 (Vektorový prostor). Vektorový prostor nad tělesem T (např. R nebo Zp) je
+abelovská grupa (V, +) spojená s operací skalárního násobení · : T × V →V , splňující pro
+všechny u, v ∈V a a, b ∈T:
+• a · (u + v) = a · u + a · v,
+• (a + b) · v = a · v + b · v,
+• a · (b · v) = (a · b) · v,
+• 1 · v = v.
+Příklad 1.7. Přehled přikladů algebraických struktur:
+1. Množina slov Σ∗s operací konkatenace tvoří monoid s neutrálním prvkem ε.
+2. Množina přirozených čísel s operací maxima (N, max) tvoří komutativní idempotentní mo-
+noid s neutrálním prvkem 0.
+3. Množina n-tých odmocnin z jedničky Cn =
+
+ei 2kπ
+n | k ∈{0, 1, ..., n −1}
+
+⊂C s operací
+násobení tvoří cyklickou abelovskou grupu.
+5
+
+
+=== PAGE 6 ===
+4. Nekomutativní grupa: Množina reálných regulárních matic GLn(R) řádu n s operací
+násobení matic tvoří nekomutativní grupu.
+5. (N, +) je monoid, (Z, +) je abelovská grupa, (Z, ·) je komutativní monoid a (Z, +, ·) tvoří
+komutativní okruh.
+6. Racionální čísla (Q, +, ·) a faktorový okruh zbytkových tříd (Zp, +, ·) modulo prvočíslo p
+tvoří tělesa.
+7. Množina uspořádaných n-tic reálných čísel V = Rn s operacemi sčítání vektorů po složkách
+a násobení reálným skalárem tvoří standardní vektorový prostor nad T = R.
+8. Množina polynomů Rn[x] stupně nejvýše n s běžným sčítáním polynomů a násobení reál-
+ným číslem tvoří vektorový prostor nad T = R.
+9. Množina V = Zn
+2 binárních vektorů délky n s operací sčítání modulo 2 (XOR) po složkách
+tvoří vektorový prostor nad tělesem Z2.
+6

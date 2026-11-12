@@ -1,0 +1,90 @@
+=== PAGE 1 ===
+Matematika pro informatiku (2026/2027) – cvičení 1
+1
+Cvičení 1
+Pojmy potřebné pro zvládnutí cvičení: kartézský součin; relace a jejich vlastnosti (ekvivalence
+a uspořádání), relační systém, svaz, vlastností binárních homogenní operací, algebry s jednou
+operací, algebry s dvěma operacemi, vektorový prostor
+Příklad 1:
+Uvažujme množinu D36 = {1, 2, 3, 4, 6, 9, 12, 18, 36} všech kladných dělitelů čísla
+36 uspořádanou relací celočíselné dělitelnosti a | b.
+a) Nakreslete Hasseův diagram posetu (D36, |).
+b) Pro následující vybrané podmnožiny A = {6, 36}, B = {4, 6}, C = {1, 2, 3, 36}, D =
+{1, 2, 4, 6, 12} a původní celou množiny D36 najděte minimální a maximální prvky, nejmenší
+a největší prvky, horní a dolní závory a určete sup a inf.
+c) Rozhodněte, zda je poset (D36, |) svazem.
+d) Rozhodněte, zda vybrané podmnožiny s relací celočíselné dělitelnosti jsou svazy a zda jsou
+podsvazy potencionálního svazu (D36, |).
+Příklad 2: Uvažujme množinu M = {a, b, c, d, e, f, g} spolu s relací bezprostředního předcházení,
+která odpovídá hranám v Hasseově diagramu ρ = {(a, b), (a, c), (b, d)(b, e), (c, d), (c, e), (d, f), (d, g), (e, f), (e, g)}.
+a) Nakreslete Hasseův diagram pro (M, ρ).
+b) Pro následující vybrané podmnožiny A = {b, g}, B = {b, c}, C = {a, b, c, d}, D = {a, b, c, f}
+a původní celou množiny M najděte minimální a maximální prvky, nejmenší a největší
+prvky, horní a dolní závory a určete sup a inf.
+c) Rozhodněte, zda je poset (M, ρ) svazem.
+d) Rozhodněte, zda vybrané podmnožiny s relací celočíselné dělitelnosti jsou svazy a zda jsou
+podsvazy potencionálního svazu (M, ρ).
+Příklad 3:
+Nakreslete Hasseovy diagramy a rozhodněte o vlastnostech následujících svazů
+(ohraničenost, distributivita, modularita, komplementarita):
+a) Svaz dělitelů D12 = {1, 2, 3, 4, 6, 12} s operacemi gcd a lcm.
+b) Svaz D30 z předchozího příkladu.
+c) Svaz (B, |) z předchozího příkladu.
+d) Svaz (N \ {0}, |).
+Příklad 4:
+Na množině celých čísel Z uvažujme binární operaci ∗definovanou vztahem:
+a ∗b = a + b −3
+a) Rozhodněte, zda je operace ∗na Z uzavřená a komutativní.
+b) Ukažte, že operace ∗je asociativní.
+c) Najděte neutrální prvek e vzhledem k operaci ∗.
+
+=== PAGE 2 ===
+2
+Matematika pro informatiku (2026/2027) – cvičení 1
+d) Najděte inverzní prvek a−1 ke libovolnému prvému a ∈Z a rozhodněte, o jakou algebraic-
+kou strukturu se jedná.
+Příklad 5: Rozhodněte a podrobně zdůvodněte, jakou algebraickou strukturu tvoří následující
+množiny s danými binárními operacemi:
+a) Množina kladných racionálních čísel Q+ s operací běžného dělení :.
+b) Množina celých čísel Z s operací a ◦b = a · b + a + b.
+c) Množina matic M2×2(R) typu 2 × 2 nad R vzhledem k maticovému sčítání a maticovému
+násobení.
+Příklad 6:
+Pro dané končné množiny a operaci na nich definovanou napište Ceyleyho ta-
+bulku. Určete jednotkový prvek (pokud existuje), nulový prvek (pokud existuje) a inverzní
+prvek ke každému prvku pro dané množiny a příslušné operace. Určete typ algebry a pro-
+zkoumejte vlastnosti algeber s jednou či dvěma operacemi:
+a) M1 = {1, i, −1, −i} ⊂C s operací běžného násobení komplexních čísel.
+b) M2 = Z4 s operacemi sčítání a násobení.
+c) M3 = Z5 s operacemi sčítání a násobení.
+d) M4 = Z5 \ {[0]} s operací násobení.
+Příklad 7:
+Sestavte Cayleyho tabulku násobení v množině Z∗
+8 = {[1], [3], [5], [7]} (množina
+prvků invertovatelných vzhledem k násobení v Z8). Rozhodněte, o jakou strukturu se jedná
+a zda je izomorfní s (Z4, +).
+Příklad 8:
+Uvažujme Galoisovo těleso T = GF(2) = ({0, 1}, ⊕, ⊗), kde operace ⊕a ⊗jsou
+definovány tabulkami (aritmetika modulo 2):
+⊕
+0
+1
+0
+0
+1
+1
+1
+0
+⊗
+0
+1
+0
+0
+0
+1
+0
+1
+a vektorový prostor V = GF(2)3 nad tímto tělesem.
+a) Kolik prvků (vektorů) obsahuje tento vektorový prostor? Všechny prvky vypište.
+b) Spočítejte součet vektorů u = (1, 0, 1) a v = (1, 1, 0) a skalární násobek 1 · u.
+c) Určete dimenzi tohoto vektorového prostoru a uved’te jeho standardní bázi.

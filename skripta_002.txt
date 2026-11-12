@@ -1,0 +1,5115 @@
+﻿Obsah
+
+1 Relačńı a algebraické struktury 3
+1.1 Relace a zobrazeńı . . . . . . . . . . . . . . . . . . . . . . . . 3
+
+1.1.1 Relace . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+1.1.2 Binárńı relace . . . . . . . . . . . . . . . . . . . . . . . 6
+1.1.3 Vlastnosti binárńıch homogenńıch relaćı . . . . . . . . 8
+1.1.4 Zobrazeńı . . . . . . . . . . . . . . . . . . . . . . . . . 10
+1.1.5 Operace . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+1.1.6 Grafy a hypergrafy . . . . . . . . . . . . . . . . . . . . 14
+1.1.7 Uzávěrové systémy . . . . . . . . . . . . . . . . . . . . 17
+1.1.8 Ekvivalence a tolerance . . . . . . . . . . . . . . . . . . 19
+1.1.9 Uspořádáńı . . . . . . . . . . . . . . . . . . . . . . . . 22
+
+1.2 Algebry . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+1.2.1 Algebraické systémy . . . . . . . . . . . . . . . . . . . 29
+1.2.2 Grupoidy . . . . . . . . . . . . . . . . . . . . . . . . . 32
+1.2.3 Svazy . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+1.2.4 Okruhy a tělesa . . . . . . . . . . . . . . . . . . . . . . 42
+1.2.5 Morfismy a kongruence . . . . . . . . . . . . . . . . . . 45
+
+2 Aplikace struktur 51
+2.1 Konceptuálńı svazy . . . . . . . . . . . . . . . . . . . . . . . . 51
+
+2.1.1 Algoritmus Next closure . . . . . . . . . . . . . . . . . 55
+2.2 Asociačńı pravidla . . . . . . . . . . . . . . . . . . . . . . . . 57
+
+2.2.1 Algoritmus Apriori . . . . . . . . . . . . . . . . . . . . 61
+2.2.2 Metoda FP-Growth . . . . . . . . . . . . . . . . . . . . 63
+
+2.3 Topologické a metrické prostory . . . . . . . . . . . . . . . . . 66
+2.3.1 Metriky a metrické prostory, podobnosti a nepodobnosti 66
+2.3.2 Topologické prostory . . . . . . . . . . . . . . . . . . . 74
+
+2.4 Fuzzy a rough množiny . . . . . . . . . . . . . . . . . . . . . . 80
+2.4.1 Fuzzy množiny . . . . . . . . . . . . . . . . . . . . . . 81
+2.4.2 Rough množiny . . . . . . . . . . . . . . . . . . . . . . 83
+
+2.5 Shlukováńı . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 89
+
+1
+
+
+
+2 OBSAH
+
+2.5.1 Hierarchické shlukováńı . . . . . . . . . . . . . . . . . . 91
+2.5.2 Překrývaj́ıćı se shlukovaćı metody . . . . . . . . . . . . 98
+2.5.3 Validace výsledk̊u shlukováńı . . . . . . . . . . . . . . 99
+
+
+
+Kapitola 1
+Relačńı a algebraické struktury
+
+Relačńı a algebraické struktury nám poskytnou potřebné teoretické znalosti
+pro praktické aplikace, se kterými se můžeme standardně setkat v oblasti
+informatiky. Základem budou obecné relace a pak binárńı homogenńı relace
+– speciálně uspořádáńı a ekvivalence. Funkce (zobrazeńı), jako zprava jedno-
+značná binárńı relace, slouž́ı k přechod̊um (převod̊um) z jedné množiny do
+(či na) druhé. Umožňuje to zjednodušit formulaci reálných problémů, které
+chceme řešit. Algebraické struktury v sobě zahrnuj́ı jak nosič (množinu či
+množiny), tak operaci (operace) zajǐst’uj́ıćı manipulaci s prvky z nosiče. Bu-
+deme se zabývat r̊uznými operacemi na r̊uzných nosič́ıch a jejich vlastnostmi,
+které se daj́ı vhodně využ́ıt např́ıklad při zpracováńı znalost́ı.
+
+1.1 Relace a zobrazeńı
+Na začátku si připomeneme některé symboly a značeńı, které budeme v textu
+dále použ́ıvat.
+
+• Prázdná množina: ∅,
+• Konečná množina 𝐴 určená výčtem prvk̊u: 𝐴 = {𝑎, 𝑏, 𝑐, 𝑑},
+• Množina 𝐵 všech prvk̊u dané vlastnosti 𝑉 : 𝐵 = {𝑥; 𝑉 (𝑥)},
+• Potenčńı množina množiny 𝐴: 𝑃 (𝐴) = {𝑋; 𝑋 ⊆ 𝐴} (někdy se znač́ı
+
+jako 2𝐴),
+• Komplement (doplněk) množiny 𝑋 v množ. 𝐴: 𝑋 = {𝑦; 𝑦 ∈ 𝐴∧𝑦 ∈/ 𝑋}
+• Býti prvkem (𝑎 nálež́ı 𝐴): 𝑎 ∈ 𝐴,
+• Býti podmnožinou (𝐴 je podmnožinou Σ): 𝐴 ⊆ Σ,
+
+3
+
+
+
+4 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+• Přirozená č́ısla – N, celá č́ısla – Z, racionálńı č́ısla – Q, iracionálńı č́ısla
+– I, reálná č́ısla – R, komplexńı č́ısla – C.
+
+1.1.1 Relace
+Definice 1.1. Kartézský součin množin 𝐴1, 𝐴2, . . . , 𝐴𝑛 je množina všech
+uspořádaných n-tic takových, že i-tý prvek v n-tici patř́ı do množiny 𝐴𝑖.
+
+𝐴1 × 𝐴2 × . . .× 𝐴𝑛 = {(𝑎1, . . . , 𝑎𝑛); 𝑎𝑖 ∈ 𝐴𝑖}
+
+Vlastnosti kartézského součinu dvou množin (jako binárńı operace): neńı
+komutativńı, neńı asociativńı, nemá jednotkový (neutrálńı) prvek a má nu-
+lový (agresivńı) prvek – prázdnou množinu.
+Definice 1.2. n-árńı relace nad množinami 𝐴1, 𝐴2, . . . , 𝐴𝑛 je podmnožina
+𝑅 kartézského součinu těchto množin.
+
+𝑅 ⊆ 𝐴1 × 𝐴2 × . . .× 𝐴𝑛
+
+Množiny 𝐴1, 𝐴2, . . . , 𝐴𝑛 jsou nosiče relace R. Celý relačńı systém pak znač́ıme
+⟨𝐴1, 𝐴2, . . . , 𝐴𝑛; 𝑅⟩.
+
+• Klasifikace relaćı:
+– podle počtu druh̊u nosič̊u
+
+∗ homogenńı relace s jediným druhem nosiče (𝐴1 = 𝐴2 = . . . =
+𝐴𝑛),
+
+∗ heterogenńı relace s alespoň dvěma nosiči r̊uzného druhu (např́ıklad
+𝐴1 ̸= 𝐴2),
+
+– podle arity (počtu nosič̊u)
+∗ unárńı relace s jedńım nosičem,
+∗ binárńı relace se dvěma nosiči,
+∗ ternárńı relace se třemi nosiči,
+∗ n-árńı relace s 𝑛 nosiči.
+
+– podle rozsahu
+∗ triviálńı relace - prázdná (𝑅1 = ∅), identická (𝑖𝑑𝐴 = {(𝑎, 𝑎); 𝑎 ∈
+
+𝐴}) a největš́ı relace (𝑅 = 𝐴1×𝐴2×. . .×𝐴𝑛) se často označuje
+jako úplná relace, komplementárńı relace (např. k binárńı ho-
+mogenńı relaci 𝑅 ⊆ 𝐴× 𝐴) je relace 𝑅 = (𝐴× 𝐴) ∖𝑅,
+
+∗ netriviálńı relace pro kterou plat́ı ∅ ⊂ 𝑅 ⊂ 𝐴1×𝐴2× . . .×𝐴𝑛.
+
+
+
+1.1. RELACE A ZOBRAZENÍ 5
+
+• Protože jsou relace podmnožiny množiny 𝐴1 ×𝐴2 × . . .×𝐴𝑛, můžeme
+s relacemi provádět všechny množinové operace (sjednoceńı, pr̊unik,
+komplement, rozd́ıl, symetrický rozd́ıl).
+
+• Př́ıslušnost uspořádané dvojice prvk̊u 𝑎, 𝑏 do binárńı relace můžeme
+zapsat množinovým zp̊usobem - (𝑎, 𝑏) ∈ 𝑅 nebo ve tvaru binárńıho
+predikátu 𝑅(𝑎, 𝑏) nebo infixovým zápisem - 𝑎𝑅𝑏. Posledńı tvar zápisu
+je vhodný pouze pro binárńı relace.
+
+• Př́ıslušnost uspořádané k-tice do k-árńı relace 𝑅 můžeme zapsat těmito
+r̊uznými zápisy: (𝑎1, 𝑎2, . . . , 𝑎𝑘) ∈ 𝑅 nebo 𝑅(𝑎1, 𝑎2, . . . , 𝑎𝑘).
+
+• Poč́ıtačové realizace binárńıch homogenńıch relaćı:
+
+– matićı (pro větš́ı nosič se hod́ı uvažovat i ř́ıdkou matici - sparse
+matrix), ve které se na mı́stě odpov́ıdaj́ıćı řádku 𝑖 a sloupci 𝑗
+nacháźı hodnota, která určuje, zda dvojice (𝑥𝑖, 𝑦𝑗) je v relaci 𝑅.
+Obvykle se použ́ıvá 1 k označeńı (𝑥𝑖, 𝑦𝑗) ∈ 𝑅 a 0 (př́ıpadně prázdné
+mı́sto) k označeńı (𝑥𝑖, 𝑦𝑗) ∈/ 𝑅,
+
+– seznamem prvk̊u nosiče a seznam prvk̊u, s kterými je daný prvek
+v relaci,
+
+– seznamem prvk̊u relace (tj. uspořádaných dvojic),
+– funkćı (v programovaćım jazyku).
+
+Př́ıklad 1.1. • Homogenńı relace:
+
+– unárńı na nosiči přirozených č́ısel - 𝑥 je prvoč́ıslo,
+– binárńı na reálných č́ıslech - 𝑥 ≥ 𝑦,
+– ternárńı na množině lid́ı v učebně - Pepa sed́ı mezi Karlem a
+
+Anežkou.
+
+• Heterogenńı relace:
+
+– bod 𝑥 lež́ı na př́ımce 𝑦,
+– mezi městy 𝑥 a 𝑦 je vzdálenost 𝑧,
+– délka (velikost) vektoru x je rovna 𝑦,
+– d̊um s č́ıslem popisným 𝑥 lež́ı na ulici 𝑦 ve městě 𝑧.
+
+Definice 1.3. Relačńı systém je uspořádaná dvojice ({𝐴𝑖; 𝑖 ∈ 𝐼}, {𝑅𝑗; 𝑗 ∈
+𝐽}), kde {𝐴𝑖; 𝑖 ∈ 𝐼} je množina nosič̊u a {𝑅𝑗; 𝑗 ∈ 𝐽} je množina relaćı
+
+
+
+6 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+relačńıho systému. Ke každé relaci 𝑅𝑗 je udána jej́ı arita a ke každému ar-
+gumentu relace je udán index nosiče, ze kterého argument bere své hodnoty.
+Tyto údaje definuj́ı typ (signaturu) relace. Počet nosič̊u, počet relaćı a
+signatury všech relaćı udávaj́ı tzv. typ (signaturu) relačńıho systému.
+
+Př́ıklad 1.2. 1. Orientovaný graf je relačńı systém (𝑉, 𝐸), kde 𝑉 je jediný
+nosič systému (množina vrchol̊u grafu) a 𝐸 je jediná relace (binárńı
+relace definuj́ıćı orientované hrany grafu). Signatura relačńıho systému
+je (1; 1; {2; 1, 1}).
+
+2. Alternativně je orientovaný graf relačńı systém (𝑉, 𝐸, 𝜖), kde množina
+vrchol̊u grafu 𝑉 je prvńı nosič systému, množina hran grafu 𝐸 je
+druhý nosič systému a 𝜖 je jediná heterogenńı ternárńı relace systému
+přǐrazuj́ıćı hranám počátečńı a koncový bod. Signatura relace 𝜖 je (3; 2, 1, 1).
+Signatura relačńıho systému je (2; 1; {3; 2, 1, 1})
+
+1.1.2 Binárńı relace
+Definice 1.4. Binárńı relace 𝑅1 ⊆ 𝑋 × 𝑌 je inverzńı k relaci 𝑅2 ⊆ 𝑌 ×𝑋,
+jestliže plat́ı:
+
+(∀𝑥 ∈ 𝑋)(∀𝑦 ∈ 𝑌 )[𝑥𝑅1𝑦 ⇔ 𝑦𝑅2𝑥].
+Zápisem 𝑅1 = 𝑅−1
+
+2 a 𝑅2 = 𝑅−1
+1 označujeme navzájem inverzńı relace.
+
+• Pokud reprezentujeme konečnou binárńı relaci 𝑅1 ⊆ {𝑎1, . . . , 𝑎𝑛} ×
+{𝑏1, . . . , 𝑏𝑚} booleovskou matićı 𝐵 (tj. 1 na i-tém řádku v j-tém sloupci
+označuje, že (𝑎𝑖, 𝑏𝑗) ∈ 𝑅1), tak transponovaná matice 𝐵𝑇 reprezentuje
+relaci inverzńı k 𝑅1.
+
+• Pokud danou binárńı relaci chápeme jako graf, tak výše uvedená matice
+se označuje jako matice sousednosti (adjacency matrix).
+
+• Transponovaná matice sousednosti orientovaného grafu reprezentuje
+graf opačně orientovaný.
+
+Př́ıklad 1.3. • Inverzńı relaćı k relaci 𝑅 ⊆ 𝐴×𝐵, kde 𝐴 = {𝑎1, 𝑎2, 𝑎3},
+𝐵 = {𝑏1, 𝑏2} a 𝑅 = {(𝑎1, 𝑏2), (𝑎2, 𝑏2), (𝑎3, 𝑏2)} je relace 𝑅−1 ⊆ 𝐵 × 𝐴,
+𝑅−1 = {(𝑏2, 𝑎1), (𝑏2, 𝑎2), (𝑏2, 𝑎3)}
+
+• Inverzńı relaćı k relaci ”předmět x patř́ı člověku y“ je relace ”člověk y
+vlastńı předmět x“.
+
+• Inverzńı relaćı k relaci ”x je rodičem y“ je relace ”y je d́ıtětem x“.
+
+
+
+1.1. RELACE A ZOBRAZENÍ 7
+
+• Inverzńı relaćı k relaci ”x je sourozencem y“ je relace ”y je sourozencem
+x“.
+
+Definice 1.5. Binárńı relace 𝑅 ⊆ 𝑋×𝑍 je složeńım (kompozićı) binárńıch
+relaćı 𝑅1 ⊆ 𝑋 × 𝑌 a 𝑅2 ⊆ 𝑌 × 𝑍, jestliže plat́ı:
+
+(∀𝑥 ∈ 𝑋)(∀𝑧 ∈ 𝑍)[𝑥𝑅𝑧 ⇔ (∃𝑦 ∈ 𝑌 )[𝑥𝑅1𝑦 ∧ 𝑦𝑅2𝑧]].
+
+Složenou relaci zapisujeme: 𝑅 = 𝑅1 ∘𝑅2 nebo 𝑅 = 𝑅1𝑅2
+
+Věta 1.1. Skládáńı binárńıch relaćı je asociativńı. Tj. pro 𝑅1 ⊆ 𝑋 × 𝑌 ,
+𝑅2 ⊆ 𝑌 × 𝑍 a 𝑅3 ⊆ 𝑍 × 𝑈 plat́ı:
+
+(𝑅1 ∘𝑅2) ∘𝑅3 = 𝑅1 ∘ (𝑅2 ∘𝑅3).
+
+D̊ukaz. Myšlenka d̊ukazu je ilustrována grafem na obrázku 1.1.
+
+𝑅 ∘𝑅
+𝑏 ∈ 2 3
+
+𝑌 𝑑 ∈ 𝑈
+
+𝑅1 𝑅2 𝑅3
+
+𝑅1 ∘𝑅2
+𝑎 ∈ 𝑋 𝑐 ∈ 𝑍
+
+Obrázek 1.1: Asociativita skládáńı relaćı 𝑅1 ⊆ 𝑋 × 𝑌 , 𝑅2 ⊆ 𝑌 × 𝑍 a 𝑅3 ⊆
+𝑍 × 𝑈 .
+
+Dı́ky asociativnosti a existenci inverze má smysl pro relaci 𝑅 ⊆ 𝑋 × 𝑋
+zavést celoč́ıselnou mocnin⎧u 𝑅𝑛 takto:
+
+⎨ 𝑖𝑑 𝑜 =
+⎩ 𝑋 𝑝𝑟 𝑛 0
+
+𝑅𝑛 = 𝑅 ∘𝑅 ∘ . . . ∘𝑅 𝑝𝑟𝑜 𝑛 > 0
+(𝑅−𝑛)−1 𝑝𝑟𝑜 𝑛 < 0.
+
+Definice 1.6. Direktńı součin 𝐴 ⊗ 𝐵 relačńıch struktur (𝐴; 𝑅) a (𝐵; 𝑆)
+s binárńımi homogenńımi relacemi je kartézský součin množin 𝐴×𝐵 s relaćı
+𝑇 , která je definovaná po složkách: (𝑎1, 𝑏1)𝑇 (𝑎2, 𝑏2), pokud (𝑎1𝑅𝑎2)∧(𝑏1𝑆𝑏2),
+kde (𝑎1, 𝑏1) a (𝑎2, 𝑏2) jsou prvky součinu 𝐴×𝐵.
+
+Jsou-li obě relace 𝑅 a 𝑆 reflexivńı, irreflexivńı, tranzitivńı, symetrické
+nebo antisymetrické, pak i relace 𝑇 má stejné vlastnosti.
+
+
+
+8 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+1.1.3 Vlastnosti binárńıch homogenńıch relaćı
+Vzhledem k tomu, že se na každou binárńı relaci můžeme d́ıvat jako na orien-
+tovaný graf, uvedeme zde grafy, které reprezentuj́ı určité vlastnosti binárńıch
+homogenńıch relaćı. Relaci identity na množině A zde budeme označovat
+𝑖𝑑𝐴 = {(𝑥, 𝑥), 𝑥 ∈ 𝐴}.
+
+Relace 𝑅 ⊆ 𝐴× 𝐴 je:
+
+• reflexivńı, jestliže pro každý prvek plat́ı, že je v relaci sám se sebou, tj.
+(∀𝑥 ∈ 𝐴) 𝑅(𝑥, 𝑥). Pro reflexivńı relaci plat́ı, že 𝑖𝑑𝐴 ⊆ 𝑅. Graf reflexivńı
+relace na množině 𝐴 = {𝑎, 𝑏, 𝑐, 𝑑} obsahuje všechny smyčky a matice
+sousednosti grafu reflexivńı relace má na diagonále samé jedničky.
+
+a b c d
+
+• ireflexivńı, jestliže pro každý prvek plat́ı, že neńı v relaci sám se sebou,
+tj. (∀𝑥 ∈ 𝐴) ¬𝑅(𝑥, 𝑥). Pro ireflexivńı relaci plat́ı, že 𝑖𝑑𝐴 ∩𝑅 = ∅. Graf
+ireflexivńı relace na množině 𝐴 = {𝑎, 𝑏, 𝑐, 𝑑} neobsahuje žádnou smyčku
+a matice sousednosti grafu ireflexivńı relace má na diagonále samé nuly.
+a b c d
+
+• symetrická, jestliže pro každou dvojici prvk̊u 𝑥, 𝑦 plat́ı, že pokud je
+v relaci 𝑥 s 𝑦, pak je v relaci i 𝑦 s 𝑥, tj. (∀𝑥, 𝑦 ∈ 𝐴) [𝑅(𝑥, 𝑦) ⇒
+𝑅(𝑦, 𝑥)]. Pro symetrickou relaci plat́ı, že 𝑅 = 𝑅−1. Graf symetrické
+relace na množině 𝐴 = {𝑎, 𝑏, 𝑐, 𝑑} můžeme chápat jako neorientovaný,
+protože pokud je hrana jedńım směrem, muśı být i druhým směrem.
+Matice sousednosti grafu symetrické relace je symetrická podle hlavńı
+diagonály (tj. 𝐴 = 𝐴𝑇 ).
+
+a b c d a b c d
+
+• asymetrická, jestliže pro každou dvojici prvk̊u 𝑥, 𝑦 plat́ı, že pokud
+je v relaci 𝑥 s 𝑦, pak neńı v relaci 𝑦 s 𝑥, tj. (∀𝑥, 𝑦 ∈ 𝐴) [𝑅(𝑥, 𝑦) ⇒
+¬𝑅(𝑦, 𝑥)]. Pro asymetrickou relaci plat́ı, že 𝑅 ∩ 𝑅−1 = ∅. Pro graf
+asymetrické relace plat́ı, že k žádné hraně neńı v grafu hrana opačně
+orientovaná. Matice sousednosti grafu asymetrické relace nemá nikdy
+zároveň jedničky na pozici 𝐴𝑖𝑗 a 𝐴𝑗𝑖.
+
+a b c d e
+
+
+
+1.1. RELACE A ZOBRAZENÍ 9
+
+• antisymetrická, jestliže pro každou dvojici prvk̊u 𝑥, 𝑦 plat́ı, že pokud
+je v relaci 𝑥 s 𝑦 a také 𝑦 s 𝑥, pak se muśı 𝑥 rovnat 𝑦, tj. (∀𝑥, 𝑦 ∈
+𝐴) [𝑅(𝑥, 𝑦) ∧ 𝑅(𝑦, 𝑥) ⇒ 𝑥 = 𝑦]. Pro antisymetrickou relaci plat́ı, že
+𝑅 ∩ 𝑅−1 ⊆ 𝑖𝑑𝐴. Pro graf antisymetrické relace plat́ı, že k žádné hraně
+s odlǐsným počátečńım a koncovým vrcholem neńı hrana opačně ori-
+entovaná, ale mohou tam být smyčky. Matice sousednosti grafu anti-
+symetrické relace nemá nikdy zároveň jedničky na pozici 𝐴𝑖𝑗 a 𝐴𝑗𝑖 a
+𝑖 ̸= 𝑗, tj. mimo hlavńı diagonálu, kde jedničky být mohou.
+
+a b c d e
+
+• tranzitivńı, jestliže pro každou trojici prvk̊u 𝑥, 𝑦, 𝑧 plat́ı, že pokud je v
+relaci 𝑥 s 𝑦 a také 𝑦 se 𝑧, pak muśı být v relaci i 𝑥 se 𝑧, tj. (∀𝑥, 𝑦, 𝑧 ∈ 𝐴)
+[𝑅(𝑥, 𝑦)∧𝑅(𝑦, 𝑧)⇒ 𝑅(𝑥, 𝑧)]. Pro tranzitivńı relaci plat́ı, že 𝑅∘𝑅 ⊆ 𝑅.
+Pokud je v grafu tranzitivńı relace cesta (či tah) z 𝑥 do 𝑦, pak tam
+muśı být i hrana s počátečńım uzlem 𝑥 a koncovým uzlem 𝑦.
+
+a b c d e
+
+• úplná (connex relation), jestliže pro každou dvojici prvk̊u 𝑥, 𝑦 plat́ı,
+že je v relaci 𝑥 s 𝑦 nebo 𝑦 s 𝑥, tj. (∀𝑥, 𝑦 ∈ 𝐴) [𝑅(𝑥, 𝑦) ∨ 𝑅(𝑦, 𝑥)]. Pro
+úplnou relaci 𝑅 ⊆ 𝐴 × 𝐴 plat́ı: 𝐴 × 𝐴 ⊆ 𝑅 ∪ 𝑅−1 ⇔ 𝑅 ⊆ 𝑅−1 ⇔ 𝑅
+je asymetrická. Pokud v grafu úplné relace zanedbáme orientaci hran,
+tak výsledný graf je úplný a se všemi smyčkami. Pro matici sousednosti
+grafu úplné relace plat́ı, že 𝐴 + 𝐴𝑇 je matice samých jedniček.
+
+• souvislá (trichotomická, semiconex relation), jestliže pro každou dvo-
+jici r̊uzných prvk̊u 𝑥, 𝑦 plat́ı, že je v relaci 𝑥 s 𝑦 nebo 𝑦 s 𝑥, tj. (∀𝑥, 𝑦 ∈
+𝐴) [𝑥 ̸= 𝑦 ⇒ 𝑅(𝑥, 𝑦) ∨ 𝑅(𝑦, 𝑥)]. Což je ekvivalentńı s: (∀𝑥, 𝑦 ∈ 𝐴)
+[𝑥 = 𝑦 ∨ 𝑅(𝑥, 𝑦) ∨ 𝑅(𝑦, 𝑥)]. Pro souvislou relaci 𝑅 ⊆ 𝐴 × 𝐴 plat́ı:
+𝑖𝑑𝐴 ⊆ 𝑅 ∪ 𝑅−1 ⇔ 𝑅 ⊆ 𝑅−1 ∪ 𝑖𝑑𝐴 ⇔ 𝑅 je antisymetrická. Pokud
+v grafu souvislé relace zanedbáme orientaci hran, tak výsledný graf je
+úplný a může mı́t smyčky, ale nemuśı. Pro matici sousednosti grafu
+souvislé relace plat́ı, že 𝐴 + 𝐴𝑇 může mı́t nuly pouze na diagonále.
+
+Definice 1.7. Ke každé binárńı homogenńı relaci 𝑅 ⊆ 𝑋 ×𝑋 lze určit jej́ı
+reflexivńı (symetrický, tranzitivńı) uzávěr, což je nejmenš́ı reflexivńı (syme-
+trická, tranzitivńı) relace na dané množině, která obsahuje výchoźı relaci.
+
+Věta 1.2. Necht’ 𝑅 je binárńı relace na 𝑋. Pak plat́ı, že:
+
+
+
+10 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+• reflexivńı uzávěr je: 𝑅𝑒(𝑅) = 𝑅 ∪ 𝑖𝑑𝑋 ,
+• symetrický uzávěr je: 𝑆𝑦(𝑅) =⋃︀𝑅 ∪𝑅−1,
+
+• tranzitivńı uzávěr je: 𝑇𝑟(𝑅) = |𝑋|
+𝑖=1 𝑅𝑖 = 𝑅 ∪𝑅2 ∪ . . . ∪𝑅|𝑋|.
+
+V teorii jazyk̊u a automat̊u se pro tranzitivńı a reflexivně-tranzitivńı
+uzávěr standa⋃︀rdně použ́ıvá následuj́ıćı značeńı. Tranzitivńı uzávěr 𝑅+,
+resp. reflexivně-tranzitivńı uzávěr 𝑅* relace 𝑅 ⊆ 𝑋 ×𝑋 jsou definovány
+vztahy: 𝑅+ = |𝑋| ⋃︀|𝑋|
+
+𝑖=1 𝑅𝑖 a 𝑅* = 𝑖=0 𝑅𝑖.
+Pro binárńı homogenńı relace se specifickými vlastnostmi se použ́ıvá následuj́ıćı
+
+označeńı:
+• tolerance – reflexivńı a symetrická,
+• předuspořádáńı (kvaziuspořádáńı) – reflexivńı a tranzitivńı
+• ekvivalence – reflexivńı, symetrická a tranzitivńı,
+• částečné neostré uspořádáńı – reflexivńı, antisymetrické a tranzitivńı,
+• částečné ostré uspořádáńı – ireflexivńı, asymetrické a tranzitivńı,
+• lineárńı (úplné) uspořádáńı – je uspořádáńı, které je souvislé (tricho-
+
+tomické).
+
+1.1.4 Zobrazeńı
+Definice 1.8. Binárńı relace 𝑓 ⊆ 𝑋 × 𝑌 je zobrazeńı (funkce) z množiny
+𝑋 do množiny 𝑌 , jestliže plat́ı:
+
+(∀𝑥 ∈ 𝑋)(∀𝑦1, 𝑦2 ∈ 𝑌 )[((𝑥, 𝑦1) ∈ 𝑓 ∧ (𝑥, 𝑦2) ∈ 𝑓)⇒ 𝑦1 = 𝑦2].
+
+• Běžněǰśı zp̊usob zápisu - relace 𝑓 je funkćı z množiny 𝑋 do množiny 𝑌 :
+
+(∀𝑥 ∈ 𝑋)(∀𝑦1, 𝑦2 ∈ 𝑌 )[𝑓(𝑥) = 𝑦1 ∧ 𝑓(𝑥) = 𝑦2 ⇒ 𝑦1 = 𝑦2].
+
+• Je-li 𝑓 funkce, pak ke každému 𝑥 ∈ 𝑋 existuje nejvýše jedno 𝑦 ∈
+𝑌 takové, že (𝑥, 𝑦) ∈ 𝑓 . Vedle relačńıho zápisu 𝑥𝑓𝑦 můžeme použ́ıt
+funkčńı zápis 𝑓(𝑥) = 𝑦, který se použ́ıvá nejčastěji. Pro zápis, že se
+jedná o funkci 𝑓 z 𝑋 do 𝑌 se častěji než relačńı zápis 𝑓 ⊆ 𝑋 × 𝑌
+použ́ıvá zápis 𝑓 : 𝑋 → 𝑌 .
+
+• – Definičńı obor (domain) funkce 𝑓 je 𝐷(𝑓) = {𝑥 ∈ 𝑋; (∃𝑦 ∈ 𝑌 )[𝑦 =
+𝑓(𝑥)]}.
+
+
+
+1.1. RELACE A ZOBRAZENÍ 11
+
+– Obor hodnot (range) funkce 𝑓 je 𝑅(𝑓) = {𝑦 ∈ 𝑌 ; (∃𝑥 ∈ 𝑋)[𝑦 =
+𝑓(𝑥)]}.
+
+– Je-li 𝐷(𝑓) ⊆ 𝑋, je 𝑓 částečným (parciálńım) zobrazeńım z 𝑋 do
+𝑌 . Plat́ı definice 1.8.
+
+– Je-li 𝐷(𝑓) = 𝑋, je 𝑓 úplným (totálńım) zobrazeńım 𝑋 do 𝑌 .
+Definici 1.8 pak muśıme rozš́ı̌rit ve smyslu úplnosti definičńıho
+oboru: [︀ ]︀
+(∀𝑥 ∈ 𝑋)(∃𝑦 ∈ 𝑌 )(∀𝑦1, 𝑦2 ∈ 𝑌 ) [𝑓(𝑥) = 𝑦1∧𝑓(𝑥) = 𝑦2 ⇒ 𝑦1 = 𝑦2]∧[𝑓(𝑥) = 𝑦] .
+
+– Je-li 𝑅(𝑓) ⊆ 𝑌 , je 𝑓 zobrazeńı z 𝑋 do 𝑌 .
+– Je-li 𝑅(𝑓) = 𝑌 , je 𝑓 zobrazeńı z 𝑋 na 𝑌 .
+– Pojmem zobrazeńı (či funkce) budeme dále označovat totálńı zob-
+
+razeńı.
+• Necht’ 𝑓 : 𝑋 → 𝑌 je zobrazeńı a množina 𝐴 ⊆ 𝑋. Pak zobrazeńı
+
+𝑓 ∩𝐴×𝑌 se nazývá zúžeńım (restrikćı) zobrazeńı 𝑓 na množinu
+𝐴.
+
+Př́ıklad 1.4. • Relace 𝑅 ⊆ 𝐴 × 𝐵, kde 𝐴 = {𝑎1, 𝑎2, 𝑎3}, 𝐵 = {𝑏1, 𝑏2} a
+𝑅 = {(𝑎1, 𝑏2), (𝑎2, 𝑏2), (𝑎3, 𝑏2)} je úplné zobrazeńı z 𝐴 do 𝐵.
+
+• Zobrazeńı 𝑦 = 𝑠𝑖𝑛(𝑥) je úplné zobrazeńı z R do R.
+• Zobrazeńı 𝑦 = 𝑙𝑜𝑔(𝑥) je částečné (parciálńı) zobrazeńı z R na R.
+• Zobrazeńı 𝑦 = 𝑙𝑜𝑔(𝑥) je zobrazeńı z R+ na R.
+• Zobrazeńı 𝑦 = 𝑎𝑏𝑠(𝑙𝑜𝑔(𝑥)) je zobrazeńı z R+ do R.
+
+Věta 1.3. Složeńı (kompozice) zobrazeńı je opět zobrazeńı, tj. jsou-li relace
+𝑓 ⊆ 𝑋 × 𝑌 a 𝑔 ⊆ 𝑌 × 𝑍 zobrazeńımi (funkcemi), pak i složená relace
+𝑓 ∘ 𝑔 ⊆ 𝑋 × 𝑍 je zobrazeńım (funkćı).
+D̊ukaz. Zobrazeńı je binárńı relace a skládáńı binárńıch relaćı je opět binárńı
+relace. Zobrazeńı 𝑓 přǐrazuje ke každému 𝑥 ∈ 𝑋 nejvýše jedno 𝑦 ∈ 𝑌 a
+zobrazeńı 𝑔 přǐrazuje ke každému 𝑦 ∈ 𝑌 nejvýše jedno 𝑧 ∈ 𝑍. Takže binárńı
+relace 𝑓 ∘ 𝑔 přǐrazuje ke každému 𝑥 ∈ 𝑋 nejvýše jedno 𝑧 ∈ 𝑍 a tedy je
+zobrazeńım.
+
+• Pro zápis složených relaćı se kromě relačńıho zápisu 𝑥(𝑓 ∘ 𝑔)𝑧 může
+použ́ıt 𝑧 = (𝑓 ∘ 𝑔)(𝑥). Nejčastěji se složené funkce zapisuj́ı 𝑧 = 𝑔(𝑓(𝑥)).
+
+
+
+12 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+• Inverzńı relace k zobrazeńı nemuśı být zobrazeńım.
+
+Definice 1.9. Zobrazeńı 𝑓 : 𝑋 → 𝑌 (z množiny 𝑋 do množiny 𝑌 ) se nazývá:
+
+• surjektivńı (je surjekćı, je zobrazeńım na 𝑌 ), jestliže
+
+(∀𝑦 ∈ 𝑌 )(∃𝑥 ∈ 𝑋)[𝑦 = 𝑓(𝑥)].
+
+• injektivńı (je injekćı, je zobrazeńım prostým), jestliže
+
+(∀𝑥1, 𝑥2 ∈ 𝑋)[𝑓(𝑥1) = 𝑓(𝑥2)⇒ 𝑥1 = 𝑥2]⇔ (∀𝑥1, 𝑥2 ∈ 𝑋)[𝑥1 ̸= 𝑥2 ⇒ 𝑓(𝑥1) ̸= 𝑓(𝑥2)]
+
+• bijektivńı (je bijekćı, je zobrazeńım vzájemně jednoznačným), jestliže
+je současně injektivńı i surjektivńı (a totálńı).
+
+Př́ıklad 1.5. • Zobrazeńı 𝑓 : 𝑋×𝑌 → 𝑋 definované vztahem 𝑓(𝑥, 𝑦) =
+𝑥 se nazývá prvńı projekćı a je př́ıkladem surjekce.
+
+• Permutace je bijektivńı zobrazeńı konečné množiny do sebe sama. Daľśım
+př́ıkladem bijekce je identické zobrazeńı libovolné množiny na sebe
+(∀𝑥 ∈ 𝑋)[𝑓(𝑥) = 𝑥].
+
+• Př́ıklady binárńıch heterogenńıch relaćı na konečných množinách 𝐴 a
+𝐵 (reprezentované pomoćı bipartitńıch graf̊u).
+
+𝐴 𝐵 𝐴 𝐵 𝐴 𝐵
+
+a1 b1 a1 b1 a1 b1
+
+a2 b2 a2 b2 a2 b2
+
+a3 b3 a3 b3 a3 b3
+
+Neńı zobrazeńı Totálńı zobrazeńı Parciálńı zobrazeńı
+
+
+
+1.1. RELACE A ZOBRAZENÍ 13
+
+𝐴 𝐵 𝐴 𝐵
+𝐵 𝐴
+
+a1 b1 a1 b1 a1 b1
+
+a2 b2 a2 b2 a2 b2
+
+a3 b3 a3 b3
+
+Surjekce Injekce Bijekce
+(zobrazeńı na B) (prosté zobrazeńı) (vzájemně jednoznačné)
+
+1.1.5 Operace
+Definice 1.10. n-árńı operace na množinách 𝐴1, 𝐴2, . . . , 𝐴𝑛 je zobrazeńı
+𝑓 kartézského součinu těchto množin do množiny 𝐵
+
+𝑓 : 𝐴1 × 𝐴2 × . . .× 𝐴𝑛 → 𝐵.
+
+Množiny 𝐴1, 𝐴2, . . . , 𝐴𝑛 jsou nosiče argument̊u operace 𝑓 a množina 𝐵 je
+nosič výsledku operace.
+
+• Klasifikace operaćı:
+– podle počtu druh̊u nosič̊u na homogenńı operace s jediným dru-
+
+hem nosiče, kde 𝐴1 = 𝐴2 = . . . = 𝐴𝑛, nebo heterogenńı operace s
+alespoň dvěma druhy nosič̊u.
+
+– podle arity (počet argument̊u) na nulárńı, unárńı, binárńı, ternárńı
+až n-árńı operace.
+
+• Každou n-árńı operaci 𝑓 lze formálně vyjádřit jako (n+1)-árńı relaci
+𝑅: 𝑓(𝑎1, 𝑎2, . . . , 𝑎𝑛) = 𝑏⇔ (𝑎1, 𝑎2, . . . , 𝑎𝑛, 𝑏) ∈ 𝑅
+
+Př́ıklad 1.6. • Homogenńı aritmetické operace na množině R:
+– nulárńı: č́ıslo 42,
+– unárńı: (−𝑥), |𝑥|,
+– binárńı: 𝑥 + 𝑦, 𝑥− 𝑦, 𝑥.𝑦, 𝑥 , 𝑥𝑦,
+
+𝑦
+
+– n-árńı: aritmetický pr̊uměr č́ısel 𝑥1, 𝑥2, . . . , 𝑥𝑛.
+• Heterogenńı operace a operace jako heterogenńı relace:
+
+
+
+14 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+– unárńı: počet obyvatel města x,
+– binárńı: skalárńı součin dvou vektor̊u (· : R𝑛 × R𝑛 → R),
+– binárńı: součin skaláru a vektoru (· : R× R𝑛 → R𝑛).
+
+• Logické operace:
+– nulárńı: ⊤,⊥,
+– unárńı: ¬𝜑,
+– binárńı: 𝜑 ∧ 𝜒, 𝜑 ∨ 𝜒, 𝜑→ 𝜒, 𝜑↔ 𝜒.
+
+• Množinové operace, kde 𝐴, 𝐵 ⊆ 𝑈 :
+– nulárńı: ∅,
+– unárńı: komplement 𝐴 do 𝑈 (𝐴 = {𝑥 ∈ 𝑈 ;¬(𝑥 ∈ 𝐴)}), potenčńı
+
+množina (2𝐴),
+– binárńı: 𝐴 ∩𝐵, 𝐴 ∪𝐵, 𝐴 ∖𝐵.
+
+• Operace nad binárńımi homogenńımi relacemi, kde 𝑅, 𝑆 ⊆ 𝐴× 𝐴:
+– nulárńı: 𝑖𝑑𝐴, ∅, 𝐴× 𝐴,
+– unárńı: 𝑅−1, 𝑅𝑒(𝑅), 𝑆𝑦(𝑅), 𝑇𝑟(𝑅),
+– binárńı: 𝑅 ∘ 𝑆, 𝑅 ∩ 𝑆, 𝑅 ∪ 𝑆, 𝑅 ∖ 𝑆.
+
+1.1.6 Grafy a hypergrafy
+Definice 1.11. Neorientovaný graf 𝐺 je usp(︀oř)︀ádaná dvojice (𝑉, 𝐸), kde
+𝑉 je neprázdná množina vrchol̊u (uzl̊u) a 𝐸 ⊆ 𝑉
+
+2 je nějaká množina dvou-
+prvkových podmnožin množiny 𝑉 . Prvky této množiny označujeme jako ne-
+orientované hrany.
+Definice 1.12. Orientovaný graf 𝐺 je uspořádaná dvojice (𝑉, 𝐸), kde 𝑉 je
+neprázdná množina vrchol̊u a 𝐸 ⊆ 𝑉 × 𝑉 je nějaká množina uspořádaných
+dvojic vrchol̊u. Prvky této množiny označujeme jako orientované hrany.
+
+• Hrany, které soused́ı pouze s jedńım vrcholem se označuj́ı jako smyčky.
+• Pokud jsou dva vrcholy grafu spojeny v́ıce než jednou hranou, tak
+
+hovoř́ıme o multigrafu.
+• Pokud se množina vrchol̊u 𝑉 = 𝑈 ∪ 𝑊 rozpadne na dvě disjunktńı
+
+podmnožiny 𝑈 a 𝑊 a všechny hrany maj́ı jeden krajńı vrchol z množiny
+𝑈 a druhý krajńı vrchol z množiny 𝑊 , tak hovoř́ıme o bipartitńım
+grafu. Tento pojem můžeme rozš́ı̌rit na multipartitńı grafy.
+
+
+
+1.1. RELACE A ZOBRAZENÍ 15
+
+Definice 1.13. Hypergraf je dvojice 𝐻 = (𝑉, 𝐸), kde 𝑉 je množina vrchol̊u
+a 𝐸 ⊆ 𝑃 (𝑉 ) je množina hyperhran, která je podmnožinou potenčńı množiny
+nad množinou vrchol̊u 𝑉 (tj. 𝑒 ∈ 𝐸 ⇔ 𝑒 ∈ 𝑃 (𝑉 )).
+Definice 1.14. Necht’ 𝑛 ≥ 1 je přirozené č́ıslo a 𝑉 = {𝑣1, ..., 𝑣𝑛} je množina
+𝑛 symbol̊u. (Abstraktńı) simpliciálńı komplex 𝒦 na 𝑉 nebo také jen
+komplex je soubor (kolekce) podmnožin množiny 𝑉 , výjma ∅, takový, že
+
+1. je-li 𝜎 ∈ 𝒦 a 𝜏 ⊆ 𝜎, potom 𝜏 ∈ 𝒦,
+2. {𝑣𝑖} ∈ 𝒦 pro všechny 𝑣𝑖 ∈ 𝑉 .
+
+Množinu 𝑉 tvoř́ı vrcholy simpliciálńıho komplexu 𝒦 a prvky {𝑣𝑖} se nazývaj́ı
+vrcholy nebo 0-simplex. Dvouprvkové podmnožiny množiny 𝑉 se nazývaj́ı
+hrany (1-simplexy) a (𝑛 + 1)-prvkové podmnožiny množiny 𝑉 pro 𝑛 ≥ 3 se
+nazývaj́ı 𝑛-simplexy.
+Př́ıklad 1.7. Následuj́ıćı sociálńı situaci reprezentujte pomoćı grafu, hyper-
+grafu a simpliciálńıho komplexu. A,B,C,D spolu chod́ı na pivo, B,D,E spolu
+chod́ı na volejbal, E,F spolu chod́ı, D,F jsou spolužáci a B,F jsou sourozenci
+a chod́ı spolu za školu.
+
+graf (multi) hypergraf simpliciálńı komplex
+C D E C D E C D E
+
+* *
+
+A B F A B F A B F
+A uzel A uzel A uzel (0-simplex)
+A B hrana D E hyperhrana A B hrana (1-simplex)
+A B F cesta * D E 2-simplex
+D E klika B B
+
+B
+
+Grafy můžeme použ́ıt pro vizualizaci binárńıch homogenńıch relaćı (snadno
+se pak detekuj́ı vlastnosti dané relace) nebo bipartitńı grafy pro vizualizaci
+zobrazeńı či skládáńı relaćı.
+
+Standardńı reprezentace neorientovaného grafu s 𝑛 vrcholy (𝑉 = {𝑣1, 𝑣2, . . . , 𝑣𝑛})
+a 𝑚 hranami (𝐸 = {𝑒1, 𝑒2, . . . , 𝑒𝑚}):
+
+• diagramem grafu - některé prvky z množiny vrchol̊u jsou spojeny hra-
+nami,
+
+
+
+16 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+• matićı incidence - je matice 𝐶 (𝑛×𝑚), kde 𝑐𝑖𝑗 = 1, jestliže vrchol 𝑣𝑖 je
+jedńım z vrchol̊u hrany 𝑒𝑗. Jinak je 𝑐𝑖𝑗 = 0,
+
+• matićı sousednosti - čtvercová matice 𝐴 (𝑛 × 𝑛), kde 𝑎𝑖𝑗 = 1, jestliže
+vrcholy 𝑣𝑖, 𝑣𝑗 jsou spojeny hranou. Jinak je 𝑎𝑖𝑗 = 0,
+
+• váženou matićı sousednosti - čtvercová matice 𝐴 (𝑛× 𝑛), kde 𝑎𝑖𝑗 = 𝑘,
+jestliže vrcholy 𝑣𝑖, 𝑣𝑗 jsou spojeny 𝑘 hranami nebo také hranou s váhou
+𝑘. Jinak je 𝑎𝑖𝑗 = 0,
+
+• seznamem vrchol̊u a jejich soused̊u,
+• seznamem hran.
+V teorii her lze některé problémy reprezentovat grafem. Hra v expli-
+
+citńım tvaru je dána orientovaným acyklickým grafem 𝐺 = (𝑉, 𝐸) s vy-
+braným vrcholem 𝑣0 ∈ 𝑉 . Na začátku vybere prvńı hráč vrchol 𝑣 ∈ 𝑉 tak,
+že (𝑣0, 𝑣) ∈ 𝐸. Dále hráči stř́ıdavě vyb́ıraj́ı vrcholy tak, že pokud vybral
+protihráč v posledńım tahu vrchol 𝑢, muśı hráč vybrat takový vrchol 𝑤, pro
+který (𝑢, 𝑤) ∈ 𝐸. Hráč, který již nemůže žádný vrchol vybrat, prohrál (např.
+ve hře Nim došly sirky, v tic-tac-toe již byla vytvořena vhodná trojice sym-
+bol̊u). Řekneme, že hráč má v této hře vyhrávaj́ıćı strategii, jestliže může
+volit tahy tak, že neprohraje, at’ protihráč voĺı jakékoliv možné tahy. Vrcholy
+grafu, které patř́ı do vyhrávaj́ıćı strategie, tvoř́ı jádro grafu.
+
+Necht’ 𝐺 = (𝑉, 𝐸) je orientovaný graf. Množinu 𝐶 (𝐶 ⊆ 𝑉 ) nazveme
+jádrem grafu G, jestliže plat́ı následuj́ıćı dvě podmı́nky:
+
+1. ∀𝑒 ∈ 𝐸, kde 𝑒 = (𝑣1, 𝑣2) plat́ı, že 𝑣1 ∈ 𝐶 ⇒ 𝑣2 ̸∈ 𝐶,
+2. 𝑣1 ̸∈ 𝐶 ⇒ (∃𝑣2 ∈ 𝐶)[𝑒 = (𝑣1, 𝑣2)]
+
+Př́ıklad 1.8. Je dána hra v explicitńım tvaru pomoćı orientovaného acyk-
+lického grafu (obrázek 1.2). Určete jádro tohoto grafu.
+
+Prvńı graf v obrázku 1.2 reprezentuje hru v explicitńım tvaru. Daľśı graf
+má červeně zvýrazněný vrchol 𝑣3, který má nulový výstupńı stupeň a patř́ı
+do jádra grafu. V druhém grafu jsou zvýrazněny vrcholy, které soused́ı s 𝑣3 a
+které určitě do jádra nepatř́ı. Tvoř́ı množinu 𝑉1 = {𝑣2, 𝑣5, 𝑣6}. Po odstraněńı
+všech hran incidentńıch s vrcholy ve 𝑉1 dostaneme redukovaný graf. V tomto
+grafu nalezneme vrchol s nulovým výstupńım stupněm, který patř́ı do jádra
+grafu. V tomto př́ıpadě to jsou vrcholy 𝑣1 a 𝑣9. Po odstraněńı vrchol̊u sou-
+sed́ıćıch s 𝑣1 a 𝑣9 spolu s incidentńımi hranami nám v redukovaném grafu
+z̊ustal pouze vrchol 𝑣7, který tedy také patř́ı do jádra grafu, protože má nu-
+lový výstupńı stupeň. Ve třet́ım grafu jsou zvýrazněny vrcholy jádra grafu.
+
+
+
+1.1. RELACE A ZOBRAZENÍ 17
+
+Algoritmus 1: Nalezeńı jádra orientovaného acyklického grafu
+input : Orientovaný acyklický graf 𝐺 = (𝑉, 𝐸).
+output: Jádro grafu.
+
+1 𝐶 je množinu vrchol̊u, které nejsou počátečńım vrcholem žádné
+hrany (tj. maj́ı nulový výstupńı stupeň). 𝐶 je počátek hledaného
+jádra.
+
+2 Množinu vrchol̊u, ze kterých směřuj́ı hrany do vrchol̊u v 𝐶, označ́ıme
+𝑉1. Množina 𝑉1 neńı součást́ı jádra. Odstrańıme hrany incidentńı s
+vrcholy ve 𝑉1 (tj. vstupńı i výstupńı).
+
+3 while 𝑉 ∖ (𝑉1 ∪ 𝐶) ̸= ∅ do
+4 do množiny 𝐶 přidáme všechny vrcholy s nulovým výstupńım
+
+stupněm z 𝑉 ∖ (𝑉1 ∪ 𝐶) a přejdeme k bodu 2.
+5 end
+
+𝑣7 𝑣8 𝑣9 𝑣7 𝑣8 𝑣9 𝑣7 𝑣8 𝑣9
+
+𝑣4 𝑣5 𝑣6 𝑣4 𝑣5 𝑣6 𝑣4 𝑣5 𝑣6
+
+𝑣1 𝑣2 𝑣3 𝑣1 𝑣2 𝑣3 𝑣1 𝑣2 𝑣3
+
+Obrázek 1.2: Graf hry v explicitńım tvaru. Množina 𝑉1 s incidentńımi hra-
+nami po prvńı iteraci. Výsledné jádro grafu.
+
+1.1.7 Uzávěrové systémy
+Definice 1.15. Je-li 𝐴 množina a 𝒞 ⊆ 𝑃 (𝐴), nazveme 𝒞 uzávěrovým
+systémem nad 𝐴, jsou-li splněny podmı́nky:
+
+(us1) 𝐴 ∈ 𝒞, ⋂︀
+(us2) jsou-li 𝐵𝑖 ∈ 𝒞, 𝑖 ∈ 𝐼 ̸= ∅ je ( 𝑖∈𝐼 𝐵𝑖) ∈ 𝒞.
+
+Slovně vyjádřeno je systém podmnožin 𝒞 množiny 𝐴 uzávěrovým systémem
+nad 𝐴, jestliže obsahuje 𝐴 a je uzavřen na pr̊uniky.
+
+Je-li 𝐵 ⊆ 𝐴 a 𝒞 je uzávěrový systém nad 𝐴, tak mezi množinami z 𝒞,
+které obsahuj́ı 𝐵, je podle (us1) určitě množ⋂︀ina 𝐴. Soustava {𝑋 ∈ 𝒞; 𝐵 ⊆ 𝑋}
+je proto vždy neprázdná. Označme 𝐸 = {𝑋 ∈ 𝒞; 𝐵 ⊆ 𝑋}. Množina 𝐸
+
+
+
+18 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+obsahuje množinu 𝐵 a podle (us2) patř́ı do uzávěrového systému 𝒞. Množina
+𝐸 byla přitom definována tak, aby ležela v každé množině z 𝒞, jež obsahuje 𝐵.
+Proto je 𝐸 nejmenš́ı množinou z 𝒞, jež obsahuje 𝐵. Znač́ıme ji 𝑐𝑙𝒞(𝐵) (někdy
+se označuje 𝐵) a nazýváme uzávěrem 𝐵 v 𝒞 nebo množinou generovanou
+v 𝒞 množinou 𝐵. Plat́ı: 𝑐𝑙𝒞(𝑋) = 𝑋 ⇔ 𝑋 ∈ 𝒞.
+
+Definice 1.16. Zobrazeńı 𝛼 : 𝑃 (𝐴)→ 𝑃 (𝐴) nazýváme uzávěrový operátor
+na množině 𝐴, jestliže splňuje tyto vlastnosti:
+
+(uo1) pro ∀𝐵 ⊆ 𝐴 plat́ı 𝐵 ⊆ 𝛼(𝐵) (extenzionalita),
+
+(uo2) pro ∀𝐵 ⊆ 𝐴 plat́ı 𝛼(𝛼(𝐵)) = 𝛼(𝐵) (idempotentnost),
+
+(uo3) pro ∀𝐵 ⊆ 𝐶 ⊆ 𝐴 plat́ı 𝛼(𝐵) ⊆ 𝛼(𝐶) (monotonicita).
+
+Věta 1.4. (1) Je-li 𝒞 uzávěrový systém nad 𝐴, je 𝑐𝑙𝒞 uzávěrový operátor
+na 𝐴.
+
+(2) Je-li 𝛼 uzávěrový operátor na 𝐴, tvoř́ı 𝒞 = {𝑋 ⊂ 𝐴; 𝛼(𝑋) = 𝑋}
+uzávěrový systém nad 𝐴 a 𝛼 = 𝑐𝑙𝒞.
+
+D̊ukaz. Část (1) plyne př́ımo z definice uzávěrového systému. Proto dokážeme
+jen část (⋂︀2). Bud’ 𝛼 uzávěrový operátor a necht’ {𝐶𝑖, 𝑖 ∈ 𝐼} je neprázdná sou-
+stava podmno⋂︀žin mn⋂︀ožiny 𝐴 takových, že 𝛼(𝐶⋂︀𝑖) = 𝐶𝑖 pro každé 𝑖 ∈ 𝐼 . Podle
+(uo1) je 𝐶𝑖 ⊆ 𝛼( 𝐶⋂︀𝑖). Podle (uo3) je 𝛼( 𝐶𝑖) ⊆ 𝛼(𝐶𝑖) = 𝐶𝑖 pro každé
+𝑖 ∈ 𝐼, tedy 𝛼( 𝐶𝑖) ⊆ 𝐶𝑖. Z těchto dvou závěr̊u pak plyne, že 𝛼(𝐶𝑖) = 𝐶𝑖.
+Dokázali jsme, že 𝒞 je uzávěrový systém. Je-li 𝐵 ⊆ 𝐴, je 𝛼(𝐵) ∈ 𝒞 podle
+(us2). Tud́ıž 𝑐𝑙𝒞(𝐵) ⊆ 𝛼(𝐵). Naopak, z 𝐵 ⊆ 𝑐𝑙𝒞(𝐵) dostáváme podle (uo3)
+𝛼(𝐵) ⊆ 𝛼(𝑐𝑙𝒞(𝐵)) = 𝑐𝑙𝒞(𝐵).
+
+Z předchoźı věty vyplývá, že uzávěrové operátory a uzávěrové systémy
+jsou ve vzájemně jednoznačném vztahu.
+
+Věta 1.5. Reflexivńı (resp. symetrické, resp. tranzitivńı) relace na množině
+𝐴 tvoř́ı uzávěrový systém nad 𝐴×𝐴 . Označ́ıme-li tento systém 𝒞, je 𝑐𝑙𝒞(𝜌)
+pro 𝜌 ⊆ 𝐴× 𝐴 rovno 𝜌 ∪ 𝑖𝑑𝐴 (resp. 𝜌 ∪ 𝜌−1, resp. ∪𝑖∈{1,...,|𝐴|}𝜌
+
+𝑖 ).
+
+D̊ukaz. Relace 𝜌∪ 𝑖𝑑𝐴 (resp. 𝜌∪ 𝜌−1, resp. ∪𝑖∈{1,...,|𝐴|}𝜌
+𝑖 ) muśı být obsažena
+
+v každé reflexivńı (resp. symetrické, resp. tranzitivńı) relaci, která obsahuje
+𝜌. Současně ale 𝜌 ∪ 𝑖𝑑𝐴 (resp.𝜌 ∪ 𝜌−1, resp. ∪𝑖∈{1,...,|𝐴|}𝜌
+
+𝑖) je samo reflexivńı
+(resp. symetrické, resp. tranzitivńı).
+
+
+
+1.1. RELACE A ZOBRAZENÍ 19
+
+Př́ıklad 1.9. Máme množinu 𝐴 = {𝑎, 𝑏, 𝑐, 𝑑} a množinu 𝒞 ⊆ 𝑃 (𝐴), kde
+𝒞 = {{𝑏}, {𝑏, 𝑐}, {𝑏, 𝑑}, {𝑏, 𝑐, 𝑑}, {𝑎, 𝑏, 𝑐}, {𝑎, 𝑏, 𝑐, 𝑑}}. Systém množin 𝒞 tvoř́ı
+uzávěrový systém, protože obsahuje celou množin 𝐴 a pr̊unik libovolných
+jeho prvk̊u, je opět prvkem tohoto systému. Uzávěry některých množin jsou
+následuj́ıćı: 𝑐𝑙({𝑎}) = {𝑎, 𝑏, 𝑐}, 𝑐𝑙({𝑏}) = {𝑏}, 𝑐𝑙({𝑐}) = {𝑏, 𝑐}, 𝑐𝑙({𝑎, 𝑑}) =
+{𝑎, 𝑏, 𝑐, 𝑑}.
+
+Máme daľśı systém množin, které jsou podmnožinou 𝑃 (𝐴):
+𝒞 ′ = {{𝑏}, {𝑏, 𝑑}, {𝑏, 𝑐, 𝑑}, {𝑎, 𝑐}, {𝑎, 𝑏, 𝑐, 𝑑}}. Tento systém neńı uzávěrový,
+protože pr̊unik dvou prvk̊u tohoto systému nepatř́ı do 𝒞 ′ (konkrétně: {𝑏, 𝑑}∩
+{𝑎, 𝑐} = ∅ ∈/ 𝒞 ′).
+
+1.1.8 Ekvivalence a tolerance
+Definice 1.17. Relace 𝜌 na množině 𝑋 je ekvivalence, jestliže je současně
+relexivńı, symetrická a tranzitivńı. Tř́ıda prvku 𝑎 ∈ 𝑋 v ekvivalenci 𝜌 na
+množině X je množina všech takových prvk̊u množiny X, které jsou ekviva-
+lentńı (tj. v relaci ekvivalenci) s prvkem 𝑎. Zapisujeme
+
+[𝑎]𝜌 = {𝑥 ∈ 𝑋; (𝑥, 𝑎) ∈ 𝜌}.
+
+Pokud je zřejmé o jakou ekvivalenci se jedná, tak se pro jednu tř́ıdu ekviva-
+lence použ́ıvá zápis pomoćı reprezentanta: [𝑎]𝜌 = 𝑎.
+
+• Pr̊unik ekvivalenćı je opět ekvivalence (nebot’ vlastnosti reflexivity, sy-
+metrie i tranzitivity se přenášej́ı i na pr̊unik relaćı) a to největš́ı ze
+všech ekvivalenćı obsažených ve všech ekvivalenćıch, které jsou dány
+do pr̊uniku. Protože úplná relace na množině 𝐴 (𝐴×𝐴) je též ekviva-
+lenćı, tak množina všech ekvivalenćı tvoř́ı uzávěrový systém. V rámci
+ekvivalenčńıho uzávěru je nutno dávat pozor na pořad́ı jednotlivých
+uzávěr̊u (Re, Sy, Tr). Ekvivalenčńı uzávěr relace 𝜌 ⊆ 𝐴 × 𝐴 můžeme
+definovat takto: 𝐸(𝜌) = 𝑇𝑟(𝑅𝑒(𝑆𝑦(𝜌))).
+
+• Sjednoceńı ekvivalenćı neńı obecně ekvivalence. Tranzitivńı uzávěr sjed-
+noceńı ekvivalenćı je, a to nejmenš́ı ze všech ekvivalenćı obsahuj́ıćıch
+všechny sjednocované ekvivalence.
+
+• Direktńı součin ekvivalenćı je ekvivalenćı (na kartézském součinu nosič̊u).
+
+• Všechny ekvivalence na 𝐴 tvoř́ı uzávěrový systém nad 𝐴× 𝐴.
+
+Definice 1.18. Relace 𝜌 na množině 𝑋 je tolerance, jestliže je současně
+relexivńı a symetrická. Tř́ıda prvku 𝑎 ∈ 𝑋 v toleranci 𝜌 na množině X je
+
+
+
+20 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+množina všech takových prvk̊u množiny X, které jsou v relaci tolerance s
+prvkem 𝑎. Zapisujeme
+
+[𝑎]𝜌 = {𝑥 ∈ 𝑋; (𝑥, 𝑎) ∈ 𝜌}.
+
+Definice 1.19. Systém množin 𝐵 = {𝐴𝑖; 𝑖 ∈ 𝐼} je pokryt́ım množiny 𝐴,
+jestliže plat́ı:
+
+1. 𝐴𝑖 ̸= ∅ pro 𝑖 ∈ 𝐼,
+
+2. ∪𝑖∈𝐼𝐴𝑖 = 𝐴.
+
+Množiny 𝐴𝑖 nazýváme tř́ıdy pokryt́ı.
+Systém množin 𝐵 = {𝐴𝑖; 𝑖 ∈ 𝐼} je rozkladem množiny 𝐴, jestliže plat́ı:
+
+1. 𝐴𝑖 ̸= ∅ pro 𝑖 ∈ 𝐼,
+
+2. ∪𝑖∈𝐼𝐴𝑖 = 𝐴.
+
+3. 𝐴𝑖 ∩ 𝐴𝑗 = ∅ pro 𝑖, 𝑗 ∈ 𝐼 a 𝑖 ̸= 𝑗
+
+Množiny 𝐴𝑖 nazýváme tř́ıdy rozkladu.
+Rozklad 𝐷 = {𝐶𝑘; 𝑘 ∈ 𝐾} množiny A nazýváme zjemněńım roz-
+
+kladu 𝐵 = {𝐴𝑖; 𝑖 ∈ 𝐼} téže množiny 𝐴, jestliže každá tř́ıda rozkladu 𝐷
+je podmnožinou nějaké tř́ıdy rozkladu 𝐵 (tj. některé tř́ıdy rozkladu 𝐵 se
+rozdělily na v́ıce tř́ıd rozkladu 𝐷, viz. obrázek 1.3) a zapisujeme, že 𝐷 ≪ 𝐵.
+
+𝑎 𝑏 𝑐 𝑎 𝑏 𝑐
+
+𝑑 𝑒 𝑓 𝑑 𝑒 𝑓
+
+𝐵 𝐷
+
+Obrázek 1.3: Rozklad 𝐵 množiny 𝐴 a jeho zjemněńı na rozklad 𝐷.
+
+Věta 1.6. 1. Je-li 𝜌 ekvivalence na množině 𝑋, pak {[𝑥]𝜌; 𝑥 ∈ 𝑋} je
+rozklad na 𝑋.
+
+2. Je-li {𝑋𝑖; 𝑖 ∈ 𝐼} rozklad na 𝑋, pak relace definovaná vztahem (𝑥, 𝑦) ∈
+𝜌⇔ (∃𝑖 ∈ 𝐼)[𝑥 ∈ 𝑋𝑖 ∧ 𝑦 ∈ 𝑋𝑖] je ekvivalenćı na X.
+
+
+
+1.1. RELACE A ZOBRAZENÍ 21
+
+3. Každá relace ekvivalence na množině X definuje rozklad množiny 𝑋
+a obráceně každý rozklad množiny 𝑋 definuje relaci ekvivalence na
+množině 𝑋 (existuje bijekce mezi množinou všech ekvivalenćı na dané
+množině a množinou všech rozklad̊u této množiny).
+
+Na př́ıkladu ekvivalence na množině přirozených č́ısel si ukážeme vazbu
+mezi podmnožinami vzájemně ekvivalentńıch prvk̊u a tř́ıdami rozkladu nad
+N. Obrázek 1.4 demonstruje, že relace 𝜌, kde (𝑥, 𝑦) ∈ 𝜌⇔ (𝑥−𝑦) 𝑚𝑜𝑑 3 = 0,
+je ekvivalenćı a indukuje rozklad na množině přirozených č́ısel. Hrany v grafu
+jsou neorientované (tj. vedou jedńım i druhým směrem).
+
+0 1 2
+
+3 4 5
+[0]𝜌 [1]𝜌 [2]𝜌
+
+6 7 8
+... ... ... 𝜌 𝑛𝑎 N N/𝜌
+
+Obrázek 1.4: Relace ekvivalence a j́ı indukovaný rozklad nad množinou
+přirozených č́ısel tvoř́ıćı faktorovou množinu N/𝜌. Zde N/𝜌 = N3
+
+Výše byla definována relace tolerance, která je pouze reflexivńı a syme-
+trická. Jednotlivé tř́ıdy tolerance na množině 𝐴 jsou tvořeny všemi prvky,
+které jsou v toleranci 𝜏 s vybraným prvkem 𝑎 ∈ 𝐴. Všechny tř́ıdy tolerance
+pak tvoř́ı pokryt́ı množiny 𝐴.
+Př́ıklad 1.10. Na množině 𝐴 = {0, 1, . . . , 8} je dána relace 𝜏 = 𝑖𝑑𝐴 ∪
+{(0, 6), (6, 0), (0, 1), (1, 0), (1, 2), (2, 1), (1, 5), (5, 1), (2, 5), (5, 2), (4, 7), (7, 4),
+(4, 8), (8, 4), (7, 8), (8, 7)}. Tato relace je toleranćı a indukuje pokryt́ı množiny
+A (viz. obrázek 1.5).
+
+0 1 2 [0]𝜏 = {0, 1, 6} [1]𝜏 = {0, 1, 2, 5}
+
+3 4 5 [2]𝜏 = [5]𝜏 = {1, 2, 5} [3]𝜏 = {3, 6}
+
+6 7 8 [4]𝜏 = [7]𝜏 = [8]𝜏 = {4, 7, 8} [6]𝜏 = {0, 3, 6}
+
+Obrázek 1.5: Tolerance 𝜏 a j́ı indukované pokryt́ı nad množinou {0, . . . , 8}.
+
+Definice 1.20. Systém {[𝑥]𝜌; 𝑥 ∈ 𝑋} tř́ıd rozkladu definovaného ekvivalenćı
+𝜌 označujeme symbolem 𝑋/𝜌 a nazýváme faktorovou množinou množiny
+
+
+
+22 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+𝑋 podle ekvivalence 𝜌. Zobrazeńı přǐrazuj́ıćı každému prvku 𝑥 ∈ 𝑋 tř́ıdu [𝑥]𝜌,
+do které prvek 𝑥 patř́ı, nazýváme přirozeným (kanonickým) zobrazeńım
+množiny 𝑋 na faktorovou množin 𝑋/𝜌. Toto zobrazeńı je surjekce.
+
+Př́ıklad 1.11. • Rovnoběžnost je ekvivalence na množině všech př́ımek
+(nebo vektor̊u) v rovině nebo prostoru. Množina všech směr̊u je fakto-
+rová množina této množiny vzhledem k relaci rovnoběžnosti.
+
+• Podobnost trojúhelńık̊u je relace ekvivalence na množině všech trojúhelńık̊u.
+Faktorová množina na množině všech trojúhelńık̊u je tvořena tř́ıdami
+podobných trojúhelńık̊u.
+
+• Relace ≡𝑚𝑜𝑑 𝑚⊆ 𝑍 × 𝑍, která je definována následuj́ıćım zp̊usobem:
+𝑥 ≡𝑚𝑜𝑑 𝑚 𝑦 ⇔ (𝑥 − 𝑦) 𝑚𝑜𝑑 𝑚 = 0, se nazývá kongruence mo-
+dulo m. Faktorová množina vytvořená touto ekvivalenćı se nazývá
+systém zbytkových tř́ıd modulo m a znač́ı se 𝑍𝑚 = 𝑍/≡ . Do
+
+𝑚𝑜𝑑 𝑚
+
+téže tř́ıdy ekvivalence patř́ı taková celá č́ısla, která po vyděleńı mo-
+dulem 𝑚 dávaj́ı stejný zbytek. Zbytek po děleńı nabývá hodnoty z
+množiny {0, 1, . . . , 𝑚− 1} a existuje tedy m tř́ıd rozkladu.
+
+1.1.9 Uspořádáńı
+Definice 1.21. Relace 𝜌 na množině 𝐴 je uspořádáńı (částečné a neostré),
+jestliže je současně reflexivńı, antisymetrická a tranzitivńı (standardně tuto
+relaci znač́ıme ≤).
+
+Relace 𝜌 na množině 𝐴 je úplné uspořádáńı (neostré), jestliže je současně
+reflexivńı, antisymetrická, tranzitivńı a úplná (standardně tuto relaci znač́ıme
+≤).
+
+Relace 𝜌 na množině 𝐴 je ostré uspořádáńı (částečné), jestliže je současně
+asymetrická (a tedy i antisymetrická a ireflexivńı) a tranzitivńı (standardně
+tuto relaci znač́ıme <).
+
+Relace 𝜌 na množině 𝐴 je úplné ostré uspořádáńı, jestliže je současně
+asymetrická (a tedy i antisymetrická a ireflexivńı), tranzitivńı a souvislá
+(standardně tuto relaci znač́ıme <).
+
+• Mı́sto termı́nu úplné uspořádáńı se použ́ıvá i termı́n totálńı či lineárńı
+uspořádáńı.
+
+• Je-li ≤ uspořádáńı na množině 𝐴, pak relačńımu systému (𝐴,≤) ř́ıkáme
+uspořádaná množina (poset - partially oredered set). Úplně uspořádané
+množině ř́ıkáme řetězec (chain).
+
+
+
+1.1. RELACE A ZOBRAZENÍ 23
+
+• Dva r̊uzné prvky 𝑥, 𝑦 jsou porovnatelné v uspořádáńı ≤, jestliže plat́ı
+(𝑥 ≤ 𝑦)∨ (𝑦 ≤ 𝑥). V opačném př́ıpadě jsou prvky neporovnatelné. V
+úplném uspořádáńı jsou každé dva prvky srovnatelné.
+
+• Pr̊unik uspořádáńı je opět uspořádáńım. Sjednoceńı uspořádáńı ne-
+muśı být obecně uspořádáńım. Inverze uspořádáńı je opět uspořádáńı
+(duálńım k p̊uvodńımu). Direktńı součin uspořádáńı je opět uspořádáńım,
+ale úplnost uspořádáńı se na direktńı součin nepřenáš́ı.
+
+Př́ıklad 1.12. • Relace ”x celoč́ıselně děĺı y”je relaćı částečného neostrého
+uspořádáńı na množině přirozených č́ısel. Formálně ji můžeme zapsat
+takto: 𝑥|𝑦 ⇔ (∃𝑧 ∈ N) [𝑦 = 𝑥 · 𝑧]. Snadno pak ověř́ıme, že relace | je
+reflexivńı, antisymetrická a tranzitivńı.
+
+• (𝑅,≤) – úplné neostré uspořádáńı na množině reálných č́ısel a (𝑅, <)
+– úplné ostré uspořádáńı na množině reálných č́ısel.
+
+• (𝑃 (𝐴),⊆) – částečné neostré uspořádáńı na potenčńı množině (množina
+všech podmnožin množiny 𝐴) a obdobně je (𝑃 (𝐴),⊂) – částečné ostré
+uspořádáńı na potenčńı množině množ. 𝐴.
+
+• Dvě množiny z 𝑃 (𝐴) jsou porovnatelné, pokud je jedna podmnožinou
+druhé. Dvě disjunktńı množiny jsou neporovnatelné (neporovnatelné
+mohou být i množiny, které nejsou disjunktńı).
+
+Definice 1.22. Redukce relace 𝜌 je relace 𝜌𝑟 = 𝜌 ∖ 𝜌2 (symbol ”∖”je sym-
+bolem množinového rozd́ılu a 𝜌2 je složená relace 𝜌 ∘ 𝜌). Je-li relace 𝜌 re-
+laćı ostrého uspořádáńı, pak se redukce 𝜌𝑟 nazývá relaćı bezprostředńıho
+předcházeńı.
+
+• Redukce 𝜌𝑟 vznikne z p̊uvodńı neredukované relace 𝜌 vyloučeńım všech
+těch dvojic (𝑥, 𝑦) ∈ 𝜌, pro které existuje prostředńı prvek 𝑧 (tj. pro 𝑧
+plat́ı: (𝑥, 𝑧) ∈ 𝜌 a (𝑧, 𝑦) ∈ 𝜌). Je-li (𝑥, 𝑦) ∈ 𝜌𝑟, pak prvek 𝑥 je pokrýván
+prvkem 𝑦, nebo také, že prvek 𝑥 bezprostředně předcháźı prvku 𝑦.
+
+• Hasse̊uv diagram relace 𝜌 typu uspořádáńı je grafový diagram relace
+(𝜌 ∖ 𝑖𝑑𝐴)𝑟, kde 𝑖𝑑𝐴 = {(𝑥, 𝑥); 𝑥 ∈ 𝐴} je identická relace. Tento di-
+agram je kreslen tak, že všechny orientované hrany směřuj́ı vzh̊uru a
+jejich orientaci pak v obrázku nemuśıme značit.
+
+• Hasse̊uv diagram relace 𝜌 vytvoř́ıme z diagramu relace 𝜌 tak, že:
+
+1. vylouč́ıme všechny elementárńı smyčky,
+
+
+
+24 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+2. zruš́ıme všechny hrany (𝑥, 𝑦), které mohou být nahrazeny dvojićı
+hran (𝑥, 𝑧) a (𝑧, 𝑦),
+
+3. diagram zakresĺıme tak, že všechny orientované hrany směřuj́ı
+vzh̊uru.
+
+Př́ıklad 1.13. Necht’ 𝜌 je relace celoč́ıselné dělitelnosti | na množině {5, 10, 15, 20, 30}.
+Obrázek 1.6 nám reprezentuje posloupnost graf̊u od p̊uvodńı relace až od-
+pov́ıdaj́ıćımu Hasseovu diagramu.
+
+relace 𝜌 relace 𝜎 = 𝜌 ∖ 𝑖𝑑𝐴 relace 𝜎𝑟 Hasse̊uv diagram 𝜌
+20 30 20 30 20 30 20 30
+
+10 15 10 15 10 15 10 15
+
+5 5 5 5
+
+Obrázek 1.6: Grafové reprezentace p̊uvodńı relace, redukované relace a
+výsledný Hasse̊uv diagram.
+
+Definice 1.23. Topologické uspořádáńı vrchol̊u orientovaného grafu 𝐺 =
+(𝑉, 𝐸) je oč́ıslováńı vrchol̊u č́ısly 1 až 𝑛 takové, že každá hrana vede z vrcholu
+s nižš́ım č́ıslem do vrcholu s vyšš́ım č́ıslem ((∀𝑖, 𝑗 ∈ 𝑉 ) [(𝑖, 𝑗) ∈ 𝐸 ⇒ 𝑖 < 𝑗]).
+
+• Topologicky lze uspořádat pouze acyklické grafy.
+
+• Topologické uspořádáńı orientovaného acyklického grafu můžeme nalézt
+pomoćı prohledáváńı grafu do hloubky (DFS) tak, že každý vrchol
+vyṕı̌seme v momentě, kdy ho opoušt́ıme. Na závěr výslednou posloup-
+nost obrát́ıme. Časová složitost topologického uspořádáńı (tř́ıděńı) je
+𝑂(𝑚 + 𝑛).
+
+• Alternativńım algoritmem pro nalezeńı topologického uspořádáńı může
+být postupné odtrháváńı zdroj̊u (spotřebič̊u) grafu a jejich vypisováńı
+na výstup. Zdroj je vrchol, do kterého nevede žádná hrana. Hrany
+z něj pouze vycháźı (tj. zdroj má nulový vstupńı stupeň). Naopak
+do spotřebiče hrany pouze vedou a žádná hrana z něj nevede ven (tj.
+spotřebič má nulový výstupńı stupeň).
+
+
+
+1.1. RELACE A ZOBRAZENÍ 25
+
+• Topologické uspořádáńı se např́ıklad použ́ıvá pro plánováńı vzájemně
+závislých činnost́ı. Pokud tyto činnosti vykonáváme v pořad́ı daném
+topologickým uspořádáńım, tak daná činnost bude vždy vykonána až
+po všech činnostech, na kterých záviśı.
+
+• Topologické uspořádáńı lze využ́ıt pro ověřeńı acykličnosti grafu a pro
+následnou detekci kritické cesty.
+
+Algoritmus 2: Topologické uspořádáńı vrchol̊u v grafu.
+input : Orientovaný graf 𝐺 = (𝑉, 𝐸).
+output: Topologické uspořádáńı vrchol̊u v TopUsp nebo informace o
+
+cykličnosti.
+1 TopUsp:=∅
+2 while 𝑉 ̸= ∅ do
+3 Najdi vrchol 𝑣 s nulovým vstupńım stupněm a přidej ho nakonec
+
+TopUsp.
+4 𝑉 := 𝑉 ∖ {𝑣}
+5 𝐸 := 𝐸 ∖ {(𝑣, 𝑢);∀𝑢 ∈ 𝑉 }
+6 end
+7 if V=∅ then
+8 Výstup:=TopUsp
+9 else
+
+10 Graf neńı acyklický.
+11 end
+
+Př́ıklad 1.14. Je dán orientovaný graf (obrázek 1.7). Určete zda je graf
+acyklický a pokud je acyklickým, tak vytvořte topologické uspořádáńı vrchol̊u
+(př́ıpadně hran) grafu.
+Definice 1.24. Lexikografické uspořádáńı množiny 𝐴𝑛 vytvořené uspořádáńım
+≤ množiny 𝐴 je uspořádáńı [≤] definované takto:
+(𝑥1, 𝑥2, . . . , 𝑥𝑛)[≤](𝑦1, 𝑦2, . . . , 𝑦𝑛)⇔ (∀𝑖)[𝑥𝑖 = 𝑦𝑖]∨(∃𝑗 ≤ 𝑛)(∀𝑖 < 𝑗)[[𝑥𝑖 = 𝑦𝑖]∧[𝑥𝑗 ≤ 𝑦𝑗]]
+
+Lexikografické uspořádáńı množiny 𝐴* vytvořené uspořádáńım≤množiny
+𝐴 je uspořádáńı [≤] definované takto:
+
+(𝑥1, 𝑥2, . . . , 𝑥𝑚)[≤](𝑦1, 𝑦2, . . . , 𝑦𝑛)⇔
+[𝑚 ≤ 𝑛 ∧ (∀𝑖 ≤ 𝑚)[𝑥𝑖 = 𝑦𝑖]] ∨ (∃𝑗 ≤ 𝑛)(∀𝑖 < 𝑗)[[𝑥𝑖 = 𝑦𝑖] ∧ [𝑥𝑗 ≤ 𝑦𝑗]].
+Symbol ≤ je ve výše uvedené definici použit ve dvoj́ım smyslu - jednak jako
+
+
+
+26 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+𝑣 5
+7 𝑣8 𝑣9 𝑣2 3 7 9
+
+7 𝑣8 𝑣7
+9 𝑣3
+
+𝑣8
+6
+
+3 3 4 6 13 15 𝑣6
+2 𝑣7
+
+9
+
+𝑣 2 1 2 5 12
+4 𝑣5 𝑣6 𝑣 8
+
+4 𝑣5 𝑣6 𝑣5
+5
+
+1 1 9 11 10 16 𝑣4
+1 𝑣3
+
+8
+
+𝑣 𝑣 8 14 𝑣2
+7
+
+𝑣1 2 3 𝑣4 𝑣6 9 1
+1 2 𝑣3 𝑣4
+
+Obrázek 1.7: Orientovaný graf se zvýrazněným vrcholem s nulovým vstupńım
+stupněm a s hranami z něj vystupuj́ıćımi (s topologickým oč́ıslováńım hran).
+Druhý obrázek již reprezentuje jedno z možných topologických uspořádáńı
+vrchol̊u a hran. Třet́ı obrázek je Hasse̊uv diagram reprezentuj́ıćı relaci bez-
+prostředńıho předcházeńı v topologickém uspořádáńı vrchol̊u.
+
+symbol uspořádáńı přirozených č́ısel (𝑖 ≤ 𝑗) a jednak jako symbol uspořádáńı
+množiny 𝐴 (𝑥𝑗 ≤ 𝑦𝑗).
+
+• Uspořádáńı množiny slov ve slovńıku je lexikografické (slovńıkové) uspořádáńı
+množiny 𝐴* všech slov nad abecedou 𝐴 vytvořené uspořádáńım ṕısmen
+v abecedě.
+
+• Lexikografické uspořádáńı množiny 𝐴𝑛 (resp. 𝐴*), vytvořené úplným
+uspořádáńım množiny 𝐴, je úplné.
+
+Definice 1.25. Necht’ 𝑀 = {1, 2, . . . , 𝑛}. Řekneme, že 𝐴 ⊆ 𝑀 je lekticky
+menš́ı než 𝐵 ⊆ 𝑀 , jestliže 𝐵 ̸= 𝐴 a nejmenš́ı element, ve kterém se 𝐴 a 𝐵
+lǐśı, patř́ı do množiny 𝐵. Formálně zapsáno:
+
+𝐴 <𝐿 𝐵 ⇔ (∃𝑖 ∈ 𝐵 ∖ 𝐴) ∧ [𝐴 ∩ {1, 2, . . . , 𝑖− 1} = 𝐵 ∩ {1, 2, . . . , 𝑖− 1}]
+Obrázek 1.8 ukazuje postupné vytvářeńı všech podmnožin na množině
+
+{1, 2, 3, 4, 5}. Jednotlivé podmnožiny maj́ı své prvky uspořádány dle uspořádáńı
+na přirozených č́ıslech.
+
+Obecně je lektické uspořádáńı úplné (totálńı či lineárńı) ostré (striktńı)
+uspořádáńı na potenčńı množině 𝑃 (𝑋) za předpokladu existence lineárńıho
+uspořádáńı na množině 𝑋. Množina 𝐴 ⊆ 𝑋 je menš́ı než množina 𝐵 ⊆ 𝑋 v
+lektickém uspořádáńı, zapisujeme 𝐴 ≤ 𝐵, právě když 𝑚𝑖𝑛((𝐴∪𝐵)∖(𝐴∩𝐵)) ∈
+𝐵.
+
+Takže lektické uspořádáńı všech prvk̊u z obrázku 1.8 je po konvenci o
+vynecháńı složených závorek označuj́ıćıch množinu (tj. 45 odpov́ıdá {4, 5})
+
+
+
+1.1. RELACE A ZOBRAZENÍ 27
+
+1, 2, 3, 4, 5
+2, 3, 4, 5 1, 3, 4, 5 1, 2, 4, 51, 2, 3, 51, 2, 3, 4
+
+1, 4, 5
+3, 4, 5 2, 4, 5 2, 3, 5 2, 3, 4 1, 3, 5 1, 3, 4 1, 2, 5 1, 2, 4 1, 2, 3
+
+2, 2, 3 1, 5
+4 1, 4
+, 5 3, 5 3, 4 2, 5 4 1, 3 1, 2
+
+3 2 1
+5 4
+
+∅
+
+Obrázek 1.8: Strom reprezentuj́ıćı postupné vytvářeńı prvk̊u (podmnožin),
+které lze lekticky uspořádat, na množině {1, 2, 3, 4, 5}.
+
+takovéto: ∅ < 5 < 4 < 45 < 3 < 35 < 34 < 345 < 2 < 25 < 24 < 245 < 23 <
+235 < 234 < 2345 < 1 < 15 < 14 < 145 < 13 < 135 < 134 < 1345 < 12 <
+125 < 124 < 1245 < 123 < 1235 < 1234 < 12345.
+Definice 1.26. Necht’ ≤ je uspořádáńı na množině 𝐴 (ř́ıkáme, že relačńı
+systém (𝐴,≤) je uspořádaná množina) a necht’ 𝑀 ⊆ 𝐴. Potom:
+
+• 𝑎 je minimálńı prvek množiny 𝑀 , jestliže:
+𝑎 ∈𝑀 ∧ ¬(∃𝑥 ∈𝑀)[𝑥 < 𝑎].
+
+• 𝑎 je maximálńı prvek množiny 𝑀 , jestliže:
+𝑎 ∈𝑀 ∧ ¬(∃𝑥 ∈𝑀)[𝑎 < 𝑥].
+
+• 𝑎 je nejmenš́ı prvek množiny 𝑀 , jestliže:
+𝑎 ∈𝑀 ∧ (∀𝑥 ∈𝑀)[𝑎 ≤ 𝑥].
+
+• 𝑎 je největš́ı prvek množiny 𝑀 , jestliže:
+𝑎 ∈𝑀 ∧ (∀𝑥 ∈𝑀)[𝑥 ≤ 𝑎].
+
+• 𝑎 je dolńı závora množiny 𝑀 , jestliže:
+(∀𝑥 ∈𝑀)[𝑎 ≤ 𝑥].
+
+• 𝑎 je horńı závora množiny 𝑀 , jestliže:
+(∀𝑥 ∈𝑀)[𝑥 ≤ 𝑎].
+
+
+
+28 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+𝑈𝐵(𝑀) 𝑈𝐵(𝑀) 𝑈𝐵(𝑀)
+sup(M)
+
+sup(M) = max(M)
+𝑚𝑎𝑥1 𝑚𝑎𝑥2 𝑚𝑎𝑥1 𝑚𝑎𝑥2
+
+𝑀 𝑀 𝑀
+
+𝐴
+inf(M) 𝐴
+
+inf(M) 𝐴
+inf(M)
+
+𝐿𝐵(𝑀) 𝐿𝐵(𝑀) 𝐿𝐵(𝑀)
+
+Obrázek 1.9: Schématický obrázek uspořádané množiny 𝐴 s podmnožinou
+𝑀 a množinou horńıch (UB(M) – upper bound) a dolńıch závor (LB(M) –
+lower bound) množiny 𝑀 . Pokud existuje nejmenš́ı prvek množiny horńıch
+závor množiny M, tak je to 𝑠𝑢𝑝(𝑀) a obdobně, pokud existuje největš́ı prvek
+množiny dolńıch závor množiny M, tak je to 𝑖𝑛𝑓(𝑀).
+
+• 𝑎 je infimum množiny 𝑀 (𝑎 = 𝑖𝑛𝑓(𝑀), jestliže 𝑎 je největš́ı ze všech
+dolńıch závor množiny 𝑀 , tj. je-li:
+
+(∀𝑥 ∈𝑀)[𝑎 ≤ 𝑥] ∧ (∀𝑏)(∀𝑥 ∈𝑀)[𝑏 ≤ 𝑥⇒ 𝑏 ≤ 𝑎].
+
+• 𝑎 je supremum množiny 𝑀 (𝑎 = 𝑠𝑢𝑝(𝑀), jestliže 𝑎 je nejmenš́ı ze
+všech horńıch závor množiny 𝑀 , tj. je-li:
+
+(∀𝑥 ∈𝑀)[𝑥 ≤ 𝑎] ∧ (∀𝑏)(∀𝑥 ∈𝑀)[𝑥 ≤ 𝑏⇒ 𝑎 ≤ 𝑏].
+
+Poznámky:
+• Nejmenš́ı prvek je také minimálńım prvkem a je jediný. Minimálńıch
+
+prvk̊u může být v́ıce a žádný z nich nemuśı být nejmenš́ım prvkem.
+Obdobně maximálńı a největš́ı prvek.
+
+• Dolńı a horńı závora, infimum a supremum množiny 𝑀 může do množiny
+𝑀 patřit, ale nemuśı.
+
+• V př́ıpadě úplného uspořádáńı pojmy minimálńıho a nejmenš́ıho prvku
+množiny splývaj́ı a stejně tak pojmy maximálńıho a největš́ıho prvku.
+
+Př́ıklad 1.15. • Necht’ (𝑅,≤) je množina reálných č́ısel s přirozeným
+uspořádáńım a necht’ 𝑀 = (1, 2) ⊆ 𝑅 je otevřený interval. Potom
+nejmenš́ı a největš́ı prvek v 𝑀 neexistuj́ı a 𝑖𝑛𝑓(𝑀) = 1 a 𝑠𝑢𝑝(𝑀) = 2.
+
+
+
+1.2. ALGEBRY 29
+
+• Necht’ 𝐴 = {1, 2, 3, 4, 5, 6, 7, 8, 9} a≤ je přirozené uspořádáńı přirozených
+č́ısel podle velikosti. Podmnožina 𝑀 = {3, 7, 8}množiny 𝐴 má: 𝑚𝑖𝑛(𝑀) =
+nejmenš́ı prvek 𝑀 = 𝑖𝑛𝑓(𝑀) = 3, 𝑚𝑎𝑥(𝑀) = největš́ı prvek 𝑀 =
+𝑠𝑢𝑝(𝑀) = 8, dolńı závora 𝑀 = {1, 2, 3}, horńı závora 𝑀 = {8, 9}.
+Uspořádáńı na množině 𝐴 je úplné a graf tohoto uspořádáńı tvoř́ı
+řetězec.
+
+• Pomoćı Hasseova diagramu je zobrazena množina všech dělitel̊u č́ısla 42
+(viz. obr. 1.10) uspořádaná relaćı dělitelnosti. Vezmeme r̊uzné podmnožiny
+𝑀𝑖 množiny dělitel̊u 42 a urč́ıme pro ně prvky definované v 1.26. Pro
+snazš́ı čitelnost nejsou v tabulce (viz. tabulka na obr. 1.10) uvedeny ko-
+rektńı zápisy množin, ale pouze výčet prvk̊u patř́ıćı do dané množiny.
+
+42 𝑀 {1, 2, 3} {1, 14} {2, 7, 14}
+min(M) 1 1 2,7
+max(M) 2,3 14 14
+
+6 14 21 nejmenš́ı v M 1 1 -
+největš́ı v M - 14 14
+
+2 3 7 LB(M) 1 1 1
+UB(M) 6,42 14,42 14,42
+inf(M) 1 1 1
+
+1 sup(M) 6 14 14
+
+Obrázek 1.10: Hasse̊uv diagram pro celoč́ıselné dělitele 42.
+
+1.2 Algebry
+1.2.1 Algebraické systémy
+Definice 1.27. Algebraický systém je uspořádaná dvojice ({𝐴𝑖; 𝑖 ∈ 𝐼}, {𝑓𝑘; 𝑘 ∈
+𝐾}), kde {𝐴𝑖; 𝑖 ∈ 𝐼} je množina nosič̊u a {𝑓𝑘; 𝑘 ∈ 𝐾} je množina operaćı
+algebraického systému. Ke každé operaci 𝑓𝑘 je udána jej́ı arita a ke každému
+argumentu operace (operandu) je udán index nosiče, ze kterého argument
+bere své hodnoty (rovněž k výsledku operace je udán index nosiče, ze kterého
+výsledek bere svou hodnotu). Tyto údaje definuj́ı signaturu (typ) operace.
+Počet nosič̊u, počet operaćı a signatury všech operaćı udávaj́ı tzv. signaturu
+(typ) algebraického systému.
+Př́ıklad 1.16. • Algebra (N, +) na množině přirozených č́ısel s jednou
+
+binárńı operaci sč́ıtáńı přirozených č́ısel. Signatura (N, +) je: (1; 1; (2; 1, 1, 1)).
+
+
+
+30 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+• Množinová algebra ({2𝐴}, {∅, 𝐴,′ ,∪,∩}) je homogenńı algebra. Nosičem
+je systém 2𝐴 všech podmnožin množiny 𝐴. Operace v této algebře jsou:
+
+– ∅ je prázdná množina (nulárńı operace ∅ :→ 2𝐴),
+– 𝐴 je úplná množina (nulárńı operace 𝐴 :→ 2𝐴),
+– ′⋃︀je operace komplementu (unárńı operace ′ : 2𝐴 → 2𝐴),
+– ⋂︀ je operace sjednoceńı (binárńı operace ∪ : 2𝐴 × 2𝐴 → 2𝐴),
+– je operace pr̊uniku (binárńı operace ∩ : 2𝐴 × 2𝐴 → 2𝐴).
+
+Signatura ({2𝐴}, {∅, 𝐴,′ ,∪,∩}) je: (1; 5; (0; 1), (0; 1), (1; 1, 1), (2; 1, 1, 1), (2; 1, 1, 1)).
+• Vektorový (lineárńı) prostor je heterogenńı algebra ({𝑉,R}, {+𝑉 , +𝑅, *, .}),
+
+kde
+– 𝑉 = R𝑛 je množina n-dimenzionálńıch vektor̊u (1. nosič), kde n je
+
+konečné,
+– R je množina reálných č́ısel (2. nosič),
+– +𝑉 je operace sč́ıtáńı vektor̊u (binárńı, homogenńı operace +𝑉 :
+
+R𝑛 × R𝑛 → R𝑛),
+– +𝑅 je operace sč́ıtáńı reálných č́ısel (binárńı, homogenńı operace
+
++𝑅 : R× R→ R),
+– * je operace násobeńı č́ısla a vektoru (binárńı, heterogenńı operace
+* : R× R𝑛 → R𝑛),
+
+– . je operace násobeńı reálných č́ısel (binárńı, homogenńı operace
+. : R× R→ R).
+
+Signatura ({𝑉,R}, {+𝑉 , +𝑅, *, .}) je: (2; 4; (2; 1, 1, 1), (2; 2, 2, 2), (2; 2, 1, 1),
+(2; 2, 2, 2)).
+
+V daľśım se většinou omeźıme jen na homogenńı algebraické struktury
+s jediným nosičem a s jednou nebo jen několika málo operacemi (vetšinou
+binárńımi).
+Definice 1.28. Necht’ ∘ označuje binárńı homogenńı operaci na množině A.
+Některé vlastnosti binárńıch operaćı jsou:
+
+• Uzavřenost (UZ) - (∀𝑥, 𝑦)(∃𝑧)[𝑥 ∘ 𝑦 = 𝑧],
+• Asociativita (AS) - (∀𝑥, 𝑦, 𝑧)[(𝑥 ∘ 𝑦) ∘ 𝑧 = 𝑥 ∘ (𝑦 ∘ 𝑧)],
+• Existence nulového prvku (EN) - (∃𝑛)(∀𝑥)[𝑥 ∘ 𝑛 = 𝑛 ∘ 𝑥 = 𝑛],
+
+
+
+1.2. ALGEBRY 31
+
+• Existence jednotkového prvku (EJ) - (∃𝑒)(∀𝑥)[𝑥 ∘ 𝑒 = 𝑒 ∘ 𝑥 = 𝑥],
+• Existence inverzńıho prvku (IN) - (∀𝑥)(∃𝑦)[𝑥 ∘ 𝑦 = 𝑦 ∘ 𝑥 = 𝑒], kde
+
+prvek 𝑦 inverzńı k 𝑥 označujeme 𝑦 = 𝑥−1,
+• Komutativita (KO) - (∀𝑥, 𝑦)[𝑥 ∘ 𝑦 = 𝑦 ∘ 𝑥].
+• Idempotentnost (IDp) - (∀𝑥)[𝑥 ∘ 𝑥 = 𝑥].
+
+Věta 1.7. Existuje nejvýše jeden nulový a nejvýše jeden jednotkový prvek
+vzhledem k libovolné binárńı operaci ∘ na množině 𝐴.
+D̊ukaz. Důkaz vedeme sporem. Necht’ 𝑛1, 𝑛2 jsou dva r̊uzné nulové prvky
+vzhledem k operaci ∘. Podle existence nulového prvku plat́ı:
+
+𝑥 ∘ 𝑛1 = 𝑛1 ∘ 𝑥 = 𝑛1, 𝑥 ∘ 𝑛2 = 𝑛2 ∘ 𝑥 = 𝑛2.
+
+Uvedené rovnosti plat́ı pro všechny 𝑥, tedy i pro 𝑥 = 𝑛1 a 𝑥 = 𝑛2. Takže:
+
+𝑛2 ∘ 𝑛1 = 𝑛1 ∘ 𝑛2 = 𝑛1, 𝑛1 ∘ 𝑛2 = 𝑛2 ∘ 𝑛1 = 𝑛2
+
+a odtud plyne, že 𝑛1 = 𝑛2. Existence nejvýše jednoho jednotkového prvku se
+dokazuje obdobně.
+Věta 1.8. Necht’ binárńı operace ∘ na množině 𝐴 je asociativńı a má jednot-
+kový prvek (tj. plat́ı AS,EJ). Pak každý prvek 𝑥 ∈ 𝐴 má vzhledem k operaci
+∘ v 𝐴 nejvýše jeden inverzńı prvek.
+D̊ukaz. Důkaz vedeme sporem. Necht’ 𝑦1, 𝑦2 jsou dva r̊uzné inverzńı prvky
+prvku 𝑥 ∈ 𝐴 vzhledem k operaci ∘. Podle existence inverzńıho prvku plat́ı:
+
+𝑥 ∘ 𝑦1 = 𝑦1 ∘ 𝑥 = 𝑒, 𝑥 ∘ 𝑦2 = 𝑦2 ∘ 𝑥 = 𝑒.
+
+Z EJ, AS a právě uvedených rovnost́ı vyplývá platnost následuj́ıho řetězce
+rovnost́ı:
+
+𝑦1 = 𝑦1 ∘ 𝑒 = 𝑦1 ∘ (𝑥 ∘ 𝑦2) = (𝑦1 ∘ 𝑥) ∘ 𝑦2 = 𝑒 ∘ 𝑦2 = 𝑦2
+
+a odtud plyne, že 𝑦1 = 𝑦2.
+
+• Je-li operace ∘ asociativńı, pak ve výrazu (. . . (𝑥1 ∘ 𝑥2) ∘ 𝑥3) . . .) ∘ 𝑥𝑛
+
+nezálež́ı na rozmı́stěńı závorek a nemuśı se psát v̊ubec. Jsou-li všechny
+operandy totožné, pak je možné použ́ıvat tzv. mocninový zápis defi-
+novaný rekurentně takto: 𝑥1 = 𝑥, 𝑥𝑖+1 = 𝑥𝑖 ∘ 𝑥 pro 𝑖 = 1, 2, . . ..
+
+• Má-li operace ∘ na množině 𝐴 jednotkový prvek 𝑒, pak klademe 𝑎0 = 𝑒.
+
+
+
+32 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+• Jsou-li prvky množiny 𝐴 vzhledem k operaci ∘ invertovatelné, pak kla-
+deme 𝑎−𝑛 = (𝑎−1)𝑛.
+
+• Pro poč́ıtáńı s mocninami zavedenými v předchoźıch bodech plat́ı pra-
+vidla: 𝑎𝑟 ∘ 𝑎𝑠 = 𝑎𝑟+𝑠, (𝑎𝑟)𝑠 = 𝑎𝑟·𝑠, kde symboly +, · jsou operátory
+č́ıselného sč́ıtáńı a násobeńı, kdežto symbol ∘ je symbol obecné binárńı
+operace.
+
+Definice 1.29. Necht’ ⋆, ∘ jsou dvě binárńı operace na množině A. Ř́ıkáme, že
+operace ⋆ je distributivńı (má vlastnost distributivity) vzhledem k operaci
+∘, jestliže plat́ı:
+
+• pravý distributivńı zákon (Dip): (∀𝑎, 𝑏, 𝑐)[(𝑎 ∘ 𝑏) ⋆ 𝑐 = (𝑎 ⋆ 𝑐) ∘ (𝑏 ⋆ 𝑐)],
+• levý distributivńı zákon (Dil): (∀𝑎, 𝑏, 𝑐)[𝑎 ⋆ (𝑏 ∘ 𝑐) = (𝑎 ⋆ 𝑏) ∘ (𝑎 ⋆ 𝑐)].
+
+Definice 1.30. Necht’ 𝜔 je n-árńı operace na množině 𝐴 a necht’ 𝐴′ ⊆ 𝐴.
+Podmnožina 𝐴′ je uzavřenou vzhledem k operaci 𝜔, jestliže plat́ı:
+
+𝑎1, 𝑎2, . . . , 𝑎𝑛 ∈ 𝐴′ ⇒ 𝜔(𝑎1, 𝑎2, . . . , 𝑎𝑛) ∈ 𝐴′.
+
+Definice 1.31. Algebra (𝐴′; 𝜔1, . . . , 𝜔𝑚) je podalgebrou algebry (𝐴; 𝜔1, . . . , 𝜔𝑚),
+jestliže:
+
+• ∅ ≠ 𝐴′ ⊆ 𝐴,
+• 𝐴′ je uzavřená vzhledem ke všem operaćım algebry.
+
+Př́ıklad 1.17. Necht’ N,Z,Q,R označuj́ı po řadě množinu všech přirozených,
+celých, racionálńıch a reálných č́ısel. Potom (N; +, .) je podalgebrou algebry
+(Z; +, .), (Z; +, .) je podalgebrou algebry (Q; +, .) a (Q; +, .) je podalgebrou
+algebry (R; +, .).
+
+1.2.2 Grupoidy
+Tato kapitola se bude zabývat algebrami s jediným nosičem a jedinou základńı
+binárńı homogenńı operaćı. Pokud má tato operace vlastnost existence jed-
+notkového prvku, pak algebra má nav́ıc odvozenou nulárńı operaci jednot-
+kového prvku. Má-li operace také vlastnost existence inverzńıho prvku k libo-
+volnému prvku nosiče, pak má algebra nav́ıc také odvozenou unárńı operaci
+inverzńıho prvku.
+Definice 1.32. Necht’ (𝐴; ∘) je algebra s nosičem 𝐴 a jednou binárńı operaćı
+∘, pak označujeme:
+
+
+
+1.2. ALGEBRY 33
+
+• Grupoid: algebra s jedinou univerzálńı operaćı - plat́ı axióm UN (uzavřenost
+nosiče 𝐴 v̊uči operaci ∘),
+
+• Pologrupa: asociativńı grupoid - plat́ı axiómy UZ a AS,
+• Monoid: pologrupa s jednotkovým prvkem - plat́ı axiómy UZ, AS a
+
+EJ,
+• Grupa: monoid, kde ke každému prvku existuje inverzńı prvek - plat́ı
+
+axiómy UZ, AS, EJ a IN,
+• Abelova grupa: komutativńı grupa - plat́ı axiómy UZ, AS, EJ, IN a
+
+KO.
+Př́ıklad 1.18. • (N ∖ 0; +) - komutativńı grupoid,
+
+• (N; +, 0) - komutativńı monoid,
+• (N ∖ 0; ., 1) - komutativńı monoid,
+• (Z; +, 0,−()) - Abelova grupa (aditivńı),
+• (Z; ., 1) - komutativńı monoid,
+• (R; +, 0,−()) - Abelova grupa (aditivńı),
+• (R ∖ 0; ., 1, ()−1) - Abelova grupa (multiplikativńı),
+• (R; (𝑥 + 𝑦)/2) - komutativńı grupoid,
+• (R𝑛×𝑛, +, 0𝑛×𝑛,−()) - Abelova grupa,
+• (R𝑛×𝑛, ·, 𝐼𝑛×𝑛) - monoid.
+
+Definice 1.33. (𝐻; ∘, ()−1, 1) je podgrupou grupy (𝐺; ∘, ()−1, 1), jestliže
+plat́ı, že 𝐻 ⊆ 𝐺 a množina 𝐻 je uzavřená vzhledem ke všem grupovým
+operaćım, tj. plat́ı-li:
+
+1. 𝑎, 𝑏 ∈ 𝐻 ⇒ 𝑎 ∘ 𝑏 ∈ 𝐻,
+2. 𝑎 ∈ 𝐻 ⇒ 𝑎−1 ∈ 𝐻,
+3. 1 ∈ 𝐻.
+
+• Konjunkce podmı́nek 1.-3. je ekvivalentńı s následuj́ıćı jedinou podmı́nkou:
+4. 𝑎, 𝑏 ∈ 𝐻 ⇒ 𝑎 ∘ 𝑏−1 ∈ 𝐻.
+
+
+
+34 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+– Je evidentńı, že z 1. ∧ 2. ∧ 3.⇒ 4..
+– Ověřeńı, že 4.⇒ 1. ∧ 2. ∧ 3.:
+
+3.: 𝑎 ∈ 𝐻 ⇒ 𝑎, 𝑎−1 ∈ 𝐻 ⇒ 1 ∈ 𝐻,
+2.: 𝑏 ∈ 𝐻 ⇒ 1, 𝑏 ∈ 𝐻 ⇒ 1 ∘ 𝑏−1 ∈ 𝐻 ⇒ 𝑏−1 ∈ 𝐻,
+1.: 𝑎, 𝑏 ∈ 𝐻 ⇒ 𝑎, 𝑏−1 ∈ 𝐻 ⇒ 𝑎 ∘ (𝑏−1)−1 ∈ 𝐻 ⇒ 𝑎 ∘ 𝑏 ∈ 𝐻.
+
+Věta 1.9. Pr̊unik libovolného systému podgrup dané grupy je podgrupa
+dané grupy.
+D̊ukaz. Tvrzeńı dokážeme pro př́ıpad dvou podgrup (𝐻; ∘) a (𝐾; ∘) grupy
+(𝐺; ∘). Necht’ 𝑎, 𝑏 ∈ 𝐻 ∩ 𝐾. Potom také 𝑎, 𝑏 ∈ 𝐻, 𝐾. Protože 𝐻, 𝐾 jsou
+podgrupy, tak plat́ı 𝑎 ∘ 𝑏−1 ∈ 𝐻, 𝐾 a tedy 𝑎 ∘ 𝑏−1 ∈ 𝐻 ∩𝐾 a z toho vyplývá,
+že 𝐻 ∩𝐾 je podgrupou grupy 𝐺 (viz. výše).
+Definice 1.34. Řád grupy (𝐺; ∘) je počet prvk̊u grupy (tj. nosiče 𝐺). Řád
+grupy může být konečný nebo nekonečný.
+
+Řád prvku 𝑎 ∈ 𝐺 grupy (𝐺; ∘) je nejmenš́ı přirozené č́ıslo n takové,
+že plat́ı 𝑎𝑛 = 1 (kde 1 je jednotka grupového násobeńı), pokud takové n
+existuje. Jestliže takové n neexistuje, pak ř́ıkáme, že prvek 𝑎 je nekonečného
+řádu.
+Př́ıklad 1.19. Množina {±1,±𝑖,±𝑗,±𝑘} s operaćı násobeńı, která je de-
+finována v následuj́ıćı tabulce, tvoř́ı grupu. Jedná se o grupu kvaternion̊u.
+∙ 1 i j k řád prvku generovaná podgrupa
+1 1 i j k 1 {1}
+i i -1 k -j 4 {1,−1, 𝑖,−𝑖}
+j j -k -1 i 4 {1,−1, 𝑗,−𝑗}
+k k j -i -1 4 {1,−1, 𝑘,−𝑘}
+-1 -1 -i -j -k 2 {1,−1}
+
+Definice 1.35. Cyklická podgrupa grupy (𝐺; ∘) generovaná prvkem
+𝑎 ∈ 𝐺 je grupa tvořená všemi mocninami prvku 𝑎, tj. grupa ({. . . , 𝑎−2, 𝑎−1, 1, 𝑎, 𝑎2, . . .}; ∘).
+
+Cyklická grupa je grupa tvořená mocninami jediného prvku. Řád tohoto
+prvku, tzv. generátoru grupy, je roven řádu grupy.
+Př́ıklad 1.20. • Množina všech mocnin libovolného prvku grupy tvoř́ı
+
+cyklickou podgrupu této grupy.
+• Aditivńı grupa celých č́ısel je nekonečnou cyklickou grupou a generátorem
+
+je č́ıslo 1.
+• Aditivńı grupa násobk̊u daného celého č́ısla tvoř́ı nekonečnou cyklickou
+
+podgrupu aditivńı grupy celých č́ısel.
+
+
+
+1.2. ALGEBRY 35
+
+• Aditivńı grupa zbytkových tř́ıd modulo m je konečnou cyklickou grupou
+řádu m. Generátorem grupy je tř́ıda 1.
+
+Věta 1.10. Necht’ (𝐻; ∘) je podgrupou grupy (𝐺; ·). Označme 𝐻𝑔 = {ℎ ∘
+𝑔; ℎ ∈ 𝐻} pro libovolné 𝑔 ∈ 𝐺 a 𝑔𝐻 = {𝑔 ∘ ℎ; ℎ ∈ 𝐻} pro libovolné 𝑔 ∈ 𝐺.
+Potom:
+
+• Systémy podmnožin {𝐻𝑔 : 𝑔 ∈ 𝐺}, resp. {𝑔𝐻 : 𝑔 ∈ 𝐺} množiny 𝐺
+tvoř́ı rozklad množiny 𝐺.
+
+• Je-li grupa (𝐺; ·) konečná, pak všechny tř́ıdy těchto rozklad̊u maj́ı
+stejný počet prvk̊u jako množina 𝐻.
+
+D̊ukaz. Důkaz vedeme jen pro systém {𝐻𝑔; 𝑔 ∈ 𝐺}. Muśıme ověřit, že:
+1. Každý prvek 𝑔 ∈ 𝐺 patř́ı do nějaké množiny 𝐻𝑔 a maj́ı-li množiny 𝐻𝑔
+
+a 𝐻𝑔′ společný nějaký prvek, pak jsou totožné.
+2. Množina 𝐻 a každá množina systému 𝐻𝑔 maj́ı stejný počet prvk̊u.
+
+ad 1. 1 ∈ 𝐻 ⇒ 1 ∘ 𝑔 ∈ 𝐻𝑔 ⇒ 𝑔 ∈ 𝐻𝑔 tj. libovolný prvek 𝑔 ∈ 𝐺 patř́ı do
+nějaké množiny 𝐻𝑔.
+
+ad 2. Pro každé 𝑔 ∈ 𝐺 plat́ı, že 𝑐𝑎𝑟𝑑(𝐻𝑔) ≤ 𝑐𝑎𝑟𝑑(𝐻). Kdyby 𝑐𝑎𝑟𝑑(𝐻𝑔) <
+𝑐𝑎𝑟𝑑(𝐻), pak by musely existovat prvky ℎ, ℎ′ ∈ 𝐻 takové, že ℎ ̸= ℎ′ a
+ℎ∘𝑔 = ℎ′ ∘𝑔. Odtud kráceńım dostáváme spor ℎ = ℎ′. Muśı tedy platit
+𝑐𝑎𝑟𝑑(𝐻𝑔) = 𝑐𝑎𝑟𝑑(𝐻)
+
+Věta 1.11. (Lagrangeova) Necht’ (𝐻; ∘) je podgrupou konečné grupy (𝐺; ·).
+Potom řád podgrupy (𝐻; ·) děĺı řád grupy (𝐺; ·).
+
+1.2.3 Svazy
+Definice 1.36. Uspořádanou množinu (𝑋,⊆) nazýváme svazem (lattice),
+jestliže spolu s každými dvěma prvky z 𝑋 existuje v 𝑋 i jejich infimum
+a supremum (𝑥, 𝑦 ∈ 𝑋 ⇒ 𝑖𝑛𝑓({𝑥, 𝑦)}, 𝑠𝑢𝑝({𝑥, 𝑦}) ∈ 𝑋). Uspořádanou
+množinu (𝑋,⊆) nazýváme úplným svazem, jestliže pro každou neprázdnou
+pomnožinu 𝑀 ⊆ 𝑋 existuje v 𝑋 𝑖𝑛𝑓(𝑀) a 𝑠𝑢𝑝(𝑀).
+
+• Každý úplný svaz je svazem, protože infimum a supremum existuje i
+pro dvouprvkové množiny.
+
+• Každý úplný svaz (𝑋,≤) obsahuje nejmenš́ı prvek 𝑖𝑛𝑓𝑋 (svazová
+nula) a největš́ı prvek 𝑠𝑢𝑝(𝑋) (svazová jednička).
+
+
+
+36 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+• Každý konečný svaz je úplným svazem.
+
+Př́ıklad 1.21. • Množina všech dělitel̊u č́ısla 42 (viz. obrázek 1.10) spolu
+s relaćı dělitelnost́ı je svazem a to úplným. Infimem libovolné podmnožiny
+této množiny je největš́ı společný dělitel všech č́ısel patř́ıćıch do podmnožiny
+a supremem pak jejich nejmenš́ı společný násobek. Nulou svazu je č́ıslo
+1 a jedničkou svazu je č́ıslo 42.
+
+• Systém všech podmnožin dané množiny 𝐴 tvoř́ı vzhledem k relaci množinové
+inkluze ⊆ úplný svaz. Nulou svazu je prázdná množina ∅ a jedničkou
+svazu je množina 𝐴. Infimem libovolného systému podmnožin je pr̊unik
+těchto podmnožin a supremem jejich sjednoceńı.
+
+• Množina všech přirozených č́ısel je svazem vzhledem k jejich přirozenému
+uspořádáńı podle velikosti. Neńı to však úplný svaz, protože neńı pravda,
+že ke každé podmnožině (např. k podmnožině sudých č́ısel) existuje
+supremum. V tomto svazu neexistuje největš́ı prvek (svazová jednička).
+
+Nekonečný svaz nemuśı být úplný. Např. svaz (Q∩⟨1, 2⟩;≤) racionálńıch
+č́ısel z uzavřeného intervalu ⟨1, 2⟩ s přirozeným uspořádáńım ≤ neńı úplný,
+protože rostoućı posloupnost racionálńıch č́ısel z tohoto intervalu, konver-
+guj́ıćı k iracionálńımu č́ıslu opět z tohoto intervalu, nemá v tomto intervalu
+supremum. Naproti tomu obdobný svaz (R ∩ ⟨1, 2⟩;≤) reálných č́ısel úplný
+je. Z existence jedničky a nuly svazu nevyplývá úplnost svazu. Např. neúplný
+svaz (Q ∩ ⟨1, 2⟩;≤) má svazovou nulu (č́ıslo 1) i svazovou jedničku (č́ıslo 2).
+Definice 1.37. Necht’ (𝐺;≤𝐺), (𝐻;≤𝐻) jsou uspořádané množiny a zobra-
+zeńı 𝑓 : 𝐺 → 𝐻. Řekneme, že je 𝑓 izotonńı zobrazeńı, jestliže pro každé
+𝑥, 𝑦 ∈ 𝐺 plat́ı:
+
+𝑥 ≤𝐺 𝑦 ⇒ 𝑓(𝑥) ≤𝐻 𝑓(𝑦).
+Řekneme, že je 𝑓 antitonńı zobrazeńı, jestliže pro každé 𝑥, 𝑦 ∈ 𝐺 plat́ı:
+
+𝑥 ≤𝐺 𝑦 ⇒ 𝑓(𝑥) ≥𝐻 𝑓(𝑦).
+
+Řekneme, že 𝑓 je izomorfimus uspořádaných množin, je-li 𝑓 bijekce a obě
+zobrazeńı 𝑓 i 𝑓−1 jsou izotonńı.
+Př́ıklad 1.22. Máme neprázdnou množinu 𝐵 ̸= ∅ a podmnožinu 𝐴 ⊆ 𝐵.
+Pak zobrazeńı 𝑓 : 𝑃 (𝐵) → 𝑃 (𝐵) takové, že 𝑓(𝑋) = 𝑋 ∩ 𝐴 je izotonńım
+zobrazeńım a zobrazeńı 𝑓 : 𝑃 (𝐵) → 𝑃 (𝐵) takové, že 𝑓(𝑋) = 𝑋 ∩ 𝐴 =
+(𝐵 ∖𝑋) ∩ 𝐴 je antitonńım zobrazeńım.
+
+
+
+1.2. ALGEBRY 37
+
+Věta 1.12. Necht’ (𝑋,≤) je úplný svaz a necht’ 𝜑 je zobrazeńı z 𝑋 do 𝑋
+zachovávaj́ıćı uspořádáńı, tj. s vlastnost́ı: 𝑦 ≤ 𝑧 ⇒ 𝜑(𝑦) ≤ 𝜑(𝑧). Potom exis-
+tuje prvek 𝑥 ∈ 𝑋 takový, že 𝜑(𝑥) = 𝑥. Zobrazeńı zachovávaj́ıćı uspořádáńı
+nazýváme izotonńım zobrazeńım a prvek 𝑥, pro který plat́ı 𝜑(𝑥) = 𝑥,
+nazýváme pevným bodem zobrazeńı 𝜑.
+D̊ukaz. Označme 𝐴 = {𝑎 ∈ 𝑋; 𝑎 ≤ 𝜑(𝑎)}. Vzhledem k tomu, že pro svazovou
+nulu plat́ı 0 ≤ 𝜑(0), je 0 ∈ 𝐴 a tedy 𝐴 ̸= ∅. Protože 𝐴 je neprázdnou
+podmnožinou úplného svazu (𝑋,≤), muśı v 𝑋 existovat supremum této
+množiny 𝑠 = 𝑠𝑢𝑝𝐴. Z izotonie zobrazeńı 𝜑 vyplývá, že 𝑠 ≤ 𝜑(𝑠) ≤ 𝜑(𝜑(𝑠))
+a tedy 𝑠, 𝜑(𝑠) ∈ 𝐴. Jelikož 𝑠 = 𝑠𝑢𝑝𝐴, muśı platit, 𝜑(𝑠) ≤ 𝑠. Z izotonie ale
+vyplývá, že 𝑠 ≤ 𝜑(𝑠) a tedy 𝜑(𝑠) = 𝑠, tj. prvek 𝜑(𝑠) = 𝑠 je pevným bodem
+zobrazeńı 𝜑.
+
+V předchoźım textu byl svaz definován jako uspořádaná množina, jej́ıž
+všechny prvky maj́ı uvnitř této množiny supremum a infimum - tj. svaz byl
+definován jako relačńı struktura. V následuj́ıćım textu budeme definovat svaz
+rovnocenným zp̊usobem jako algebraickou strukturu. Na rozd́ıl od grupoid̊u,
+které jsou založeny na jediné výchoźı binárńı operaci, maj́ı svazy dvě základńı
+binárńı operace s duálńımi vlastnostmi.
+Definice 1.38. Svaz je algebra (𝐿;∪,∩) se dvěma základńımi binárńımi
+operacemi ∪ (spojeńı) a ∩ (pr̊usek), které maj́ı následuj́ıćı vlastnosti (splňuj́ı
+následuj́ıćı axiómy):
+
+• Univerzalita a jednoznačnost (UN):
+(∀𝑥, 𝑦)(∃!𝑧)[𝑥 ∪ 𝑦 = 𝑧]
+(∀𝑥, 𝑦)(∃!𝑧)[𝑥 ∩ 𝑦 = 𝑧]
+
+• Asociativita (AS):
+(∀𝑥, 𝑦, 𝑧)[(𝑥 ∪ 𝑦) ∪ 𝑧 = 𝑥 ∪ (𝑦 ∪ 𝑧)]
+(∀𝑥, 𝑦, 𝑧)[(𝑥 ∩ 𝑦) ∩ 𝑧 = 𝑥 ∩ (𝑦 ∩ 𝑧)]
+
+• Komutativita (KO):
+(∀𝑥, 𝑦)[𝑥 ∪ 𝑦 = 𝑦 ∪ 𝑥]
+(∀𝑥, 𝑦)[𝑥 ∩ 𝑦 = 𝑦 ∩ 𝑥]
+
+• Absorpce (AB):
+(∀𝑥, 𝑦)[𝑥 ∪ (𝑥 ∩ 𝑦) = 𝑥]
+(∀𝑥, 𝑦)[𝑥 ∩ (𝑥 ∪ 𝑦) = 𝑥]
+
+
+
+38 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+Axiómy charakterizuj́ıćı operace spojeńı a pr̊useku jsou navzájem duálńı a
+tedy také samotné operace jsou navzájem duálńımi.
+Př́ıklad 1.23. • Množinový svaz (2𝐴;∪,∩) - systém všech podmnožin
+
+množiny 𝐴 vzhledem k operaćım sjednoceńı a pr̊uniku.
+• Elementárńı logický svaz ({0, 1};∨,∧) - množina pravdivostńıch hodnot
+
+vzhledem k operaćım disjunkce a konjunkce.
+• (R; 𝑚𝑎𝑥, 𝑚𝑖𝑛) - množina všech reálných č́ısel vzhledem k operaćım ma-
+
+xima a minima.
+• (N∖{0}; 𝑛𝑠𝑛, 𝑛𝑠𝑑) - množina všech nenulových přirozených č́ısel vzhle-
+
+dem k operaćım nejmenš́ıho společného násobku a největš́ıho společného
+dělitele.
+
+Věta 1.13. Zákony idempotence:
+• IDs (∀𝑥)[𝑥 ∪ 𝑥 = 𝑥]
+• IDp (∀𝑥)[𝑥 ∩ 𝑥 = 𝑥]
+• IDsp (∀𝑥, 𝑦)[𝑥 ∪ 𝑦 = 𝑦 ⇔ 𝑥 ∩ 𝑦 = 𝑥]
+
+D̊ukaz. IDs: 𝑥∪ (𝑥∩𝑦) = 𝑥 (axióm ABs)⇒ 𝑥∪ (𝑥∩ (𝑥∪𝑥)) = 𝑥 (substituce
+𝑦 := 𝑥 ∪ 𝑥)⇒ 𝑥 ∪ 𝑥 = 𝑥 (plyne z předchoźıho podle axiómu ABp).
+
+IDsp: 𝑥∪ 𝑦 = 𝑦 (předpoklad)⇒ 𝑥∪ (𝑥∩ 𝑦) = 𝑥∩ 𝑦 (substituce 𝑦 := 𝑥∩ 𝑦)⇒
+𝑥 = 𝑥 ∩ 𝑦 (plyne z přechoźıho podle axiómu ABs).
+
+Věta 1.14. Jsou-li na nosiči svazu (𝐿;∪,∩) definovány relace ⊆,⊂ takto:
+
+𝑥 ⊆ 𝑦 ⇔ 𝑥 ∪ 𝑦 = 𝑦(⇔ 𝑥 ∩ 𝑦 = 𝑥),
+
+𝑥 ⊂ 𝑦 ⇔ 𝑥 ⊆ 𝑦 ∧ 𝑥 ̸= 𝑦,
+
+potom relace ⊆ je uspořádáńım (je RE, AN, TR) a relace ⊂ je ostrým
+uspořádáńım (je IR, AS, TR).
+Věta 1.15. Operace spojeńı a pr̊useku ∪,∩ jsou, vzhledem k uspořádáńı ⊆,
+supremem a infimem. Pro př́ıpad dvouprvkové množiny 𝑀 = {𝑥, 𝑦}:
+
+• 𝑥 ⊆ 𝑥 ∪ 𝑦, 𝑦 ⊆ 𝑥 ∪ 𝑦 - tedy 𝑥 ∪ 𝑦 je horńı závora množiny 𝑀 ,
+• 𝑥 ⊆ 𝑧, 𝑦 ⊆ 𝑧 ⇒ 𝑥∪𝑦 ⊆ 𝑧 - tedy 𝑥∪𝑦 je nejmenš́ı horńı závora množiny
+
+𝑀 (𝑠𝑢𝑝(𝑀)),
+• 𝑥 ∩ 𝑦 ⊆ 𝑥, 𝑥 ∩ 𝑦 ⊆ 𝑦 - tedy 𝑥 ∩ 𝑦 je dolńı závora množiny 𝑀 ,
+
+
+
+1.2. ALGEBRY 39
+
+• 𝑧 ⊆ 𝑥, 𝑧 ⊆ 𝑦 ⇒ 𝑧 ⊆ 𝑥 ∩ 𝑦 -tedy 𝑥 ∩ 𝑦 je největš́ı dolńı závora množiny
+𝑀 (𝑖𝑛𝑓(𝑀)).
+
+• Definujeme-li obráceně operace ∪,∩ pomoćı suprema a infima, pak
+můžeme dokázat, že takto definované supremum a infimum splňuje
+axiómy UN, AS, KO, AB (pro spojeńı i pr̊usek).
+
+• Tedy pojem svazu lze definovat dvoj́ım naprosto rovnocenným zp̊usobem:
+– jako relačńı strukturu (𝐿;⊆), kde⊆ je tzv. svazové uspořádáńı
+
+množiny 𝐿, tj. uspořádáńı ve kterém existuj́ı ke každým dvěma
+prvk̊um supremum a infimum.
+
+– jako algebraickou strukturu (𝐿;∪,∩), kde ∪,∩ jsou operace
+splňuj́ıćı axiómy UN, AS, KO, AB (pro spojeńı i pr̊usek).
+
+Definice 1.39. Distributivńı svaz je svaz (𝐿;∪,∩) , ve kterém plat́ı axiómy
+distributivity pro ∀𝑥, 𝑦, 𝑧 ∈ 𝐿:
+
+𝐷𝐼𝑠 : 𝑥 ∪ (𝑦 ∩ 𝑧) = (𝑥 ∪ 𝑦) ∩ (𝑥 ∪ 𝑧)
+𝐷𝐼𝑝 : 𝑥 ∩ (𝑦 ∪ 𝑧) = (𝑥 ∩ 𝑦) ∪ (𝑥 ∩ 𝑧)
+
+Věta 1.16. Svaz je distributivńı právě tehdy, když neobsahuje podsvaz izo-
+morfńı se svazem typu pentagon (𝑁5) nebo diamant (𝑀3) (viz. obr. 1.11)
+D̊ukaz. Pro pentagon (např. na obrázku 1.11) plat́ı 𝑎 ∩ (𝑏 ∪ 𝑐) = 𝑎 ∩ 1 = 𝑎,
+ale (𝑎 ∩ 𝑏) ∪ (𝑎 ∩ 𝑐) = 𝑏 ∪ 0 = 𝑏. Tj. neplat́ı distributivńı zákon pro pr̊usek.
+Podobně pro diamant (např. na obrázku 1.11) plat́ı 𝑎 ∪ (𝑏 ∩ 𝑐) = 𝑎 ∪ 0 = 𝑎,
+ale (𝑎 ∪ 𝑏) ∩ (𝑎 ∪ 𝑐) = 1 ∩ 1 = 1. Opět neplat́ı distributivńı zákon, ale pro
+změnu pro spojeńı.
+
+V každém svazu plat́ı distributivńı nerovnosti ∀𝑥, 𝑦, 𝑧 ∈ 𝐿:
+𝐷𝐼𝑠 : 𝑥 ∪ (𝑦 ∩ 𝑧) ≤ (𝑥 ∪ 𝑦) ∩ (𝑥 ∪ 𝑧)
+𝐷𝐼𝑝 : 𝑥 ∩ (𝑦 ∪ 𝑧) ≥ (𝑥 ∩ 𝑦) ∪ (𝑥 ∩ 𝑧)
+
+Je-li nav́ıc dáno uspořádáńı mezi 𝑥 a 𝑧, plat́ı tzv. modulárńı nerovnosti:
+𝑀𝑠 : 𝑥 ≤ 𝑧 [𝑥 ∪ (𝑦 ∩ 𝑧) ≤ (𝑥 ∪ 𝑦) ∩ 𝑧]
+𝑀𝑝 : 𝑥 ≥ 𝑧 [𝑥 ∩ (𝑦 ∪ 𝑧) ≥ (𝑥 ∩ 𝑦) ∪ 𝑧]
+
+Definice 1.40. Modulárńı svaz je svaz (𝐿;∪,∩), ve kterém pro ∀𝑥, 𝑦, 𝑧 ∈ 𝐿
+plat́ı:
+
+𝑀𝑠 : 𝑥 ≤ 𝑧 [𝑥 ∪ (𝑦 ∩ 𝑧) = (𝑥 ∪ 𝑦) ∩ 𝑧]
+𝑀𝑝 : 𝑥 ≥ 𝑧 [𝑥 ∩ (𝑦 ∪ 𝑧) = (𝑥 ∩ 𝑦) ∪ 𝑧]
+
+
+
+40 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+1 1
+
+a
+
+c a b c
+
+b
+
+0 0
+
+Obrázek 1.11: Hasseovy diagramy reprezentuj́ıćı pentagon (𝑁5) a diamant
+(𝑀3).
+
+Věta 1.17. Svaz je modulárńı právě tehdy, když neobsahuje podsvaz izo-
+morfńı se svazem typu pentagon (viz. obr. 1.11).
+D̊ukaz. Dokážeme si jednodušš́ı implikaci této věty ve tvaru ekvivalence: je-li
+svaz je modulárńı, pak neobsahuje podsvaz izomorfńı s pentagonem. Což je na
+základě transpozice implikace ekvivalentńı s: obsahuje-li podsvaz izomorfńı
+s pentagonem, pak to neńı modulárńı svaz. Takže vezmeme-li pentagon z
+obrázku 1.11, tak potom plat́ı: 𝑏∪ (𝑐∩𝑎) = 𝑏∪ 0 = 𝑏 a (𝑏∪ 𝑐)∩𝑎 = 1∩𝑎 = 𝑎
+a z toho pak vyplývá, že neńı splněna podmı́nka 𝑀𝑠 pro modulárńı svazy.
+
+Důsledkem této věty je, že každý distributivńı svaz je modulárńı.
+Př́ıklad 1.24. Máme dán Hasse̊uv diagram svazu na obrázku 1.12. Tento
+svaz neńı modulárńı, protože obsahuje podsvaz izomorfńı s pentagonem. Což
+lze snadno vizuálně určit z grafu svazu, který neńı redukován do podoby
+Hasseova diagramu.
+Definice 1.41. Komplementárńı svaz je svaz (𝐿;∪,∩, 0, 1) s nulou a
+jedničkou, ve kterém ke každému prvku 𝑥 ∈ 𝐿 existuje prvek 𝑥′ ∈ 𝐿 ta-
+kový, že:
+DOs: 𝑥 ∪ 𝑥′ = 1,
+DOp: 𝑥 ∩ 𝑥′ = 0.
+Prvek 𝑥′ se nazývá doplňkovým (komplementárńım) prvkem k prvku 𝑥.
+
+• (𝑥′)′ = 𝑥, tj. prvky 𝑥, 𝑥′ jsou komplementárńımi navzájem.
+• Doplňkových prvk̊u k danému prvku může být obecně v́ıce (např. v obr.
+
+1.11 jsou v pentagonu doplňkem k prvku 𝑐 prvky 𝑎, 𝑏). Distributivńı
+svazy však maj́ı ke každému prvku nejvýše jeden doplňkový prvek.
+
+
+
+1.2. ALGEBRY 41
+
+1 1 1
+
+a d a a d
+
+b c b c b c
+
+0 0 0
+
+Obrázek 1.12: Hasse̊uv diagram svazu 𝐿 na množině {0,a,b,c,d,1}, Hasse̊uv
+diagram pentagonu na množině {0,a,b,c,1} a standardńı grafová reprezentace
+svazu 𝐿 s barevně zvýrazněným podgrafem reprezentuj́ıćım pentagon.
+
+Definice 1.42. Boole̊uv svaz (či Booleova algebra) je svaz, který je současně
+distributivńı i komplementárńı.
+Př́ıklad 1.25. • Množina všech podmnožin množiny A - (2𝐴;∪,∩,′ , ∅, 𝐴)
+
+- tvoř́ı booleovský svaz. Komplementárńım prvkem k množině 𝑋 je
+množina 𝑋 ′ = 𝐴 ∖ 𝑋, nulovým prvkem je prázdná množina a jednot-
+kovým prvkem je celá množina 𝑋.
+
+• ({0, 1};∨,∧,¬, 0, 1) je základńı logická Booleova algebra.
+Definice 1.43. Atom Booleovy algebry (𝐵;∪,∩,′ , 0, 1) je prvek 𝑎 ∈ 𝐵 s
+vlastnost́ı (∀𝑥 ∈ 𝐵)[𝑥 < 𝑎⇒ 𝑥 = 0], tj. prvek, pod kterým se nacháźı pouze
+svazová nula.
+Př́ıklad 1.26. • Atomy Booleovy algebry (2{𝑎,𝑏};∪,∩,′ , ∅, {𝑎, 𝑏}) jsou jed-
+
+noprvkové množiny {𝑎}, {𝑏} - viz. obr. 1.13.
+
+• Atomy Booleovy algebry ({0, 1}3;∨,∧,¬, (0, 0, 0), (1, 1, 1)) jsou vektory
+(1, 0, 0), (0, 1, 0), (0, 0, 1) - viz. obr. 1.13.
+
+Věta 1.18. Libovolný nenulový prvek Booleovy algebry (𝐵;∪,∩,′ , 0, 1) lze
+vyjádřit jako spojeńı těch atomů, nad kterými lež́ı. Tj. pro každé 𝑥 ∈ 𝐵 a
+𝑥 ̸= 0 plat́ı, že 𝑥 = 𝑎1 ∪ 𝑎2 ∪ . . . ∪ 𝑎𝑘, kde 𝑎1, 𝑎2, . . . , 𝑎𝑘 jsou právě všechny
+atomy, pro které plat́ı 𝑎𝑖 ≤ 𝑥.
+Př́ıklad 1.27. Např. v druhém svazu na obr. 1.13 můžeme reprezentovat
+prvek 011 pomoćı spojeńı atomů 001 a 010, které jsou menš́ı, než prvek 011,
+tj. 011 = 001 ∪ 010. Nebo v prvńım svazu nám spojeńım atomů {𝑎} a {𝑏}
+vznikne svazová jednotka, kterou je prvek {𝑎, 𝑏}.
+
+
+
+42 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+111
+
+{𝑎, 𝑏} 110 101 011
+
+1 {𝑎} {𝑏} 100 010 001
+
+0 ∅ 000
+
+Obrázek 1.13: Hasseovy diagramy reprezentuj́ıćı Booleovské svazy.
+
+1.2.4 Okruhy a tělesa
+Definice 1.44. Okruh (rng) je algebraický systém (𝐴, +, ·) se dvěma základńımi
+binárńımi operacemi a s následuj́ıćımi vlastnostmi:
+
+• (𝐴, +) je Abelova grupa (tj. aditivńı grupa okruhu),
+• (𝐴, ·) je pologrupa,
+• operace + a · splňuj́ı distributivńı zákony (násobeńı vzhledem k sč́ıtáńı):
+
+𝑎 · (𝑏 + 𝑐) = 𝑎 · 𝑏 + 𝑎 · 𝑐, (𝑎 + 𝑏) · 𝑐 = 𝑎 · 𝑐 + 𝑏 · 𝑐
+
+Okruh s jednotkovým prvkem (pro násobeńı - tj. (𝐴, ·) je monoid) se označuje
+jako unitárńı okruh (ring).
+Př́ıklad 1.28. • (Z, +, ·), (R, +, ·), (C, +, ·) jsou okruhy celých, reálných
+
+a komplexńıch č́ısel. Všechny to jsou unitárńı okruhy s komutativńım
+násobeńım.
+
+• (Z𝑚, +, ·) je okruh zbytkových tř́ıd modulo m. Je to asociativńı a ko-
+mutativńı okruh s jednotkovým prvkem.
+
+• (R𝑛×𝑛, +, ·) je okruh reálných čtvercových matic matic n-tého řádu.
+Jedná se o unitárńı okruh, kde neńı násobeńı komutativńı.
+
+• Jako nulový okruh označujeme okruh s jedńım prvkem (0, +, ·).
+Věta 1.19. Jednotkový prvek aditivńı grupy okruhu je nulovým prvkem
+jeho multiplikativńıho monoidu. Tento prvek nazýváme nulovým prvkem
+okruhu a označujeme 0.
+
+
+
+1.2. ALGEBRY 43
+
+D̊ukaz. Pro libovolné 𝑎 ∈ 𝐴 plat́ı: 𝑎 · 𝑎 = 𝑎 · (𝑎 + 0) = 𝑎 · 𝑎 + 𝑎 · 0⇒ 𝑎 · 0 =
+0, 𝑎 · 𝑎 = (𝑎 + 0) · 𝑎 = 𝑎 · 0 + 𝑎 · 𝑎⇒ 0 · 𝑎 = 0
+Definice 1.45. Dělitelé nuly (zero divisors) jsou dva nenulové prvky okruhu,
+jejichž součin je roven nule, tj. prvky 𝑎, 𝑏 pro které plat́ı:
+
+𝑎 ̸= 0 ∧ 𝑏 ̸= 0 ∧ 𝑎 · 𝑏 = 0.
+
+Obor je unitárńı okruh, ve kterém neexistuj́ı dělitelé nuly.
+Obor integrity (integral domain) je komutativńı unitárńı okruh (s aspoň
+dvěma prvky), ve kterém neexistuj́ı dělitelé nuly.
+Př́ıklad 1.29. • (R2×2, +, ·) je okruh, který obsahuje dělitele nuly (tedy
+
+neńı oborem integr(︂ity). Na)︂př.(︂ )︂ (︂ )︂
+1 0 0 0
+0 0 · 0 0
+
+0 1 = 0 0
+
+• V okruhu (Z4, +, .) plat́ı, že 2.2 = 0, tento okruh obsahuje dělitele nuly
+a neńı oborem.
+
+• Okruhy (Z, +, ·), (R, +, ·), (C, +, ·) jsou i obory integrity.
+
+• Nekomutativńı okruh kvaternion̊u (nekomutativńı rozš́ı̌reńı komplexńıch
+č́ısel) je oborem - ale ne oborem integrity. Pro kvaterninony plat́ı:
+
+× 1 i j k
+1 1 i j k
+
+𝑖2 = 𝑗2 = 𝑘2 = 𝑖𝑗𝑘 = −1 a i i -1 k -j
+j j -k -1 i
+k k j -i -1
+
+• autorem kvaternion̊u, které se použ́ıvaj́ı např. v poč́ıtačové grafice, byl
+sir William Rowan Hamilton. Roku 1843 v rámci procházky vyryl do
+kamenného zábradĺı mostu v Dublinu nápis: 𝑖2 = 𝑗2 = 𝑘2 = 𝑖𝑗𝑘 = −1.
+
+Věta 1.20. Unitárńı okruh (𝐴, +, ·) je oborem integrity právě tehdy, když
+v něm lze krátit nenulovým prvkem, tj. když pro 𝑎 ̸= 0 plat́ı:
+𝑎 · 𝑏 = 𝑎 · 𝑐 ⇒ 𝑏 = 𝑐 , 𝑏 · 𝑎 = 𝑐 · 𝑎 ⇒ 𝑏 = 𝑐.
+
+D̊ukaz. 1. Necht’ (𝐴, +, .) nemá dělitele nuly. Potom pro 𝑎 ̸= 0 plat́ı, že
+𝑎 · 𝑏 = 𝑎 · 𝑐 ⇒ 𝑎 · 𝑏−𝑎 · 𝑐 = 0 ⇒ 𝑎 · (𝑏− 𝑐) = 0 ⇒ 𝑏− 𝑐 = 0 ⇒ 𝑏 = 𝑐
+a tedy je možno krátit nenulovým prvkem.
+
+
+
+44 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+2. Necht’ (𝐴, +, ·) má dělitele nuly, tj. existuj́ı prvky 𝑎 ̸= 0 a 𝑏 ̸= 0 takové,
+že 𝑎 · 𝑏 = 0. Potom kráceńım platného vztahu 𝑎 · 𝑏 = 𝑎 · 0 (protože
+𝑎 · 0 = 0), dostaneme 𝑏 = 0. Což je ale spor s předpokladem že 𝑏 ̸= 0.
+Krátit tedy nesmı́me.
+
+Věta 1.21. Unitárńı okruh (Z𝑝, +, ·) je oborem integrity právě tehdy, když
+p je prvoč́ıslo.
+D̊ukaz. Je-li p prvoč́ıslo, tak neexistuj́ı přirozená č́ısla 𝑚, 𝑛 ∈ {0, 1, . . . 𝑝− 1}
+taková, že 𝑚·𝑛 = 𝑝. V př́ıpadě, že p neńı prvoč́ıslo, tak takováto č́ısla existuj́ı
+(tj. 𝑚 · 𝑛 = 𝑝) a tedy i existuj́ı tř́ıdy prvk̊u tak, že 𝑚 · 𝑛 = 0. Tedy existuj́ı
+dělitelé nuly.
+Definice 1.46. Těleso (division ring) je takový unitárńı okruh (𝐴, +, ·), že
+jeho nenulové prvky tvoř́ı grupu vzhledem k násobeńı. Tj. (𝐴, +) je Abelova
+grupa a (𝐴 ∖ {0}, ·) tvoř́ı grupu.
+
+Pole (field) je komutativńı těleso.
+Př́ıklad 1.30. • (R, +, ·), (C, +, ·) jsou komutativńı tělesa, nebo-li pole,
+
+• (Z3, +, ·) je konečný okruh, který je oborem integrity, tělesem i polem,
+• (Z4, +, .·) je konečný okruh, který neńı oborem integrity,
+• (Z, +, ·) neńı těleso a tedy ani pole,
+• {H, +, ·}, kde H je množina quaternion̊u, je nekomutativńı těleso.
+
+Věta 1.22. Těleso neobsahuje dělitele nuly.
+D̊ukaz. Důkaz bude veden sporem. Necht’ existuj́ı 𝑎 ̸= 0 a 𝑏 ̸= 0 takové, že
+𝑎 · 𝑏 = 0. Potom plat́ı, že 𝑏 = 1 · 𝑏 = (𝑎−1 · 𝑎) · 𝑏 = 𝑎−1 · (𝑎 · 𝑏) = 𝑎−1 · 0 = 0.
+Což je ale ve sporu s předpokladem, že 𝑏 ̸= 0.
+Věta 1.23. Každý konečný obor integrity je těleso a to dokonce komutativńı
+(pole).
+
+Konečná tělesa se naývaj́ı Galoisovými tělesy. Např. (Z𝑝, +, ·) jsou Ga-
+loisovými tělesy pro prvoč́ıselné 𝑝.
+Definice 1.47. Necht’ 𝑇 je těleso. Dále 𝑉 = 𝑇 𝑛 je množina, na které je de-
+finovaná operace sč́ıtáńı a operace násobeńı prvk̊u tělesa 𝑇 s prvky množiny
+𝑉 . Pokud tyto operace splňuj́ı následuj́ıćı podmı́nky, pak ř́ıkáme, že množina
+(𝑉, 𝑇, +, ·, +, ·) spolu s těmito operacemi tvoř́ı vektorový prostor nad
+tělesem 𝑇 . Podmı́nky pro sč́ıtáńı jsou:
+
+• ∀𝑥, 𝑦 ∈ 𝑉 𝑥 + 𝑦 ∈ 𝑉 ,
+
+
+
+1.2. ALGEBRY 45
+
+• ∀𝑥, 𝑦, 𝑧 ∈ 𝑉 (𝑥 + 𝑦) + 𝑧 = 𝑥 + (𝑦 + 𝑧),
+• ∀𝑥, 𝑦 ∈ 𝑉 𝑥 + 𝑦 = 𝑦 + 𝑥,
+• ∃0 ∈ 𝑉 ∀𝑥 ∈ 𝑉 𝑥 + 0 = 𝑥,
+• ∀𝑥 ∈ 𝑉 ∃ − 𝑥 ∈ 𝑉 (−𝑥) + 𝑥 = 0,
+
+Axiomy pro násobeńı prvk̊u tělesa 𝑇 s prvky množiny 𝑉 :
+• ∀𝑎 ∈ 𝑇 ∀𝑥 ∈ 𝑉 𝑎 · 𝑥 ∈ 𝑉 ,
+• 1 ∈ 𝑇 ∀𝑥 ∈ 𝑉 1 · 𝑥 = 𝑥,
+• ∀𝑎, 𝑏 ∈ 𝑇 ∀𝑥 ∈ 𝑉 (𝑎 · 𝑏) · 𝑥 = 𝑎 · (𝑏 · 𝑥),
+• ∀𝑎, 𝑏 ∈ 𝑇 ∀𝑥 ∈ 𝑉 (𝑎 + 𝑏) · 𝑥 = 𝑎 · 𝑥 + 𝑏 · 𝑥,
+• ∀𝑎 ∈ 𝑇 ∀𝑥, 𝑦 ∈ 𝑉 𝑎 · (𝑥 + 𝑦) = 𝑎 · 𝑥 + 𝑎 · 𝑦,
+
+Věta 1.24. V každém vektorovém prostoru 𝑉 nad tělesem 𝑇 plat́ı:
+• nulový vektor 0 je určený jednoznačně,
+• opačný vektor −𝑥 je určený vektorem 𝑥 jednoznačně,
+• −(−𝑥) = 𝑥 pro každý vektor 𝑥 ∈ 𝑉 ,
+• 0 · 𝑥 = 0 pro každý vektor 𝑥 ∈ 𝑉 ,
+• 𝑎 · 0 = 0 pro každý skalár 𝑎 ∈ 𝑇 ,
+• −𝑥 = (−1)𝑥 pro každý vektor 𝑥 ∈ 𝑉 ,
+• jestliže 𝑎 · 𝑥 = 0, pak bud’ 𝑎 = 0 nebo 𝑥 = 0.
+
+1.2.5 Morfismy a kongruence
+Definice 1.48. Necht’ (𝐴; 𝜔1, . . . 𝜔𝑚) a (𝐴′; 𝜔′
+
+1, . . . 𝜔′
+𝑚) jsou dvě algebry se
+
+stejnou signaturou (tj. algebry maj́ı stejný počet operaćı a navzájem si od-
+pov́ıdaj́ıćı operace maj́ı stejnou aritu). Morfismus (nazývaný také homo-
+morfismus) algebry (𝐴; 𝜔1, . . . 𝜔𝑚) do algebry (𝐴′; 𝜔′
+
+1, . . . 𝜔′
+𝑚) je zobrazeńı
+
+ℎ : 𝐴 → 𝐴′ s následuj́ıćı vlastnosti, která plat́ı pro všechny dvojice 𝜔𝑖, 𝜔′
+𝑖
+
+vzájemně si odpov́ıdaj́ıćıch operaćı a pro všechny prvky nosiče 𝐴:
+ℎ(𝜔𝑖(𝑎1, . . . 𝑎𝑛)) = 𝜔′
+
+𝑖(ℎ(𝑎1), . . . , ℎ(𝑎𝑛)).
+Slovně: obraz výsledku operace je roven výsledku operace provedené s obrazy
+argument̊u.
+
+Speciálńı př́ıpady morfismů jsou:
+
+
+
+46 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+• epimorfismus: zobrazeńı h je surjektivńı,
+
+• monomorfismus: zobrazeńı h je injektivńı,
+
+• izomorfismus: zobrazeńı h je bijektivńı,
+
+• endomorfismus: h je zobrazeńı z 𝐴 do 𝐴 (tj. 𝐴′ ⊆ 𝐴)
+
+• automorfismus: h je zobrazeńı z 𝐴 na 𝐴 (tj. 𝐴′ = 𝐴)
+
+Algebry (𝐴; 𝜔1, . . . 𝜔𝑚) a (𝐴′; 𝜔′
+1, . . . 𝜔′
+
+𝑚) se nazývaj́ı izomorfńı, jestliže
+existuje izomorfismus z algebry (𝐴; 𝜔1, . . . 𝜔𝑚) do algebry (𝐴′; 𝜔′
+
+1, . . . 𝜔′
+𝑚).
+
+Pokud budeme uvažovat pouze dvě algebry s jednou binárńı operaćı (𝐴; ∘𝐴)
+a (𝐵; ∘𝐵), tak pro zobrazeńı ℎ : 𝐴→ 𝐵, které je morfismem, plat́ı pro všechny
+prvky nosiče 𝐴 takto zapsaná podmı́nka:
+
+ℎ(𝑎𝑖 ∘𝐴 𝑎𝑗) = ℎ(𝑎𝑖) ∘𝐵 ℎ(𝑎𝑗),
+
+která je jasně vidět na obrázku 1.14.
+
+𝐴 𝐵
+𝑎𝑗 ℎ(𝑎𝑗)
+
+ℎ
+𝑎𝑖 ∘𝐴 𝑎𝑗 ℎ(𝑎𝑖) ∘𝐵 ℎ(𝑎𝑗)
+
+ℎ
+𝑎𝑖 ℎ(𝑎𝑖)
+
+ℎ
+
+Obrázek 1.14: Morfismus ℎ mezi algebrami (𝐴; ∘𝐴) a (𝐵; ∘𝐵) .
+
+Př́ıklad 1.31. • Zobrazeńı ℎ(𝑋) = 𝑑𝑒𝑡(𝑋) je epimorfismem z (R𝑛×𝑛; ⋆)
+do (R; ·), protože 𝑑𝑒𝑡(𝑋) je surjekce z R𝑛×𝑛 (množiny všech reálných
+čtvercových matic n-tého řádu) do R a plat́ı: 𝑑𝑒𝑡(𝑋 ⋆ 𝑌 ) = 𝑑𝑒𝑡(𝑋) ·
+𝑑𝑒𝑡(𝑌 ).
+
+• Zobrazeńı ℎ(𝑥) = 𝑙𝑜𝑔(𝑥) je izomorfismem z (R+; ·) do (R; +) (symbolem
+R+ je označena množina kladných reálných č́ısel), protože 𝑙𝑜𝑔(𝑥) je
+bijekce z R+ do R a plat́ı: 𝑙𝑜𝑔(𝑥 · 𝑦) = 𝑙𝑜𝑔(𝑥) + 𝑙𝑜𝑔(𝑦).
+
+• Zobrazeńı ℎ(𝑥) = 𝑎𝑏𝑠(𝑥) je endomorfismem z (R; ·) do (R; ·), protože
+𝑎𝑏𝑠(𝑥) je zobrazeńı z R do R a plat́ı: 𝑎𝑏𝑠(𝑥 · 𝑦) = 𝑎𝑏𝑠(𝑥) · 𝑎𝑏𝑠(𝑦).
+
+
+
+1.2. ALGEBRY 47
+
+• Zobrazeńı ℎ(𝑥) = 𝑘 · 𝑥 (𝑘 ̸= 0) je automorfismem z (R; +) do (R; +),
+protože 𝑘.𝑥 je zobrazeńı R na R a plat́ı: ℎ(𝑥 + 𝑦) = 𝑘 · (𝑥 + 𝑦) =
+𝑘 · 𝑥 + 𝑘 · 𝑦 = ℎ(𝑥) + ℎ(𝑦).
+
+• Zobrazeńı ℎ(𝑥) = 𝑒𝑥 je endomorfismem z (R; +) do (R; ·), protože 𝑒𝑥 je
+zobrazeńı z R do R a plat́ı: 𝑒𝑥+𝑦 = 𝑒𝑥 · 𝑒𝑦. Toto zobrazeńı (ℎ(𝑥) = 𝑒𝑥)
+je současně izomorfismem z (R; +) do (R+; .).
+
+Věta 1.25. Relace (být izomorfńı) je ekvivalenćı na množině všech algeber
+téhož typu.
+
+D̊ukaz. Potřebujeme dokázat, že relace ∼ (izomorfismus mezi algebrami) je
+ekvivalenćı (tj. reflexivńı, symetrická a tranzitivńı).
+
+• Reflexivita ((𝐴; 𝜔, . . .) ∼ (𝐴; 𝜔, . . .)): izomorfismus je realizován iden-
+tickým zobrazeńım ℎ(𝑎) = 𝑎 pro všechna 𝑎 ∈ 𝐴.
+
+• Symetrie ((𝐴; 𝜔, . . .) ∼ (𝐴′; 𝜔′, . . .) ⇒ (𝐴′; 𝜔′, . . .) ∼ (𝐴; 𝜔, . . .)): je-li ℎ
+bijekce realizuj́ıćı izomorfismus z 𝐴 do 𝐴′, pak zobrazeńı ℎ−1 je bijekce
+realizuj́ıćı izomorfismus z 𝐴′ do 𝐴.
+
+• Tranzitivita ((𝐴; 𝜔, . . .) ∼ (𝐴′; 𝜔′, . . .) ∧ (𝐴′; 𝜔′, . . .) ∼ (𝐴′′; 𝜔′′, . . .) ⇒
+(𝐴; 𝜔, . . .) ∼ (𝐴′′; 𝜔′′, . . .)): jsou-li ℎ a ℎ′ bijekce představuj́ıćı izomor-
+fismy z 𝐴 do 𝐴′ a z 𝐴′ do 𝐴′′, pak složeńı (kompozice) těchto bijekćı
+ℎ′′ = ℎ ∘ ℎ′ představuje izomorfismus z 𝐴 do 𝐴′′.
+
+Definice 1.49. Relace 𝜌 na množině 𝐴 se nazývá kongruenćı na algebře
+(𝐴; 𝜔, . . .), jestliže plat́ı:
+
+• relace 𝜌 je ekvivalenćı na nosiči 𝐴 algebry,
+
+• relace 𝜌 splňuje pro všechny operace 𝜔 algebry (𝐴; 𝜔) podmı́nku:
+
+(𝑎1, 𝑏1) ∈ 𝜌 ∧ . . . ∧ (𝑎𝑛, 𝑏𝑛) ∈ 𝜌⇒ (𝜔(𝑎1, . . . , 𝑎𝑛), 𝜔(𝑏1, . . . , 𝑏𝑛)) ∈ 𝜌.
+
+Pokud budeme uvažovat pouze algebru s jednou binárńı operaćı (𝐴; ∘), tak
+relace ekvivalence 𝜌 ⊆ 𝐴×𝐴, která je kongruenćı (viz. obrázek 1.15), splňuje
+pro všechny prvky nosiče 𝐴 takto zapsanou podmı́nku:
+
+(𝑎, 𝑏) ∈ 𝜌 ∧ (𝑐, 𝑑) ∈ 𝜌⇒ (𝑎 ∘ 𝑐, 𝑏 ∘ 𝑑) ∈ 𝜌
+
+
+
+48 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+𝑎 𝑎 ∘ 𝑐 𝑐
+... ... ...
+
+. . . . . .
+𝑏 𝑏 ∘ 𝑑 𝑑
+
+𝐴/𝜌
+
+Obrázek 1.15: Ekvivalence 𝜌 na množině 𝐴 = {𝑎, 𝑏, 𝑐, 𝑑, . . .} indukuje rozklad
+𝐴/𝜌 a 𝜌 je kongruenćı na algebře (𝐴, ∘), když plat́ı (𝑎, 𝑏) ∈ 𝜌 ∧ (𝑐, 𝑑) ∈ 𝜌 ⇒
+(𝑎 ∘ 𝑐, 𝑏 ∘ 𝑑) ∈ 𝜌 pro libovolné 𝑎, 𝑏, 𝑐, 𝑑 ∈ 𝐴.
+
+Definice 1.50. Faktorová algebra algebry (𝐴; 𝜔, . . .) podle kongruence 𝜌
+(na této algebře) je algebra (𝐴; 𝜔, . . .), kde 𝐴 = 𝐴/𝜌 je faktorová množina
+množiny 𝐴 podle ekvivalence 𝜌 a operace 𝜔 je definována vztahem
+
+𝜔(𝑎1, 𝑎2, . . . , 𝑎𝑛) = 𝑏⇔ 𝜔(𝑎1, 𝑎2, . . . , 𝑎𝑛) = 𝑏,
+
+kde 𝑎1, 𝑎2, . . . , 𝑎𝑛, 𝑏 ∈ 𝐴, 𝑎1, 𝑎2, . . . , 𝑎𝑛, 𝑏 ∈ 𝐴 a 𝑎1 ∈ 𝑎1, 𝑎2 ∈ 𝑎2, . . . , 𝑎𝑛 ∈
+𝑎𝑛, 𝑏 ∈ 𝑏.
+Př́ıklad 1.32. Na obrázku 1.16 jsou rozklady množiny Z indukované ekvi-
+valencemi 𝜌1 a 𝜌2, kde 𝜌1 = {(𝑥, 𝑦); (𝑥− 𝑦) 𝑚𝑜𝑑 3 = 0} a 𝜌2 = {(𝑥, 𝑦); (|𝑥| −
+|𝑦|) 𝑚𝑜𝑑 3 = 0}. Ekvivalence 𝜌1 je kongruenćı na algebře (Z, +), ale ekviva-
+lence 𝜌2 na (Z, +) kongruenćı neńı, protože (4,−1) ∈ 𝜌2 ∧ (−2, 5) ∈ 𝜌2, ale
+(4 + (−2),−1 + 5) = (2, 4) ∈/ 𝜌2.
+
+0 1 2 0 1 2
+3 4 5 3 4 5
+−3 −2 −1 −3 −1 −2
+... ... ... ... ... ...
+
+Z/𝜌1 Z/𝜌2
+
+Obrázek 1.16: Ekvivalence 𝜌1 a 𝜌2 na množině Z, kde 𝜌1 je kongruenćı a 𝜌2
+kongruenćı neńı.
+
+Př́ıklad 1.33. • Ekvivalence ≡ (𝑚𝑜𝑑 𝑚) na množině celých č́ısel Z (tzv.
+”kongruence modulo m”) je kongruenćı na algebře (Z, +). Stač́ı ukázat,
+že 𝑥 ≡ (𝑚𝑜𝑑 𝑚)𝑥′ ∧ 𝑦 ≡ (𝑚𝑜𝑑 𝑚)𝑦′ ⇒ 𝑥 + 𝑦 ≡ (𝑚𝑜𝑑 𝑚)𝑥′ + 𝑦′.
+
+1. 𝑥 ≡ (𝑚𝑜𝑑 𝑚)𝑥′ ∧ 𝑦 ≡ (𝑚𝑜𝑑 𝑚)𝑦′ předpoklad,
+
+
+
+1.2. ALGEBRY 49
+
+2. 𝑥 − 𝑥′ = 𝑗 · 𝑚 ∧ 𝑦 − 𝑦′ = 𝑘 · 𝑚 plyne z bodu 1. dle definice
+kongruence modulo m,
+
+3. (𝑥 + 𝑦) − (𝑥′ + 𝑦′) = (𝑗 + 𝑘) ·𝑚 plyne z bodu 2. sečteńım obou
+rovnost́ı,
+
+4. 𝑥 + 𝑦 ≡ (𝑚𝑜𝑑 𝑚)𝑥′ + 𝑦′ plyne z bodu 3. a definice kongruence
+modulo m.
+
+• Ekvivalence ≡ (𝑚𝑜𝑑 𝑚) na množině celých č́ısel Z (tzv. kongruence mo-
+dulo m) je kongruenćı na algebře (Z, ·). Stač́ı ukázat, že 𝑥 ≡ (𝑚𝑜𝑑 𝑚)𝑥′ ∧
+𝑦 ≡ (𝑚𝑜𝑑 𝑚)𝑦′ ⇒ 𝑥 · 𝑦 ≡ (𝑚𝑜𝑑 𝑚)𝑥′ · 𝑦′.
+
+1. 𝑥 ≡ (𝑚𝑜𝑑 𝑚)𝑥′ ∧ 𝑦 ≡ (𝑚𝑜𝑑 𝑚)𝑦′ předpoklad,
+2. 𝑥 − 𝑥′ = 𝑗 · 𝑚 ∧ 𝑦 − 𝑦′ = 𝑘 · 𝑚 plyne z bodu 1. dle definice
+
+kongruence modulo m,
+3. 𝑥 · 𝑦− 𝑥′ · 𝑦 = 𝑦 · 𝑗 ·𝑚 ∧ 𝑥′ · 𝑦− 𝑥′ · 𝑦′ = 𝑥′ · 𝑘 ·𝑚 úprava bodu 2.,
+4. (𝑥 · 𝑦)− (𝑥′ · 𝑦′) = (𝑦 · 𝑗 + 𝑥′ · 𝑘) ·𝑚 plyne z bodu 3. sečteńım obou
+
+rovnost́ı,
+5. 𝑥·𝑦 ≡ (𝑚𝑜𝑑 𝑚)𝑥′ ·𝑦′ plyne z bodu 4. a definice kongruence modulo
+
+m.
+• Zobrazeńı ℎ(𝑥) = 𝑥, kde 𝑥 = {𝑦; 𝑦 ≡ 𝑥(𝑚𝑜𝑑 𝑚)}, je epimorfismus z
+
+algebry (Z; +, ·) do algebry (Z𝑚; +, .), kde Z𝑚 je množina zbytkových
+tř́ıd modulo m.
+
+Definice 1.51. Morfismus grupy (𝐺; ∘𝐺) do grupy (𝐻; ∘𝐻) je zobrazeńı
+𝑓 : 𝐺→ 𝐻 takové, že 𝑓(𝑎 ∘𝐺 𝑏) = 𝑓(𝑎) ∘𝐻 𝑓(𝑏).
+
+Jádro morfismu je množina vzor̊u prvku 1𝐻 ∈ 𝐻 v zobrazeńı 𝑓 .
+• Vlastnost morfismu muśı platit i pro odvozené grupové operace - tj.
+
+pro operaci jednotkového a inverzńıho prvku:
+– plat́ı 𝑓(1) = 1𝐻 , protože 𝑓(𝑎) = 𝑓(𝑎 ∘𝐺 1𝐺) = 𝑓(𝑎) ∘𝐻 𝑓(1𝑔) =
+
+𝑓(𝑎) ∘𝐻 1𝐻 ⇒ 𝑓(1𝐺) = 1𝐻 .
+– plat́ı (𝑓(𝑎))−1 = 𝑓(𝑎−1), protože 1𝐻 = 𝑓(1𝐺) = 𝑓(𝑎 ∘𝐺 𝑎−1) =
+
+𝑓(𝑎) ∘𝐻 𝑓(𝑎−1)⇒ (𝑓(𝑎))−1 = 𝑓(𝑎−1).
+Věta 1.26. Jádro morfismu grupy (𝐺; ∘𝐺) do grupy (𝐻; ∘𝐻) je podgrupa
+grupy (𝐺; ∘𝐺)
+D̊ukaz. Podle definice morfismu a vlastnosti morfismu stač́ı dokázat, že 𝑓(𝑎) =
+1𝐻 ∧ 𝑓(𝑏) = 1𝐻 ⇒ 𝑓(𝑎 ∘𝐺 𝑏−1 = 1𝐻 Takže: 𝑓(𝑎 ∘𝐺 𝑏−1 = 𝑓(𝑎) ∘𝐻 𝑓(𝑏−1) =
+1𝐻 ∘𝐻 (𝑓(𝑏))−1 = 1𝐻 ∘𝐻 (1𝐻)−1 = 1𝐻 ∘𝐻 1𝐻 =′
+
+𝐻 .
+
+
+
+50 KAPITOLA 1. RELAČNÍ A ALGEBRAICKÉ STRUKTURY
+
+Př́ıklad 1.34. • Zobrazeńı 𝑓(𝐴) = 𝑑𝑒𝑡(𝐴) je epimorfismem multiplika-
+tivńı grupy regulárńıch čtvercových matic (daného řádu n, tj. typu
+𝑛×𝑛) do multiplikativńı grupy nenulových reálných č́ısel. Jádrem mor-
+fismu je množina čtvercových matic jejichž determinant je roven 1.
+Tato množina představuje podgrupu multiplikativńı grupy regulárńıch
+čtvercových matic.
+
+• Zobrazeńı 𝑓(𝑥) = 𝑙𝑜𝑔(𝑥) je izomorfismem multiplikativńı grupy kladných
+reálných č́ısel do aditivńı grupy reálných č́ısel.
+
+Definice 1.52. Kongruence na grupě (𝐺; ∘) je ekvivalence 𝜌 na 𝐺 taková,
+že
+
+(𝑎, 𝑎′) ∈ 𝜌 ∧ (𝑏, 𝑏′) ∈ 𝜌⇒ (𝑎 ∘ 𝑏, 𝑎′ ∘ 𝑏′) ∈ 𝜌.
+
+Jádro kongruence je tř́ıda 1 prvk̊u ekvivalentńıch s jednotkovým prvkem
+1 ∈ 𝐺.
+Věta 1.27. Jádro kongruence na grupě (𝐺; ∘) je podgrupou grupy (𝐺; ∘).
+Věta 1.28. Každá kongruence na grupě je jednoznačně určena svým jádrem.
+Věta 1.29. Všechny tř́ıdy faktorové grupy maj́ı stejnou mohutnost.
+Věta 1.30. Každá nekonečná cyklická grupa je izomorfńı s aditivńı grupou
+celých č́ısel.
+Věta 1.31. Každá konečná cyklická grupa řádu 𝑚 je izomorfńı s aditivńı
+grupou zbytkových tř́ıd modulo 𝑚.
+Definice 1.53. Symetrická grupa stupně 𝑛 je grupa všech bijektivńıch
+zobrazeńı n-prvkové množiny na sebe, neboli (když ztotožńıme prvky s jejich
+indexy) grupa všech permutaćı množiny {1, 2, . . . , 𝑛}. Řád symetrické grupy
+stupně 𝑛 je 𝑛!.
+
+
+
+Kapitola 2
+
+Aplikace struktur
+
+2.1 Konceptuálńı svazy
+V předchoźım textu jsme definovali pojem svazu z r̊uzných úhl̊u pohled̊u. Bud’
+jako relačńı strukturu s nosičem a relaćı uspořádáńı, kde pro každé dva prvky
+existuje i jejich supremum a infimum. Nebo byl svaz algebraickou strukturou
+s dvěma operacemi spojeńı a pr̊useku, které splňuj́ı jisté vlastnosti (UN,
+KO, AS, AB). V následuj́ıćı kapitole se zaměř́ıme na aplikaci teorie svaz̊u
+v oblasti dolováńı dat. Formálńı konceptuálńı analýza je metoda pracuj́ıćı
+s binárńımi tabulkovými daty (formálńım kontextem), které popisuj́ı relaci
+mezi objekty a atributy. Výstupem analýzy je zkonstruovaný konceptuálńı
+svaz reprezentuj́ıćı hierarchíı koncept̊u – pojmů extrahovaných z dat.
+
+Analýza pomoćı konceptuálńıch svaz̊u (Formal Concept Analysis, FCA)
+představuje formálńı metodu pro zjǐst’ováńı a reprezentaci vztah̊u mezi ob-
+jekty a jejich vlastnostmi. Tato metoda vznikla na počátku osmdesátých let
+20. stolet́ı, předevš́ım d́ıky praćım R. Willeho a B. Gantera, kteř́ı ji roz-
+vinuli jako matematický rámec vycházej́ıćı z teorie uspořádáńı a svaz̊u [3].
+
+Tento př́ıstup je univerzálńı a lze jej uplatnit v celé řadě oblast́ı. Ve
+zdravotnických databáźıch mohou koncepty reprezentovat skupiny pacient̊u
+sd́ılej́ıćıch určité symptomy, což napomáhá při identifikaci typických kom-
+binaćı př́ıznak̊u nebo při tvorbě diagnostických pravidel. V oblasti analýzy
+nákupńıho chováńı mohou objekty představovat zákazńıky a atributy zakou-
+pené položky. Koncept vyjadřuje typické kombinace nákup̊u, např. {mléko,
+chléb} ↔ {zákazńıci A, B, C}, a slouž́ı jako základ pro segmentaci zákazńık̊u
+či návrh doporučovaćıch systémů.
+
+Při zpracováńı text̊u (text mining) a informačńım vyhledáváńı mohou být
+objekty dokumenty a atributy kĺıčová slova; výsledné koncepty pak odhaluj́ı
+témata sd́ılená skupinou dokument̊u a umožňuj́ı vytvářet hierarchii témat
+
+51
+
+
+
+52 KAPITOLA 2. APLIKACE STRUKTUR
+
+nebo tematické mapy.
+V sociálńıch śıt́ıch mohou objekty představovat uživatele a atributy je-
+
+jich zájmy či členstv́ı ve skupinách; vzniklé koncepty odhaluj́ı komunity
+uživatel̊u se společnými zájmy. Ve vzdělávaćıch systémech může FCA sloužit
+ke sledováńı znalost́ı student̊u, kde objekty představuj́ı studenty a atributy
+zvládnuté pojmy. Koncepty pak ukazuj́ı skupiny student̊u se srovnatelnou
+znalostńı úrovńı a umožňuj́ı personalizované doporučováńı učiva.
+
+Metoda konceptuálńıch svaz̊u umožňuje nalézt strukturu v datech bez
+nutnosti předem definovat klasifikaci, odhalit logické vztahy mezi objekty a
+jejich atributy a vytvořit přehlednou hierarchii pojmů, kterou lze dále vizu-
+alizovat nebo interpretovat jako taxonomii dat.
+
+Př́ıklad 2.1. V následuj́ıćım př́ıkladu je uvedena část taxonomie, která za-
+chycuje hierarchii vztah̊u mezi šelmami a jejich podskupinami. Struktura
+je popsána prostřednictv́ım formálńıch koncept̊u, přičemž nadkoncepty od-
+pov́ıdaj́ı obecněǰśım kategoríım a podkoncepty kategoríım specifičtěǰśım.
+
+Nadkoncept: Šelmy (Carnivora)
+Taxonomické zařazeńı: řád savc̊u (Mammalia).
+Typické vlastnosti (intent): masožravost, ostré zuby přizp̊usobené k trháńı masa, drápy, lovecké
+
+chováńı.
+Př́ıklady objekt̊u (extent): pes (Canis lupus familiaris), medvěd (Ursus arctos), kočka domáćı
+
+(Felis catus), kuna (Martes martes).
+Koncept: Kočkovité šelmy (Felidae)
+Taxonomické zařazeńı: čeled’ v rámci řádu šelem (Carnivora).
+Typické vlastnosti (intent): zatažitelné drápy, krátký čenich, ostré zuby, výborný zrak a sluch,
+
+lovecké chováńı z přepadu.
+Př́ıklady objekt̊u (extent): lev (Panthera leo), tygr (Panthera tigris), levhart (Panthera par-
+
+dus), rys ostrovid (Lynx lynx), kočka domáćı (Felis catus).
+Podkoncepty: rody Panthera, Felis, Lynx, Acinonyx.
+Podkoncept: Kočky (Felis)
+Taxonomické zařazeńı: rod v rámci čeledi kočkovitých (Felidae).
+Typické vlastnosti (intent): menš́ı tělesná velikost, vysoká mrštnost, lovecké chováńı zaměřené
+
+na drobné savce a ptáky, vertikálně štěrbinovité zornice umožňuj́ıćı
+přesnou regulaci množstv́ı světla.
+
+Př́ıklady objekt̊u (extent): kočka domáćı (Felis catus), kočka divoká (Felis silvestris), kočka
+černonohá (Felis nigripes).
+
+Z hlediska formálńı analýzy koncept̊u můžeme tuto hierarchii interpre-
+tovat následovně. Koncept šelem (Carnivora) zahrnuje všechny masožravé
+savce s ostrými zuby a drápy. Koncept kočkovitých šelem (Felidae) je jeho
+podmnožinou — všechny objekty v jeho extenzionálu jsou zároveň šelmami,
+avšak sd́ılej́ı daľśı specifické vlastnosti (např. zatažitelné drápy, krátký čenich).
+
+
+
+2.1. KONCEPTUÁLNÍ SVAZY 53
+
+Podkoncept koček (Felis) pak dále zužuje tuto množinu na menš́ı, mrštné
+druhy přizp̊usobené lovu drobné kořisti s vertikálně štěrbinovitými zorni-
+cemi.
+
+Tento př́ıklad ukazuje, že extenty koncept̊u se směrem dol̊u v hierarchii
+zužuj́ı, zat́ımco intenty se rozšǐruj́ı — každý podkoncept obsahuje všechny
+vlastnosti svého nadkonceptu a přidává daľśı, specifičtěǰśı rysy, které přesněji
+charakterizuj́ı danou skupinu objekt̊u.
+Definice 2.1. (Formálńı) kontext je uspořádaná trojice (𝑋, 𝑌, 𝐼), kde 𝑋
+je množina objekt̊u, 𝑌 je množina atribut̊u a 𝐼 ⊆ 𝑋 × 𝑌 je binárńı relace
+mezi množinami 𝑋 a 𝑌 .
+
+Fakt (𝑥, 𝑦) ∈ 𝐼 interpretujeme tak, že objekt 𝑥 má atribut 𝑦. Binárńı relaci
+𝐼 můžeme reprezentovat pomoćı bipartitńıho grafu jehož redukovaná matice
+sousednosti (biadjacency matrix) odpov́ıdá matici incidence mezi množinami
+𝑋 a 𝑌 . Tato binárńı matice se označuje jako tabulková objekt-atributová
+data.
+
+Každý kontext (𝑋, 𝑌, 𝐼) indukuje zobrazeńı ↑ : 2𝑋 → 2𝑌 a ↓ : 2𝑌 → 2𝑋
+
+definované následuj́ıćımi předpisy:
+𝐴 ⊆ 𝑋 𝐴↑ = {𝑦 ∈ 𝑌 ;∀𝑥 ∈ 𝐴 : (𝑥, 𝑦) ∈ 𝐼},
+𝐵 ⊆ 𝑌 𝐵↓ = {𝑥 ∈ 𝑋;∀𝑦 ∈ 𝐵 : (𝑥, 𝑦) ∈ 𝐼}.
+
+Mı́sto 𝐴↑ někdy ṕı̌seme 𝐴↑𝐼 , č́ımž specifikujeme, které relace se” šipkového“
+zobrazeńı týkaj́ı. 𝐴↑ je tedy množina všech atribut̊u společných všem ob-
+jekt̊um z 𝐴. Na druhou stranu je pak 𝐵↓ množina všech objekt̊u, které maj́ı
+společné všechny atributy z množiny 𝐵.
+Př́ıklad 2.2. Mějme 𝑋 = {𝑥1, 𝑥2, 𝑥3, 𝑥4, 𝑥5}, 𝑌 = {𝑦1, 𝑦2, 𝑦3, 𝑦4} a binárńı
+relaci 𝐼 ⊆ 𝑋 ×𝑌 , kde 𝐼 = {(𝑥1, 𝑦1), (𝑥1, 𝑦3), (𝑥1, 𝑦4), (𝑥2, 𝑦1), (𝑥2, 𝑦4), (𝑥3, 𝑦2),
+(𝑥3, 𝑦4), (𝑥4, 𝑦3), (𝑥4, 𝑦4), (𝑥5, 𝑦2), (𝑥5, 𝑦3)}. Reprezentace pomoćı bipartitńıho
+grafu a matice sousednosti je uvedena v obr. 2.1).
+Definice 2.2. Zobrazeńı 𝑓 : 2𝑋 → 2𝑌 a 𝑔 : 2𝑌 → 2𝑋 tvoř́ı Galoisovu
+konexi mezi množinami 𝑋 a 𝑌 , pokud pro 𝐴, 𝐴1, 𝐴2 ⊆ 𝑋 a 𝐵, 𝐵1, 𝐵2 ⊆ 𝑌
+plat́ı: [𝐴1 ⊆ 𝐴2 ⇒ 𝑓(𝐴2) ⊆ 𝑓(𝐴1)] ∧ [𝐵1 ⊆ 𝐵2 ⇒ 𝑔(𝐵2) ⊆ 𝑔(𝐵1)] ∧ [𝐴 ⊆
+𝑔(𝑓(𝐴))] ∧ [𝐵 ⊆ 𝑓(𝑔(𝐵))].
+Věta 2.1. Pro binárńı relaci 𝐼 ⊆ 𝑋 × 𝑌 tvoř́ı indukovaná zobrazeńı ↑
+
+𝐼 a
+↓
+
+𝐼 Galoisovu konexi mezi 𝑋 a 𝑌 . A také naopak. Tvoř́ı-li 𝑓 a 𝑔 Galoisovu
+konexi mezi 𝑋 a 𝑌 , tak existuje binárńı relace 𝐼 ⊆ 𝑋 × 𝑌 , pro kterou plat́ı:
+𝑓 = ↑
+
+𝐼 a 𝑔 = ↓
+𝐼 .
+
+Podmı́nka z definice Galoisových konex́ı ve tvaru [𝐴1 ⊆ 𝐴2 ⇒ 𝐴↑
+2 ⊆ 𝐴↑
+
+1]
+je v Port-Royalské škole známá jako zákon obráceného poměru rozsah̊u a
+obsahu (tj. č́ım v́ıce objekt̊u, t́ım méně společných vlastnost́ı).
+
+
+
+54 KAPITOLA 2. APLIKACE STRUKTUR
+
+𝑥1 𝑦1
+
+𝑦1 𝑦2 𝑦3 𝑦4
+𝑥2 𝑦2
+
+𝑥1 1 0 1 1
+𝑥3 𝑦3 𝑥2 1 0 0 1
+
+𝑥3 0 1 0 1
+𝑥4 𝑦4 𝑥4 0 0 1 1
+
+𝑥5 0 1 1 0
+𝑥5
+
+Obrázek 2.1: Grafová a tabulková reprezentace kontextu s vyznačným kon-
+ceptem ({𝑥1, 𝑥4}, {𝑦3, 𝑦4}).
+
+Definice 2.3. (Formálńı) koncept v kontextu (𝑋, 𝑌, 𝐼) je dvojice (𝐴, 𝐵),
+kde 𝐴 ⊆ 𝑋 a 𝐵 ⊆ 𝑌 a pro kterou plat́ı, že 𝐴↑ = 𝐵 a 𝐵↓ = 𝐴. Množina
+objekt̊u 𝐴 se nazývá extent a množina atribut̊u 𝐵 se nazývá intent.
+Př́ıklad 2.3. Ve formálńım kontextu reprezentovaném obr. 2.1 jsou např́ıklad
+koncepty tyto dvojice množin: ({𝑥1, 𝑥4}, {𝑦3, 𝑦4}) nebo ({𝑥3, 𝑥5}, {𝑦2}). Prvńı
+koncept je v obr. 2.1 barevně zvýrazněn v bipartitńım grafu i v tabulce.
+
+Formálńı koncept je dvojice množin, kde 𝐴 je množina objekt̊u a 𝐵 je
+množina atribut̊u takových, že v 𝐵 jsou všechny atributy společné objekt̊um
+z 𝐴 a v 𝐴 jsou všechny objekty, které maj́ı společné atributy z 𝐵.
+
+Množinu všech formálńıch koncept̊u v (X,Y,I) budeme značit ℒ(𝑋, 𝑌, 𝐼).
+Definice 2.4. Konceptuálńı svaz je množina ℒ(𝑋, 𝑌, 𝐼) spolu s relaćı ≤
+definovanou na ℒ(𝑋, 𝑌, 𝐼) takto: (𝐴1, 𝐵1) ≤ (𝐴2, 𝐵2) ⇔ 𝐴1 ⊆ 𝐴2 (nebo
+ekvivalentně 𝐵2 ⊆ 𝐵1).
+Věta 2.2 (Hlavńı věta o konceptuálńıch svazech ). Mějme formálńı kontext
+(𝑋, 𝑌, 𝐼). ℒ(𝑋, 𝑌, 𝐼) je vzhledem k ≤ úplný svaz, ve kterém jsou infima a
+suprema dána předpisy⋀︁: ⋂︁ ⋃︁
+
+(𝐴𝑗, 𝐵𝑗) = ( 𝐴𝑗, ( 𝐵𝑗)↓↑)
+
+⋁︁𝑗∈𝐽 𝑗⋃︁∈𝐽 𝑗∈𝐽⋂︁
+(𝐴𝑗, 𝐵𝑗) = (( 𝐴𝑗)↑↓, 𝐵𝑗).
+
+𝑗∈𝐽 𝑗∈𝐽 𝑗∈𝐽
+
+Věta 2.3. Plat́ı, že složené zobrazeńı ↑↓ : 2𝑋 → 2𝑋 je uzávěrovým operátorem
+v 𝑋 a ↓↑ : 2𝑌 → 2𝑌 je uzávěrovým operátorem v 𝑌 . Naopak, ke každému
+uzávěrovému operátoru 𝑐𝑙 v 𝑋 existuje formálńı kontext (𝑋, 𝑌, 𝐼) tak, že 𝑐𝑙
+je složeným zobrazeńım ↑↓.
+
+
+
+2.1. KONCEPTUÁLNÍ SVAZY 55
+
+D̊ukaz. V rámci d̊ukazu se omeźıme jen na ověřeńı vlastnost́ı uzávěrového
+operátoru pro složené zobrazeńı ↑↓ : 2𝑋 → 2𝑋 . Vlastnost extenzionality
+plyne z definice 2.2 Galoisovy konexe a z následuj́ıćı věty 2.1. Pro ověřeńı
+monotonicity předpokládáme, že 𝐴, 𝐵 ⊆ 𝑋 a 𝐴 ⊆ 𝐵. Z definice Galoi-
+sovy konexe plyne, že 𝐵↑ ⊆ 𝐴↑ a z toho pak také vyplývá, že 𝐴↑↓ ⊆ 𝐵↑↓.
+Protože 𝐴↑ = (𝐴↑)↓↑, tak po aplikaci zobrazeńı ↓ a s využit́ım asociativ-
+nosti operátor̊u, dostaneme 𝐴↑↓ = (𝐴↑)↓↑↓ = (𝐴↑↓)↑↓ z čehož plyne platnost
+idempotence.
+
+Algoritmus 3: Detekce koncept̊u pomoćı jedinečných pr̊unik̊u
+input : Formálńı kontext (𝑋, 𝑌, 𝐼).
+output: Nesetř́ıděná množina všech koncept̊u.
+
+1 vytvoř extenty ke všem atribut̊um – (𝑒𝑥𝑡1 = 𝑎↓
+1, . . . , 𝑒𝑥𝑡𝑛 = 𝑎↓
+
+𝑛);
+2 rozšǐr je o všechny jedinečné pr̊uniky extent̊u – (𝑒𝑥𝑡𝑛+1, . . . , 𝑒𝑥𝑡𝑝−1);
+3 přidej p̊uvodńı množinu objekt̊u 𝑋 – (𝑒𝑥𝑡𝑝 = 𝑋);
+4 vypočti intenty nalezených množin objekt̊u 𝑒𝑥𝑡𝑗 – (𝑖𝑛𝑡𝑗 = 𝑒𝑥𝑡↑
+
+𝑗).
+
+Algoritmus pro generováńı všech koncept̊u daného kontextu vycháźı z
+definice 2.3. Procháźıme všechny podmnožiny 𝐵 množiny 𝑌 a pro každou z
+nich vytvoř́ıme (𝐵↓, 𝐴↑↓) (což je koncept). T́ımto vytvoř́ıme všechny koncepty
+(leč některé v́ıcekrát) a algoritmus má exponenciálńı časovou složitost.
+
+Součást́ı algoritmu neńı vytvořeńı uspořádáńı koncept̊u. Ale d́ıky defi-
+nici 2.4 lze snadno pro malá data nakreslit Hasse̊uv diagram celého kon-
+ceptuálńıho svazu (dle uspořádáńı nalezených koncept̊u).
+Př́ıklad 2.4. Na obrázku 2.1 je popsán kontext (𝑋, 𝑌, 𝐼). Pomoćı algoritmu
+3 nalezneme všechny koncepty (viz. tabulka 2.1) a vytvoř́ıme konceptuálńı
+svaz, který můžeme reprezentovat pomoćı Hasseova diagramu (obr. 2.2).
+
+2.1.1 Algoritmus Next closure
+Algoritmus Next closure je asi nejznáměǰśım algoritmem na generováńı
+všech koncept̊u daného kontextu. Byl navržen Ganterem v 80.tých letech. Je
+to algoritmus pro generováńı všech uzavřených množin uzávěrového operátoru
+𝑐𝑙 na konečné množině 𝑌 . Ten je pak použit pro vygenerováńı všech kon-
+cept̊u daného kontextu následuj́ıćım zp̊usobem. Složené zobrazeńı ↓↑ : 2𝑌 →
+2𝑌 je uzávěrovým operátorem na 𝑌 . Jeho množina uzavřených množin je
+právě 𝐼𝑁𝑇 (𝐼). Tuto množinu lze algoritmem Next closed set vygenerovat.
+Z ńı lze pak dopoč́ıtat všechny koncepty z ℒ(𝑋, 𝑌, 𝐼), protože ℒ(𝑋, 𝑌, 𝐼) =
+
+
+
+56 KAPITOLA 2. APLIKACE STRUKTUR
+
+𝑒𝑥𝑡𝑖 𝑖𝑛𝑡𝑖
+
+𝑒𝑥𝑡1 = 𝑦↓
+1 = {𝑥1, 𝑥2} 𝑖𝑛𝑡1 = {𝑥1, 𝑥2}↑ = {𝑦1, 𝑦4}
+
+𝑒𝑥𝑡2 = 𝑦↓
+2 = {𝑥3, 𝑥5} 𝑖𝑛𝑡2 = {𝑦2}
+
+𝑒𝑥𝑡3 = 𝑦↓
+3 = {𝑥1, 𝑥4, 𝑥5} 𝑖𝑛𝑡3 = {𝑦3}
+
+𝑒𝑥𝑡4 = 𝑦↓
+4 = {𝑥1, 𝑥2, 𝑥3, 𝑥4} 𝑖𝑛𝑡4 = {𝑦4}
+
+𝑒𝑥𝑡5 = 𝑒𝑥𝑡1 ∩ 𝑒𝑥𝑡2 = ∅ 𝑖𝑛𝑡5 = 𝑌
+𝑒𝑥𝑡6 = 𝑒𝑥𝑡1 ∩ 𝑒𝑥𝑡3 = {𝑥1} 𝑖𝑛𝑡6 = {𝑦1, 𝑦3, 𝑦4}
+𝑒𝑥𝑡7 = 𝑒𝑥𝑡2 ∩ 𝑒𝑥𝑡3 = {𝑥5} 𝑖𝑛𝑡7 = {𝑦2, 𝑦3}
+𝑒𝑥𝑡8 = 𝑒𝑥𝑡2 ∩ 𝑒𝑥𝑡4 = {𝑥3} 𝑖𝑛𝑡8 = {𝑦2, 𝑦4}
+𝑒𝑥𝑡9 = 𝑒𝑥𝑡3 ∩ 𝑒𝑥𝑡4 = {𝑥1, 𝑥4} 𝑖𝑛𝑡9 = {𝑦3, 𝑦4}
+𝑒𝑥𝑡10 = 𝑋 𝑖𝑛𝑡10 = ∅
+
+Tabulka 2.1: Tabulka reprezentuj́ıćı postup algoritmu jedinečných pr̊unik̊u
+pro vytvořeńı všech koncept̊u z formálńıho kontextu.
+
+𝑋/∅
+
+𝑥1, 𝑥2, 𝑥3, 𝑥4/𝑦4 𝑥1, 𝑥4, 𝑥5/𝑦3
+
+𝑥1, 𝑥2/𝑦1, 𝑦4 𝑥1, 𝑥4/𝑦3, 𝑦4 𝑥3, 𝑥5/𝑦2
+
+𝑥1/𝑦1, 𝑦3, 𝑦4 𝑥3/𝑦2, 𝑦4 𝑥5/𝑦2, 𝑦3
+
+∅/𝑌
+
+Obrázek 2.2: Hasse̊uv diagram reprezentuj́ıćı výsledný konceptuálńı svaz.
+
+{(𝐴↓, 𝐴), 𝐴 ∈ 𝐼𝑁𝑇 (𝐼)}. Proto je někdy Ganter̊uv algoritmus nazýván Next
+intent.
+
+Předpokládáme, že 𝑐𝑙 je uzávěrový operátor na konečné množině 𝑌 =
+{1, . . . , 𝑛}. Pro 𝐴, 𝐵 ⊆ 𝑌 a 𝑖 ∈ {1, . . . , 𝑛} položme 𝐴 < 𝐵 ⇔ 𝐴 <𝑖 𝐵 pro
+nějaké i, kde 𝐴 <𝑖 𝐵 ⇔ 𝑖 ∈ 𝐵 ∖ 𝐴 a 𝐴 ∩ {1, . . . , 𝑖− 1} = 𝐵 ∩ {1, . . . , 𝑖− 1}.
+Relace < se označuje jako lektické uspořádáńı podmnožin množiny 𝑌 .
+
+Nejmenš́ı uzavřená podmnožina 𝐴+ množiny 𝑌 , která je větš́ı než daná
+𝐴 ⊆ 𝑌 (vzhledem k <) je množina
+
+𝐴+ = 𝐴⊕ 𝑖,
+
+směr uspořádáńı koncept̊u
+směr uspořádáńı extent̊u
+směr uspořádáńı intent̊u
+
+
+
+2.2. ASOCIAČNÍ PRAVIDLA 57
+
+kde 𝐴⊕ 𝑖 = 𝑐𝑙((𝐴∩{1 . . . , 𝑖− 1})∪{𝑖}) a i je největš́ı takový, že 𝐴 <𝑖 𝐴⊕ 𝑖.
+Algoritmus Next closure (viz. algoritmus 4) zač́ıná s lekticky nejmenš́ı
+
+uzavřenou podmnožinou 𝑌 , kterou je 𝑐𝑙(∅). Dále se k naposledy vytvořené
+uzavřené podmnožině 𝐴 ⊆ 𝑌 vytvoř́ı lektický následovńık 𝐴+. Algoritmus
+pokračuje tak dlouho, dokud neńı 𝐴 = 𝑌 . T́ımto postupem vzniknou všechny
+uzavřené podmnožiny množiny atribut̊u 𝑌 .
+
+Algoritmus 4: Next closure
+input : Formálńı kontext (𝑋, 𝑌, 𝐼).
+output: Setř́ıděný seznam Con všech intent̊u.
+
+1 𝐴 := 𝑐𝑙(∅);
+2 Con+=A;
+3 while 𝐴 ̸= 𝑌 do
+4 𝐴 := 𝐴+;
+5 Con+=A
+6 end
+
+Př́ıklad 2.5. Vezmeme-li kontext z obrázku 2.1, pak postup algoritmu Next
+closure je reprezentován tabulkou 2.2. V prvńım sloupci postupně vznikly
+všechny jedinečné intenty, ke kterým se urč́ı extenty, vytvoř́ı se všechny kon-
+cepty a lze vytvořit konceptuálńı svaz stejně jako v př́ıkladu 2.4.
+
+2.2 Asociačńı pravidla
+Jedńım z prostředk̊u pro reprezentaci znalost́ı jsou asociačńı pravidla. Jedná
+se o úlohu hledáńı souvislost́ı (častých vztah̊u) mezi položkami (𝐼 - items -
+množina položek) v transakčńı množině dat, která je zpravidla rozsáhlá.
+
+Jsou-li 𝐴, 𝐵 ⊆ 𝐼, 𝐴, 𝐵 ̸= ∅ a 𝐴∩𝐵 = ∅, pak nás zaj́ımá pravidlo 𝐴⇒ 𝐵,
+kde 𝐴 je označováno jako antecedent (levá strana pravidla, předpoklad) a 𝐵
+je označováno jako sukcedent (pravá strana pravidla, závěr).
+Definice 2.5. Množina transakčńıch dat na konečné množině položek
+(items) 𝐼 je funkce 𝑇 : {1, . . . , 𝑛} → 2𝐼 . Množina 𝑇 (𝑘) je k-tá transakce
+obsahuj́ıćı podmnožinu z množiny položek.
+Definice 2.6. Necht’ 𝑇 : {1, . . . , 𝑛} → 2𝐼 je množina transakčńıch dat na
+konečné množině položek 𝐼 a 𝐾 ⊆ 𝐼. Pak podpora množiny 𝐾 je dána jako
+relativńı četnost výskytu transakćı obsahuj́ıćıch položky z 𝐾, tj.
+
+𝑠𝑢𝑝𝑝(𝐾) = |{𝑘; 1 ≤ 𝑘 ≤ 𝑛, 𝐾 ⊆ 𝑇 (𝑘)}|
+𝑛
+
+
+
+58 KAPITOLA 2. APLIKACE STRUKTUR
+
+A (intenty) i (𝐴 ∩ {1, . . . , 𝑖− 1}) ∪ {𝑖} 𝐴+ = 𝐴⊕ 𝑖 𝐴+ ∖ 𝐴 𝐴 := 𝐴+?
+∅ ∅ ne
+∅ 4 4 4 4 ano
+4 3 3 3 3 ano
+3 4 3,4 3,4 4 ano
+
+3,4 2 2 2 2 ano
+2 4 2,4 2,4 4 ano
+
+2,4 3 2,3 2,3 3 ano
+2,3 4 2,3,4 1,2,3,4 1,4 ne
+2,3 1 1 1,4 1,4 ano
+1,4 3 1,3 1,3,4 3 ano
+
+1,3,4 2 1,2 1,2,3,4 2 ano
+1,2,3,4 konec
+
+Tabulka 2.2: Tabulka demonstruj́ıćı postup algoritmu Next closure. Ve
+sloupci, kde je 𝐴+ = 𝐴 ⊕ 𝑖, se vypočte větš́ı intent a v následuj́ıćım sloupci
+se ověř́ı, zda je to nejmenš́ı větš́ı intent. Pokud obsahuje prvek menš́ı než
+aktuálńı 𝑖, pak byl nalezen př́ılǐs velký intent a neńı zat́ım použit (tj. po-
+sledńı sloupec obsahuje ne).
+
+Definice 2.7. Množina položek 𝐾 ⊆ 𝐼 je 𝜇-množina často se vyskytuj́ıćıch
+položek (𝜇-frequent itemset - 𝜇-FIS), jestliže 𝑠𝑢𝑝𝑝(𝐾) ≥ 𝜇.
+Definice 2.8. Necht’ 𝐼 = {𝑖1, . . . , 𝑖𝑚} je množina položek obsahuj́ıćı 𝑚 prvk̊u.
+Označ́ıme si 𝐺𝐼 = (2𝐼 , 𝐸) orientovaný graf odpov́ıdaj́ıćı Rymon tree (viz
+obrázek 2.3) pro potenčńı množinu 2𝐼 množiny položek. Kořenem je prázdná
+množina. Množina hran Rymon tree je definována takto: (𝑢, 𝑣) ∈ 𝐸 ⇔ 𝑢 =
+{𝑖𝑝1 , . . . , 𝑖𝑝 }, kde plat́ı 𝑖𝑝1 < 𝑖𝑝2 < . . . < 𝑖𝑝 a 𝑣 = 𝑢 ∪ {𝑗}, kde 𝑖𝑝 < 𝑗 ≤ 𝑚.
+
+𝑘 𝑘 𝑘
+
+Slovńı popis: (𝑢, 𝑣) ∈ 𝐸 ⇔ 𝑣 je bezprostředně větš́ı než 𝑢. Každý uzel 𝑢 =
+{𝑖𝑝1 , . . . , 𝑖𝑝 } má 𝑚− 𝑖𝑝 potomk̊u.
+
+𝑘 𝑘
+
+Věta 2.4. Necht’ 𝐿𝑘 je kolekce podmnožin množiny položek (itemsets), které
+maj́ı 𝑘 prvk̊u. Je-li 𝐷 ∈ 𝐿𝑘+1, kde 𝑘 ≥ 2, potom existuje jedinečná dvojice
+r̊uzných množin 𝐵, 𝐶 ∈ 𝐿𝑘 taková, že má bezprostředńıho předch̊udce 𝐵 ∩
+𝐶 = 𝐴 ∈ 𝐿𝑘−1 v 𝐺𝐼 a 𝐷 = 𝐵 ∪ 𝐶.
+
+D̊ukaz. Necht’ 𝑏, 𝑐 ∈ 𝐷 jsou dva prvky, které maj́ı největš́ı a druhý největš́ı
+dolńı index (v rámci množiny položek 𝐼). Uvažujem množinu 𝐵 = 𝐷 ∖ {𝑏} a
+𝐶 = 𝐷 ∖ {𝑐}. Obě množiny patř́ı do 𝐿𝑘. Nav́ıc plat́ı, že 𝐴 = 𝐵 ∩ 𝐶 patř́ı do
+𝐿𝑘−1, protože 𝐴 obsahuje prvńıch 𝑘−1 prvk̊u z 𝐵 či z 𝐶. Připomeňme, že obě
+množiny 𝐵 i 𝐶 jsou následovńıky množiny 𝐴 a že 𝐵∪𝐶 = 𝐷. Dvojice (𝐵, 𝐶)
+
+
+
+2.2. ASOCIAČNÍ PRAVIDLA 59
+
+∅
+
+𝑖1 𝑖2 𝑖3 𝑖4
+
+𝑖1, 𝑖2 𝑖1, 𝑖3 𝑖1, 𝑖4 𝑖2, 𝑖3 𝑖2, 𝑖4 𝑖3, 𝑖4
+
+𝑖1, 𝑖2, 𝑖3 𝑖1, 𝑖2, 𝑖4 𝑖1, 𝑖3, 𝑖4 𝑖2, 𝑖3, 𝑖4
+
+𝑖1, 𝑖2, 𝑖3, 𝑖4
+
+Obrázek 2.3: Graf pro Rymon tree s množinou položek 𝐼 = {𝑖1, 𝑖2, 𝑖3, 𝑖4}.
+
+𝐿𝑘−1 𝐴 = 𝐵 ∩ 𝐶
+𝐿𝑘 𝐵 = 𝐴 ∪ {𝑏}, 𝐶 = 𝐴 ∪ {𝑐}
+𝐿𝑘+1 𝐷 = 𝐵 ∪ 𝐶 = 𝐴 ∪ {𝑏, 𝑐}
+
+Tabulka 2.3: Schéma demonstruj́ıćı jednotlivé úrovně v Rymon tree 𝐺𝐼 .
+
+je jedinečná. Předpokládejme, že 𝐷 může být źıskána stejným zp̊usobem z
+jiné dvojice množin 𝐵′, 𝐶 ′ ∈ 𝐿𝑘 tak, že 𝐵′ a 𝐶 ′ jsou následovńıky množiny
+𝐴′ ∈ 𝐿𝑘−1. Z definice Rymonova stromu 𝐺𝐼 plyne, že 𝐵′ = 𝐴′ ∪ {𝑖𝑝} a
+𝐶 ′ = 𝐴′ ∪ {𝑖𝑞}, kde prvky v 𝐴′ jsou indexovány č́ısly, která jsou menš́ı než
+𝑚𝑖𝑛{𝑝, 𝑞}. Potom 𝐴′ se skládá z prvńıch 𝑘− 1 symbol̊u z množiny 𝐷 a tedy
+𝐴′ = 𝐴. Jestliže 𝑝 < 𝑞, tak 𝑝 je druhý největš́ı index u prvk̊u v množině 𝐷 a
+𝑞 je nevyšš́ı index prvk̊u v množině 𝐷 a tedy 𝐵′ = 𝐵 a 𝐶 ′ = 𝐶.
+
+Toto tvrzeńı je použito pro výpočet 𝜇-frekventovaných množin nad transakčńımi
+daty pomoćı algoritmu Apriori.
+Př́ıklad 2.6. Pokud uvažujeme Rymon tree na obrázku 2.3 nad množinou
+𝑃 ({𝑖1, 𝑖2, 𝑖3, 𝑖4}), tak množina {𝑖1, 𝑖2, 𝑖4} je sjednoceńım množin {𝑖1, 𝑖2} a
+{𝑖1, 𝑖4}, které maj́ı svého předch̊udce množinu {𝑖1}.
+Př́ıklad 2.7. Je dána tabulka transakćı (obr. 2.4) na množině položek 𝐼 =
+{𝑖1, 𝑖2, 𝑖3, 𝑖4}. Urč́ıme podporu všech podmnožin množiny položek. Pokud je
+podpora nějaké pomnožiny položek nulová, tak v rámci Rymon tree už ne-
+budeme generovat potomky této množiny, protože jejich podpora bude také
+nulová.
+
+Pokud zvoĺıme 𝜇 = 0.3, tak v obrázku 2.4 jsou modře zvýrazněny pouze
+ty itemsety, které maj́ı podporu větš́ı než 𝜇.
+Definice 2.9. Asociačńı pravidlo na konečné množině položek (items)
+
+
+
+60 KAPITOLA 2. APLIKACE STRUKTUR
+
+𝑖1 𝑖2 𝑖3 𝑖4 ∅
+𝑇 (1) 1 0 1 1 𝑖1(2
+
+5) 𝑖2(2
+5) 𝑖3(3
+
+5) 𝑖4(4
+5)
+
+𝑇 (2) 1 0 0 1
+𝑇 (3) 0 1 0 1 𝑖1, 𝑖2(0) 𝑖1, 𝑖3(1
+
+5) 𝑖1, 𝑖4(2
+5) 𝑖2, 𝑖3(1
+
+5) 𝑖2, 𝑖4(1
+5) 𝑖3, 𝑖4(2
+
+5)
+𝑇 (4) 0 0 1 1
+𝑇 (5) 0 1 1 0 𝑖1, 𝑖3, 𝑖4(1
+
+5) 𝑖2, 𝑖3, 𝑖4(0)
+
+Obrázek 2.4: Tabulka transakćı a redukovaný Rymon tree s podporou
+podmnožin množiny položek. Jsou generovány pouze ty podmnožiny, jejichž
+předch̊udci měli nenulovou podporu.
+
+𝐼 je dvojice neprázdných, disjunktńıch množin (𝐴, 𝐵), kde 𝐴, 𝐵 ⊆ 𝐼, 𝐴 ∩
+𝐵 = ∅ and 𝐴 ̸= ∅ ≠ 𝐵. Asociačńı pravidlo (𝐴, 𝐵) je označováno 𝐴 ⇒ 𝐵.
+Spolehlivost (confidence) asociačńıho pravidla 𝐴⇒ 𝐵 je č́ıslo
+
+𝑐𝑜𝑛𝑓(𝐴⇒ 𝐵) = 𝑠𝑢𝑝𝑝(𝐴, 𝐵)
+𝑠𝑢𝑝𝑝(𝐴) .
+
+Př́ıklad 2.8. Rymon tree na obrázku 2.4 má vedle podmnožiny množiny
+položek určenou hodnotu podpory. Má smysl vytvořit asociačńı pravidla pro
+dvou (a v́ıce) prvkové podmnožiny množiny položek s nenulovou podporou.
+Pro takto vytvořená asociačńı pravidla spočteme jejich spolehlivost.
+
+𝑠𝑢𝑝𝑝(𝐴, 𝐵) > 0 𝑠𝑢𝑝𝑝(𝐴, 𝐵) > 0
+𝑐𝑜𝑛𝑓(𝑖1 ⇒ 𝑖3) = 1
+
+2 𝑐𝑜𝑛𝑓(𝑖3 ⇒ 𝑖1) = 1
+3
+
+𝑐𝑜𝑛𝑓(𝑖1 ⇒ 𝑖4) = 1 𝑐𝑜𝑛𝑓(𝑖4 ⇒ 𝑖1) = 1
+2
+
+𝑐𝑜𝑛𝑓(𝑖2 ⇒ 𝑖3) = 1
+2 𝑐𝑜𝑛𝑓(𝑖3 ⇒ 𝑖2) = 1
+
+3
+𝑐𝑜𝑛𝑓(𝑖2 ⇒ 𝑖4) = 1
+
+2 𝑐𝑜𝑛𝑓(𝑖4 ⇒ 𝑖2) = 1
+4
+
+𝑐𝑜𝑛𝑓(𝑖3 ⇒ 𝑖4) = 2
+3 𝑐𝑜𝑛𝑓(𝑖4 ⇒ 𝑖3) = 1
+
+2
+𝑐𝑜𝑛𝑓(𝑖1 ⇒ 𝑖3, 𝑖4) = 1
+
+2 𝑐𝑜𝑛𝑓(𝑖3, 𝑖4 ⇒ 𝑖1) = 1
+𝑐𝑜𝑛𝑓(𝑖3 ⇒ 𝑖1, 𝑖4) = 1
+
+3 𝑐𝑜𝑛𝑓(𝑖1, 𝑖4 ⇒ 𝑖3) = 1
+2
+
+𝑐𝑜𝑛𝑓(𝑖4 ⇒ 𝑒1, 𝑖3) = 1
+4 𝑐𝑜𝑛𝑓(𝑖1, 𝑖3 ⇒ 𝑖4) = 1
+
+Tabulka 2.4: Tabulka hodnot spolehlivosti pro asociačńı pravidla s nenulovou
+podporou.
+
+Často se tedy hledaj́ı jen asociačńı pravidla s dostatečnou podporou a do-
+statečnou spolehlivost́ı. Př́ıpadně se hledaj́ı jen koncepty s dostatečně velkými
+extenty.
+
+
+
+2.2. ASOCIAČNÍ PRAVIDLA 61
+
+Definice 2.10. Asociačńı pravidlo 𝐴 ⇒ 𝐵 plat́ı v transakčńıch datech s
+podporou 𝜇 a spolehlivost́ı 𝑐 jestliže 𝑠𝑢𝑝𝑝(𝐴, 𝐵) ≥ 𝜇 a 𝑐𝑜𝑛𝑓(𝐴⇒ 𝐵) ≥ 𝑐.
+
+Definice 2.11. Něcht’ (X,Y,I) je formálńı kontext koresponduj́ıćı s transakčńımi
+daty. Pak podpora podmnožiny atribut̊u (položek) 𝐵 ⊆ 𝑌 je 𝑠𝑢𝑝𝑝(𝐵) = |𝐵↓|
+
+|𝑋| .
+Ř́ıkáme, že 𝐵 je frekventovaná množina atribut̊u, jestliže 𝑠𝑢𝑝𝑝(𝐵) ≥ 𝜇.
+
+Koncept je nazýván frekventovaný koncept, jestliže jeho intent je frekven-
+tovaný. Množina všech frekventovaných koncept̊u daného kontextu (𝑋, 𝑌, 𝐼)
+se nazývá ledovcový konceptuálńı svaz (iceberg concept lattice) kontextu
+(𝑋, 𝑌, 𝐼).
+
+V ledovcovém konceptuálńım svazu tvoř́ı svazovou nulu nejmenš́ı koncept,
+který neńı frekventovaný, ale bez kterého by to nebyl svaz.
+
+2.2.1 Algoritmus Apriori
+Nejznáměǰśı algoritmus pro hledáńı frekventovaných podmnožin množiny
+položek se jmenuje Apriori. Tento algoritmus navrhl v devadesátých letech
+Rakesh Agrawal (analýza nákupńıho koš́ıku). Jádrem algoritmu je hledáńı
+kombinaćı (konjunkce) položek, které dosahuj́ı předem zadané minimálńı
+podpory 𝜇 v datech. Při hledáńı kombinaćı délky 𝑘, které maj́ı dostatečnou
+podporu, se využ́ıvá toho, že již známe kombinace délky 𝑘−1. Pro vytvořeńı
+jedné kombinace délky 𝑘 požadujeme, aby všechny jej́ı podkombinace délky
+𝑘 − 1 měly minimálńı podporu.
+
+Algoritmus 5: Apriori
+input : Transakčńı data a minimálńı požadovaná podpora 𝜇.
+output: Všechny podmnožiny množiny položek s požadovanou
+
+podporou.
+1 do 𝐿1 přǐrad’ všechny položky, které dosahuj́ı požadované podpory 𝜇
+2 𝑘 := 2
+3 while 𝐿𝑘−1 ̸= ∅ do
+4 pomoćı funkce Apriori-gen vygeneruj na základě 𝐿𝑘−1 množinu
+
+kandidát̊u 𝐶𝑘
+
+5 do 𝐿𝑘 zařad’ ty kombinace položek z 𝐶𝑘, které dosáhly
+požadované podpory 𝜇
+
+6 𝑘 + +
+7 end
+
+
+
+62 KAPITOLA 2. APLIKACE STRUKTUR
+
+Algoritmus 6: Apriori-gen
+input : Všechny (k-1)-prvkové podmnožiny množiny položek, které
+
+maj́ı požadovanou podporu.
+output: Všechny k-prvkové podmnožiny množiny položek, které by
+
+mohly mı́t požadovanou podporu.
+1 foreach dvojci kombinaćı položek 𝐶𝑜𝑚𝑏𝑝, 𝐶𝑜𝑚𝑏𝑞 z 𝐿𝑘−1 do
+2 if 𝐶𝑜𝑚𝑏𝑝 a 𝐶𝑜𝑚𝑏𝑞 se shoduj́ı v 𝑘 − 2 položkách then
+3 přidej 𝐶𝑜𝑚𝑏𝑝 ∪ 𝐶𝑜𝑚𝑏𝑞 do 𝐶𝑘
+
+4 end
+5 end
+6 foreach kombinaci 𝐶𝑜𝑚𝑏 z 𝐶𝑘 do
+7 if podkombinace délky 𝑘 − 1 neńı obsažena v 𝐿𝑘−1 then
+8 odstraň 𝐶𝑜𝑚𝑏 z 𝐶𝑘
+
+9 end
+10 end
+
+Př́ıklad 2.9. V př́ıkladu 2.8 je dána tabulka transakćı na množině položek
+𝐼 = {𝑖1, . . . , 𝑖4}. Tabulka 2.5 demonstruje postup algoritmu Apriori pro nale-
+zeńı všech frekventovaných podmnožin množiny položek. Hodnota 𝜇 nebyla
+specifikována. Byly nalezeny všechny frekventované množiny položek s nenu-
+lovou podporou. Přeškrtnuté množiny byly vygenerovány, ale protože některé
+jejich podmnožiny měly nulovou podporu, tak kandidáti nebyli zařazeni do
+𝐿𝑘 (množina podmnožin, které mohou mı́t nenulovou podporu)
+
+
+
+2.2. ASOCIAČNÍ PRAVIDLA 63
+
+k 𝑥 ∈ 𝐶𝑘 𝑥 ∈ 𝐿𝑘 𝑠𝑢𝑝𝑝(𝑥)
+1 𝑖1 2/5
+
+𝑖2 2/5
+𝑖3 2/5
+𝑖4 4/5
+
+2 𝑖1, 𝑖2 x 0
+𝑖1, 𝑖3 ✓ 1/5
+𝑖1, 𝑖4 ✓ 2/5
+𝑖2, 𝑖3 ✓ 1/5
+𝑖2, 𝑖4 ✓ 1/5
+𝑖3, 𝑖4 ✓ 2/5
+
+3 X
+𝑖 
+
+1,X𝑖2X,X𝑖3
+X
+𝑖 
+
+1,X𝑖2X,X𝑖4
+𝑖1, 𝑖3, 𝑖4 ✓ 1/5
+𝑖2, 𝑖3, 𝑖4 x 0
+
+4
+
+Tabulka 2.5: Postup algoritmu Apriori.
+
+2.2.2 Metoda FP-Growth
+Metoda FP-Growth (Frequent Pattern Growth) [1] je algoritmus pro nale-
+zeńı frekventovaných množin položek (frequent itemsets) z transakčńıch dat.
+Jej́ım hlavńım znakem je, že negeneruje kandidátńı množiny jako algoritmus
+Apriori, ale využ́ıvá komprimovanou strukturu dat – tzv. FP-strom (FP-tree)
+– a z ńı potom rekurzivně extrahuje frekventované množiny.
+
+Postup lze shrnout v následuj́ıćıch kroćıch:
+
+1. Prvńı pr̊uchod daty: spoč́ıtáme počet výskyt̊u (support) pro každou
+jednotlivou položku.
+
+2. Odstrańıme všechny položky, jejichž support je menš́ı než zvolený práh
+min support.
+
+3. Seřad́ıme v každé transakci zbývaj́ıćı položky podle klesaj́ıćı frekvence.
+4. Vytvoř́ıme FP-strom tak, že každá transakce (po seřazeńı a odstraněńı
+
+nečastých položek) přidá cestu v tomto stromu. Uzel obsahuje po-
+tenciálně sd́ılenou cestu a inkrementuje poč́ıtadlo ”count“. Zároveň u
+každé položky udržujeme v tabulce header-table odkazy na uzly se stej-
+nou položkou.
+
+
+
+64 KAPITOLA 2. APLIKACE STRUKTUR
+
+5. Poté pro každou položku (od nejméně časté po nejčastěǰśı) vytvář́ıme
+tzv. conditional pattern base – tedy všechny cesty vedoućı k dané položce
+v FP-stromu, tj. vytvář́ıme z ńı conditional FP-strom. Z tohoto stromu
+potom opět extrahujeme frekventované množiny obsahuj́ıćı danou položku
+jako prefix.
+
+6. Rekurzivně tak źıskáme všechny frekventované množiny položek s pod-
+porou ≥ min support.
+
+Algoritmus 7: FP-Growth
+input : Transakčńı databáze 𝐷, práh podpory min support.
+output: Množina všech frekventovaných položkových množin 𝐹 .
+
+1 Spočti podporu pro každou položku v 𝐷;
+2 Odstraň z každé transakce všechny položky s podporou
+
+< min support;
+3 Seřad’ položky v každé transakci podle klesaj́ıćı podpory;
+4 Vytvoř FP-strom (root je prázdný uzel); každou transakci ”umı́sti“
+
+do stromu – sd́ılej společné prefixy;
+5 Vytvoř header-tabulku s položkami a ukazateli na uzly ve stromu;
+6 Funkce mineTree(FP-strom, header-table, min support, prefix) {
+7 pro každou položku 𝑖 v header-table od nejméně časté po
+
+nejčastěǰśı:
+8 𝐹 = 𝐹 ∪ {prefix ∪ {𝑖}};
+9 vytvoř conditional pattern base pro 𝑖 (z cest ve stromu
+
+vedoućıch k uzl̊um 𝑖);
+10 vytvoř conditional FP-strom z této pattern base;
+11 pokud strom neńı prázdný, zavolej
+
+mineTree(conditional-strom,;
+12 nové header-table,;
+13 min support, prefix ∪ {𝑖});
+14 }
+
+Algoritmus Apriori použ́ıvá iterativńı generováńı kandidátńıch množin
+a opakované skenováńı celé databáze, což ve větš́ıch datových souborech
+může být velmi nákladné. Metoda FP-Growth přináš́ı několik výhod. Potřeba
+pouze dvou pr̊uchod̊u databáźı (prvńı pro podporu jednotlivých položek,
+druhý pro konstrukci FP-stromu) – oproti mnoha pr̊uchod̊um u Apriori.
+Žádná explicitńı generace kandidátńıch množin – eliminuje nákladné gene-
+rováńı a testováńı množin, které pak většinou nesplňuj́ı práh podpory. Ob-
+zvlášt’ vhodné pro ”husté“ datové soubory a větš́ı prahy podpory – výkonově
+
+
+
+2.2. ASOCIAČNÍ PRAVIDLA 65
+
+výrazně lepš́ı než Apriori. Např́ıklad v článku [2] autoři uváděj́ı, že FP-
+-Growth běž́ı ”alespoň o řád rychleji“ než Apriori v řadě experiment̊u.
+
+
+
+66 KAPITOLA 2. APLIKACE STRUKTUR
+
+2.3 Topologické a metrické prostory
+Topologie se zabývá topologickými prostory – jsou to zhruba metrické pro-
+story, ve kterých je definována bĺızkost, ale nelze ji nutně změřit numerickou
+vzdálenost́ı. Ústředńım pojmem je pak spojitost, konkrétněji spojité zobra-
+zeńı. Což znamená, že čtverec je zde totéž co kružnice (narozd́ıl od geo-
+metrie). To je proto, že existuj́ı spojitá vzájemně inverzńı zobrazeńı mezi
+čtvercem a kružnićı – dohromady určuj́ı izomorfismus těchto dvou objekt̊u.
+V následuj́ıćım textu si připomeneme pojem metrického prostoru, ve kterém
+lze měřit vzdálenost mezi dvěma prvky.
+
+V rámci ”gumové”geometrie (bez vzdálenost́ı a úhl̊u) lze pomoćı spo-
+jitých deformaćı, které neměńı některé vlastnosti objekt̊u, převést šálek čaje
+na americký donut (česká kobliha by byla spojitě deformovatelná pouze na
+skleničku).
+
+2.3.1 Metriky a metrické prostory, podobnosti a nepo-
+dobnosti
+
+Definice 2.12. Metrický prostor je dvojice (ℳ, 𝑑), kde ℳ je libovolná
+neprázdná množina a 𝑑 je metrika, což je zobrazeńı 𝑑 : ℳ ×ℳ → R,
+které splňuje pro ∀𝑥, 𝑦, 𝑧 ∈ℳ následuj́ıćı axiomy:
+
+• totožnost: 𝑑(𝑥, 𝑦) = 0⇔ 𝑥 = 𝑦
+
+• symetrie: 𝑑(𝑥, 𝑦) = 𝑑(𝑦, 𝑥)
+• trojúhelńıková nerovnost: 𝑑(𝑥, 𝑧) ≤ 𝑑(𝑥, 𝑦) + 𝑑(𝑦, 𝑧)
+Variace na téma metrika:
+• Z výše uvedených tř́ı nezávislých axiomů vyplývá nezápornost metriky
+
+(tj. ∀𝑥, 𝑦 ∈ℳ 𝑑(𝑥, 𝑦) ≥ 0). Protože plat́ı 2𝑑(𝑥, 𝑦) = 𝑑(𝑥, 𝑦) + 𝑑(𝑥, 𝑦) =
+𝑑(𝑥, 𝑦) + 𝑑(𝑦, 𝑥) ≥ 𝑑(𝑥, 𝑥) = 0.
+
+• Hodnota 𝑑(𝑥, 𝑦) označuje vzdálenost (distance) bod̊u 𝑥, 𝑦 v dané me-
+trice 𝑑 a v daném metrickém prostoru ℳ.
+
+• Modifikaćı prvńıho axiomu na redukovaný tvar 𝑑(𝑥, 𝑥) = 0, tj. umožňujeme,
+aby dva r̊uzné body měly též nulovou vzdálenost, dostaneme pseudo-
+metriku.
+
+• Pokud plat́ı pouze axiomy totožnosti a symetrie, tak hovoř́ıme o ne-
+podobnosti (dissimilarity).
+
+
+
+2.3. TOPOLOGICKÉ A METRICKÉ PROSTORY 67
+
+• Metrika se nazývá ultrametrikou, jestliže vyhovuje následuj́ıćı silněǰśı
+verzi trojúhelńıkové nerovnosti, kde žádný bod nemůže ”spadnout”mezi
+daľśı body: ∀𝑥, 𝑦, 𝑧 ∈ℳ 𝑑(𝑥, 𝑧) ≤ 𝑚𝑎𝑥{𝑑(𝑥, 𝑦), 𝑑(𝑦, 𝑧)}.
+
+Definice 2.13. Podobnost (similarity) nad libovolnou neprázdnou množinou
+𝑉 je zobrazeńı 𝑠 : 𝒱×𝒱 → R, které splňuje pro ∀𝑥, 𝑦 ∈ 𝒱 následuj́ıćı axiomy:
+
+• nezápornost: 𝑠(𝑥, 𝑦) ≥ 0,
+
+• totožnost: 𝑠(𝑥, 𝑦) ≤ 𝑠(𝑥, 𝑥) a 𝑠(𝑥, 𝑦) = 𝑠(𝑥, 𝑥)⇔ 𝑥 = 𝑦,
+
+• symetrie: 𝑠(𝑥, 𝑦) = 𝑠(𝑦, 𝑥).
+
+Různými metodami určené podobnosti, které jsou shora ohraničené 1 (tj.
+jsou normované), můžeme převést na nepodobnosti (n√︀ebo někdy na vzdálenosti):
+𝑑(𝑥, 𝑦) = 1 − 𝑠(𝑥, 𝑦), 𝑑(𝑥, 𝑦) = 1−𝑠(𝑥,𝑦)
+
+𝑠(𝑥,𝑦) , 𝑑(𝑥, 𝑦) = 1− 𝑠(𝑥, 𝑦), 𝑑(𝑥, 𝑦) =
+arccos(𝑠(𝑥, 𝑦)), 𝑑(𝑥, 𝑦) = −𝑙𝑛(𝑠(𝑥, 𝑦)) pro 𝑥, 𝑦 ∈ 𝒱 . Duálně můžeme převést
+vzdálenost na podobnost, pokud je vzdálenost normována tak, že 𝑚𝑎𝑥{𝑑(𝑥, 𝑦), 𝑥, 𝑦 ∈
+𝒱} = 1. Potom můžeme použ́ıt následuj́ıćı převody: 𝑠(𝑥, 𝑦) = 1 − 𝑑(𝑥, 𝑦),
+𝑠(𝑥, 𝑦) = 1
+
+𝑑(𝑥,𝑦)+1 nebo 𝑠(𝑥, 𝑦) = 𝑒−𝑑(𝑥,𝑦).
+
+Př́ıklad 2.10. Je-li 𝑋 ̸= ∅, můžeme na 𝑋 zavést diskrétńı metriku 𝜌 tak, že
+definujeme 𝜌(𝑥, 𝑦) = 0 pro 𝑥 = 𝑦 a 𝜌(𝑥, 𝑦) = 1 pro 𝑥 ̸= 𝑦, 𝑥, 𝑦 ∈ 𝑋. Metrický
+prostor (𝑋, 𝜌) se nazývá diskrétńı prostor a je jednoduchým př́ıkladem tzv.
+ultra-metrického prostoru.
+
+Přehled často použ́ıvaných zp̊usob̊u pro výpočet vzdálenosti, podobnost́ı
+či nepodobnost́ı mezi prvky r̊uzných množin je uveden v tabulkách 2.6, 2.7,
+2.8, 2.9.
+Př́ıklad 2.11. Na jednoduchém př́ıkladu si ukážeme, že předpis Minkowského
+vzdálenosti pro 𝑝 ∈ (0, 1) nevyhovuje podmı́nkám metriky. Máme dány tři
+body 𝐴, 𝐵, 𝐶 ∈ R2 (viz. obrázek 2.5). Vypočteme hodnotu Minkowského
+metriky pro r̊uzné volby parametru 𝑝.
+
+• Pro 𝑝 = 1 je 𝑑1(𝐴, 𝐵) = |𝐴𝑥−𝐵𝑥|+ |𝐴𝑦 −𝐵𝑦| = 3 + 0 = 3, 𝑑1(𝐵, 𝐶) =
+|𝐵𝑥−𝐶𝑥|+ |𝐵𝑦−𝐶𝑦| = 0 + 3 = 3 a 𝑑1(𝐴, 𝐶) = |𝐴𝑥−𝐶𝑥|+ |𝐴𝑦−𝐶𝑦| =
+3 + 3 = 6. Tedy 𝑑1(𝐴, 𝐶) = 𝑑1(𝐴, 𝐵) + 𝑑1(𝐵, 𝐶).
+
+• Pro 𝑝 = 2 je 𝑑2(𝐴, 𝐵) = (|𝐴𝑥−𝐵𝑥|2 + |𝐴𝑦−𝐵𝑦|2)1/2 = (32 + 02)1/2 = 3,
+𝑑2(𝐵, 𝐶) = (|𝐵𝑥−𝐶𝑥|2 + |𝐵𝑦−𝐶𝑦|2)1/2 = (02 + 32)1/2 = 3 a 𝑑2(𝐴, 𝐶) =
+(|𝐴𝑥 − 𝐶𝑥|2 + |𝐴𝑦 − 𝐶𝑦|2)1/2 = (32 + 32)1/2 = 4.24. Tedy 𝑑2(𝐴, 𝐶) =
+4.24 < 6 = 𝑑2(𝐴, 𝐵) + 𝑑2(𝐵, 𝐶).
+
+
+
+68 KAPITOLA 2. APLIKACE STRUKTUR
+
+Nosič Vzdálenost Podobnost Nepodobnost
+
+R𝑛 Minkowski,∑︀𝑝 ≥ 1 𝑝 ∈ (0, 1)
+𝑑𝑝(𝑥, 𝑦) = ( 𝑛
+
+∑︀ 𝑖=1 |𝑥𝑖 − 𝑦𝑖|𝑝)1/𝑝 𝑠𝑁
+𝑝 (𝑥, 𝑦) = 1− 𝑑𝑁
+
+𝑝 (𝑥, 𝑦) 𝑑𝑝(𝑥, 𝑦)
+Manhattan 𝑝 = 1
+𝑑1(𝑥, 𝑦) = 𝑛
+
+√︀𝑖=1 |𝑥𝑖 − 𝑦𝑖| 𝑠𝑁
+1 (𝑥, 𝑦) = 1− 𝑑𝑁
+
+1 (𝑥, 𝑦)
+Euclidean 𝑝 =∑︀2
+𝑑2(𝑥, 𝑦) = 𝑛
+
+𝑖=1(𝑥𝑖 − 𝑦𝑖)2 𝑠𝑁
+2 (𝑥, 𝑦) = 1− 𝑑𝑁
+
+2 (𝑥, 𝑦)
+Chebyshev 𝑝 =∞
+𝑑∞(𝑥, 𝑦) = √︀max∀𝑖{|𝑥𝑖 − 𝑦𝑖|} 𝑠𝑁
+
+∞(𝑥, 𝑦) = 1− 𝑑𝑁
+∞(𝑥, 𝑦)
+
+Mahalanobis
+𝑑𝑚(𝑥, 𝑦) = ∑︀(𝑥− 𝑦)𝑇 𝐶𝑜𝑣−1(𝑥− 𝑦) 𝑠𝑁
+
+𝑚(𝑥, 𝑦) = 1− 𝑑𝑁
+𝑚(𝑥, 𝑦)
+
+Canberra
+𝑑𝑐𝑎𝑛(𝑥, 𝑦) = 𝑛 |𝑥𝑖−𝑦𝑖|
+
+𝑖=1 |𝑥𝑖|+|𝑦𝑖| 𝑠𝑐𝑎𝑛(𝑥, 𝑦) = 1− 𝑑𝑐𝑎𝑛(𝑥, 𝑦)
+Soergel (Ružička) ∑︀∑︀ Ružička1
+
+𝑛
+
+𝑑𝑁
+𝑠𝑜(𝑥, 𝑦) = 1− 𝑠𝑟𝑢(𝑥, 𝑦) = 𝑖=1 |𝑥𝑖−𝑦𝑖|
+
+𝑛 ∑︀∑︀𝑛
+
+√︀ 𝑖=1 max(𝑥𝑖,𝑦𝑖) 𝑠𝑟𝑢(𝑥, 𝑦) = 𝑖=1 min(𝑥𝑖,𝑦𝑖)
+𝑛
+𝑖=1 max(𝑥𝑖,𝑦𝑖)
+
+chord distance (Orloci) cosine
+𝑑2(𝑥𝑁 , 𝑦𝑁) = 2− 2𝑠𝑐(𝑥𝑁 , 𝑦𝑁) 𝑠𝑐(𝑥, 𝑦) = (𝑥,𝑦)
+
+||𝑥||2·||𝑦|| 𝑑𝑐(𝑥, 𝑦) = 1− 𝑠𝑐(𝑥, 𝑦)
+2
+
+Pearson correlation
+𝑠𝑝𝑒(𝑥, 𝑦) = (𝑥−𝑥,𝑦−𝑦)
+
+||𝑥−𝑥||2·||𝑦−𝑦|| 𝑑𝑝𝑒(𝑥, 𝑦) = 1− 𝑠𝑝𝑒(𝑥, 𝑦)
+2
+
+Jaccard Kohonen (Jaccard)
+𝑑𝑗(𝑥, 𝑦) = 1− 𝑠𝑗(𝑥, 𝑦) = ||𝑥−𝑦||22
+
+(𝑥,𝑦)+|| 𝑠
+𝑥−𝑦||2 𝑗(𝑥, 𝑦) = (𝑥,𝑦)
+
+2 (𝑥,𝑦)+||𝑥−𝑦||22
+
+Tabulka 2.6:√︀∑︀ ∑︀ ∑︀
+Použité značeńı: 𝑥, 𝑦 ∈ R𝑛: 𝑥 = (𝑥1, . . . , 𝑥𝑛), (𝑥, 𝑦) = 𝑛
+
+𝑖=1(𝑥𝑖 ·
+𝑦𝑖), ||𝑥||2 = 𝑛
+
+𝑖=1 𝑥2
+𝑖 , ||𝑥𝑁 ||2 = 1, 𝑥 = ( 𝑛
+
+𝑖=1 𝑥𝑖)/𝑛.
+
+Nosič Vzdálenost Podobnost Nepodobnost
+Dice (Sørensen) Czekanowsky-Dice
+
+𝑈
+𝑠𝐷(𝑋, 𝑌 ) = 2|𝑋∩𝑌 |
+
+|𝑋|+|𝑌 | 𝑑𝐶𝐷(𝑋, 𝑌 ) = 1− 𝑠𝐷
+
+Jaccard Jaccard
+𝑑𝑗(𝑋, 𝑌 ) = 1− 𝑠𝑗(𝑋, 𝑌 ) 𝑠𝑗(𝑋, 𝑌 ) = |𝑋∩𝑌 |
+
+|𝑋∪𝑌 |
+
+Tabulka 2.7: 𝑋, 𝑌 ⊆ 𝑈 .
+
+
+
+2.3. TOPOLOGICKÉ A METRICKÉ PROSTORY 69
+
+Nosič Vzdálenost Podobnost Nepodobnost
+
+{0, 1}𝑛 ∑︀ Tanimoto
+𝑛 ∑︀ ∑︀
+
+𝑑𝑇 (𝑥, 𝑦) = 𝑖=1 ma∑︀x(𝑥𝑖,𝑦𝑖)− 𝑛
+𝑖=1 min(𝑥𝑖,𝑦𝑖) 𝑛
+
+, 𝑦) = ∑︀ 𝑖=1 min(𝑥𝑖,𝑦𝑖)
+𝑛 𝑠𝑇 (𝑥
+𝑖=1 max(𝑥𝑖,𝑦𝑖) 𝑛
+
+𝑖=1 max(𝑥𝑖,𝑦𝑖)
+Sokal-Sneath 3
+𝑠𝑠𝑠3(𝑥, 𝑦) = 𝑏+𝑐
+
+𝑎+ 𝑑𝑠𝑠3(𝑥, 𝑦) = 1− 𝑠
+𝑑 𝑠𝑠3
+
+Rand
+
+∑︀ 𝑠𝑟(𝑥, 𝑦) = 𝑎+𝑑 𝑑
+𝑎+𝑏+𝑐+ 𝑟(𝑥, 𝑦) = 1− 𝑠𝑟(𝐴, 𝐵)
+
+𝑑
+Hamming
+
+𝑑ℎ(𝑥, 𝑦) = 𝑏 + 𝑐 = 𝑛
+𝑖=1 |𝑥𝑖 − 𝑦𝑖| 𝑠𝑁
+
+ℎ (𝑥, 𝑦) = 1− 𝑑𝑁
+ℎ (𝑥, 𝑦)
+
+Tabulka 2.8: 𝑥, 𝑦 ∈ {0, 1}𝑛. Necht’ kontingenčńı tabulka pro binárńı vektory
+𝑥, 𝑦 je taková, že 𝑛11 = 𝑎, 𝑛10 = 𝑏, 𝑛01 = 𝑐, and 𝑛00 = 𝑑.
+
+Nosič Vzdálenost Podobnost Nepodobnost
+
+Σ* edit (Levensthein) Levensthein
+𝑑𝐿(𝑥, 𝑦) = minimálńı počet 𝑠𝐿(𝑥, 𝑦) = 1− 𝑑𝐿(𝑥,𝑦)
+
+max(|𝑥|,|𝑦|)
+editačńıch operaćı (vkládáńı,
+mazáńı a substituce)
+longest common subsequence
+𝑑𝐿𝐶𝑆(𝑥, 𝑦) = minimálńı počet 𝑠𝐿𝐶𝑆(𝑥, 𝑦) = 1− 𝑑𝐿𝐶𝑆(𝑥,𝑦)
+
+max(|𝑥|,|𝑦|)
+operaćı (vkládáńı a mazáńı)
+Hamming ∑︀
+𝑑𝐻(𝑥, 𝑦) = 1(𝑥𝑖 ̸= 𝑦𝑖) pro 𝑠𝐻(𝑥, 𝑦) = 1− 𝑑𝐻(𝑥,𝑦)
+
+|𝑥|
+takové 𝑥, 𝑦, že |𝑥| = |𝑦|
+
+Tabulka 2.9: 𝑥, 𝑦 ⊆ Σ*, kde Σ je neprázdná abeceda.
+
+
+
+70 KAPITOLA 2. APLIKACE STRUKTUR
+
+3 𝐶 3 𝐶 3 𝐶
+Manhattan Euklid
+
+2 2 𝑝 = 1 2 𝑝 = 2
+
+1 1 1
+
+0 𝐴 𝐵 0 𝐴 𝐵 0 𝐴 𝐵
+0 1 2 3 0 1 2 3 0 1 2 3
+
+Obrázek 2.5: Minkowského metriky 𝑑𝑝(𝐴, 𝐶) pro parametr 𝑝 = 1, 2.
+
+∑︀
+• Vztah 𝑑𝑝(𝑥, 𝑦) = ( 𝑛
+
+𝑖=1 |𝑥𝑖− 𝑦𝑖|𝑝)1/𝑝 pro 𝑝 < 1 nereprezentuje metriku,
+protože neńı splněna trojúhelńıková nerovnost. Konkré√tně pro 𝑝 = 1/2
+plat́ı: 𝑑1/2(𝐴, 𝐵) = (|𝐴𝑥 − 𝐵𝑥|1/2 + |𝐴𝑦 − 𝐵𝑦|1/2)2 √
+
+=√( 3 + 0)2 = 3,
+𝑑1/2(𝐵, 𝐶) = (|𝐵𝑥 − 𝐶𝑥|1/2 + |𝐵𝑦 − 𝐶𝑦|1/2)2 √
+
+√ = ( 0 + 3)2 = 3 a
+𝑑1/2(𝐴, 𝐶) = (|𝐴𝑥−𝐶𝑥|1/2+|𝐴𝑦−𝐶𝑦|1/2)2 √ √
+
+= ( 3+ 3)2 = (2· 3)2 = 12.
+Tedy 𝑑1/2(𝐴, 𝐶) > 𝑑1/2(𝐴, 𝐵) + 𝑑1/2(𝐵, 𝐶) nesplňuje trojúhelńıkovou
+nerovnost.
+
+Definice 2.14. Pro každé dvě množiny 𝐴, 𝐵 ⊆ (ℳ, 𝑑) definujme jejich
+vzdálenost rovnost́ı 𝑑𝑖𝑠𝑡(𝐴, 𝐵) = 𝑖𝑛𝑓{𝑑(𝑥, 𝑦); 𝑥 ∈ 𝐴, 𝑦 ∈ 𝐵}.
+
+Je-li množina ℳ konečná, pak pro vzdálenost dvou množin 𝐴, 𝐵 ⊆
+(ℳ, 𝑑) plat́ı: 𝑑𝑖𝑠𝑡(𝐴, 𝐵) = 𝑚𝑖𝑛{𝑑(𝑥, 𝑦); 𝑥 ∈ 𝐴, 𝑦 ∈ 𝐵}.
+Definice 2.15. Pr̊umě{︂r množiny 𝐴 ⊆ (ℳ, 𝑑) je definován
+
+𝑑𝑖𝑎𝑚(𝐴) = 𝑠𝑢𝑝{𝑑(𝑥, 𝑦); 𝑥, 𝑦 ∈ 𝐴}, 𝑗𝑒− 𝑙𝑖 𝐴 ̸= ∅
+0, 𝑗𝑒− 𝑙𝑖 𝐴 = ∅
+
+Definice 2.16. Je-li 𝑥 ∈ (ℳ, 𝑑) a 0 < 𝑟 <∞, nazýváme množiny
+
+𝐵(𝑥, 𝑟) = {𝑦 ∈ℳ, 𝑑(𝑥, 𝑦) < 𝑟},
+
+𝐾(𝑥, 𝑟) = {𝑦 ∈ℳ, 𝑑(𝑥, 𝑦) ≤ 𝑟},
+𝑆(𝑥, 𝑟) = {𝑦 ∈ℳ, 𝑑(𝑥, 𝑦) = 𝑟},
+
+postupně po řadě otevřená koule, uzavřená koule a sféra o středu 𝑥 a po-
+loměru 𝑟 (v prostoru (ℳ, 𝑑) ). Bude-li nutno vyznačit závislost na metrice,
+budeme psát např. 𝐵𝑑(𝑥, 𝑟).
+Př́ıklad 2.12. Jak vypadaj́ı v diskrétńım prostoru (𝑋, 𝜌) následuj́ıćı množiny:
+𝐵(𝑥, 𝑟), 𝐾(𝑥, 𝑟), 𝑆(𝑥, 𝑟)? Mı́rně překvapivě.
+𝐵(𝑥, 𝑟) = {𝑥}, je-li 0 < 𝑟 ≤ 1, 𝐵(𝑥, 𝑟) = 𝑋, je-li 𝑟 > 1
+
+
+
+2.3. TOPOLOGICKÉ A METRICKÉ PROSTORY 71
+
+𝐾(𝑥, 𝑟) = {𝑥}, je-li 0 < 𝑟 < 1, 𝐾(𝑥, 𝑟) = 𝑋, je-li 𝑟 ≥ 1
+𝑆(𝑥, 𝑟) = ∅, je-li 𝑟 ̸= 1, 𝑆(𝑥, 𝑟) = 𝑋 ∖ {𝑥}, je-li 𝑟 = 1
+Př́ıklad 2.13. Koule o poloměru 𝑟 a libovolném středu má v eukleidovském
+prostoru R3 pr̊uměr 2𝑟, tedy 𝑑𝑖𝑎𝑚(𝐾2(𝑥, 𝑟)) = 2𝑟. V diskrétńım prostoru s
+diskrétńı metrikou ale plat́ı, že 𝑑𝑖𝑎𝑚(𝐾𝑑(𝑥, 𝑟)) = 0 pro 𝑟 < 1/2.
+
+Př́ıklad 2.14. Obrázek 2.6 nám ukazuje tvary uzavřené jednotkové koule
+𝐾𝑥(0, 1) ⊂ R2, kde 𝐾𝑥(0, 1) = {𝑦 ∈ R2; 𝑑𝑥(𝑦, 0) ≤ 1}, v r̊uzných metrikách
+a nemetrikách.
+
+𝐾1(0, 1) a 𝐾1/2(0, 1) 𝐾2(0, 1) a 𝐾3(0, 1) 𝐾∞(0, 1)
+1 1 1
+
+−1 0 1 −1 0 1 −1 0 1
+
+−1 −1 −1
+
+Obrázek 2.6: Uzavřené koule v 𝐾𝑑(0, 1) ⊂ R2, kde 𝑑 = 1/2, 1, 2, 3,∞.
+
+Př́ıklad 2.15. Kromě r̊uzných metrik nám vzdálenost mezi prvky v daném
+prostoru ovlivňuje také dimenze daného prostoru (proklet́ı dimenzionality -
+the curse of dimensionality). Následuj́ıćı tabulka a obrázek 2.7 nám repre-
+zentuj́ı změny ”objemu jednotkové koule”v závislosti na dimenzi prostoru.
+
+𝑉
+𝑉5 𝑉
+
+5 𝑉4 6
+𝑉7
+
+𝑉
+4 3 𝑉8
+
+𝑉
+3 2 𝑉9
+
+𝑉10
+2 𝑉1 𝑉11
+
+𝑉12
+1 𝑉13 𝑉14 𝑉15 𝑉16 𝑉
+0 17 𝑉18 𝑉19 𝑉20 𝑛
+
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+
+Obrázek 2.7: Graf závislosti objemu jednotkové hyperkoule na počtu dimenźı.
+
+
+
+72 KAPITOLA 2. APLIKACE STRUKTUR
+
+1 1 1 1 1 1 1
+√ √ √ √ √ √ √
+
+2 3 4 5 6 7 8
+
+−1 −1 −1 −1 −1 −1 −1
+
+Obrázek 2.8: Vizualizace ve 2D n-dimenzionálńı jednotkové krychle a n-di-
+menzionálńı jednotkové koule. Dimenzi lze rekonstruovat dle délky nejdeľśı
+uhlopř́ıčky jednotkové krychle, která je v obrázku uvedena.
+
+Histogram vzdálenost́ı (1000 bod̊u v 50D)
+·104
+
+2
+
+1
+
+0
+1.6 1.8 2 2.2 2.4 2.6 2.8 3 3.2 3.4 3.6 3.8 4
+
+Eukleidovská vzdálenost
+
+Histogram vzdálenost́ı (1000 bod̊u v 100D)
+·104
+
+4
+
+3
+
+2
+
+1
+
+0
+3 3.5 4 4.5 5 5.5 6
+
+Eukleidovská vzdálenost
+Definice 2.17. Okoĺı bodu 𝑥 v metrickém prostoru (ℳ, 𝑑) je každá množina
+obsahuj́ıćı otevřenou kouli 𝐵𝑟(𝑥) = {𝑦 ∈ℳ; 𝑑(𝑥, 𝑦) < 𝑟} pro nějaké 𝑟 > 0.
+
+V širš́ım smyslu (nejen pro metrické prostory) budeme okoĺım bodu 𝑥
+
+Počet dvojic Počet dvojic
+
+
+
+2.3. TOPOLOGICKÉ A METRICKÉ PROSTORY 73
+
+v prostoru (𝑋, 𝜌) rozumět jakoukoliv otevřenou množinu 𝐺 ⊆ 𝑋 obsahuj́ıćı
+bod 𝑥 ∈ 𝐺.
+
+Definice 2.18. Podmnožina 𝐴 metrického prostoru (ℳ, 𝑑) se nazývá otevřená,
+jestliže každý bod 𝑥 ∈ 𝐴 má okoĺı celé lež́ıćı v 𝐴. Podmnožina 𝐴 metrického
+prostoru (ℳ, 𝑑) se nazývá uzavřená, jestliže jej́ı doplněkℳ∖𝐴 je otevřený.
+
+Definice 2.19. Je-li 𝐴 ⊆ (ℳ, 𝑑) nazveme bod 𝑥 ∈ℳ
+
+• vnitřńım bodem množiny 𝐴, existuje-li 𝑟 > 0 tak, že 𝐵(𝑥, 𝑟) ⊂ 𝐴, tj.
+jestliže 𝐴 ∩𝐵(𝑥, 𝑟) = 𝐵(𝑥, 𝑟),
+
+• vněǰśım bodem množiny 𝐴, existuje-li 𝑟 > 0 tak, že 𝐵(𝑥, 𝑟) ⊂ ℳ ∖ 𝐴,
+tj. jestliže 𝐴 ∩𝐵(𝑥, 𝑟) = ∅,
+
+• hraničńım bodem množiny 𝐴, když pro každé 𝑟 > 0 je množina 𝐴 ∩
+𝐵(𝑥, 𝑟) ̸= ∅ a zároveň (ℳ∖ 𝐴) ∩𝐵(𝑥, 𝑟) ̸= ∅,
+
+• hromadným bodem množiny 𝐴, když pro každé 𝑟 > 0 je množin 𝐴 ∩
+(𝐵(𝑥, 𝑟)∖{𝑥}) neprázdná (tj. každé okoĺı bodu 𝑥 obsahuje aspoň jeden
+bod z 𝐴 r̊uzný od 𝑥). Z toho pak plyne, že konečné množiny hrmadné
+body nemaj́ı.
+
+• izolovaným bodem množiny 𝐴, existuje-li 𝑟 > 0 tak, že 𝐴 ∩ 𝐵(𝑥, 𝑟) =
+{𝑥}. Každý bod konečné množiny je izolovaným bodem.
+
+Definice 2.20. • Vnitřek množiny (interior) 𝐴 v metrickém prostoru
+(ℳ, 𝑑) je množina všech vnitřńıch bod̊u množiny 𝐴 a znač́ı se 𝑖𝑛𝑡(𝐴).
+
+• Vněǰsek množiny (exterior) 𝐴 v metrickém prostoru (ℳ, 𝑑) je množina
+všech vněǰśıch́ıch bod̊u množiny 𝐴 a znač́ı se 𝑒𝑥𝑡(𝐴).
+
+• Uzávěr množiny 𝐴 v metrickém prostoru (ℳ, 𝑑) je množina všech
+bod̊u z ℳ, které maj́ı neprázdný pr̊unik s okoĺım libovolného bodu z
+𝐴. Tj. 𝑐𝑙(𝐴) = {𝑥 ∈ℳ; 𝐵(𝑥, 𝑟) ∩ 𝐴 ̸= ∅} .
+Daľśı ekvivalentńı definice uzávěru množiny 𝐴 ř́ıká: 𝑐𝑙(𝐴) je pr̊unik
+všech uzavřených množin zℳ, které obsahuj́ı 𝐴 jako svou podmnožinu.
+Formálně zapsáno: 𝑐𝑙(𝐴) = ∩{𝐶 ⊆ℳ; 𝐴 ⊆ 𝐶 a 𝐶 jsou uzavřené}.
+
+• Hranice množiny (boundary) 𝐴 v metrickém prostoru (ℳ, 𝑑) je
+množina všech hraničńıch bod̊u množiny 𝐴 a znač́ı se 𝑏𝑑(𝐴) př́ıpadně
+𝜕𝐴. 𝑏𝑑(𝐴) = 𝑐𝑙(𝐴) ∖ 𝑖𝑛𝑡(𝐴) = 𝑐𝑙(𝐴) ∩ 𝑐𝑙(𝑀 ∖ 𝐴).
+
+
+
+74 KAPITOLA 2. APLIKACE STRUKTUR
+
+𝑈 𝑈 𝑈
+
+𝑥2 𝑥2 𝑥2
+
+𝑥1 𝑥3 𝑥1 𝑥3 𝑥1 𝑥3
+
+𝐴 𝑖𝑛𝑡(𝐴) 𝑐𝑙(𝐴)
+𝑥4 𝑥4 𝑒𝑥𝑡(𝐴) 𝑥4
+
+Obrázek 2.9: Prvńı obrázek - tyrkysová množina A, druhý obrázek - zeleněǰśı
+vněǰsek 𝐴 s vněǰśımi body 𝑥1 a 𝑥4, modrý vnitřek 𝐴 spolu s vnitřńım bo-
+dem 𝑥2, třet́ı obrázek - tyrkysový uzávěr množiny 𝐴 do kterého patř́ı jak
+”vnitřńı”bod 𝑥2, tak hraničńı–hromadný bod 𝑥3 a izolovaný bod 𝑥4.
+
+Př́ıklad 2.16. Obrázek 2.9 demonstruje graficky pojmy vnitřńı, hraničńı,
+vněǰśı, hromadný a izolovaný bod, vnitřek, hranice, uzávěr a vněǰsek množiny
+𝐴, kde 𝐴 je podmnožinou univerza 𝑈 a je tvořena mezikruž́ım sjednoceným
+s bodem 𝑥4.
+Př́ıklad 2.17. Je dána podmnožina 𝐴 ⊆ R metrického prostoru (R, 𝑑), kde
+𝐴 = {1/𝑛; 𝑛 ∈ N+} ∪ (1, 𝑒) ∪ (𝑒, 3) ∪ {𝜋}. Určete vnitřek a uzávěr, hranici a
+vněǰsek, izolované a hromadné body množiny 𝐴.
+Vnitřek: 𝑖𝑛𝑡(𝐴) = (1, 𝑒) ∪ (𝑒, 3),
+uzávěr: 𝑐𝑙(𝐴) = ⟨1, 3⟩ ∪ {0, 𝜋} ∪ {1/𝑛; 𝑛 ∈ N+},
+hranice: 𝑏𝑑(𝐴) = {0, 𝑒, 3, 𝜋} ∪ {1/𝑛; 𝑛 ∈ N+},
+vněǰsek: 𝑒𝑥𝑡(𝐴) = ((−∞, 1⟩) ∖ {1/𝑛; 𝑛 ∈ N+}) ∖ {0} ∪ (3, 𝜋) ∪ (𝜋,∞),
+izolované body: {1/𝑛; 𝑛 ∈ N+} ∪ {𝜋},
+hromadné body: ⟨1, 3⟩ ∪ {0}.
+
+2.3.2 Topologické prostory
+Topologie studuje takové vlastnosti útvar̊u, které se neměńı při oboustranně
+spojitých transformaćıch (”bĺızké“ body se transformuj́ı opět v ”bĺızké“ body).
+
+V topologii nezálež́ı na geometrických vlastnostech závislých na vzdálenosti,
+křivosti a podobně. Z hlediska topologie lze např́ıklad v rovině považovat
+čtverec a kruh za rovnocenné (děĺı rovinu na dvě části), ale úsečku a kružnici
+nikoliv.
+
+Jeden z prvńıch topologických článk̊u napsal Leonhard Euler. Ukázal, že
+neńı možné naj́ıt cestu v Königsbergu (když toto město zakládal Přemysl
+Otakar II, tak to byl Královec a dnes je to Kaliningrad), tak aby procházela
+přes každý z tamńıch sedmi most̊u přes řeku Pregel právě jednou. Důkaz byl
+
+
+
+2.3. TOPOLOGICKÉ A METRICKÉ PROSTORY 75
+
+nezávislý na délce most̊u a na vzdálenostech mezi nimi. Důležité bylo jen
+to, které mı́sta mosty spojuj́ı. Prvńım topologickým invariantem byl označen
+výsledek Antoine-Jean Lhuilier z roku 1813, kde pro těleso (mnohostěn) plat́ı:
+𝑣 − 𝑒 + 𝑓 + 2ℎ = 2, 𝑣 je počet vrchol̊u, 𝑒 je počet hran, 𝑓 je počet oblast́ı
+a ℎ je počet děr. T́ımto vztahem korigoval Euler̊uv vzorec, který byl platný
+pouze pro tělesa bez děr.
+Definice 2.21. Na množině 𝑋 je dána topologie pomoćı otevřených
+množin, je-li dán systém podmnožin 𝜏 ⊆ 2𝑋 takový, že:
+(𝑜1) ∅, 𝑋 ∈ 𝜏 ,
+(𝑜2) 𝑈, 𝑉 ∈ 𝜏 ⇒ 𝑈 ∩ 𝑉 ∈ 𝜏 ,
+(𝑜3) 𝑈𝑖 ∈ 𝜏, 𝑖 ∈ 𝐼 ⇒ ∪𝑖∈𝐼𝑈𝑖 ∈ 𝜏 .
+
+Pak dvojice (𝑋, 𝜏) tvoř́ı topologický prostor, kde prvky topologie 𝜏 jsou
+otevřené množiny.
+
+• Bod 2 lze zobecnit na pr̊unik libovolného, leč konečného počtu otevřených
+množin.
+
+• Bod 3 plat́ı pro libovolný podsystém systému 𝜏 . Tedy i pro nekonečný.
+• V každém metrickém prostoru (ℳ, 𝑑) lze (pomoćı otevřených kouĺı,
+
+tedy pomoćı metriky 𝑑) definovat otevřené množiny a tak utvořit systém
+𝜏 všech jeho otevřených podmnožin.
+
+• Podmnožina 𝐵 ⊆ 𝑋 je uzavřená, je-li 𝑋 −𝐵 otevřená.
+
+Duálně lze pak topologický prostor (𝑋, 𝜏 ′) definovat pomoćı uzavřených
+množin.
+Definice 2.22. Na množině 𝑋 je dána topologie pomoćı uzavřených
+množin, je-li dán systém podmnožin 𝜏 ⊆ 2𝑋 takový, že:
+(𝑢1) ∅, 𝑋 ∈ 𝜏 ′,
+(𝑢2) 𝑈, 𝑉 ∈ 𝜏 ′ ⇒ 𝑈 ∪ 𝑉 ∈ 𝜏 ′,
+(𝑢3) 𝑈𝑖 ∈ 𝜏 ′, 𝑖 ∈ 𝐼 ⇒ ∩𝑖∈𝐼𝑈𝑖 ∈ 𝜏 ′.
+
+Př́ıklady topologických prostor̊u:
+• Metrické prostory.
+
+
+
+76 KAPITOLA 2. APLIKACE STRUKTUR
+
+• Diskrétńı topologický prostor (𝑋, 𝜏) s diskrétńı topologíı a s diskrétńı
+metrikou (viz. př́ıklad 2.10). Kde 𝑋 je libovolná množina a 𝜏 = 2𝑋 .
+Všechny množiny jsou otevřené i uzavřené.
+
+• Triviálńı topologický prostor (𝑋, 𝜏) s triviálńı topologíı 𝜏 = {∅, 𝑋}.
+I zde jsou všechny prvky topologie otevřené a uzavřené najednou (ale
+mnoho jich neńı). Tato topologie je zadaná pseudometrikou 𝑑(𝑥, 𝑦) = 0.
+
+• Topologie konečných doplňk̊u pro libovolnou množinu 𝑋 je definována
+𝜏 = {𝑈 ⊆ 𝑋; 𝑋 ∖ 𝑈 je konečná} ∪ {∅}.
+
+• Khalimského polopř́ımka je TP, kde (N, 𝜏1), kde 𝜏0 = {{1}, {1, 2, 3}, {3},
+{3, 4, 5}, {5}, . . .} a 𝜏1 je množina všech sjednoceńı množin z 𝜏0. Součinová
+topologie tvoř́ı tzv. dvourozměrnnou Khalimského topologii - vhodné
+pro poč́ıtačové viděńı a rozlǐsováńı obrazu. Okoĺı bodu je dáno bodem
+samotným a koncovými body šipek, které z daného bodu vycháźı.
+
+Stejně jako jsme definovali uzávěr množiny v uzávěrovém systému či v
+metrickém prostoru, definujeme uzávěr množiny i v topologickém prostoru a
+duálně také vnitřek množiny (interior) v dané topologii.
+Definice 2.23. Uzávěr množiny 𝐴 ⊆ 𝑋 v topologickém prostoru (defi-
+novaném pomoćı uzavřených množin) (𝑋, 𝜏 ′) je 𝑐𝑙(𝐴) = ∩{𝑈 ∈ 𝜏 ′; 𝐴 ⊆ 𝑈}.
+Tedy uzávěr množiny 𝐴 je nejmenš́ı uzavřená množina v 𝜏 ′, která 𝐴 obsahuje.
+
+Podmnožinu 𝑂 ⊆ 𝑋 nazveme okoĺım bodu 𝑥 v topologickém prostoru
+(𝑋, 𝜏), pokud existuje otevřená množina 𝑈 ∈ 𝜏 taková, že 𝑥 ∈ 𝑈 a plat́ı
+𝑈 ⊆ 𝑂. Okoĺı bodu 𝑥 znač́ıme 𝑂(𝑥).
+Definice 2.24. Vnitřek množiny 𝐴 ⊆ 𝑋 v topologickém prostoru (defi-
+novaném pomoćı otevřených množin) (𝑋, 𝜏) je 𝑖𝑛𝑡(𝐴) = ∪{𝑈 ∈ 𝜏 ; 𝑈 ⊆ 𝐴}.
+Tedy vnitřek množiny 𝐴 je největš́ı otevřená množina v 𝜏 , která je celá
+obsažena v 𝐴.
+Definice 2.25. Necht’ 𝐴 ⊆ 𝑋 a 𝑥 ∈ 𝐴. Pak bod 𝑥 se nazývá vnitřńım
+bodem množiny 𝐴, pokud existuje otevřená množina 𝑈 ∈ 𝜏 , pro kterou
+plat́ı 𝑥 ∈ 𝑈 ⊆ 𝐴. Vnitřek množiny 𝐴 pak můžeme ekvivalentně definovat
+jako množinu všech vnitřńıch bod̊u 𝐴 a okoĺım bodu 𝑥 ∈ 𝑋 je množina
+𝑂 ⊆ 𝑋, pokud je 𝑥 vnitřńım bodem množiny 𝑂.
+
+Stejně jako v metrických prostorech je i v topologických prostorech defi-
+nována hranice množiny.
+Definice 2.26. Hranice množiny 𝐴 ⊆ 𝑋 v topologickém prostoru (defino-
+vaném libovolným zp̊usobem) (𝑋, 𝜏) je 𝑏𝑑(𝐴) = 𝑐𝑙(𝐴)− 𝑖𝑛𝑡(𝐴). Tedy hranice
+množiny 𝐴 je rozd́ıl mezi uzávěrem a vnitřkem dané množiny.
+
+
+
+2.3. TOPOLOGICKÉ A METRICKÉ PROSTORY 77
+
+Př́ıklad 2.18. Je dána množina 𝑋 = {𝑎, 𝑏, 𝑐, 𝑑} a topologie 𝜏 ⊆ 𝑃 (𝑋)
+s otevřenými množinami, kde 𝜏 = {∅, 𝑋, {𝑎}, {𝑎, 𝑏}, {𝑎, 𝑏, 𝑐}}. Pak stejný
+topologický prostor tvořený uzavřenými množinami je dán topologíı 𝜏 ′ =
+{𝑋, ∅, {𝑏, 𝑐, 𝑑}, {𝑐, 𝑑}, {𝑑}}. Pro podmnožiny 𝐵1, 𝐵2 ⊆ 𝑋, 𝐵1 = {𝑎, 𝑐} a
+𝐵2 = {𝑏, 𝑑} můžeme snadno určit jejich vnitřek, uzávěr a hranici a také
+můžeme určit okoĺı bod̊u 𝑏 a 𝑑.
+𝑖𝑛𝑡({𝑎, 𝑐}) = {𝑎}, 𝑐𝑙({𝑎, 𝑐}) = 𝑋, 𝑏𝑑({𝑎, 𝑐}) = {𝑏, 𝑐, 𝑑},
+𝑖𝑛𝑡({𝑏, 𝑑}) = ∅, 𝑐𝑙({𝑏, 𝑑}) = {𝑏, 𝑐, 𝑑}, 𝑏𝑑({𝑏, 𝑑}) = {𝑏, 𝑐, 𝑑},
+nejmenš́ı okoĺı bodu 𝑏 je 𝑂(𝑏) = {𝑎, 𝑏}, daľśı okoĺı: {𝑎, 𝑏, 𝑐}, {𝑎, 𝑏, 𝑑} a 𝑋,
+nejmenš́ı okoĺı bodu 𝑑 je 𝑂(𝑑) = 𝑋 a daľśı okoĺı už nejsou.
+
+Pod́ıváme se na rozd́ıl v definici spojité funkce pro metrické prostory a
+obecně pro topologické prostory.
+Definice 2.27. Zobrazeńı 𝑓 : (𝑋1, 𝑑1)→ (𝑋2, 𝑑2) mezi metrickými prostory
+se nazývá spojité, jestliže ∀𝑥, 𝑦 ∈ 𝑋1 ∀𝜖 > 0 ∃𝛿 > 0 (𝑑1(𝑥, 𝑦) < 𝛿 ⇒
+𝑑2(𝑓(𝑥), 𝑓(𝑦)) < 𝜖)
+Definice 2.28. Zobrazeńı 𝑓 : (𝑋1, 𝜏1) → (𝑋2, 𝜏2) mezi topologickými pro-
+story se nazývá spojité, jestliže ∀𝑥 ∈ 𝑋1, pro každé okoĺı 𝑉 ⊆ 𝑋2 bodu 𝑓(𝑥)
+existuje 𝑈 ⊆ 𝑋1 okoĺı bodu 𝑥 takové, že 𝑓(𝑈) ⊆ 𝑉 .
+Definice 2.29. Bud’ 𝑓 : 𝑋1 → 𝑋2 vzájemně jednoznačné zobrazeńı mezi
+topologickými prostory (𝑋1, 𝜏1) a (𝑋2, 𝜏2), které je oboustranně spojité (tj. 𝑓
+i 𝑓−1 jsou spojitá). Ř́ıkáme, že prostory (𝑋1, 𝜏1) a (𝑋2, 𝜏2) jsou homeomorfńı
+a zobrazeńı 𝑓 nazýváme homeomorfismus. Homeomorfńı prostory jsou z to-
+pologického hlediska ”stejné”.
+
+Daľśım zaj́ımavým pojmem, který nás bude v TP zaj́ımat je jeho souvis-
+lost (či nesouvislost).
+Definice 2.30. Necht’ 𝑋 je neprázdný topologický prostor. Řekneme, že 𝑋
+je souvislý, jestliže jediné podmnožiny 𝐴 ⊆ 𝑋, které jsou zároveň otevřené
+i uzavřené (tj. jsou obojetné), jsou ∅ a 𝑋.
+
+Tedy nosič 𝑋 souvislého neprázdného topologického prostoru nelze rozdělit
+na dvě disjunktńı, neprázdné podmnožiny. Pro souvislý topologický prostor
+plat́ı následuj́ıćı formálně zapsaná podmı́nka:
+
+(∀𝐴, 𝐵 ∈ 𝜏) [𝐴 ̸= ∅ ∧𝐵 ̸= ∅ ∧ 𝐴 ∩𝐵 = ∅ ⇒ ¬(𝐴 ∪𝐵 = 𝑋)].
+
+Př́ıpadně můžeme tuto podmı́nku negovat a obdrž́ıme tvrzeńı platné pro
+nesouvislý topologický prostor:
+
+(∃𝐴, 𝐵 ∈ 𝜏) [𝐴 ̸= ∅ ∧𝐵 ̸= ∅ ∧ 𝐴 ∩𝐵 = ∅ ∧ (𝐴 ∪𝐵 = 𝑋)].
+
+
+
+78 KAPITOLA 2. APLIKACE STRUKTUR
+
+Definice 2.31. Komponenta neprázdného topologického prostoru 𝑋 je
+maximálńı souvislá podmnožina.
+Př́ıklad 2.19. Je dána množina 𝑋 = {𝑎, 𝑏, 𝑐, 𝑑} a topologie 𝜏 ⊆ 𝑃 (𝑋) s
+otevřenými množinami, kde 𝜏 = {∅, 𝑋, {𝑎}, {𝑏, 𝑐}, {𝑑}, {𝑎, 𝑏, 𝑐}, {𝑎, 𝑑}, {𝑏, 𝑐, 𝑑}}.
+Vzniklý topologický prostor (𝑋, 𝜏) je nesouvislý, protože existuj́ı otevřené
+disjunktńı podmnožiny jejichž sjednoceńım dostaneme množinu 𝑋: 𝑋 =
+{𝑎, 𝑏, 𝑐} ∪ {𝑑}. Pokud se pod́ıváme na stejný topologický prostor tvořený
+uzavřenými množinami, tak 𝜏 ′ = {𝑋, ∅, {𝑏, 𝑐, 𝑑}, {𝑎, 𝑑}, {𝑎, 𝑏, 𝑑}, {𝑑}, {𝑏, 𝑐}, {𝑎}}
+a vid́ıme, že 𝜏 = 𝜏 ′ a všechny prvky topologie 𝜏 jsou obojetné podmnožiny (tj.
+jsou jak otevřené tak uzavřené). Komponenty topologického prostoru (𝑋, 𝜏)
+jsou maximálńı souvislé podmnožiny {𝑎}, {𝑏, 𝑐} a {𝑑}. Podmnožiny {𝑎, 𝑏, 𝑐},
+{𝑎, 𝑑}, {𝑏, 𝑐, 𝑑}, celá množina 𝑋 jsou v topologii 𝜏 nesouvislé.
+Věta 2.5. Libovolný topologický prostor je disjunktńım sjednoceńım svých
+komponent. Tyto komponenty jsou uzavřené.
+D̊ukaz. Důkaz. Necht’ 𝑥 ∈ 𝑋 a uvažujme system 𝒮 = {𝐴 ⊆ 𝑋; 𝐴 souvislá,
+𝑥 ∈ 𝐴}. Potom ∪𝒮 je souvislá podmnožina obsahuj́ıćı 𝑥, zjevně maximálńı.
+Kdyby dvě r̊uzné komponenty měly neprázdný pr̊unik, bylo by jejich sjed-
+noceńı souvislé, což by byl spor s maximalitou. Uzavřenost plyne z toho, že
+uzávěr souvislé podmnožiny je souvislý a z maximality.
+
+Oddělovaćı axiomy jsou kĺıčovou součást́ı teorie topologických prostor̊u,
+která se zabývá t́ım, jak přesně můžeme odlǐsit body nebo množiny pomoćı
+otevřených a uzavřených množin. Tyto axiomy umožňuj́ı klasifikovat topolo-
+gické prostory podle jejich ”jemnosti”a poskytuj́ı základ pro studium vlast-
+nost́ı jako jsou spojitost, kompaktnost nebo regularita.
+
+Necht’ 𝑋 je topologický prostor. Pak dva body 𝑥 a 𝑦 prostoru 𝑋 jsou to-
+pologicky rozlǐsitelné, pokud nemaj́ı stejná okoĺı (nebo ekvivalentně stejná
+otevřená okoĺı); což znamená, že alespoň jeden z nich má okoĺı, které neńı
+okoĺım druhého (nebo ekvivalentně, že existuje otevřená množina, do které
+jeden bod patř́ı a druhý ne).
+
+Dva body 𝑥 a 𝑦 jsou oddělené, pokud každý z nich má okoĺı, které
+neńı okoĺım druhého; což znamená, že žádný neńı prvkem uzávěru druhého.
+Obecněji dvě podmnožiny 𝐴 a 𝐵 prostoru 𝑋 jsou oddělené, pokud je každá
+disjunktńı s uzávěrem druhé (samy uzávěry disjunktńı být nemuśı). Všechny
+zbývaj́ıćı podmı́nky pro separaci množin mohou být aplikovány také na body
+(nebo na bod a množinu) použit́ım jednoprvkových množin.
+
+Podmnožiny 𝐴 a 𝐵 jsou oddělené okoĺımi, pokud maj́ı disjunktńı okoĺı.
+Jsou oddělené uzavřenými okoĺımi, pokud maj́ı disjunktńı uzavřená okoĺı.
+
+Oddělovaćı axiomy v topologických prostorech slouž́ı k formálńımu popisu
+toho, jak lze odlǐsit r̊uzné body pomoćı okoĺı v daném topologickém prostoru.
+
+
+
+2.3. TOPOLOGICKÉ A METRICKÉ PROSTORY 79
+
+Existuj́ı r̊uzné typy těchto axiomů, označené postupně jako
+
+• 𝑇0 neboli Kolmogorov̊uv prostor: každá dvojice r̊uzných bod̊u je topo-
+logicky rozlǐsitelná. Tj. existuje alespoň jedno otevřené okoĺı, které ob-
+sahuje právě jeden z těchto bod̊u (neńı tedy nutné, aby šly oddělit oba
+body navzájem, ale aspoň jeden z nich). Topologický prostor ({𝑎, 𝑏}, {∅, {𝑎}, {𝑎, 𝑏}})
+je typu 𝑇0, protože pro body 𝑎, 𝑏 existuje otevřená množina {𝑎}, která
+obsahuje 𝑎, ale ne 𝑏. Pro body 𝑎, 𝑏 neńı možné naj́ıt disjunktńı otevřená
+okoĺı.
+
+• 𝑇1 neboli Fréchet̊uv prostor: pokud jakékoli dva r̊uzné body v 𝑋 jsou
+oddělené. Ekvivalentně každá jednobodová množina je uzavřená. To-
+pologický prostor ({𝑎, 𝑏}, {∅, {𝑎}, {𝑏}, {𝑎, 𝑏}}) je typu 𝑇1, protože pro
+každý bod existuje otevřená množina, která jej obsahuje a vylučuje
+druhý bod
+
+• 𝑇2 neboli Hausdorffuv neboli oddělený prostor: pokud jakékoli dva
+r̊uzné body v 𝑋 jsou oddělené okoĺımi.
+
+• 𝑇2 1 neboli Urysohn̊uv: jakékoli dva r̊uzné body v 𝑋 jsou oddělené
+2
+
+uzavřenými okoĺımi. Každý 𝑇2 1 prostor je také Hausdorffuv.
+2
+
+• 𝑇3 neboli regularńı Hausdorffuv prostor: je Hausdorffuv a zároveň re-
+gularńı, tj. každou uzavřenou množinu a bod mimo tuto množinu lze
+oddělit disjunktńımi otevřenými okoĺımi.
+
+• 𝑇3 1 neboli Tichonov̊uv prostor: pokud je Hausdorffuv a úplně regularńı,
+2
+
+tj. každou uzavřenou množinu a bod mimo tuto množinu lze oddělit
+okoĺımi definovanými nepřerušovanými funkcemi.
+
+• 𝑇4 neboli normálńı Hausdorffuv prostor) pokud je Hausdorffuv a normálńı,
+tj. každé dvě disjunktńı uzavřené množiny lze oddělit disjunktńımi
+otevřenými okoĺımi.
+
+• 𝑇5 neboli úplně normálńı Hausdorffuv prostor: pokud je Hausdorffuv a
+úplně normálńı, tj. každé dvě disjunktńı množiny (kde jedna nebo obě
+mohou být uzavřené) lze oddělit disjunktńımi otevřenými okoĺımi.
+
+Topologie na konečné množině, která je typu 𝑇1, je i všech daľśıch typ̊u.
+Např́ıklad diskrétńı topologie. To znamená, že všechny 𝑇1 prostory na konečných
+množinách splňuj́ı nejvyšš́ı standard oddělovaćıch axiomů a jsou to úplně
+normálńı Hausdorffovy prostory.
+
+
+
+80 KAPITOLA 2. APLIKACE STRUKTUR
+
+2.4 Fuzzy a rough množiny
+Ne vždy lze źıskat přesné hodnoty r̊uzných veličin či parametr̊u. Źıskaná
+data mohou být nepřesná, vágńı či neurčitá. Např́ıklad máme údaje o výšce
+žák̊u a máme určit, kdo je vysoký a kdo je malý. S těmito pojmy se pomoćı
+standardńıch (ostrých) množin pracuje obt́ıžně. Jako vhodněǰśı př́ıstup se
+osvědčila teorie fuzzy množin (Lotfi Zadeh 1965), které neurčuj́ı přesné hra-
+nice množiny určené vágńım pojmem, ale př́ıslušnost či nepř́ıslušnost daného
+prvku do množiny je popsána charakteristickou funkćı s širš́ı škálou než
+je {0, 1}. Druhou možnost́ı, jak pracovat s neurčitými, nepřesnými nebo i
+chyběj́ıćımi daty, je teorie hrubých (rough) množin (Zdzis law Pawlak 1981).
+Pokud si jsme jist́ı, že prvek do určité rough množiny patř́ı, tak je přǐrazen do
+dolńı aproximace této rough množiny. Pokud si nejsme jist́ı jeho př́ıslušnost́ı
+do rough množiny, ale mohl by tam patřit, tak je přǐrazen do horńı apro-
+ximace této rough množiny. A př́ıpadně je přǐrazen do horńıch aproximaćı
+daľśıch rough množin, do kterých by mohl také patřit. Na obrázku 2.10 je
+demonstrováno, jak je pomoćı ostrých (booleovských), fuzzy a rough množin
+popsána př́ıslušnost prvku do množiny ”Small”či ”Tall”.
+
+𝜇 𝜇 𝜇
+
+𝑆𝑚𝑎𝑙𝑙 𝑇𝑎𝑙𝑙 𝑆𝑚𝑎𝑙𝑙 𝑇𝑎𝑙𝑙 𝑆𝑚𝑎𝑙𝑙 𝐵 𝑇𝑎𝑙𝑙
+
+𝑥 𝑥 𝑥
+
+Obrázek 2.10: Funkce př́ıslušnosti do ostré (booleovské) množiny, fuzzy
+množiny a hrubé (rough) množiny, kde 𝑆𝑚𝑎𝑙𝑙, 𝑇𝑎𝑙𝑙 jsou př́ıslušné množiny,
+𝑆𝑚𝑎𝑙𝑙, 𝑇𝑎𝑙𝑙 jsou dolńı aproximace množin 𝑆𝑚𝑎𝑙𝑙, 𝑇𝑎𝑙𝑙 a 𝐵 je hraničńı oblast,
+do které patř́ı prvky z 𝑆𝑚𝑎𝑙𝑙 a 𝑇𝑎𝑙𝑙.
+
+Zaměř́ıme se zde na rozd́ılné př́ıstupy k popisu ostrých (crisp) a neostrých,
+rozostřených, nepřesných, vágńıch, hrubých (fuzzy a rough) množin. Budou
+zde definovány množinové operace s těmito množinami a možné použit́ı fuzzy
+a rough množin ve shlukovaćıch metodách.
+
+Připomenut́ı definice standardńıch množinových operaćı pomoćı logických
+operaćı a pomoćı množinové inkluze, kde 𝑋 je univerzum a 𝐴, 𝐵, 𝐶 ⊆ 𝑋.
+
+• Inkluze (býti podmnožinou): 𝐴 ⊆ 𝐵 ⇔ ∀𝑥 ∈ 𝑋(𝑥 ∈ 𝐴⇒ 𝑥 ∈ 𝐵),
+
+• Pr̊unik: 𝐴 ∩𝐵 = {𝑥; (𝑥 ∈ 𝐴) ∧ (𝑥 ∈ 𝐵)} = 𝑚𝑎𝑥{𝐶 ⊆ 𝑋; 𝐶 ⊆ 𝐴 ∧𝐶 ⊆
+𝐵},
+
+
+
+2.4. FUZZY A ROUGH MNOŽINY 81
+
+• Sjednoceńı: 𝐴 ∪ 𝐵 = {𝑥; (𝑥 ∈ 𝐴) ∨ (𝑥 ∈ 𝐵)} = 𝑚𝑖𝑛{𝐶 ⊆ 𝑋; 𝐴 ⊆
+𝐶 ∧𝐵 ⊆ 𝐶},
+
+• Doplněk: 𝐴 = {𝑥; 𝑥 ∈ 𝑋, 𝑥 ∈/ 𝐴} = 𝑚𝑎𝑥{𝐶 ⊆ 𝑋; 𝐶 ∩ 𝐴 = ∅} =
+𝑚𝑖𝑛{𝐶 ⊆ 𝑋; 𝐶 ∪ 𝐴 = 𝑋}.
+
+Množinu 𝐴 lze alternativně p{︂opsat jej́ı charakteristickou funkćı 𝜇𝐴 :
+𝑋 → {0, 1},
+
+𝜇𝐴(𝑥) = 1 pro 𝑥 ∈ 𝐴,
+0 pro 𝑥 ∈/ 𝐴.
+
+Množina 𝐴 je jednoznačně určena svou charakteristickou funkćı 𝜇𝐴:
+
+𝐴 = {𝑥 ∈ 𝑋; 𝜇𝐴(𝑥) = 1} = {𝑥 ∈ 𝑋; 𝜇𝐴(𝑥) > 0}.
+
+Hodnota charakteristické funkce 𝜇𝐴(𝑥) ∈ {0, 1} je pravdivostńı hodnota
+výroku 𝑥 ∈ 𝐴. Takovéto množiny označujeme jako ”ostré”(crisp).
+
+2.4.1 Fuzzy množiny
+Matematický aparát, který umožňuje výstižně zachytit vágně vymezené tř́ıdy
+(nejsou to klasické množiny), byl zaveden v roce 1965 Lotfi Aliasker Zadehem.
+
+My se zde budeme zabývat fuzzy množinami, které lze dobře popsat zo-
+becněnou charakteristickou funkćı nabývaj́ıćı pravdivostńıch hodnot z inter-
+valu ⟨0, 1⟩.
+
+Fuzzy podmnožinou 𝐴 univerza 𝑋 mı́ńıme množinu popsanou zo-
+becněnou charakteristickou funkćı
+
+𝜇𝐴 : 𝑋 → ⟨0, 1⟩,
+
+která se někdy nazývá funkce př́ıslušnosti. Pro každý prvek 𝑥 ∈ 𝑋 hodnota
+𝜇𝐴(𝑥) ∈ ⟨0, 1⟩ ř́ıká, do jaké mı́ry je 𝑥 prvkem fuzzy množiny 𝐴 (tj. do jaké
+mı́ry prvek 𝑥 př́ısluš́ı do množiny 𝐴). V literatuře se často ztotožňuj́ı fuzzy
+množiny a jejich funkce př́ıslušnosti. Stručněji se pak mı́sto 𝜇𝐴(𝑥) ṕı̌se 𝐴(𝑥).
+Př́ıklad 2.20. Libovolnou fuzzy množinu můžeme tedy popsat jej́ı funkćı
+př́ıslušnosti. Je-li univerzum 𝑋 = R, pak fuzzy množiny 𝐴, 𝐵 ⊆ 𝑋 můžeme
+definovat takto: ⎧⎪⎪⎪⎪⎨ 0 pro 𝑥 < 0,
+
+𝑥 pro 𝑥 ∈ ⟨0, 1⟩,
+𝜇𝐴(𝑥) = ⎪⎪⎪⎪⎩ 1 pro 𝑥 ∈ (1, 2),
+
+3− 𝑥 pro 𝑥 ∈ ⟨2, 3⟩,
+0 pro 𝑥 > 3,
+
+
+
+82 KAPITOLA 2. APLIKACE STRUKTUR
+
+⎧⎪⎪⎪⎪⎨ 1
+2 pro 𝑥 = 1,
+1 pro 𝑥 = 2,
+
+𝜇𝐵(𝑥) = ⎪⎪⎪ 1
+
+⎪⎩ 3 pro 𝑥 = 3,
+1
+4 pro 𝑥 = 4,
+0 jinak.
+
+Pro konečnou fuzzy množinu 𝐵 se použ́ıvá stručněǰśı zápis:
+
+𝜇𝐵 = {(1 1 1
+, 2), (2, 1) 1
+
+, (3, 3), (4, 4)}.
+
+Definice 2.32. Necht’ 𝐴, 𝐵 jsou fuzzy množiny. Ř́ıkáme, že 𝐴 je podmnožinou
+𝐵 (𝐴 ⊆ 𝐵), jestliže plat́ı: ∀𝑥 ∈ 𝑋 𝜇𝐴(𝑥) ≤ 𝜇𝐵(𝑥).
+
+Množinové operace s fuzzy množinami jsou definovány podobně jako u
+ostrých množin pomoćı logických operaćı. V tomto textu si uvedeme stan-
+dardńı definice logických operaćı, které budeme dále použ́ıvat.
+Definice 2.33. Fuzzy negace je unárńı operace ¬ : ⟨0, 1⟩ → ⟨0, 1⟩, která
+pro libovolné 𝛼, 𝛽 ∈ ⟨0, 1⟩ splňuje: 𝛼 ≤ 𝛽 ⇒ ¬𝛼 ≥ ¬𝛽 a ¬¬𝛼 = 𝛼.
+
+Standardńı fuzzy negace je definována vztahem: ¬𝑆𝛼 = 1− 𝛼.
+
+Definice 2.34. Fuzzy konjunkce je binárńı operace ∧ : ⟨0, 1⟩2 → ⟨0, 1⟩,
+která splňuje pro všechna 𝛼, 𝛽, 𝛾 ∈ ⟨0, 1⟩: 𝛼 ∧ 𝛽 = 𝛽 ∧ 𝛼, 𝛼 ∧ (𝛽 ∧ 𝛾) =
+(𝛼 ∧ 𝛽) ∧ 𝛾, 𝛼 ≤ 𝛽 ⇒ 𝛼 ∧ 𝛾 ≤ 𝛽 ∧ 𝛾 a 𝛼 ∧ 1 = 𝛼. Fuzzy konjunkce tedy
+splňuje komutativitu, asociativitu, monotonii a okrajovou podmı́nku.
+
+Standardńı (min, Gödlova, Zadehova) fuzzy konjunkce je definována
+vztahem: 𝛼 ∧𝑆 𝛽 = 𝑚𝑖𝑛(𝛼, 𝛽).
+Definice 2.35. Fuzzy disjunkce je binárńı operace ∨ : ⟨0, 1⟩2 → ⟨0, 1⟩,
+která splňuje pro všechna 𝛼, 𝛽, 𝛾 ∈ ⟨0, 1⟩: 𝛼∨𝛽 = 𝛽∨𝛼, 𝛼∨(𝛽∨𝛾) = (𝛼∨𝛽)∨𝛾,
+𝛼 ≤ 𝛽 ⇒ 𝛼∨𝛾 ≤ 𝛽∨𝛾 a 𝛼∨0 = 𝛼. Fuzzy disjunkce tedy splňuje komutativitu,
+asociativitu, monotonii a okrajovou podmı́nku.
+
+Standardńı (max, Gödlova, Zadehova) fuzzy disjunkce je definována
+vztahem: 𝛼 ∨𝑆 𝛽 = 𝑚𝑎𝑥(𝛼, 𝛽).
+Definice 2.36. Necht’ 𝐴 je fuzzy množina. Charakteristická funkce fuzzy
+doplňku množiny 𝐴 je definována pomoćı fuzzy negace: 𝜇𝐴(𝑋) = ¬𝜇𝐴(𝑋).
+Definice 2.37. Fuzzy pr̊unik je operace na fuzzy množinách definována
+pomoćı fuzzy konjunkce: 𝜇𝐴∩𝐵(𝑥) = 𝜇𝐴(𝑥) ∧ 𝜇𝐵(𝑥).
+Definice 2.38. Fuzzy sjednoceńı je operace na fuzzy množinách defi-
+nována pomoćı fuzzy disjunkce: 𝜇𝐴∪𝐵(𝑥) = 𝜇𝐴(𝑥) ∨ 𝜇𝐵(𝑥).
+
+
+
+2.4. FUZZY A ROUGH MNOŽINY 83
+
+Př́ıklad 2.21. Fuzzy množina 𝐴⎧je dána funkćı př́ıslušnosti prvku do množiny
+
+⎪⎪⎨ 𝑥 pro ⟨0, 1),
+𝜇𝐴(𝑥) = ⎪⎪⎩ 1 pro ⟨1, 2),
+
+1− 𝑥−2
+2 pro ⟨2, 4⟩,
+
+0 jinak
+
+a fuzzy množina 𝐵 je dána funk⎧ćı př́ıslušnosti prvku do množiny
+
+⎨ 𝑥−2 pro ⟨ , 4)
+𝜇𝐵(𝑥) = ⎩ 2 2
+
+5− 𝑥 pro ⟨4, 5⟩,
+0 jinak .
+
+Pomoćı funkce př́ıslušnosti můžeme určit mı́ry př́ıslušnosti prvku 𝑥1 = 2.8
+do fuzzy množin: 𝐴, 𝐵, 𝐴 ∪𝐵, 𝐴 ∩𝐵 a 𝐴.
+𝜇𝐴(𝑥1) = 0.6, 𝜇𝐵(𝑥1) = 0.4, 𝜇𝐴∪𝐵(𝑥1) = 0.6, 𝜇𝐴∩𝐵(𝑥1) = 0.4, 𝜇𝐴(𝑥1) = 0.4.
+
+2.4.2 Rough množiny
+Rough množiny se někdy v české literatuře překládaj́ı doslovně jako ”hrubé“
+množiny. Tento překlad nám může asociovat zp̊usob př́ıslušnosti prvku do
+takovéto množiny. Bud’ si jsme jisti, že prvek určitě do takovéto množiny
+patř́ı (dolńı aproximace) a nebo patř́ı pouze do určité hraničńı – hrubé, drsné
+– oblasti (horńı aproximace rough množiny). Teorie rough množin umožňuje
+matematický př́ıstup k nedokonalému poznáńı.
+
+Základńı rámec teorie rough množin p̊uvodně navrhl Zdzislaw Ignacy Pa-
+wlak v roce 1982. Tato teorie pak byla dále rozš́ı̌rena a zobecněna.
+Definice 2.39. Informačńı systém (někde se v literatuře použ́ıvá název
+aproximačńı prostor) je definován jako uspořádaná čtveřice 𝒜 = (𝑈, 𝐴, 𝑉, 𝑓),
+kde 𝑈 je neprázdné konečné univerzum objekt̊u. 𝐴 je neprázdná konečná
+množina atribut̊u a funkce 𝑓 je popisuj́ıćı funkce (informace) 𝑓 : 𝑈×𝐴→ 𝑉 ,
+kde 𝑉 je množina hodnot, které nabývaj́ı atributy z množiny 𝐴.
+Definice 2.40. Necht’𝒜 = (𝑈, 𝐴, 𝑉, 𝑓) je informačńı systém. Je dána množina
+atribut̊u 𝐵 ⊆ 𝐴, která indukuje tř́ıdy rozkladu univerza 𝑈 v souladu s relaćı
+B-nerozlǐsitelnosti:
+
+𝐼𝑛𝑑𝐵 = {(𝑥, 𝑦) ∈ 𝑈 × 𝑈 ; ∀𝑎 ∈ 𝐵(𝑓(𝑥, 𝑎) = 𝑓(𝑦, 𝑎))}.
+
+Relace B-nerozlǐsitelnosti (nerozeznatelnosti - indiscernibility) je relaćı ekvi-
+valence, která rozkládá množinu 𝑈 do konečného počtu disjunktńıch tř́ıd
+rozkladu [𝑥]𝐵 = {𝑦 ∈ 𝑈 ; ∀𝑎 ∈ 𝐵(𝑓(𝑥, 𝑎) = 𝑓(𝑦, 𝑎))}. Množina všech tř́ıd
+
+
+
+84 KAPITOLA 2. APLIKACE STRUKTUR
+
+rozkladu dle relace 𝐼𝑛𝑑𝐵 tvoř́ı faktorovou množinu univerza 𝑈 a znač́ı se
+𝑈/𝐼𝑛𝑑𝐵 = {[𝑥]𝐼𝑛𝑑 , 𝑥 ∈ 𝑈}
+
+𝐵
+
+Libovolná množina 𝑋 ⊆ 𝑈 může být aproximována na základě atribut̊u
+v 𝐵 ⊆ 𝐴 tak, že zkonstruujeme B-dolńı a B-horńı aproximaci 𝑋.
+Definice 2.41. Necht’ 𝒜 = (𝑈, 𝐴, 𝑉, 𝑓) je informačńı systém a 𝐼𝑛𝑑𝐵 je relace
+nerozlǐsitelnosti na univerzu 𝑈 vzhledem k množině atribut̊u 𝐵 ⊆ 𝐴. Pro
+danou množin 𝑋 ⊆ 𝑈 je definována B-dolńı aproximace 𝑋 takto:
+
+𝐵(𝑋) = {𝑥; [𝑥]𝐵 ⊆ 𝑋}
+
+a B-horńı aproximace 𝑋 takto:
+
+𝐵(𝑋) = {𝑥; [𝑥]𝐵 ∩𝑋 ̸= ∅}.
+
+Tedy univerzum 𝑈 může být rozděleno do tř́ı disjunktńıch oblast́ı:
+
+• 𝑃𝑂𝑆(𝑋) = 𝐵(𝑋) - prvky zde určitě patř́ı do ćılové množiny 𝑋,
+
+• 𝐵𝑁𝐷(𝑋) = 𝐵(𝑋) − 𝐵(𝑋) - prvky zde nemuśı určitě patřit do ćılové
+množiny 𝑋,
+
+• 𝑁𝐸𝐺(𝑋) = 𝑈−𝐵(𝑋) - u zdeǰśıch prvk̊u nelze určit zda patř́ı do ćılové
+množiny 𝑋.
+
+Dolńı aproximace obsahuje všechny objekty, které určitě patř́ı do 𝑋 a
+horńı aproximace obsahuje objekty, které možná patř́ı do 𝑋.
+
+𝑈/𝐵
+
+𝑋
+
+𝐵(𝑋)
+
+𝐵(𝑋)
+[𝑥]𝐵
+
+Obrázek 2.11: Horńı a dolńı aproximace rough množiny 𝑋 spolu s jednou
+tř́ıdou rozkladu množiny 𝑈 (granule) dle relace nerozlǐsitelnosti 𝐼𝑛𝑑𝐵 (𝑈/𝐵).
+
+
+
+2.4. FUZZY A ROUGH MNOŽINY 85
+
+Definice 2.42. Je dán informačńı systém 𝒜 = (𝑈, 𝐴, 𝑉, 𝑓). O ćılové množině
+𝑋 ⊆ 𝑈 a množině atribut̊u 𝐵 ⊆ 𝐴 řekneme, že je 𝑋 definovatelná vzhle-
+dem k 𝐵 právě tehdy když 𝐵(𝑋) = 𝐵(𝑋).
+Definice 2.43. Je dán informačńı systém 𝒜 = (𝑈, 𝐴, 𝑉, 𝑓). O ćılové množině
+𝑋 ⊆ 𝑈 a množině atribut̊u 𝐵 ⊆ 𝐴 řekneme, že je 𝑋 hrubá množina (rough
+set) vzhledem k 𝐵 právě tehdy když 𝐵(𝑋) ̸= 𝐵(𝑋).
+
+𝑋 je označena jako hrubá (rough) množina, jestliže jej́ı B-hranice je
+neprázdná. Tj. 𝐵𝑁𝐵(𝑋) = 𝐵𝑋 − 𝐵𝑋 ̸= ∅. Jinými slovy, existuje oblast
+nejistoty, zda prvky z této oblasti patř́ı do 𝑋 či nikoliv. Tato nejistota může
+být kvantifikována pro ∀𝑥 ∈ 𝑋 přǐrazeńım stupně překryvu mezi tř́ıdami
+nerozlǐsitelnosti [𝑥]𝐵 a rough množinou 𝑋.
+Definice 2.44. Je dán informačńı systém 𝒜 = (𝑈, 𝐴, 𝑉, 𝑓), ćılová množina
+𝑋 ⊆ 𝑈 a množina atribut̊u 𝐵 ⊆ 𝐴. Definujeme hrubost (roughness) množiny
+𝑋 vzhledem k 𝐵 takto:
+
+𝑃𝐵(𝑋) = 1− |𝐵(𝑋)|
+.
+
+|𝐵(𝑋)|
+Operace na rough množinách:
+• sjednoceńı: 𝐵(𝑋) ∪ 𝐵(𝑌 )) ⊆ 𝐵(𝑋 ∪ 𝑌 ), 𝐵(𝑋) ∪ 𝐵(𝑌 ) = 𝐵(𝑋 ∪ 𝑌 ),
+
+𝑈 − (𝐵(𝑋) ∪𝐵(𝑌 )) = 𝐵(𝑈 −𝑋) ∩𝐵(𝑈 − 𝑌 )
+• pr̊unik: 𝐵(𝑋) ∩ 𝐵(𝑌 )) = 𝐵(𝑋 ∪ 𝑌 ), 𝐵(𝑋 ∪ 𝑌 ) ⊆ 𝐵(𝑋) ∩ 𝐵(𝑌 )),
+
+𝑈 − (𝐵(𝑋) ∩𝐵(𝑌 )) = 𝐵(𝑈 −𝑋) ∪𝐵(𝑈 − 𝑌 )
+• rozd́ıl: 𝐵(𝑋 − 𝑌 ) = 𝐵(𝑋) − 𝐵(𝑌 ), 𝐵(𝑋 − 𝑌 ) ⊆ 𝐵(𝑋) − 𝐵(𝑌 )),
+
+𝑈 − (𝐵(𝑋) ∩𝐵(𝑌 )) = 𝐵(𝑈 −𝑋) ∪𝐵(𝑈 − 𝑌 ),
+• doplněk (komplement): 𝑈−𝐵(𝑋) = 𝐵(𝑈−𝑋), 𝑈−𝐵(𝑋) = 𝐵(𝑈−𝑋)),
+
+Př́ıklad 2.22. Tabulkou 2.12 je dán informačńı systém (𝑈, 𝐴, 𝑉, 𝑓) (zde
+konkrétně ({𝑜1, . . . , 𝑜6}, {𝑐1, 𝑐2, 𝑐3}, {0, 1}, 𝑓)). Určete faktorové množiny podle
+všech možných relaćı 𝐵𝑖-nerozlǐsitelnosti, kde 𝐵𝑖 ⊆ {𝑐1, 𝑐2, 𝑐3}. Určete dolńı a
+horńı aproximace vybraných množin. Rozhodněte, zda jsou vybrané množiny
+definovatelné vzhledem k nějaké 𝐵𝑖. Určete hrubost (roughness) vybraných
+množin vzhledem k daným 𝐵𝑖. Vybrané množiny: 𝑋1 = {𝑜2, 𝑜3, 𝑜5}, 𝑋2 =
+{𝑜1, 𝑜2, 𝑜3} a 𝑋3 = {𝑜1, 𝑜4, 𝑜5}. Učińıme dohodu, že pro snazš́ı čitelnost bu-
+deme použ́ıvat kratš́ı zápis pro výčet prvk̊u v množině: {𝑜1, 𝑜4, 𝑜5} = 𝑜145
+
+Relace 𝐵-nerozlǐsitelnosti je relaćı ekvivalence. Ověř́ıme to na 𝐼𝑛𝑑𝐵1 .
+𝐼𝑛𝑑𝐵1 = {(𝑥, 𝑦) ∈ 𝑈×𝑈 ;∀𝑎 ∈ 𝐵1(𝑓(𝑥, 𝑎) = 𝑓(𝑦, 𝑎))} = {(𝑜1, 𝑜1), (𝑜2, 𝑜2), (𝑜3, 𝑜3),
+(𝑜6, 𝑜6), (𝑜1, 𝑜2), (𝑜1, 𝑜3), (𝑜1, 𝑜6), (𝑜6, 𝑜1), (𝑜3, 𝑜1), (𝑜2, 𝑜1), (𝑜2, 𝑜3), (𝑜2, 𝑜6), (𝑜6, 𝑜2),
+(𝑜3, 𝑜2), (𝑜3, 𝑜6), (𝑜6, 𝑜3)}.
+
+
+
+86 KAPITOLA 2. APLIKACE STRUKTUR
+
+𝑈 ∖ 𝐴 𝑐1 𝑐2 𝑐3 𝐵𝑖 ⊆ 𝐴 𝑈/𝐼𝑛𝑑𝐵𝑖
+
+𝑜1 1 0 0 𝐵1 = 𝑐1 {𝑜1236, 𝑜45}
+𝑜2 1 1 0 𝐵2 = 𝑐2 {𝑜2345, 𝑜16}
+𝑜3 1 1 1 𝐵3 = 𝑐3 {𝑜356, 𝑜124}
+𝑜4 0 1 0 𝐵4 = 𝑐12 {𝑜23, 𝑜16, 𝑜45}
+𝑜5 0 1 1 𝐵5 = 𝑐13 {𝑜12, 𝑜36, 𝑜4, 𝑜5}
+𝑜6 1 0 1 𝐵6 = 𝑐23 {𝑜1, 𝑜24, 𝑜35, 𝑜6}
+
+Obrázek 2.12: Tabulka reprezentuj́ıćı informačńı systém s binárńımi hod-
+notami atribut̊u a tabulka podmnožin množiny atribut̊u spolu s rozkladem
+určeným relaci 𝐵𝑖-nerozlǐsitelnosti.
+
+𝐵𝑖 ⊆ 𝐴 𝐵𝑖(𝑜235) 𝐵𝑖(𝑜235) 𝐵𝑖(𝑜123) 𝐵𝑖(𝑜123) 𝐵𝑖(𝑜145) 𝐵𝑖(𝑜145)
+𝐵1 = 𝑐1 ∅ U ∅ U 𝑜45 U
+𝐵2 = 𝑐2 ∅ 𝑜2345 ∅ U ∅ U
+𝐵3 = 𝑐3 ∅ U ∅ U ∅ U
+𝐵4 = 𝑐12 𝑜23 𝑜2345 𝑜23 𝑜1236 𝑜45 𝑜1456
+𝐵5 = 𝑐13 𝑜5 𝑜12356 𝑜12 𝑜1236 𝑜45 U
+𝐵6 = 𝑐23 𝑜35 𝑜2345 𝑜1 𝑜12345 𝑜1 𝑜12345
+
+Tabulka 2.10: Tabulka dolńıch a horńıch aproximaćı vybraných množin
+𝑋1, 𝑋2 a 𝑋3 vzhledem k rozklad̊um určeným relacemi 𝐵𝑖-nerozlǐsitelnosti.
+
+• 𝐼𝑛𝑑𝐵1 je reflexivńı, protože ∀𝑥 ∈ 𝑈 𝑓(𝑥, 𝑐1) = 𝑓(𝑥, 𝑐1),
+• 𝐼𝑛𝑑𝐵1 je symetrická, protože ∀𝑥, 𝑦 ∈ 𝑈 𝑓(𝑥, 𝑐1) = 𝑓(𝑦, 𝑐1)⇒ 𝑓(𝑦, 𝑐1) =
+
+𝑓(𝑥, 𝑐1),
+• 𝐼𝑛𝑑𝐵1 je tranzitivńı, protože ∀𝑥, 𝑦, 𝑧 ∈ 𝑈 𝑓(𝑥, 𝑐1) = 𝑓(𝑦, 𝑐1)∧𝑓(𝑦, 𝑐1) =
+
+𝑓(𝑧, 𝑐1)⇒ 𝑓(𝑥, 𝑐1) = 𝑓(𝑧, 𝑐1).
+
+Žádná z vybraných množin neńı definovatelná vzhledem k nějaké 𝐵𝑖.
+Ale např́ıklad množina 𝑋 = {𝑜1, 𝑜3, 𝑜5} je definovatelná vzhledem k 𝐵6 =
+{𝑐2, 𝑐3}. Jej́ı hrubost je: 𝑃𝐵6(𝑋) = 1− |𝑋|
+
+|𝑋| = 0.
+
+Redukty a jádro v teorii hrubých množin
+V teorii hrubých množin představuj́ı redukt a core dva zásadńı pojmy slouž́ıćı
+ke zjednodušeńı informačńıho systému. Ćılem je nalézt minimálńı množiny
+atribut̊u, které zachovávaj́ı rozlǐsovaćı schopnost celého systému.
+
+
+
+2.4. FUZZY A ROUGH MNOŽINY 87
+
+𝐵1 𝐵2 𝐵3 𝐵4 𝐵5 𝐵6
+𝑃𝐵 (𝑋1) 1 1 1 1/2 4/5 1/2
+
+𝑖
+
+𝑃𝐵 (𝑋 )
+𝑖 2 1 1 1 1/2 1/2 4/5
+
+𝑃𝐵 (𝑋 ) 2/3 1 1
+𝑖 3 1/2 2/3 4/5
+
+Tabulka 2.11: Tabulka hrubosti vybraných podmnožin 𝑋1 = {𝑜2, 𝑜3, 𝑜5},
+𝑋2 = {𝑜1, 𝑜2, 𝑜3} a 𝑋3 = {𝑜1, 𝑜4, 𝑜5} vzhledem k rozklad̊um určeným relacemi
+𝐵𝑖-nerozlǐsitelnosti.
+
+Mějme informačńı systém 𝑆 = (𝑈, 𝐴), kde 𝑈 je konečná množina objekt̊u
+a 𝐴 je konečná množina atribut̊u. Pro množinu atribut̊u 𝐵 ⊆ 𝐴 označme
+IND(𝐵) relaci nerozlǐsitelnosti:
+
+(𝑥, 𝑦) ∈ IND(𝐵) ⇐⇒ ∀𝑎 ∈ 𝐵 : 𝑎(𝑥) = 𝑎(𝑦).
+Množina 𝐵 se nazývá redukt, pokud plat́ı
+
+IND(𝐵) = IND(𝐴) a ∀𝐵′ ⊂ 𝐵 : IND(𝐵′) ̸= IND(𝐴).
+Redukt je tedy minimálńı množina atribut̊u se stejnou rozlǐsovaćı silou, jakou
+má celá množina atribut̊u.
+
+Motivace pro použ́ıváńı redukt̊u. Redukty se použ́ıvaj́ı zejména při redukci
+dimenzionality, protože odstraňuj́ı redundantńı atributy. Dále přisṕıvaj́ı k
+lepš́ı interpretovatelnosti model̊u, protože zd̊urazňuj́ı atributy s největš́ı dis-
+kriminačńı schopnost́ı. Své využit́ı maj́ı také při tvorbě rozhodovaćıch pravi-
+del a při analýze dat zat́ıžených šumem.
+
+Výpočetńı složitost. Počet všech podmnožin množiny atribut̊u je 2|𝐴| a
+redukty odpov́ıdaj́ı minimálńım podmnožinám zachovávaj́ıćım indiscernibi-
+litu. Nalezeńı všech redukt̊u je tud́ıž problém typu NP-těžký, což ukazuje
+Pawlak. V praxi se často použ́ıvaj́ı heuristiky nebo metody založené na ma-
+tici rozlǐsitelnosti, jež mohou být efektivńı pro malé a středńı informačńı
+systémy.
+
+Core (jádro) je množina atri⋂︁but̊u, která se vyskytuje ve všech reduktech:
+
+CORE(𝐴) = {𝐵 ⊆ 𝐴 | 𝐵 je redukt}.
+
+Atribut patř́ıćı do core je nepostradatelný; jeho vynecháńı by změnilo rozlǐsovaćı
+śılu systému.
+
+Matice rozlǐsitelnosti. Matice rozlǐsitelnosti je čtvercová matice o rozměru
+|𝑈 | × |𝑈 |. Pro každou dvojici objekt̊u 𝑥𝑖, 𝑥𝑗 ∈ 𝑈 definujeme
+
+𝑀(𝑖, 𝑗) = {𝑎 ∈ 𝐴 | 𝑎(𝑥𝑖) ̸= 𝑎(𝑥𝑗)}.
+
+
+
+88 KAPITOLA 2. APLIKACE STRUKTUR
+
+Pokud jsou objekty vzhledem k 𝐴 nerozlǐsitelné, je odpov́ıdaj́ıćı prvek matice
+prázdná množina.
+
+Funkce rozlǐsitelnosti. Z matice se konstruuje booleovská formule nazývaná
+funkce rozlǐsitelnosti: ⋀︁ ⎛
+
+𝑓(𝐴) ⎝ ⋁︁ ⎞
+= 𝑎⎠ .
+
+1≤𝑖<𝑗≤|𝑈 | 𝑎∈𝑀(𝑖,𝑗)
+𝑀(𝑖,𝑗)̸=∅
+
+Každý konjunkt odpov́ıdá dvojici objekt̊u, které je nutné rozlǐsit. Minimálńı
+řešeńı této formule odpov́ıdaj́ı všem redukt̊um.
+
+Algoritmus pro výpočet redukt̊u.
+Algoritmus 8: Nalezeńı všech redukt̊u pomoćı matice a funkce
+rozlǐsitelnosti
+
+Input: Informačńı systém (𝑈, 𝐴, 𝑉, 𝑓)
+Output: Množina všech redukt̊u ℛ
+
+1 Krok 1: Sestaveńı matice rozlǐsitelnosti;
+2 foreach dvojice objekt̊u (𝑜𝑖, 𝑜𝑗) s 𝑖 < 𝑗 do
+3 Urči množinu atribut̊u 𝐷(𝑜𝑖, 𝑜𝑗) = { 𝑎 ∈ 𝐴 | 𝑓(𝑜𝑖, 𝑎) ̸= 𝑓(𝑜𝑗, 𝑎) };
+4 Vlož 𝐷(𝑜𝑖, 𝑜𝑗) jako řádek matice rozlǐsitelnosti 𝑀 ;
+5 end
+6 Krok 2: Konstrukce funkce rozlǐsitelnosti;
+7 Inicializuj funkci rozlǐsitelnosti 𝜙 := 1;
+8 foreach řádek 𝑀𝑘 matice⋁︀rozlǐsitelnosti do
+9 vytvoř klauzuli 𝐶𝑘 = 𝑎∈𝑀 𝑎;
+
+𝑘
+
+10 aktualizuj 𝜙 := 𝜙 ∧ 𝐶𝑘;
+11 end
+12 Krok 3: Hledáńı minimálńıch řešeńı (reducts);
+13 Inicializuj množinu redukt̊u ℛ := ∅;
+14 foreach minimálńı hitting set 𝐻 splňuj́ıćı 𝜙 do
+15 vlož 𝐻 do ℛ;
+16 end
+17 Krok 4: Určeńı j⋂︀ádra (core);
+18 Urči CORE(𝐴) = 𝑅∈ℛ 𝑅;
+19 return ℛ
+
+Propojeńı fuzzy množin a rough set̊u
+Fuzzy množiny a rough množiny představuj́ı dva r̊uzné, ale vzájemně se
+doplňuj́ıćı př́ıstupy k modelováńı nejistoty, vágnosti a neúplné informace. Je-
+
+
+
+2.5. SHLUKOVÁNÍ 89
+
+jich propojeńı umožňuje zachytit složitěǰśı typy nejistoty, které samostatné
+teorie pokrývaj́ı jen částečně.
+
+Rough set theory (RST) pracuje s nerozlǐsitelnost́ı objekt̊u vycházej́ıćı
+ze znalostńıch ekvivalenćı nad atributy. Každá množina je popsána pomoćı
+dolńı a horńı aproximace, které reprezentuj́ı informace ”jistě patř́ı“ a ”možná
+patř́ı“. Fuzzy set theory (FST) naproti tomu modeluje vágnost pomoćı stupně
+př́ıslušnosti v intervalu [0, 1]. Množiny jsou spojité a umožňuj́ı zachytit neurčitost,
+která neńı zp̊usobena nedostatkem informaćı, ale inherentńı neurčitost́ı pojmů.
+
+Spojeńı fuzzy a rough př́ıstup̊u je užitečné v situaćıch, kdy se vyskytuj́ı
+oba typy nejistoty současně:
+
+• vágnost pojmů (např. ”vysoký“, ”dobrý“, ”bĺızký“) – přirozeně mode-
+lována fuzzy množinami,
+
+• neúplnost nebo nedostatek informaćı – přirozeně modelována rough
+sety.
+
+Samotné fuzzy množiny ignoruj́ı strukturu znalost́ı (nerozlǐsitelnost), zat́ımco
+samotné rough množiny neuměj́ı modelovat spojitou neurčitost. Jejich kom-
+binace proto poskytuje obecněǰśı a flexibilněǰśı model.
+
+Zp̊usoby propojeńı:
+Fuzzy rough sets. Každý objekt má fuzzy stupeň př́ıslušnosti k množině
+
+a aproximace se definuj́ı vzhledem k fuzzy relaci podobnosti. Dolńı aproxi-
+mace obsahuje prvky, které jsou jistě podobné množině, horńı aproximace
+prvky částečně podobné.
+
+Rough fuzzy sets. Aproximuje se př́ımo fuzzy funkce př́ıslušnosti. Dolńı
+přibližná funkce určuje hodnoty, které lze spolehlivě potvrdit, horńı funkce
+ty, které nelze vyloučit.
+
+Vrstvené modely. Rough analýza může sloužit pro předzpracováńı dat,
+např́ıklad pro výběr atribut̊u (redukty), zat́ımco fuzzy modelováńı prob́ıhá
+až následně.
+
+2.5 Shlukováńı
+Shlukováńı je proces sdružováńı (shlukováni) objekt̊u do skupin (shluk̊u)
+na základě podobnosti (vzdálenosti, nepodobnosti). Shluk je množina ob-
+jekt̊u maximálně si podobných (bĺızkých) v rámci shluku a maximálně odlǐsných
+(vzdálených) mezi shluky.
+
+Shlukováńı je standardńı technika analýzy dat, která se použ́ıvá v oblasti
+strojového učeńı, rozpoznáváńı vzor̊u, analýzy obraz̊u, źıskáváńı informaćı,
+bioinformatiky, komprese dat nebo poč́ıtačové grafiky.
+
+
+
+90 KAPITOLA 2. APLIKACE STRUKTUR
+
+Rozděleńı shlukovaćıch metod – hierarchizace shluk̊u
+1. hierarchické shlukováńı, kde shluky vytvářej́ı systém podmnožin, kde
+
+pr̊unikem dvou podmnožin (shluk̊u) je bud’ prázdná množina, nebo je-
+den shluk (tj. na množině shluk̊u je dáno částečné uspořádáńı vzhledem
+k množinové inkluzi). Pro vizualizaci hierarchie shluk̊u se např́ıklad
+použ́ıvaj́ı dendrogramy nebo treemapy.
+
+2. nehierarchické shlukováńı vytvář́ı takový systém, kde neńı mezi shluky
+dáno uspořádáńı (hierarchie).
+
+Rozděleńı shlukovaćıch metod – překrýváńı shluk̊u
+1. nepřekrývaj́ıćı se shlukováńı (crisp, hard, non-overlapping clustering),
+
+kde množina shluk̊u {𝐶𝑖, 𝑖 ∈ 𝐼} tvoř́ı rozklad na množině dat (𝑋). Tj.
+plat́ı, že 𝐶𝑖∩𝐶𝑗 = ∅ pro 𝑖 ̸= 𝑗 a ∪𝑖∈𝐼𝐶𝑖 = 𝑋. Tento rozklad je indukován
+relaćı ekvivalence na množině objekt̊u, které shlukujeme. Každý objekt
+patř́ı do jednoho shluku a nebo jsou v datové kolekci objekty, které
+nejsou zařazeny do větš́ıch shluk̊u. Tyto objekty jsou odlehlé objekty
+(outliers).
+
+2. překrývaj́ıćı se shlukováńı (soft, overlapping clustering), kde množina
+shluk̊u {𝐶𝑖, 𝑖 ∈ 𝐼} tvoř́ı pokryt́ı na množině dat (𝑋). Tj. plat́ı, že 𝐶𝑖∩𝐶𝑗
+
+může být neprázdná a ∪𝑖∈𝐼𝐶𝑖 = 𝑋. Toto pokryt́ı je indukováno relaćı
+tolerance na množině objekt̊u, které shlukujeme. Př́ıkladem shlukováńı
+s překrývaj́ıćımi se shluky je fuzzy k-means, k-means s rought set.
+
+Přehled hlavńıch shlukovaćıch metod
+• Hierarchické aglomerativńı metody – nejbližš́ıch soused̊u (single lin-
+
+kage), nejvzdáleněǰśıch soused̊u (complete linkage), pr̊uměrných vzdálenost́ı
+(average linkage), vzdálenost centroid̊u (centroid linkage), Wardova
+metoda; BIRCH, ROCK (Robust Clustering using 1inKs) - pro ka-
+tegoriálńı data),
+
+• Rozdělovaćı metody (partitioning methods) – k-means, k-medoids (PAM),
+CLARANS, (Clustering Large Application based on RANdomised Search
+– modifikace alg. PAM na vybraném vzorku zpracovávaných dat),
+
+• Metody založené na hustotě (density-based methods) – DBSCAN, OP-
+TICS,
+
+• Metody založené na mř́ıžce (grid-based methods) – STING, CLIQUE,
+
+
+
+2.5. SHLUKOVÁNÍ 91
+
+• Metody založené na modelu (model-based methods)– EM (expectation
+maximization – statistický model – multivariačńı normálńı rozděleńı),
+Cobweb (strojové učeńı), SOM (self-organizing map – neuronové śıtě),
+GNG,
+
+• Metody založené na grafech – detekce klik (Clique percolation method)
+tvoř́ıćı překrývaj́ıćı se shluky, rozdělováńı graf̊u pomoćı algoritmu Ke-
+ringhan-Lin, Girvan-Newman algoritmus (maximalizace modularity),
+spektrálńı bisekce (užit́ı Fiedlerova vektoru), METIS (kolaps uzl̊u a
+hran, rozděleńı menš́ıho grafu a zpětné rozbaleńı do p̊uvodńıho grafu –
+směs algoritmů),
+
+• Shlukováńı v́ıce-dimenzionálńıch dat s využit́ım redukce dimenze ((ker-
+nel) PCA s SVD, spektrálńı shlukováńı).
+
+2.5.1 Hierarchické shlukováńı
+Pokud vycháźıme z množiny prvk̊u, které chceme postupně ”vhodně”rozdělit
+do shluk̊u, hovoř́ıme o divizivńım shlukováńı (např́ıklad algoritmus k-means
+pro vektorová data, algoritmus Kernighan–Lin pro rozděleńı graf̊u, kde každý
+pr̊uchod algoritmu má časovou složitost 𝑂(𝑛2𝑙𝑜𝑔(𝑛))).
+
+Opačný př́ıstup, kdy postupně vytvář́ıme z jednotlivých prvk̊u (a menš́ıch
+shluk̊u) větš́ı shluky (konec algoritmu v př́ıpadě, že všechny prvky jsou v
+jednom shluku), se nazývá aglomerativńı shlukováńı. Větš́ı shluky jsou
+vytvářeny tak, že se slouč́ı dva shluky, které měly nejmenš́ı mezishlukovou
+vzdálenost (nepodobnost). Hierarchie shluk̊u se reprezentuje pomoćı den-
+drogramu, kde vzdálenost dvou objekt̊u 𝑥, 𝑦 je vyjádřena výškou nejmenš́ıho
+podstromu, který tyto prvky obsahuje. Dolńı odhad časové složitosti shlu-
+kováńı je 𝑂(𝑛3), kde n je počet shlukovaných prvk̊u.
+
+Zp̊usoby výpočtu mezishlukové nepodobnosti:
+
+• Nejbližš́ı sousedi (single linkage) (obr. 2.13) - tato metoda má tendenci
+tvořit řet́ızky menš́ıch shluk̊u:
+
+𝑑𝑆𝐿(𝐶𝑖, 𝐶𝑗) = 𝑚𝑖𝑛{𝑑(𝑥, 𝑦); 𝑥 ∈ 𝐶𝑖, 𝑦 ∈ 𝐶𝑗},
+
+• Nejvzdáleněǰśı sousedi (complete linkage) (obr. 2.13)- tvoř́ı vcelku kom-
+paktńı shluky:
+
+𝑑𝐶𝐿(𝐶𝑖, 𝐶𝑗) = 𝑚𝑎𝑥{𝑑(𝑥, 𝑦); 𝑥 ∈ 𝐶𝑖, 𝑦 ∈ 𝐶𝑗},
+
+
+
+92 KAPITOLA 2. APLIKACE STRUKTUR
+
+• Pr̊uměrná nepodobnost (average linkage) (obr. 2.14) - je nejčastěji
+použ́ıvanou metodou a je odolná ∑︀proti šumu:
+
+𝑥∈𝐶𝑖,𝑦∈𝐶 𝑑(𝑥, 𝑦)
+𝑑𝐴𝐿(𝐶𝑖, 𝐶𝑗) = 𝑗 ,
+
+|𝐶𝑖|.|𝐶𝑗|
+
+• Nepodobnost centroid̊u (centroid method) - ob∑︀r. 2.14:
+
+𝑑𝐶𝑒(𝐶𝑖, 𝐶𝑗) = 𝑑(𝑐𝑖, 𝑐𝑗), 𝑘𝑑𝑒 𝑐𝑖 = {𝑥; 𝑥 ∈ 𝐶𝑖}
+,
+
+|𝐶𝑖|
+
+• Wardova nepodobnost (minimalizuje varianci dat ve shlućıch - SSE):
+
+𝑑𝑊 (𝐶𝑖, 𝐶𝑗) = |𝐶𝑖|.|𝐶𝑗|
+𝑑2(𝑐
+
+| 𝑖, 𝑐𝑗),
+𝐶𝑖|+ |𝐶𝑗|
+
+𝐶𝑖 𝐶𝑗 𝐶𝑖 𝐶𝑗
+
+Obrázek 2.13: Nepodobnost mezi shluky 𝐶𝑖 a 𝐶𝑗 - nejbližš́ı soused (single
+linkage) a nejvzdáleněǰśı soused (complete linkage).
+
+𝑐𝑖
+𝑐𝑗
+
+𝐶𝑖 𝐶𝑗 𝐶𝑖 𝐶𝑗
+
+Obrázek 2.14: Nepodobnost mezi shluky 𝐶𝑖 a 𝐶𝑗 - nepodobnost centroid̊u
+(centroid linkage) a pr̊uměrná nepodobnost (average linkage).
+
+Př́ıklad 2.23. 𝑋 = {(−1, 1), (1, 1), (0, 0), (0, 2), (3, 0), (3, 2), (4, 0), (4, 2)} je
+množina osmi bod̊u v rovině, které jsou postupně označeny tak, jak za se-
+bou následuj́ı ve výčtu. Pomoćı manhattanovské a euklidovské vzdálenosti
+vypočteme matice vzdálenost́ı a na jejich základě vytvoř́ıme dendrogramy
+reprezentuj́ıćı vybrané aglomerativńı metody.
+
+
+
+2.5. SHLU⎛KOVÁNÍ ⎞ 93
+
+⎜⎜0 2 2 2 5 5 6 6
+
+⎜⎜2 0 2 2 3 3 4 4⎟
+⎜ ⎟
+
+𝑊𝑀 = ⎜2 2 0 2 3 5 4 6⎟
+⎜ ⎟
+⎜2 2 2 0 5 3 6 4⎟
+⎜ ⎟
+⎜5 3 3 5 0 2 1 3⎟
+⎝ ⎟
+
+5 3 5 3 2 0 3 1⎟⎟⎠
+⎛ 6 4 4 6 1 3 0 2
+
+6 4 6 4 3 1 2 0
+
+⎜ ⎞
+⎜ 0 2 1.41 1.41 4.12 4.12 5.1 5.1
+
+⎜⎜ 2 0 1.41 1.41 2.24 2.24 3.16 3.16⎟
+⎜ ⎟
+
+1.41 1.41 0 2 3 3.61 4 4.47⎟⎟
+1.41 1.41 2 0 3.61 3 4.47 4 ⎟
+
+𝑊 ⎜ ⎟
+𝐸 = ⎜⎜⎜⎜4.12 2.24 3 3.6 0 2 1 2.36⎟
+
+⎝ ⎟
+4.12 2.24 3.61 3 2 0 2.24 1 ⎟⎟
+5.1 3.16 4 4.47 1 2.24 0 2 ⎠
+5.1 3.16 4.47 4 2.24 1 2 0
+
+Obrázek 2.15: Dendrogramy metody single linkage s manhattanovskou a eu-
+kleidovskou metrikou
+
+Metoda k-pr̊uměr̊u (k-means) a k-medoid̊u
+Obě tyto metody patř́ı k rozdělovaćım metodám množiny 𝑋 ⊂ R𝑑 a |𝑋| = 𝑛,
+kde muśıme předem určit počet shluk̊u (𝑘) a shluk 𝐶𝑖 je pak určen svým re-
+prezentantem 𝑐𝑖 (u k-means je to pr̊uměr objekt̊u, které patř́ı do shluku -
+těžǐstě shluku - centroid shluku, u algoritmu k-medoid̊u je to medoid shluku
+- centrálńı prvek shluku, jehož součet vzdálenost́ı k ostatńım prvk̊um ve
+shluku je nejmenš́ı - 𝑚𝑖). K-means lokálně minimalizuje součet čtverc̊u chyb
+
+0.0 0.5 1.0 1.5 2.0
+
+8
+
+4
+
+5
+
+3
+
+2
+
+7
+
+1
+
+6
+
+0.0 0.5 1.0 1.5 2.0
+
+8
+
+4
+
+5
+
+3
+
+2
+
+7
+
+1
+
+6
+
+
+
+94 KAPITOLA 2. APLIKACE STRUKTUR
+
+Obrázek 2.16: Dendrogramy metody complete linkage s manhattanovskou a
+eukleidovskou metrikou
+
+(odchylek od pr̊uměru) - tj. součet kvadrát̊u vzdálenosti prvk̊u od∑︀reprezen-
+tanta shluku, kde vzdálenost je eukleidovská metrika: (𝑑𝐸(𝑥, 𝑦) = ( 𝑛
+
+𝑖=1(𝑥𝑖−
+𝑦𝑖)2)1/2) ∑︁𝑘 ∑︁
+
+𝑚𝑖𝑛{𝑆𝑆𝐸 = 𝑑2
+𝐸(𝑥𝑝, 𝑐𝑖)}.
+
+𝑖=1 𝑥𝑝∈𝐶𝑖
+
+Algoritmus je použitelný jen tam, kde umı́me spoč́ıtat pr̊uměr (katego-
+rická data jsou nevhodná). U tohoto algoritmu zálež́ı na inicializaci – ne-
+bezpeč́ı uv́ıznut́ı v lokálńım minimu. Řešeńım jsou opakované volby počátečńıch
+reprezentant̊u shluk̊u. Požaduje se znalost počtu shluk̊u (často se pro určeńı
+𝑘 použ́ıvá index siluety nebo elbow method - metoda největš́ıho poklesu v
+hodnotách součt̊u čtverc̊u vzdálenost́ı uvnitř 𝑘 shluk̊u). Metoda je nevhodná
+pro zašuměná data s odlehlými objekty (outliers) a pro situace, kdy shluky
+nemaj́ı konvexńı tvar (neb k-means vytvář́ı v rovině shluky vymezené Voro-
+noiovými polygony).
+Př́ıklad 2.24. V prvńı části obrázku 2.17 jsou dány objekty s počátečńı
+volbou reprezentant̊u–centroid̊u dvou shluk̊u spolu s přǐrazeńım objekt̊u ke
+shluk̊um a s vyznačenou nejkratš́ı vzdálenost́ı k centroidu. Na daľśım obrázku
+jsou určeny nové centroidy pomoćı algoritmu k-means. Algoritmus pokračuje
+na obr. 2.18, kde jsou již přǐrazeny objekty k novým centroid̊um. Vid́ıme, že
+po druhé iteraci již nedojde k přesunu objekt̊u k jiným centroid̊um.
+
+Algoritmus k-medoids má podobné vlastnosti jako k-means, ale minimali-
+zuje součet vzdálenost́ı prvk̊u od medoid̊u. Původńı algoritmus (Kaufman, L.
+and Rousseeuw, P.J. 1987) pro výpočet vzdálenost́ı použ́ıval manhattanov-
+
+0 1 2 3 4 5 6
+
+8
+
+4
+
+5
+
+3
+
+2
+
+7
+
+1
+
+6
+
+0 1 2 3
+
+8
+
+4
+
+5
+
+3
+
+2
+
+7
+
+1
+
+6
+
+
+
+2.5. SHLUKOVÁNÍ 95
+
+Algoritmus 9: k-means
+input : vstupńı data {𝑥1, . . . , 𝑥𝑛} ∈ 𝑅𝑑, k - počet shluk̊u.
+output: shluky a jejich reprezentanti.
+
+1 Vyber náhodně výchoźıch 𝑘 reprezentant̊u;
+2 Přǐrad’ každému z 𝑛 objekt̊u č́ıslo shluku, které odpov́ıdá č́ıslu
+
+nejbližš́ıho reprezentanta;
+3 Přepoč́ıtej pozice reprezentant̊u 𝑐𝑖 všech 𝑘 shluk̊u tak, že
+
+reprezentatnt bude pr̊uměr hodnot prvk̊u v daném shluku;
+4 Opakuj kroky 2 a 3 tak dlouho, dokud se měńı shluky;
+
+𝑐1 𝑐2 𝑐1 𝑐2
+
+Obrázek 2.17: Pr̊uběh algoritmu k-means: inicializace a prvńı iterace.
+
+skou metriku. Jedńım ze zp̊usob̊u volby počátečńıch reprezentant̊u je vybrat
+𝑘 nejcentrálněǰśıch objekt̊u v datasetu. Daľśı standardńı volbou počátečńıch
+reprezentat̊u je náhodný výběr 𝑘 objekt̊u z datasetu.
+
+Algoritmus 10: k-medoids
+input : vstupńı data {𝑥1, . . . , 𝑥𝑛} ∈ 𝑅𝑑 nebo matice vzdálenost́ı, k -
+
+počet shluk̊u.
+output: shluky a jejich reprezentanti.
+
+1 Vyber náhodně výchoźıch 𝑘 reprezentant̊u;
+2 Přǐrad’ každému z 𝑛 objekt̊u č́ıslo shluku, které odpov́ıdá č́ıslu
+
+nejbližš́ıho reprezentanta;
+3 Přepoč́ıtej pozice reprezentant̊u 𝑚𝑖 všech 𝑘 shluk̊u tak, že bude
+
+použit prvek v daném shluku, který má nejmenš́ı součet vzdálenost́ı
+k ostatńım prvk̊um ve shluku;
+
+4 Opakuj kroky 2 a 3 tak dlouho, dokud se měńı shluky;
+
+Př́ıklad 2.25. Vezmeme stejná data jako v př́ıkladu 2.24, zvoĺıme i stejné
+počátečńı reprezentanty a použijeme manhattanovskou metriku. Pro určeńı
+shluk̊u použijeme metodu k-medoid̊u (počátečńı volba reprezentant̊u–medoid̊u
+je stejná jako v předchoźım př́ıkladu). Pr̊uběh algoritmu je demonstrován
+obrázky 2.20 a 2.21.
+
+
+
+96 KAPITOLA 2. APLIKACE STRUKTUR
+
+𝑐1 𝑐2
+
+Obrázek 2.18: Pr̊uběh algoritmu k-me-
+ans: druhá iterace. Obrázek 2.19: Voronoi diagram pro
+
+osm jednoprvkových shluk̊u.
+
+𝑚1 𝑚2 𝑚1
+
+𝑚2
+
+Obrázek 2.20: Pr̊uběh algoritmu k-medoid̊u: počátečńı stav a prvńı iterace.
+
+𝑚1
+
+𝑚2
+
+Obrázek 2.21: Pr̊uběh algoritmu k-medoid̊u: druhá iterace.
+
+Metody založené na modelu
+Algoritmus EM (očekáváńı-maximalizace, expectation–maximization) je iteračńı
+metoda pro nalezeńı maximálńı pravděpodobnosti nebo maximálńıho odhadu
+parametr̊u v statistických modelech, kde model záviśı na nepozorovaných la-
+tentńıch proměnných. EM iterace se stř́ıdá mezi provedeńım očekávaného
+kroku (E), který vytvář́ı funkci pro očekáváńı logaritmu pravděpodobnosti
+vyhodnocené pomoćı aktuálńıho odhadu parametr̊u a krok maximalizace
+(M), který vypoč́ıtává parametry, které maximalizuj́ı očekávanou logaritmic-
+kou hodnotu pravděpodobnosti nalezené v kroku E. Tyto odhady parametr̊u
+jsou pak použity k určeńı distribuce latentńıch proměnných v př́ı̌st́ım kroku
+E.
+
+Metody založené na hustotě
+Jednou z metod založených na hustotě objekt̊u je algoritmus DBSCAN. Má
+dva vstupńı parametry – 𝜖 pro určeńı velikosti okoĺı bodu 𝑥 ∈ 𝑋 ⊂ R𝑛
+
+
+
+2.5. SHLUKOVÁNÍ 97
+
+(𝐾(𝑥, 𝜖)) a pro určeńı minimálńıho počtu prvk̊u v okoĺı bodu 𝑥 (𝑚𝑖𝑛𝑃 ).
+Pokud v okoĺı vybraného bodu 𝑥 neńı dostatek daľśıch bod̊u, neńı 𝑥 zařazeno
+do žádného shluku.
+
+Algoritmus 11: DBSCAN
+input : množina bod̊u 𝑋 = {𝑥1, . . . , 𝑥𝑛} ⊂ R𝑑, poloměr okoĺı 𝜖,
+
+minimálńı počet bod̊u 𝑚𝑖𝑛𝑃
+output: shluky 𝐶1, . . . , 𝐶𝑘 a množina šumu 𝑁
+
+1 označ všechny body jako neprozkoumané;
+2 𝑖← 0;
+3 foreach bod 𝑥 ∈ 𝑋 do
+4 if 𝑥 je neprozkoumaný then
+5 označ 𝑥 jako prozkoumaný;
+6 𝐾(𝑥, 𝜖)← {𝑦 ∈ 𝑋 | 𝑑(𝑥, 𝑦) ≤ 𝜖};
+7 if |𝐾(𝑥, 𝜖)| < 𝑚𝑖𝑛𝑃 then
+8 označ 𝑥 jako šum;
+9 end
+
+10 else
+11 𝑖← 𝑖 + 1;
+12 vytvoř nový shluk 𝐶𝑖;
+13 přidej 𝑥 do 𝐶𝑖;
+14 foreach 𝑦 ∈ 𝐾(𝑥, 𝜖) do
+15 if 𝑦 je neprozkoumaný then
+16 označ 𝑦 jako prozkoumaný;
+17 𝐾(𝑦, 𝜖)← {𝑧 ∈ 𝑋 | 𝑑(𝑦, 𝑧) ≤ 𝜖};
+18 if |𝐾(𝑦, 𝜖)| ≥ 𝑚𝑖𝑛𝑃 then
+19 𝐾(𝑥, 𝜖)← 𝐾(𝑥, 𝜖) ∪𝐾(𝑦, 𝜖);
+20 end
+21 end
+22 if 𝑦 neńı přiřazen do žádného shluku then
+23 přidej 𝑦 do 𝐶𝑖;
+24 end
+25 end
+26 end
+27 end
+28 end
+
+
+
+98 KAPITOLA 2. APLIKACE STRUKTUR
+
+2.5.2 Překrývaj́ıćı se shlukovaćı metody
+Překrývaj́ıćı se shluky, které maj́ı některé prvky společné, je možno vytvářet
+r̊uznými zp̊usoby. Zaměř́ıme se na modifikaci algoritmu k-means a uvedeme
+si zde fuzzy-k-means a rough-set-k-means.
+
+Při fuzzy shlukováńı jsou objekty přǐrazeny k fuzzy shluku s odpov́ıdaj́ıćı
+mı́rou př́ıslušnosti pro každý shluk (viz. obrázek 2.22). Ćılem algoritmu
+fuzzy-k-means je minimalizovat vážený součet euklidovských vzdálenost́ı mezi
+objekty 𝑥𝑖 a centroidy 𝑐𝑘 odpov́ıdaj́ıćıch shluk̊u 𝐶𝑘. Váhy jsou odvozeny z
+mı́ry př́ıslušnosti objekt̊u ke shluk̊um.
+
+Mı́ra př́ıslušnosti objektu ke shluku se vypočte takto:
+
+𝜇𝑖,𝑗 = ∑︀ 1
+,
+
+𝐾
+𝑘=1( 𝑑(𝑥𝑖,𝑐𝑗)
+
+𝑑(𝑥𝑖,𝑐𝑘))(2/𝑚−1)
+
+∑︀
+kde 𝑚 > 1 a plat́ı, že 𝐾
+
+𝑘=1 𝜇𝑖,𝑘 = 1 pro 𝑖 = 1, . . . , 𝑛.
+
+𝜇 𝜇 𝜇
+
+𝐶1 𝐶2 𝐶1 𝐶2 𝐶1 𝐵 𝐶2
+
+𝑥 𝑥 𝑥
+
+Obrázek 2.22: Funkce př́ıslušnosti do ostré množiny, fuzzy množiny a hrubé
+(rough) množiny, kde 𝐶1, 𝐶2 jsou př́ıslušné množiny, 𝐶1, 𝐶2 jsou dolńı apro-
+ximace množin 𝐶1, 𝐶2 a 𝐵 je hraničńı oblast mezi 𝐶1 a 𝐶2.
+
+Nové centroidy (reprez∑︀entanty shluk̊u) se vypočtou:
+
+∑︀𝑛𝑐𝑘 = 𝑖=1 𝜇𝑚
+𝑖𝑘 · 𝑥𝑖
+
+𝑛 , ∀𝑘 = 1, . . . , 𝐾.
+𝑚
+
+𝑖=1 𝜇𝑖𝑘
+
+Obdobně jako k-means minimalizuje součet kvadrát̊u vzdálenosti prvk̊u
+od reprezentanta shluku, tak i metoda fuzzy-k-means minimalizuje:
+
+∑︁𝐾 ∑︁𝑛
+
+𝑚𝑖𝑛{𝑆𝑆𝐸𝜇 = 𝜇𝑚 2
+𝑖𝑘𝑑𝐸(𝑥𝑖, 𝑐𝑘)}.
+
+𝑘=1 𝑖=1
+
+V rough k-means algoritmu jsou shluky popsány pomoćı dolńı a horńı
+aproximace shluku. Podobně jako v fuzzy k-means i zde se určuje stupeň
+(mı́ra) př́ıslušnosti objektu ke shluku 𝐶𝑘 a to pomoćı př́ıslušnosti k dolńı
+aproximaci shluku (𝜆𝐿𝐴
+
+𝑖,𝑘 ∈ {0, 1}) a k hranici shluku (𝜆𝐵
+𝑖,𝑘 ∈ {0, 1}) (viz.
+
+
+
+2.5. SHLUKOVÁNÍ 99
+
+obrázek 2.22). Rozhodnut́ı, zda objekt patř́ı do dolńı aproximace shluku nebo
+do hranice shluku nebo do shluku nepatř́ı, je založeno na volbě prahové hod-
+noty (threshold 𝜃 ≥ 1).
+
+Předpokládáme, že objekt 𝑥𝑖 je nejbĺıže středu shluku 𝑐ℎ ze všech možných
+střed̊u shluk̊u, tj. 𝑑(𝑥𝑖, 𝑐ℎ) ≤ 𝑑(𝑥𝑖, 𝑐𝑘) a pokud jsou ”dostatečně“ bĺızko i
+daľśı středy shluk̊u, pak daný objekt 𝑥𝑖 bude patřit do hraničńıch oblast́ı
+několika shluk̊u (rough množin). Urč́ıme tedy množinu poměrně bĺızkých
+střed̊u shluk̊u:
+
+𝑇 = {𝑘; 𝑑(𝑥𝑖, 𝑐𝑘)
+𝑑(𝑥𝑖, 𝑐ℎ) ≤ 𝜃 ∧ ℎ ̸= 𝑘}.
+
+Objekt nemůže patřit zároveň do dolńı aproximace shluku a hraničńı
+oblasti stejného shluku. Je-li objekt část́ı dolńı aproximace shluku, nemůže
+patřit do jiného shluku (ani do hraničńı oblasti, ani do dolńı aproximace).
+Neńı-li objekt součást́ı žádné dolńı aproximace, pak muśı patřit do hraničńıch
+oblast́ı alespoň dvou shluk̊u.
+
+Pro př́ıslušnost objektu 𝑥𝑖 ke shluku 𝐶𝑘 mohou tedy nastat tři možnosti:
+• (𝜆𝐿𝐴
+
+𝑖,𝑘 , 𝜆𝐵
+𝑖,𝑘) = (1, 0) - objekt 𝑥𝑖 př́ısluš́ı do dolńı aproximace shluku 𝐶𝑘,
+
+• (𝜆𝐿𝐴
+𝑖,𝑘 , 𝜆𝐵
+
+𝑖,𝑘) = (0, 1) - objekt 𝑥𝑖 př́ısluš́ı hranice shluku 𝐶𝑘,
+• (𝜆𝐿𝐴
+
+𝑖,𝑘 , 𝜆𝐵
+𝑖,𝑘) = (0, 0) - objekt 𝑥𝑖 nepř́ısluš́ı do shluku 𝐶𝑘
+
+Obdobně jako k-means minimalizuje součet kvadrát̊u vzdálenosti prvk̊u
+od reprezentanta shluku, tak i metoda rough set k-means minimalizuje vážený
+součet eukleidovských vzdálenost́ı objekt̊u v dolńı aproximaci nebo v hranici
+shluku ke střed̊um shluk̊u.
+
+∑︁⎛
+𝐾
+
+𝑚𝑖𝑛{𝐽 ⎝ 𝑤𝐿𝐴 ∑︁ ∑︁ ⎞
+= 𝑑2 (𝑥
+
+| 𝑖, 𝑐𝑘) + 𝑤𝐵
+
+𝑑2 (𝑥𝑖, 𝑐𝑘)⎠
+𝐶𝐿𝐴| 𝐸 |𝐶𝐵
+
+𝑘=1 𝑘 𝑥 𝑘 |
+𝐸 },
+
+𝑖∈𝐶𝐿𝐴 𝑥𝑖∈𝐶𝐵
+𝑘 𝑘
+
+kde 𝑤𝐿𝐴 je váha pro dolńı aproximaci shluku, 𝑤𝐵 je váha pro hranici shluku,
+|𝐶𝐿𝐴
+
+𝑘 | je počet objekt̊u v dolńı aproximaci shluku 𝐶𝑘 a |𝐶𝐵
+𝑘 | je počet objekt̊u
+
+v hranici shluku 𝐶𝑘.
+
+2.5.3 Validace výsledk̊u shlukováńı
+Určené (nalezené) shlukován můžeme hodnotit z pohledu kvality nalezených
+shluk̊u. Kvalitu shluk̊u můžeme určovat z interńıho pohledu (internal evalu-
+tation) nebo z exterńıho pohledu (external evalution).
+
+• interńı ohodnoceńı shluk̊u - shlukováńı je shrnuto do jedné hodnoty
+(skóre) vyjadřuj́ıćı kvalitu shluk̊u,
+
+
+
+100 KAPITOLA 2. APLIKACE STRUKTUR
+
+• exterńı ohodnoceńı shluk̊u - výsledek shlukováńı je porovnán s exis-
+tuj́ıćı ”pravdivou”klasifikaćı dat (gold standard - benchmark množina
+- ground truth), př́ıpadně ”manuálně”ohodnocen lidským expertem.
+
+Metody pro určeńı kvality shlukováńı založené na vnitřńıch kritéríıch
+• Davies-Bouldin index - č́ım menš́ı, t́ım lepš́ıhodnot́ı pr̊uměrnou po-
+
+dobnost mezi shluky; nižš́ı hodnota znamená lepš́ı odděleńı.
+
+∑︁𝑘
+𝜎𝑖 + 𝜎𝑗
+
+𝐷𝐵 = 1
+𝑚𝑎𝑥𝑖 ̸=𝑗(
+
+𝑘 𝑑(𝑐 , 𝑐
+𝑖=1 𝑗)
+
+),
+𝑖
+
+kde 𝑘 je počet shluk̊u, 𝑐𝑖 je centroid shluku 𝐶𝑖, 𝜎𝑖 je pr̊uměrná vzdálenost
+všech prvk̊u ve shluku 𝐶𝑖 od centroidu 𝑐𝑖 a 𝑑(𝑐𝑖, 𝑐𝑗) je vzdálenost cent-
+roid̊u.
+
+• Dunn index - identifikuje husté a dobře oddělené shluky. Vyšš́ı hod-
+noty Dunn indexu jsou lepš́ı. Je definován jako poměr mezi minimálńı
+mezishlukovou vzdálenost́ı a maximálńım pr̊uměrem shluk̊u.
+
+𝐷 = 𝑚𝑖𝑛1≤𝑖<𝑗<𝑘𝑑(𝐶𝑖, 𝐶𝑗)
+𝑚𝑎𝑥1≤𝑚<𝑘𝑑𝑖𝑎𝑚(𝐶𝑚) ,
+
+kde 𝑑(𝐶𝑖, 𝐶𝑗) je vzdálenost (specifikovaná) mezi shluky a 𝑑𝑖𝑎𝑚(𝐶𝑚) je
+pr̊uměr shluku (s vybranou metrikou). Za diametr (pr̊uměr) shluku se
+může brát maximálńı vzdálenost objekt̊u ve shluku, nebo pr̊uměrná
+vzdálenost ve shluku nebo pr̊uměrná vzdálenost objekt̊u od centroidu
+shluku.
+
+• Koeficient siluety (∑︀Silhouette index):
+𝑛
+
+𝑆𝐼 = 𝑖=1 𝑠𝑖 𝑏𝑖 − 𝑎𝑖
+, 𝑘𝑑𝑒 𝑠𝑖 = ,
+
+𝑛 𝑚𝑎𝑥{𝑎𝑖, 𝑏𝑖}
+
+𝑎𝑖 je p∑︀r̊uměrná vzdálenost prvku 𝑥𝑖 od ostatńıch prvk̊u ve shluku (tj.
+𝑎𝑖 = 𝑥𝑖,𝑦∈𝐶 𝑑(𝑥𝑖,𝑦)
+
+𝑘
+| )
+𝐶𝑘|−1 a 𝑏𝑖 je nejnižš́ı pr̊uměrná vzd∑︀álenost prvku 𝑥𝑖 od
+
+všech bod̊u v jiném shluku (tj. 𝑦∈𝐶 𝑑(𝑥 )
+𝑝 𝑖,𝑦
+
+𝑏𝑖 = 𝑚𝑖𝑛∀𝐶𝑝,𝑥𝑖∈/𝐶𝑝 | ). S
+𝐶𝑝| ilhou-
+
+ette index měř́ı, jak dobře je objekt přǐrazen do svého shluku ve srovnáńı
+s jinými shluky. Vyšš́ı hodnota znamená lepš́ı přǐrazeńı do správného
+shluku.
+
+
+
+2.5. SHLUKOVÁNÍ 101
+
+• Within-cluster sum of squares (WCSS) - součet čtverc̊u vzdálenost́ı
+objekt̊u od středu shluku; nižš́ı hodnota znač́ı kompaktněǰśı shluky.
+
+∑︁𝐾 ∑︁
+𝑊𝐶𝑆𝑆 = ‖𝑥− 𝑐𝑘‖2,
+
+𝑘=1 𝑥∈𝐶𝑘
+
+kde 𝑐𝑘 je centroid shluku 𝐶𝑘.
+• Calinski–Harabasz index - poměr mezi rozptylem mezi shluky a
+
+uvnitř shluk̊u; vyšš́ı hodnota znamená lepš́ı shlukováńı.
+
+𝐶𝐻 = Tr(𝐵)
+Tr(𝑊 ) ·
+
+𝑛−𝐾
+𝐾 − 1 ,
+
+kde 𝐵 je mezi-shluková rozptylová matice, 𝑊 je vnitro-shluková roz-
+ptylová matice, 𝑛 je počet objekt̊u, 𝐾 počet shluk̊u.
+
+Exterńı evaluace shlukováńı
+Pokud známe výsledné shluky 𝒞 = {𝐶𝑖; 1 ≤ 𝑖 ≤ 𝑘} a máme exterńı informaci
+(reálný rozklad objekt̊u) 𝒫 = {𝑃𝑗; 1 ≤ 𝑗 ≤ 𝑞}, pak můžeme použ́ıt pro
+určeńı kvality shlukováńı metody exterńı evaluace. V daľśım textu budeme
+označovat:
+
+• 𝑛 – počet objekt̊u,
+• 𝑛𝑖 = |𝐶𝑖|,
+• 𝑛𝑗 = |𝑃𝑗|,
+• 𝑛𝑖𝑗 = |𝐶𝑖 ∩ 𝑃𝑗|,
+• 𝑝𝑖 = 𝑛𝑖 ,
+
+𝑛
+
+• 𝑝𝑗 = 𝑛𝑗 ,
+𝑛
+
+• 𝑛
+𝑝 𝑖𝑗
+
+𝑖𝑗= .
+𝑛
+
+Matice záměn (Confusion matrix) je kontingenčńı (čtyřpolńı) tabulka pro
+nalezené shlukováńı 𝒞 a reálný (známý) rozklad 𝒫 :
+
+Z této tabulky lze dopoč́ıtat všeliké rozmanité koeficienty. Např́ıklad:
+• Accuracy (přesnost) [𝐴 = 𝑎+𝑐
+
+𝑎+𝑏+ 𝑇𝑃 + 𝐹𝑃 + 𝐹𝑁 + 𝑇𝑁 ],
+𝑐+𝑑𝑇 𝑃 +𝐹 𝑁
+
+• Specificity (specifičnost) [𝑆 = 𝑑 𝐹𝑃 + 𝑇𝑁 ],
+𝑏+𝑑𝑇 𝑁
+
+
+
+102 KAPITOLA 2. APLIKACE STRUKTUR
+
+𝒫 ¬𝒫
+𝒞 𝑎𝑇𝑃 – true positive 𝑏𝐹𝑃 – false positive
+¬𝒞 𝑐𝐹𝑁 – false negative 𝑇𝑁𝑑 – true negative
+
+a+b+c+dTP+FP+FN+TN=n
+
+Tabulka 2.12: Kontingenčńı (čtyřpolńı) tabulka
+
+• Precision (preciznost) [𝑃 = 𝑎
+𝑎+ 𝑇𝑃 + 𝐹𝑃 ],
+
+𝑏𝑇 𝑃
+
+• Recall (vybaveńı) [𝑅 = 𝑎
+𝑎+ 𝑇𝑃 + 𝐹𝑁 ].
+
+𝑐𝑇 𝑃
+
+DaľsStandardńı metody pro exterńı valuaci shlukováńı:
+
+• Entropie (entropy) – nabývá hodnot z intervalu [0, log2 𝑘]. Celková
+entropie je dána: ∑︁𝑞
+
+𝐸 = 𝑛𝑗
+𝐸𝑗,
+
+𝑛
+𝑗=1
+
+kde entropie 𝑗-tého shluku je
+
+∑︁𝑘 (︂ )︂
+𝑖𝑗
+
+𝐸𝑗 = − 𝑛 log 𝑛𝑖𝑗
+
+𝑛 2 .
+𝑖= 𝑗 𝑛
+
+1 𝑗
+
+• Čistota (purity) – nabývá hodnot z intervalu [0, 1]. Čistota 𝑗-tého
+shluku:
+
+𝑃𝑢𝐶𝑗 = m𝑘ax 𝑝 𝑗,
+𝑖=1 𝑖
+
+a celková čistota shlukováńı je:
+
+∑︁𝑘
+
+𝑃𝑢𝐶 = 1
+𝑛𝑗 · 𝑃𝑢𝐶𝑗.
+
+𝑛
+𝑗=1
+
+• Rand index – porovnává shlukováńı s referenčńı klasifikaćı; hodnot́ı
+shodu dvojic objekt̊u (včetně penalizace false positive i false negative).
+Celkový Rand index:
+
+𝑅 = 𝑇𝑃 + 𝑇𝑁
+𝑇𝑃 + 𝑇𝑁 + .
+
+𝐹𝑃 + 𝐹𝑁
+
+Kde:
+
+
+
+2.5. SHLUKOVÁNÍ 103
+
+– 𝑇𝑃 (true positive): dvojice objekt̊u, které jsou ve stejném shluku
+i ve stejné tř́ıdě,
+
+– 𝐹𝑃 (false positive): dvojice ve stejném shluku, ale v r̊uzných
+tř́ıdách,
+
+– 𝐹𝑁 (false negative): dvojice v r̊uzných shlućıch, ale ve stejné tř́ıdě,
+– 𝑇𝑁 (true negative): dvojice v r̊uzných shlućıch i r̊uzných tř́ıdách.
+
+• F-mı́ra (F-measure) – harmonický pr̊uměr přesnosti 𝑃 a vybaveńı
+𝑅:
+
+𝐹1 = 2𝑃𝑅
+𝑃 + = 2𝑎
+
+2 ,
+𝑅 𝑎 + 𝑏 + 𝑐
+(𝛽2 +
+
+𝐹𝛽 = 1)𝑃𝑅
+,
+
+𝛽2𝑃 + 𝑅
+
+kde
+𝑎 𝑎
+
+𝑃 =
+𝑎 + , 𝑅 =
+
+𝑏 𝑎 + ,
+𝑐
+
+a 𝛽 ∈ R≥0. Obvykle 𝛽 = 1; preferuje-li se recall, voĺı se 𝛽 = 2,
+preferuje-li se precision, 𝛽 = 0.5.
+
+• Jaccard̊uv index – použ́ıvá se pro kvantifikaci podobnosti dvou množin:
+
+𝐽(𝐴, 𝐵) = |𝐴 ∩𝐵| = 𝑎
+|𝐴 ∪𝐵 𝑎 + 𝑏 + .
+
+| 𝑐
+
+
+
+104 KAPITOLA 2. APLIKACE STRUKTUR
+
+
+
+Literatura
+
+[1] Jiawei Han, Jian Pei, and Yiwen Yin. Mining frequent patterns without
+candidate generation. ACM sigmod record, 29(2):1–12, 2000.
+
+[2] Shan Usmani, S Kamran, Muhammad Zeeshan, N Khan Islam, and
+ZZ Khan. A comparative analysis of apriori and fp-growth algorithms
+for frequent pattern mining using apache spark. In Proceedings of inter-
+national scientific research conference, 2021.
+
+[3] Rudolf Wille. Restructuring lattice theory: An approach based on hie-
+rarchies of concepts. In Ivan Rival, editor, Ordered Sets, pages 445–470,
+Dordrecht-Boston, 1982. Reidel.
+
+105

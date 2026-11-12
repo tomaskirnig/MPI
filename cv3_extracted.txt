@@ -1,0 +1,110 @@
+=== PAGE 1 ===
+Matematika pro zpracování znalostí (2025/2026) – cvičení 3
+1
+Cvičení 3
+Pojmy potřebné pro zvládnutí cvičení: charakteristická funkce, funkce příslušnosti (diskrétní
+i spojitá), α-řez, fuzzy operace (konjunkce, disjunkce, negace), princip extenze, informační
+systém, relace nerozlišitelnosti, dolní a horní aproximace, hraniční oblast, přesnost a hrubost
+množiny, pozitivní oblast, míra závislosti, redukt a jádro, matice a funkce rozlišitelnosti, al-
+goritmus QuickReduct.
+Příklad 1:
+Uvažujme univerzum U = {x1, x2, x3, x4, x5} a dvě diskrétní fuzzy množiny A a
+B definované na U:
+A = {(x1, 0.2), (x2, 0.5), (x3, 0.8), (x4, 1.0), (x5, 0.0)}
+B = {(x1, 0.7), (x2, 0.4), (x3, 0.8), (x4, 0.3), (x5, 0.6)}
+Rozhodněte a spočítejte:
+a) Určete nosič supp(A), výšku h(A) a rozhodněte, zda je A normální fuzzy množinou.
+b) Najděte α-řez A0.5 a B0.7.
+c) Určete průnik A ∩B a sjednocení A ∪B v Zadehově (standardní min/max) logice a v
+algebraické (součinové) logice.
+d) Mějme zobrazení f : U →V, kde V = {y1, y2} a f(x1) = y1, f(x2) = y1, f(x3) = y2, f(x4) =
+y2, f(x5) = y1. Pomocí principu extenze určete obraz fuzzy množiny f(A).
+Příklad 2: Uvažujme spojitou fuzzy množinu A = ”Vysoká teplota“ definovanou na reálném
+univerzu U = [0, 100] (◦C) pomocí lichoběžníkové funkce příslušnosti µA(x):
+µA(x) =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0
+pro x < 30,
+x−30
+10
+pro 30 ≤x < 40,
+1
+pro 40 ≤x ≤70,
+90−x
+20
+pro 70 < x ≤90,
+0
+pro x > 90.
+a) Určete nosič supp(A), výšku h(A) a rozhodněte, zda je fuzzy množina A normální.
+b) Analyticky vyjádřete a určete α-řez Aα pro obecné α ∈(0, 1] jako interval reálných čísel.
+Vypočítejte konkrétní α-řez A0.6.
+c) Určete funkci příslušnosti doplňku fuzzy množiny ¯A a spočítejte hodnotu příslušnosti pro
+teplotu x = 35 ◦C do množiny ¯A.
+Příklad 3: Uvažujme rozhodovací systém I = (U, C∪{d}) s objekty U = {x1, x2, x3, x4, x5, x6},
+podmínkovými atributy C = {a, b, c} a rozhodovacím atributem d:
+
+=== PAGE 2 ===
+2
+Matematika pro zpracování znalostí (2025/2026) – cvičení 3
+Objekt
+Atribut a
+Atribut b
+Atribut c
+Rozhodnutí d
+x1
+Vysoká
+Nízká
+Malá
+ANO
+x2
+Vysoká
+Střední
+Velká
+NE
+x3
+Nízká
+Střední
+Velká
+NE
+x4
+Nízká
+Nízká
+Malá
+ANO
+x5
+Střední
+Střední
+Malá
+ANO
+x6
+Střední
+Nízká
+Velká
+NE
+Uvažujme podmnožinu atributů B1 = {a} a cílovou množinu X = {x ∈U | d(x) = ANO} =
+{x1, x4, x5}. Vypočítejte:
+a) Ekvivalenční třídy rozkladu U/RB1.
+b) Dolní aproximaci B1∗X, horní aproximaci B1∗X a hraniční oblast BNB1(X).
+c) Přesnost aproximace αB1(X) a hrubost množiny ρB1(X).
+Příklad 4:
+Uvažujme stejný rozhodovací systém I = (U, C ∪{d}) z příkladu 3:
+a) Určete třídy rozhodnutí U/d a spočítejte celkovou míru závislosti γC(d) pro kompletní
+sadu atributů C = {a, b, c}.
+b) Sestavte matici rozlišitelnosti M = (mij) a určete funkci rozlišitelnosti fd(a, b, c).
+c) Pomocí úpravy funkce rozlišitelnosti do DNF najděte všechny redukty (RED) a jádro
+(CORE).
+d) Aplikujte algoritmus QuickReduct pro nalezení reduktu.

@@ -1,0 +1,25 @@
+Number of concepts with support>=0.50 is: 3
+({0,1},{0,1})
+({1,2},{2})
+({0,1,2},{})
+Number of rules with confidence=1.00 from concepts is: 2
+{0}=>{1}
+{1}=>{0}
+Number of concepts with support>=1.00 is: 1
+({0,1,2},{})
+Number of rules with confidence=1.00 from concepts is: 0
+Number of concepts with support>=1.00 is: 1
+({0,1},{0,1,2})
+Number of rules with confidence=1.00 from concepts is: 12
+{0}=>{1}
+{0}=>{2}
+{0}=>{1,2}
+{1}=>{0}
+{1}=>{2}
+{1}=>{0,2}
+{2}=>{0}
+{2}=>{1}
+{2}=>{0,1}
+{0,1}=>{2}
+{0,2}=>{1}
+{1,2}=>{0}

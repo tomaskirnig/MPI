@@ -1,0 +1,526 @@
+=== PAGE 1 ===
+2
+Formální konceptuální analýza, uzávěry a asociační pravidla
+Formální konceptuální analýza (FCA) je matematická metoda analýzy dat, která slouží k od-
+halování skrytých struktur, vazeb a přirozených shluků (konceptů) v tabulkových datech. Na
+základě datového rozhraní propojujícího objekty a jejich atributy umožňuje FCA vytvářet pře-
+hledné hierarchické struktury – tzv. konceptuální svazy – a generovat asociační pravidla.
+Tato metoda nachází uplatnění v oblastech jako dobývání znalostí z dat (data mining), séman-
+tický web, klasifikace dokumentů či strojové učení. V softwarovém inženýrství se FCA využívá
+především při rearchitektuře a refaktorování kódu, analýze závislostí, rekonstrukci softwarové
+architektury, identifikaci návrhových vzorů a detekci duplicitního kódu (code clones).
+2.1
+Teoretické definice FCA
+Definice 2.1 (Formální kontext). Formální kontext je trojice K = (G, M, I), kde G je neprázdná
+množina objektů, M je neprázdná množina atributů a I ⊆G × M je binární relace incidence.
+Zápis (g, m) ∈I značí, že objekt g má atribut m.
+Definice 2.2 (Izotonní a antitonní zobrazení). Nechť (P, ≤P ) a (Q, ≤Q) jsou částečně uspořá-
+dané množiny. Zobrazení f : P →Q se nazývá:
+• izotonní (zachovávající uspořádání, též monotonně rostoucí), pokud pro každou dvojici x, y ∈
+P platí:
+x ≤P y =⇒f(x) ≤Q f(y)
+• antitonní (obracející uspořádání, též monotonně klesající), pokud pro každou dvojici x, y ∈P
+platí:
+x ≤P y =⇒f(y) ≤Q f(x)
+Definice 2.3 (Galoisova konexe). Nechť (P, ≤P ) a (Q, ≤Q) jsou částečně uspořádané množiny.
+Antitonní Galoisova konexe mezi P a Q je dvojice zobrazení f : P →Q a g : Q →P
+splňující podmínku:
+y ≤Q f(x) ⇐⇒x ≤P g(y)
+pro všechna x ∈P a y ∈Q. Obě zobrazení jsou antitonní (obracejí uspořádání), tedy x1 ≤P
+x2 =⇒f(x2) ≤Q f(x1) a y1 ≤Q y2 =⇒g(y2) ≤P g(y1).
+Definice 2.4 (Derivační operátory). Nechť K = (G, M, I) je formální kontext. Pro podmnožiny
+objektů A ⊆G a podmnožiny atributů B ⊆M definujeme derivační operátory (často nazývané
+jako šipková zobrazení ) (·)↑: 2G →2M a (·)↓: 2M →2G předpisy:
+A↑= {m ∈M | ∀g ∈A : (g, m) ∈I}
+B↓= {g ∈G | ∀m ∈B : (g, m) ∈I}
+Tato dvojice zobrazení tvoří antitonní Galoisovu konexi mezi potenčními svazy (2G, ⊆) a (2M, ⊆),
+pro niž platí základní ekvivalence:
+A ⊆B↓⇐⇒A × B ⊆I ⇐⇒B ⊆A↑
+Operátory splňují vlastnost antitonie: A1 ⊆A2 =⇒A↑
+2 ⊆A↑
+1 a B1 ⊆B2 =⇒B↓
+2 ⊆B↓
+1.
+Definice 2.5 (Uzávěrový operátor). Zobrazení cl : 2X →2X je uzávěrový operátor na množině
+X, pokud pro všechna Y, Z ⊆X splňuje:
+1. Extenzivitu: Y ⊆cl(Y )
+2. Monotonii (izotonii): Y ⊆Z =⇒cl(Y ) ⊆cl(Z)
+7
+
+
+=== PAGE 2 ===
+3. Idempotentnost: cl(cl(Y )) = cl(Y )
+Složením A↑↓resp. B↓↑získáváme uzávěrové operátory na G resp. M. Množina Y je uzavřená,
+pokud cl(Y ) = Y .
+Definice 2.6 (Uzávěrový systém a Dualita). Systém podmnožin C ⊆2X se nazývá uzávěrový
+systém na X, pokud:
+1. X ∈C
+2. Pro libovolný podsystém S ⊆C platí ⋂S ∈C (uzavřenost na libovolný průnik).
+Dualita: Pro každý uzávěrový operátor cl tvoří množina jeho pevných bodů (tedy uzavřených
+množin) Ccl = {Y ⊆X | cl(Y ) = Y } uzávěrový systém. Naopak, každý uzávěrový systém C
+jednoznačně definuje uzávěrový operátor předpisem clC(Y ) = ⋂{Z ∈C | Y ⊆Z}.
+Definice 2.7 (Formální koncept a Konceptuální svaz). Formální koncept kontextu K je dvojice
+(A, B), kde A ⊆G, B ⊆M, A↑= B a B↓= A. A se nazývá extent, B intent. Množina všech
+konceptů L(K) tvoří spolu s uspořádáním (A1, B1) ≤(A2, B2) ⇐⇒A1 ⊆A2 ( ⇐⇒B2 ⊆B1)
+úplný svaz L = (L(K), ≤).
+Věta 2.1 (Základní věta konceptuálních svazů). Nechť K = (G, M, I) je formální kontext.
+Množina všech jeho formálních konceptů B(G, M, I) spolu s uspořádáním ≤tvoří úplný svaz,
+nazývaný konceptuální svaz kontextu K, ve kterém jsou infima a suprema libovolného systému
+konceptů {(Aj, Bj) | j ∈J} ⊆B(G, M, I) definována jako:
+
+j∈J
+(Aj, Bj) =
+
+
+
+
+j∈J
+Aj,
+
+
+j∈J
+Bj
+
+
+↓↑
+
+
+
+j∈J
+(Aj, Bj) =
+
+
+
+
+
+j∈J
+Aj
+
+
+↑↓
+,
+
+j∈J
+Bj
+
+
+
+2.2
+Algoritmy pro konstrukci konceptuálních svazů
+Proces výpočtu konceptuálního svazu pro daný formální kontext K = (G, M, I) zahrnuje dva
+hlavní úkoly:
+1. Generování všech formálních konceptů (množiny B(K)).
+2. Konstrukce uspořádání ≤(nalezení hran Hasseova diagramu / pokrytí svazu).
+Vzhledem k tomu, že počet konceptů může být v nejhorším případě až 2min(|G|,|M|), hraje efek-
+tivita algoritmů klíčovou roli. Následující přehled shrnuje nejvýznamnější přístupy:
+• Algoritmus jedinečných průniků (All-Intersections):
+- Princip: Slouží primárně jako didaktický a demonstrativní algoritmus vycházející ze Zá-
+kladní věty o konceptuálních svazech. Množina všech konceptuálních extenzí tvoří uzávěrový
+systém uzavřený na množinové průniky. Algoritmus začíná se základními extenzemi jednot-
+livých atributů ({m}↓pro m ∈M) a rekurzivně tvoří všechny jejich vzájemné průniky,
+dokud nevznikají žádné nové množiny. Ke každé unikátní extenzi A se následně dopočítá
+její intent jako A↑.
+- Uspořádání: Nechává uspořádání nevytvořené, musí se dopočítat dodatečně testováním
+množinové inkluze A1 ⊆A2.
+- Nevýhoda a paměťový problém: Generuje obrovské množství duplicitních průniků.
+Pro každý nový průnik musí prohledat dosavadní paměť nalezených konceptů, což vede k
+extrémní režii.
+8
+
+
+=== PAGE 3 ===
+- Časová složitost: O(|M|·|G|·|B(K)|2) v nejhorším případě (kvůli kvadratickému testování
+duplicit vůči již nalezeným konceptům).
+- Paměťová složitost: O(|G| · |B(K)|) – musí držet v paměti všechny dosud vygenerované
+koncepty.
+• Next-Closure (Ganterův algoritmus):
+- Princip: Jedná se o kanonický algoritmus využívající lektické prohledávání. Generuje kon-
+ceptové intenty postupně v lektickém uspořádání uzavřených množin pomocí uzávěrového
+operátoru (·)↑↓. Pro daný intent B ⊆M a atribut i ∈M hledá nejbližší lekticky větší
+uzavřenou množinu A = ((B ∩{1, ..., i −1}) ∪{i})↑↓, přičemž ověřuje kanonicitu (A nesmí
+obsahovat atributy j < i, které nebyly v B). Zaručuje, že každý koncept je vygenerován
+právě jednou, aniž by bylo nutné uchovávat nalezené koncepty v paměti.
+- Uspořádání: Algoritmus primárně generuje pouze seznam konceptů. Uspořádání svazu se
+musí dopočítat dodatečně.
+- Časová složitost: O(|M|·|G|·|B(K)|), paměťová složitost je díky absenci potřeby ukládat
+seznam konceptů pouhé O(|G| + |M|).
+• Close-by-One (CbO) / In-Close:
+- Princip: Prohledává stavový prostor do hloubky (DFS). Postupně přidává atributy k aktu-
+álnímu intentu a aplikuje uzávěrový operátor. Pro zabránění duplicitám využívá kanonický
+test (zda nově přidané atributy nepřepsaly již dříve zpracované atributy s nižším indexem).
+Moderní varianty (jako algoritmus In-Close) využívají silné prořezávání (pruning) nepod-
+statných větví a inkrementální výpočty průniků.
+- Uspořádání: V průběhu generování lze přirozeně (ze stromu volání rekurze) získat část
+relace uspořádání konceptů.
+- Časová složitost: O(|M| · |G| · |B(K)|), v praxi (zejména verze In-Close) patří k nejrych-
+lejším algoritmům vůbec.
+• Bordatův algoritmus:
+- Princip: Využívá přístup založený na přímých sousedech (bottom-up / top-down). Vyjde z
+nejnižšího konceptu (∅↓↑, ∅↓) a pro každý koncept generuje jeho přímé nadřazené koncepty
+(upper covers) pomocí hledání maximálních podmnožin objektů.
+• Uspořádání: Tento algoritmus konstruuje současně s koncepty přímo i kompletní hranovou
+strukturu svazu, tedy Hasseův diagram.
+- Časová složitost: O(|G| · |M|2 · |B(K)|).
+2.3
+Asociační pravidla a jejich vazba na FCA
+Definice 2.8 (Asociační pravidlo a jeho základní míry). Nechť K = (G, M, I) je formální
+kontext. Podmnožina X ⊆M se nazývá množina položek (itemset). Asociační pravidlo je
+implikace tvaru X
+=⇒
+Y , kde X, Y ⊆M a X ∩Y = ∅. Pro asociační pravidlo definujeme
+následující míry:
+• Podpora (Support): Vyjadřuje relativní frekvenci výskytu množiny X ∪Y ve formálním
+kontextu:
+supp(X =⇒Y ) = supp(X ∪Y ) = |(X ∪Y )↓|
+|G|
+• Spolehlivost (Confidence): Vyjadřuje podmíněnou pravděpodobnost výskytu Y za před-
+pokladu výskytu X:
+conf(X =⇒Y ) = supp(X ∪Y )
+supp(X)
+= |(X ∪Y )↓|
+|X↓|
+• Zdvih (Lift): Měří míru závislosti mezi X a Y . Zjišťuje, kolikrát je výskyt X a Y častější
+9
+
+
+=== PAGE 4 ===
+než při jejich statistické nezávislosti:
+lift(X =⇒Y ) =
+supp(X ∪Y )
+supp(X) · supp(Y ) = conf(X =⇒Y )
+supp(Y )
+Hodnota lift > 1 značí pozitivní korelaci, lift = 1 nezávislost a lift < 1 negativní korelaci.
+Algoritmy pro detekci frekventovaných množin položek
+K nalezení všech množin po-
+ložek X ⊆M, jejichž podpora dosahuje alespoň požadované minimální hranice (supp(X) ≥µ),
+se nejčastěji používají tři základní algoritmické přístupy:
+• Apriori (Prohledávání do šířky – BFS): Stavový prostor prohledává po úrovních (nejprve
+hledá jednopoložkové množiny, z nich vytváří dvoupoložkové kandidáty atd.). K zásadnímu
+zrychlení využívá vlastnost apriori (monotonii podpory): pokud jakákoliv množina nedosa-
+huje minimální podpory, nemůže ji dosáhnout ani žádná její nadmnožina. Díky tomu dokáže
+předem odseknout rozsáhlé větve neperspektivních kandidátů.
+- Časová složitost: O(2|M| · |G|) v nejhorším případě, kde |M| je počet atributů a |G| je
+počet objektů. V praxi je limitována počtem generovaných kandidátů a vyžaduje k průchodů
+celým kontextem (kde k je délka nejdelší frekventované množiny).
+- Paměťová složitost: O(Ck), kde Ck představuje maximální počet generovaných kandidátů
+v dané úrovni k.
+• FP-Growth (Metoda rozděl a panuj): Na rozdíl od Apriori negeneruje žádné kandidátské
+množiny, což výrazně šetří paměť i čas. Celý kontext nejprve zkomprimuje do kompaktní stro-
+mové struktury (FP-Tree), která uchovává sdílené prefixy objektů. Hledání frekventovaných
+množin pak probíhá rekurzivním rozkladem problému na menší podúlohy nad tzv. podmíně-
+nými stromy. Vyžaduje pouze 2 průchody kontextem.
+- Časová složitost: Pro tvoření FP-Stromu O(|G| · |M|), celková časová složitost závisí na
+výšce a hustotě stromu, typicky O(2|Mfreq|) v nejhorším případě, v praxi je však výrazně
+rychlejší než Apriori.
+- Paměťová složitost: O(|FP-Tree|), která je v nejhorším případě úměrná velikosti kontextu
+O(|G| · |M|), ale při vysoké překrývatelnosti atributů klesá na O(|M|).
+• Eclat (Vertikální prohledávání do hloubky – DFS): Pracuje s vertikálním formátem
+dat: místo seznamu objektů a v nich obsažených atributů si pro každý atribut pamatuje
+seznam všech objektů, ve kterých se vyskytuje (tj. extenze B↓). Podpora spojení dvou množin
+atributů se pak počítá velmi rychle jako pouhý množinový průnik těchto seznamů objektů.
+- Časová složitost: O(2|M| · |G|) v nejhorším případě. Doba výpočtu je dána počtem pro-
+váděných množinových průniků a jejich délkou (průnik dvou seznamů zabere O(|G|)).
+- Paměťová složitost: O(|M| · |G|) pro uložení vertikálního formátu kontextu plus paměť
+pro rekurzivní zásobník DFS v závislosti na hloubce stromu.
+Definice 2.9 (Ramon tree / Prefixový strom kandidátů). Nechť <M je pevné lineární uspořá-
+dání atributů M. Ramon tree (též lexikografický strom) je kořenový strom T , který splňuje:
+1. Kořen stromu reprezentuje prázdnou množinu ∅.
+2. Uzel N na úrovni k reprezentuje množinu BN = {m1, m2, ..., mk}, kde m1 <M m2 <M
+· · · <M mk.
+3. Potomek uzlu N spojený hranou m reprezentuje množinu BN ∪{m}, přičemž m >M mk.
+Kde a proč se Ramon tree používá
+Používá se v prohledávacích algoritmech typu Apriori,
+Eclat či algoritmech pro generování podsvazů v FCA.
+• Unikátnost vygenerování: Každá množina položek má díky lexikografickému uspořádání
+právě jednu jednoznačnou cestu od kořene, což zabraňuje duplicitnímu zpracování téže mno-
+žiny.
+10
+
+
+=== PAGE 5 ===
+• Efektivní prořezávání (Pruning): Pokud uzel N nesplňuje prahovou hodnotu podpory,
+celá jeho podstromová větev může být okamžitě odříznuta.
+• Sdílení paměti: Prefixy množin položek jsou sdíleny, což výrazně šetří RAM.
+Vazba mezi FCA a asociačními pravidly
+Hledání všech platných asociačních pravidel s
+minimální podporou a spolehlivostí vede k výpočetní explozi (2|M| možných množin položek).
+FCA poskytuje teoretický rámec pro jejich redukci bez ztráty informace:
+1. Uzavřené frekventované množiny (Closed Frequent Itemsets): Množina položek
+X ⊆M je uzavřená, pokud se rovná svému uzávěru (X = X↓↑). FCA dokazuje, že stačí
+generovat podporu pouze pro intenty formálních konceptů, neboť pro libovolné X platí
+supp(X) = supp(X↓↑). Tím se zásadně redukuje počet vyhodnocovaných množin i pamě-
+ťová složitost.
+2. Báze asociačních pravidel (Redukce redundantních pravidel): Místo generování
+všech možných kombinací umožňuje konceptuální svaz vytvořit minimální neredundantní
+báze:
+• Guigues-Duquenneova báze (Stem Base): Tvoří minimální (kanonickou) bázi im-
+plikací se 100% spolehlivostí (conf = 1). Je tvořena pravidly ve tvaru:
+P =⇒P ↓↑\ P
+kde P je tzv. pseudo-intent. Množina P ⊆M je pseudo-intentem, pokud není uzavřená
+(P̸ = P ↓↑) a zároveň obsahuje uzávěry všech svých podmnožinových pseudo-intentů
+(Q↓↑⊆P pro všechna Q ⊂P). Slovně jde o minimální množiny, které nesou novou, z
+menších pravidel neodvoditelnou informaci o uzávěru. Všechny ostatní platné implikace
+lze z této báze odvodit.
+• Luxenburgerova báze: Tvoří bázi pro asociační pravidla s neúplnou spolehlivostí
+(conf < 1, resp. conf ≥min_conf). Tato pravidla se konstruují přímo z hran kon-
+ceptuálního svazu mezi podřazenými a nadřazenými koncepty.
+2.4
+Demonstrační příklady pro FCA a asociační pravidla
+Příklad 2.1. Uvažujme formální kontext K = (G, M, I) s objekty G = {g1, g2, g3, g4, g5} a
+atributy M = {káva, mléko, cukr, pečivo}.
+Tabulka 2: Formální kontext reprezentovaný tabulkou
+I
+káva
+mléko
+cukr
+pečivo
+g1
+×
+×
+g2
+×
+×
+g3
+×
+×
+×
+g4
+×
+×
+g5
+×
+×
+×
+1. Uzávěr na množině atributů B = {pečivo}:
+• Derivace: B↓= {pečivo}↓= {g4, g5}.
+• Uzávěr: cl(B) = B↓↑= {g4, g5}↑= {mléko, pečivo}.
+• Jelikož B↓↑̸ = B, množina {pečivo} není uzavřená.
+2. Uzávěr na množině objektů A = {g2, g3}:
+• Derivace: A↑= {g2, g3}↑= {káva,cukr}.
+• Uzávěr: cl(A) = A↑↓= {káva,cukr}↓= {g2, g3}.
+11
+
+
+=== PAGE 6 ===
+• Jelikož A↑↓= A, množina {g2, g3} je uzavřená.
+Příklad 2.2 (Generování všech formálních konceptů). Pro výše uvedený kontext K = (G, M, I)
+existuje právě 9 formálních konceptů (Ai, Bi), kde Ai = B↓
+i a Bi = A↑
+i (viz. tabulka 3, kde
+jsou postupně generovány všechny koncepty pomocí algoritmu jedinečných průniků - počínaje
+koncepty s co největšími extenty). Tyto největší extenty jsou derivace co nejmenších neprázdných
+podmnožin množiny atributů - derivace jednoprvkových podmnožin. Výsledný uspořádaný svaz,
+který musí obsahovat i svazovou jednotku - tedy koncept, kde extent odpovídá celé množině
+objektů - je pak znázorněn na obrázku 1. Zdůraznění směru uspořádání poukazuje na antitonii
+šipkových zobrazení (koncepty jsou uspořádány v souladu s extenty a opačně vůči intentům).
+exti
+inti
+ext1 = k↓= {g1, g2, g3, g5}
+int1 = {g1, g2, g3, g5}↑= {k}
+ext2 = m↓= {g1, g3, g4, g5}
+int2 = {m}
+ext3 = c↓= {g2, g3}
+int3 = {k, c}
+ext4 = p↓= {g4, g5}
+int4 = {m, p}
+ext5 = ext1 ∩ext2 = {g1, g3, g5}
+int5 = {k, m}
+ext6 = ext1 ∩ext4 = {g5}
+int6 = {k, m, p}
+ext7 = ext2 ∩ext3 = {g3}
+int7 = {k, m, c}
+ext8 = ext3 ∩ext4 = ∅
+int8 = {k, m, c, p}
+ext9 = {g1, g2, g3, g4, g5}
+int9 = ∅
+Tabulka 3: Tabulka reprezentující postup algoritmu jedinečných průniků pro vytvoření všech
+konceptů z formálního kontextu.
+g1, g2, g3, g4, g5 | ∅
+g1, g2, g3, g5 | k
+g1, g3, g4, g5 | m
+g2, g3 | k, c
+g1, g3, g5 | k, m
+g4, g5 | m, p
+g5 | k, m, p
+g3 | k, m, c
+∅ | k, m, c, p
+směr uspořádání konceptů
+směr uspořádání extentů
+směr uspořádání intentů
+Obrázek 1: Hasseův diagram reprezentující výsledný konceptuální svaz pro nalezenou sadu kon-
+ceptů.
+Příklad 2.3. Ramon tree (předponový strom) pro ukládání kandidátů v algoritmu Apriori pro
+práh µ = 0 je na obrázku 2. Zeleně zvýrazněné podmnožiny položek jsou intenty konceptů z dříve
+nalezeného konceptuálního svazu. Podtržené podmnožiny položek jsou kandidátské podmnožiny
+(algoritmus Apriori), pro výpočet jejichž podpory se prochází databáze. Barevně jsou uvedeny
+podpory podmnožin, kde ve vyšší úrovni jsou neuzavřené množiny a v nižší úrovni je pak jejich
+uzávěr se stejnou podporou.
+Příklad 2.4. Výpočet podpory, spolehlivosti a liftu je uveden v tabulce 4 pro všechna pravidla
+s nenulovou podporou nad podmnožinou položek, která je uzavřená (tj. je to intent konceptu).
+12
+
+
+=== PAGE 7 ===
+∅
+k ( 4
+5)
+m ( 4
+5)
+c( 2
+5)
+p ( 2
+5)
+k, m ( 3
+5)
+k, c ( 2
+5)
+k, p ( 1
+5)
+m, c ( 1
+5) m, p ( 2
+5)
+c, p (0)
+k, m, c ( 1
+5)
+k, m, p ( 1
+5)
+k, c, p (0)
+m, c, p (0)
+k, m, c, p (0)
+Obrázek 2: Ramon Tree pro uložení kandidátních množin položek (Apriori) spolu s velikostí
+podpory dané podmnožiny.
+Pravidlo X ⇒Y
+X ∪Y (Intent)
+supp(X)
+supp(Y )
+supp(X ∪Y )
+conf(X ⇒Y )
+lift(X ⇒Y )
+{k} ⇒{m}
+int5 = {k, m}
+0,8
+0,8
+0,6
+0,75 (75%)
+0,9375
+{m} ⇒{k}
+int5 = {k, m}
+0,8
+0,8
+0,6
+0,75 (75%)
+0,9375
+{k} ⇒{c}
+int3 = {k, c}
+0,8
+0,4
+0,4
+0,50 (50%)
+1,2500
+{c} ⇒{k}
+int3 = {k, c}
+0,4
+0,8
+0,4
+1,00 (100%)
+1,2500
+{m} ⇒{p}
+int4 = {m, p}
+0,8
+0,4
+0,4
+0,50 (50%)
+1,2500
+{p} ⇒{m}
+int4 = {m, p}
+0,4
+0,8
+0,4
+1,00 (100%)
+1,2500
+{k} ⇒{m, p}
+int6 = {k, m, p}
+0,8
+0,4
+0,2
+0,25 (25%)
+0,6250
+{m} ⇒{k, p}
+int6 = {k, m, p}
+0,8
+0,2
+0,2
+0,25 (25%)
+1,2500
+{p} ⇒{k, m}
+int6 = {k, m, p}
+0,4
+0,6
+0,2
+0,50 (50%)
+0,8333
+{k, m} ⇒{p}
+int6 = {k, m, p}
+0,6
+0,4
+0,2
+0,3333 (33,33%)
+0,8333
+{k, p} ⇒{m}
+int6 = {k, m, p}
+0,2
+0,8
+0,2
+1,00 (100%)
+1,2500
+{m, p} ⇒{k}
+int6 = {k, m, p}
+0,4
+0,8
+0,2
+0,50 (50%)
+0,6250
+{k} ⇒{m, c}
+int7 = {k, m, c}
+0,8
+0,2
+0,2
+0,25 (25%)
+1,2500
+{m} ⇒{k, c}
+int7 = {k, m, c}
+0,8
+0,4
+0,2
+0,25 (25%)
+0,6250
+{c} ⇒{k, m}
+int7 = {k, m, c}
+0,4
+0,6
+0,2
+0,50 (50%)
+0,8333
+{k, m} ⇒{c}
+int7 = {k, m, c}
+0,6
+0,4
+0,2
+0,3333 (33,33%)
+0,8333
+{k, c} ⇒{m}
+int7 = {k, m, c}
+0,4
+0,8
+0,2
+0,50 (50%)
+0,6250
+{m, c} ⇒{k}
+int7 = {k, m, c}
+0,2
+0,8
+0,2
+1,00 (100%)
+1,2500
+Tabulka 4: Tabulka asociačních pravidel s nenulovou podporou.
+13

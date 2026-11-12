@@ -1,0 +1,366 @@
+﻿4 Metriky, ultrametriky a míry podobnosti
+V této kapitole naváđeme na koncepty algeber, svazů a fuzzy mnođin. Budeme zkoumat způsoby,
+jak matematicky formalizovat vzdálenost nebo naopak podobnost mezi objekty. Míry podobnosti
+a vzdálenosti představují základní nástroj pro porovnávání slođitějších struktur (vektorů, řetězců,
+mnođin, grafů) a úzce souvisí jak s porovnáváním fuzzy mnođin, tak s hierarchickým uspořádáním
+objektů.
+
+4.1 Metrický a ultrametrický prostor
+Denice 4.1 (Metrika, vzdálenost a metrický prostor). Nechť X je neprázdná mnođina. Zob-
+razení d : X ×X → R se nazývá metrika na X a hodnota d(x, y) pro prvky x, y ∈ X se nazývá
+jejich vzdálenost, pokud pro všechny prvky x, y, z ∈ X splňuje následující axiomy:
+
+1. Nezápornost: d(x, y) ≥ 0,
+2. Totođnost: d(x, y) = 0 ⇐⇒ x = y,
+3. Symetrie: d(x, y) = d(y, x),
+4. Trojúhelníková nerovnost: d(x, y) ≤ d(x, z) + d(z, y).
+
+Dvojice (X, d) se nazývá metrický prostor. Pokud funkce d splňuje vlastnosti (1), (3), (4)
+a ze slabší podmínky x = y =⇒ d(x, y) = 0 neplyne nutně zpětná implikace, nazývá se
+pseudometrika.
+Poznámka 4.1 (Redundance axiomu nezápornosti). Axiom nezápornosti je nadbytečný, neboť
+vyplývá z ostatních axiomů. Z trojúhelníkové nerovnosti pro z = x: d(x, x) ≤ d(x, y) + d(y, x)▷
+Díky totođnosti d(x, x) = 0 a symetrii d(y, x) = d(x, y) dostáváme 0 ≤ 2d(x, y) =⇒ d(x, y) ≥ 0.
+V denicích se však ponechává pro názornost.
+Poznámka 4.2. V matematice je nezápornost (d(x, y) ≥ 0) a symetrie (d(x, y) = d(y, x))
+nezbytnými axiomy metriky. V informatice a praxi se však běđně setkáváme s funkcemi, které
+tyto axiomy porušují:
+• Záporné hodnoty (míry nepodobnosti, skóre, nákladové funkce):
+
+• Teorie grafů (Nejkratší cesty): Uvađují se záporně ohodnocené hrany (např. Bellman-
+Fordův algoritmus), kde záporná „délka“ představuje zisk nebo úsporu energie.
+
+• Míry zalođené na korelaci: Při pouđití Pearsonova koecientu r ∈ [−1, 1] reprezentují
+záporné hodnoty nepodobnost ve smyslu inverzního chování.
+
+• Asymetrické metriky (Quasimetriky): Někdy neplatí ani axiom symetrie (d(x, y) ̸=
+d(y, x)). Taková funkce se v matematice a informatice nazývá quasimetrika (quasi-metric)
+nebo asymetrická metrika.
+• Orientované grafy a navigace: Cesta z bodu A do B můđe mít jinou délku/čas neđ z B
+
+do A (např. jednosměrné ulice, chůze do kopce vs. z kopce).
+• Informační teorie:Míry odlišnosti pravděpodobnostních rozdělení (např.Kullback-Leiblerova
+
+divergence) jsou přirozeně nesymetrické (DKL(P ∥ Q) ̸= DKL(Q ∥ P )).
+Denice 4.2 (Ultrametrika). Metrika d na mnođině X se nazývá ultrametrika, pokud pro
+všechny x, y, z ∈ X splňuje silnou trojúhelníkovou nerovnost:
+
+d(x, y) ≤ max(d(x, z), d(y, z))▷
+Dvojice (X, d) se nazývá ultrametrický prostor.
+Příklad 4.1 (Geometrická a hierarchická vlastnost ultrametriky). Silná trojúhelníková nerov-
+nost přímo implikuje, đe v ultrametrickém prostoru je kađdý trojúhelník tvořený trojicí bodů
+x, y, z rovnoramenný s kratší nebo stejně dlouhou základnou. Pro vzdálenosti mezi libovolnými
+třemi body platí, đe dvě z nich jsou si rovny a třetí je menší nebo rovna těmto dvěma.
+
+20
+
+
+
+Poznámka 4.3 (Vazba na stromové hierarchie a shlukování). Ultrametriky mají úzkou vazbu na
+svazové struktury a stromy: pokud reprezentujeme objekty jako listy stromu a vzdálenost mezi
+libovolnými dvěma listy denujeme jako výšku nejmenšího podstromu (nejbliđšího společného
+předka), ve kterém se tyto listy společně vyskytují, získaná míra vzdálenosti tvoří vđdy ultra-
+metriku. V datové analýze odpovídají ultrametriky výstupům hierarchického aglomerativního
+shlukování (dendrogramům).
+
+4.1.1 Míry vzdálenosti na vybraných mnođinách
+
+Vzdálenost lze formalizovat nejen na spojitých vektorových prostorech Rn, ale i na diskrétních
+strukturách, jako jsou mnođiny, slova nebo grafy.
+• Minkowského vzdálenosti (Lp metriky na Rn): Pro dva vektory x = (x1, ▷ ▷ ▷ , xn) a
+
+y = (y1, ▷ ▷ ▷ , yn) ∈ Rn denujeme pro p ≥ 1 třídu Lp metrik předpisem:
+ 1
+ 
+n p
+
+Lp(x,y) = |xi − y p
+i| ▷
+
+i=1
+
+Významné případy:
+• Manhattanská vzdálenost ( 
+
+L1): L1(x,y) = n
+ i=1 |xi − yi|,
+
+• Eukleidovská vzdálenost (L2): L2(x,y
+
+
+) = n
+i=1(xi − yi)2,
+
+• Čebyševova vzdálenost (L∞): L∞(x,y) = maxi=1▷▷▷n |xi − yi|.
+• Frakční vzdálenost (Lp pro 0 < p < 1): Pro p < 1 funkce Lp porušuje trojúhelníkovou
+
+nerovnost (např. v R1 pro x = 0, z = 1, y = 2 a p = 0,5 platí d(0, 2) = 21◁0▷5 = 4, ale
+d(0, 1) + d(1, 2) = 1 + 1 = 2, tedy 4 ̸≤ 2). Nejedná se proto o metriku, ale pouze o míru
+nepodobnosti.
+V datové analýze se pouđívá ve vysokodimenzionálních prostorech (n ≫ 100), protođe běđné
+metriky (L1, L2) mají tendenci konvergovat k vyrovnaným vzdálenostem mezi všemi body.
+Volba frakčního p < 1 zvyšuje relativní kontrast mezi nejbliđším a nejvzdálenějším sousedem.
+
+• Mahalanobisova vzdálenost: Pro vektory x,y ∈ Rn a pozitivně denitní kovarianční matici
+Σ je denována jako: 
+
+dM (x,y) = (x − y)TΣ−1(x − y)▷
+Tato vzdálenost odstraňuje závislost na měřítku a rotaci souřadného systému tím, đe bere
+v úvahu různé rozptyly v jednotlivých dimenzích a korelaci mezi příznaky.
+
+• Jaccardova vzdálenost (mnođiny): Pro dvě konečné neprázdné mnođiny A,B ⊆ X je
+denována jako doplněk Jaccardova indexu pomocí symetrické diference A△B:
+
+dJ(A,B) = 1− |A ∩B|
+|A ∪B| =
+
+|A ∪B|− |A ∩B|
+|A ∪B| = |A△B|
+
+|A ∪B| ▷
+
+Pro A = B = ∅ se kladně denuje dJ(∅, ∅) = 0.
+• Geodetická vzdálenost (grafy): Pro uzly u, v ∈ V v souvislém neorientovaném grafu
+
+G = (V,E) je geodetická vzdálenost dG(u, v) denována jako délka (počet hran) nejkratší
+cesty P spojující tyto uzly:
+
+dG(u, v) = min{|P | | P je cesta mezi u a v v grafu G a |P | značí její počet hran}▷
+Pokud cesty mezi u a v neexistují (nesouvislý graf), klade se dG(u, v) = ∞.
+
+• Hammingova vzdálenost (slova): Pro slova stejné délky u, v ∈ Σn nad konečnou abecedou
+Σ udává počet pozic, na kterých se znaky liší:
+
+dH(u, v) = |{i ∈ {1, ▷ ▷ ▷ , n} | ui ̸= vi}|▷
+
+21
+
+
+
+• Editační vzdálenost (Levenshteinova): Minimální počet úprav (vlođení, smazání, zamě-
+nění znaku) potřebný k převodu slova u na v.
+
+• LCS vzdálenost (Indel vzdálenost): Minimální počet operací vlođení a smazání znaku
+(bez mođnosti přepisování) potřebný k převodu slova u na v:
+
+dLCS(u, v) = |u|+ |v|− 2 · |LCS(u, v)|,
+kde LCS(u, v) značí nejdelší společnou podsekvenci slov u a v.
+
+Příklad 4.2 (Výpočet vzdáleností na vektorech). Mějme vektory x = (1, 5) a y = (4, 1) ∈ R2:
+• L1(x,y) = |1− 4|+ |5− 1| = 3 + 4√= 7,
+• L2(x,y) = (1− 4)2 + (5− 1)2 = 9 + 16 = 5,
+• L∞(x,y) = max(|1− 4|, |5− 1|) = 4.
+Příklad 4.3 (Výpočet vzdáleností na slovech). Mějme slovo u = KOTEL a v = VRTAL (délky
+|u| = |v| = 5):
+• Hammingova vzdálenost: dH(u, v) = 3 (shoda na 3. a 5. pozici u písmen ’T’ a ’L’).
+• LCS vzdálenost: Nejdelší společnou podsekvencí je LCS(u, v) = TL (délka |LCS| = 2).
+
+dLCS(u, v) = 5 + 5− 2 · 2 = 6▷
+
+• Levenshteinova vzdálenost: dLev(u, v) = 3 (zaměnění K → V, O → R, E → A).
+
+4.2 Míry podobnosti a nepodobnosti
+Zatímco vzdálenost (metrika) měří odlišnost a nabývá hodnot v intervalu [0,∞), míra podobnosti
+měří příbuznost či podobnost prvků – čím vyšší hodnota, tím jsou si objekty podobnější. Na
+rozdíl od metriky nemusí být funkce podobnosti nezáporná a její obor hodnot můđe zahrnovat
+i záporná čísla (např. interval [−1, 1] nebo (−∞,∞)).
+Denice 4.3 (Míra podobnosti). Nechť X je neprázdná mnođina. Zobrazení s : X × X → R
+se nazývá míra podobnosti (similarity measure) na X, pokud pro všechny prvky x, y ∈ X
+splňuje následující axiomy:
+
+1. Symetrie: s(x, y) = s(y, x),
+2. Totođnost: s(x, y) = s(x, x) ⇐⇒ x = y,
+3. Omezenost vlastní podobností: s(x, y) ≤ s(x, x),
+4. Nezápornost vlastní podobností: 0 ≤ s(x, x).
+
+Poznámka 4.4. V praxi některé běđně uđívané míry podobnosti (např. kosinová podobnost)
+splňují axiom totođnosti pouze na třídách ekvivalence (např. rovnoběđné vektory různé délky),
+cođ odpovídá zjemněnému pohledu na rovnost objektů v daném aplikačním kontextu.
+Denice 4.4 (Míra nepodobnosti). NechťX je neprázdná mnođina. ZobrazeníD : X×X → R≥0
+se nazývá míra nepodobnosti (dissimilarity measure) na X, pokud pro všechny prvky x, y ∈ X
+splňuje následující axiomy:
+
+1. Nezápornost: D(x, y) ≥ 0,
+2. Totođnost: D(x, y) = 0 ⇐⇒ x = y,
+3. Symetrie: D(x, y) = D(y, x).
+
+Poznámka 4.5. Nepodobnost představuje slabší koncept neđ metrika: vyđaduje nezápornost,
+totođnost i symetrii, ale nemusí splňovat trojúhelníkovou nerovnost. Kađdá metrika je tedy
+nepodobností, ale ne kađdá nepodobnost je metrikou.
+
+22
+
+
+
+4.2.1 Příklady míry podobnosti
+• Skalární součin (Neomezená míra): Pro vektory x,y ∈ Rn je základní mírou podobnosti
+
+jejich skalární součin:
+n
+
+sdot(x,y) = x · y = xiyi▷
+i=1
+
+Nabývá hodnot v intervalu (−∞,∞) a demonstruje, đe podobnost nemusí být ohraničena.
+• Kosinová podobnost: Normalizovaný skalární součin měřící kosinus úhlu mezi dvěma ne-
+
+nulovými vektory x,y ∈ Rn:
+
+scos(x,y) =
+x · y n
+
+=  i=1xiyi∥x∥2∥y∥  ▷
+2 n 2 n 2
+
+i=1 xi i=1 yi
+
+Pro obecné vektory z Rn nabývá hodnot z intervalu [−1, 1], pro nezáporné vektory Rn
+≥0 nabývá
+
+hodnot z intervalu [0, 1].
+• Pearsonova korelační podobnost: Měří míru lineární závislosti mezi dvěma náhodnými
+
+veličinami nebo vektory vlastností x,y ∈ Rn. Je denována jako:
+n xi −
+
+scorr(x,y) =  i=1( x̄)(y − ȳ)
+  i
+
+n 2 n
+i=1(xi − x̄) i=1(yi −
+
+,
+ȳ)2
+
+kde x̄, ȳ jsou průměrné hodnoty slođek daných vektorů. Jedná se o podobnost vyjadřující
+shodu v trendech vlastností objektů. Nabývá hodnot v intervalu [−1, 1], kde hodnota 1 značí
+přímou lineární závislost, 0 nekorelovanost a −1 inverzní závislost.
+
+• Jaccardova podobnost (Jaccardův index): Pro dvě konečné neprázdné mnođiny A,B ⊆
+X udává poměr velikosti jejich průniku k velikosti jejich sjednocení:
+
+sJ(A,B) = |A ∩B|
+|A ∪B| ▷
+
+Pro A = B = ∅ klademe sJ(∅, ∅) = 1. Nabývá hodnot v intervalu [0, 1], kde hodnota 1 značí
+totođné mnođiny a 0 disjunktní mnođiny.
+
+• Sørensen-Diceova podobnost (Diceův koecient): Pro dvě konečné neprázdné mnođiny
+A,B ⊆ X je denována jako dvojnásobek průniku lomený součtem jejich velikostí:
+
+|
+sDice(A,B) = 2 · |A ∩B
+
+| ▷
+A|+ |B|
+
+Nabývá hodnot v intervalu [0, 1]. Na rozdíl od Jaccardovy podobnosti dává vyšší váhu společ-
+ným prvkům (průniku), cođ je výhodné v úlohách s vysokou řídkostí (např. v bioinformatice
+při porovnávání řetězců DNA nebo při porovnávání shluků).
+
+• Růđičkova podobnost (Váđený Jaccardův index): Pro nezáporné vektory x,y ∈ Rn
+≥0
+
+zavedeme podobnost předpisem:
+n
+
+sR(x,y) =  i=1min(xi, yi)
+n
+i=1max(xi, yi)
+
+▷
+
+Poznámka 4.6. Pokud vektory x,y reprezentují stupně příslušnosti prvků ui ∈ U do fuzzy
+mnođin A,B (tj. xi = A(ui) a yi = B(ui)), pak operace min(xi, yi) odpovídá průniku fuzzy
+mnođin a max(xi, yi) jejich sjednocení. Růđičkova podobnost je tak přímým zobecněním Jac-
+cardova indexu pro fuzzy mnođiny s oborem hodnot [0, 1].
+
+Poznámka 4.7. I přes odlišný původ jsou si Pearsonův koecient a kosinová podobnost mate-
+maticky velice blízké:
+
+23
+
+
+
+• Pearsonův koecient (r): Karl Pearson (1896, biometrie/statistika) – míra lineární závis-
+losti náhodných veličin.
+
+• Kosinová podobnost (scos): Gerard Salton (60.–70. léta 20. st., informatika) – míra podob-
+nosti vektorů dokumentů.
+
+Geometricky platí, đe Pearsonův koecient je roven kosinové podobnosti vycentrova-
+ných vektorů:
+
+x̃ = x− x̄1, ỹ = y− ȳ1▷
+Dosazením vycentrovaných vektorů x̃, ỹ do vzorce kosinové podobnosti dostáváme:
+
+n
+
+scos(x̃, ỹ) =
+x̃ · ỹ
+
+∥x̃∥2∥ỹ∥
+=  i=1(xi −x̄)(yi − ȳ)
+
+2 n
+i=1(xi −
+
+
+x̄)2 n 2 =
+
+i=1(yi − ȳ)
+= √ n · Cov(√x, y) n · Cov(x, y)
+
+( =
+n · σx) · ( n · = Cov(x, y)
+
+σy) n · = rx,y▷ (1)
+σxσy σxσy
+
+4.3 Přechod mezi podobností a vzdáleností
+Při převodu mezi podobností s(x, y) a nepodobností/vzdáleností d(x, y) volíme transformaci
+podle toho, zda jsou veličiny ohraničené (normalizované), či nikoliv.
+
+4.3.1 Přechod z normalizované podobnosti s na obecně nepodobnost d
+
+Pro normalizovanou podobnost s(x, y) ∈ [0, 1] lze na nepodobnost (a někdy i na vzdálenost)
+d(x, y) přejít pomocí několika standardních vztahů:
+• Lineární doplněk: d(x, y) = 1− s(x, y) ∈ [0, 1] pro s(x, y) ∈ [0, 1]
+• Inverzní transformace: d(x, y) = 1−s(x,y)
+
+s(x,y) ∈ [0,∞) pro s(x, y) ∈ (0, 1]
+• Logaritmická transformace: d(x, y) = − ln(s(x, y)) ∈ [0,∞) pro s(x, y) ∈ (0, 1]
+• Odmocnina z lineárního doplňku: d(x, y) = 1− s(x, y) ∈ [0, 1] pro s(x, y) ∈ [0, 1]
+
+4.3.2 Přechod z neomezené vzdálenosti d ∈ [0,∞) na podobnost s ∈ (0, 1]
+
+Pro neomezenou nezápornou vzdálenost d(x, y) pouđíváme transformace, které nevyđadují zna-
+lost horní meze:
+• Exponenciální transformace: s(x, y) = e−d(x,y)
+
+• Převrácená hodnota (racionální): s(x, y) = 1
+1+d(x,y) 
+
+• Gaussovská (RBF) transformace: s(x, y) = exp −d(x,y)2
+2 k e σ > říd šíř
+σ2 , d 0 í ku pásma.
+
+4.3.3 Speciální případy a normalizace
+• Kosinová podobnost scos ∈ [−1, 1]: Jelikođ nabývá i záporných hodnot, převádí se na
+
+normalizovanou nepodobnost D(x, y) ∈ [0, 1] jako:
+
+Dcos(x, y) =
+1− scos(x, y)
+
+2 ▷
+
+• Normalizace vzdálenosti z d ∈ [0, dmax] na dnorm ∈ [0, 1]: Známe-li maximální mođ-
+nou vzdálenost dmax, přejdeme na dnorm(x, y) = d(x,y)
+
+d . Následně lze pouđít lineární přechod
+max
+
+s(x, y) = 1− dnorm(x, y).
+
+24

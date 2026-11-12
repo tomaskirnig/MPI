@@ -1,0 +1,92 @@
+﻿Matematika pro informatiku (2026/2027) – cvičeńı 4 1
+
+Cvičeńı 4
+
+Pojmy potřebné pro zvládnut́ı cvičeńı: metrika, pseudometrika, ultrametrika, mı́ra nepodob-
+nosti, mı́ra podobnosti, Lp metriky, geodetická vzdálenost, vzdálenosti mezi slovy (Hammin-
+gova, Levenshteinova, LCS), kosinová podobnost, Pearson̊uv korelačńı koeficient, Růžičkova
+podobnost, Sørensen-Diceova podobnost a nepodobnost, Jaccard̊uv index a Jaccardova vzdálenost,
+symetrická diference, přepočet mezi podobnost́ı a vzdálenost́ı.
+
+Př́ıklad 1: Mějme body x = (1, 4) a y = (5, 1) v prostoru R2.
+
+a) Spočtěte vzdálenost bod̊u x a y v Manhattanské (L1), Eukleidovské (L2) a Čebyševově
+(L∞) metrice.
+
+b) Spoč́ıtejte kosinovou podobnost scos(x, y), Růžičkovu podobnost sR(x, y), Sørensen-Diceovu
+(vektorovou) podobnost sDice(x, y) a Pearson̊uv korelačńı koeficient rx,y.
+
+c) Ověřte, že po vycentrováńı vektor̊u (odečteńım jejich složkového pr̊uměru) přejde kosinová
+podobnost přesně na Pearson̊uv korelačńı koeficient.
+
+Př́ıklad 2: Uvažujme slova u = KARTA a v = KRAVA nad abecedou Σ = {A, K, R, T, V}.
+
+a) Určete Hammingovu vzdálenost dH(u, v).
+b) Najděte nejdeľśı společnou podsekvenci LCS(u, v) a spoč́ıtejte LCS (Indel) vzdálenost
+
+dLCS(u, v).
+c) Určete Levenshteinovu (editačńı) vzdálenost dLev(u, v).
+
+Př́ıklad 3: Mějme dvě konečné množiny A = {1, 2, 3, 4, 5} a B = {3, 4, 5, 6, 7}.
+
+a) Určete symetrickou diferenci A△B a vypoč́ıtejte Jaccard̊uv index sJ(A,B) i Jaccardovu
+vzdálenost dJ(A,B). Ověřte platnost vztahu dJ(A,B) = 1− sJ(A,B).
+
+b) Spoč́ıtejte Sørensen-Diceovu podobnost sDice(A,B) a Sørensen-Diceovu nepodobnost dDice(A,B) =
+1− sDice(A,B).
+
+c) Uvažujme fuzzy množiny (vektory př́ıslušnosti) a = (0.2, 0.8, 1.0) a b = (0.5, 0.5, 0.0).
+Spoč́ıtejte jejich Růžičkovu podobnost sR(a, b).
+
+Př́ıklad 4: Rozhodněte o vlastnostech následuj́ıćıch zobrazeńı d:
+
+a) Mějme graf G = (V, E) složený ze dvou oddělených souvislých komponent. Definujeme
+d(u, v) jako délku nejkratš́ı cesty (počet hran) mezi uzly u, v ∈ V, přičemž pro uzly
+z r̊uzných komponent klademe d(u, v) = ∞. Rozhodněte, zda d tvoř́ı metriku na V.
+
+b) Mějme zobrazeńı d(x, y) = (x1−y1)
+2+(x2−y2)
+
+2 na R2 (kvadrát Eukleidovské vzdálenosti).
+Ukažte na konkrétńım př́ıkladu, zda d tvoř́ı metrický prostor, nebo pouze mı́ru nepodob-
+nosti.
+
+
+
+2 Matematika pro informatiku (2026/2027) – cvičeńı 4
+
+c) Uvažujme stromový dendrogram s listy {A,B,C}. Vzdálenost mezi listy je definována jako
+výška nejmenš́ıho podstromu spojuj́ıćıho dané listy. Mějme d(A,B) = 2, d(B,C) = 5,
+d(A,C) = 5. Ověřte, zda tato funkce splňuje silnou trojúhelńıkovou nerovnost (ultramet-
+riku).
+
+Př́ıklad 5: Uvažujme r̊uzné typy přechod̊u mezi podobnost́ı a vzdálenost́ı/nepodobnost́ı.
+
+a) Mějme normalizovanou podobnost s(x, y) = 0.8 ∈ (0, 1]. Převed’te ji na nepodobnost/vzdálenost
+d(x, y) pomoćı:
+
+• lineárńıho doplňku d(x, y) = 1− s(x, y),
+
+• inverzńı transformace d(x, y) = 1−s(x,y)
+s(x,y) ,
+
+• logaritmické transformace d(x, y) = −√ln(s(x, y)),
+• odmocninové transformace d(x, y) = 1− s(x, y),
+
+b) Mějme neomezenou Eukleidovskou vzdálenost d(x, y) = 3 ∈ [0,∞). Převed’te ji na mı́ru
+podobnosti s(x, y) ∈ (0, 1] pomoćı:
+
+• exponenciálńı transformace s(x, y) = e−d(x,y),
+
+• převrácené hodnoty s(x, y) = 1
+1+d(x,y) , ( )
+
+• gaussovské (RBF) transformace s(x, y) = exp −d(x,y)2 pro σ = 1
+2σ2 .
+
+c) Mějme kosinovou podobnost scos(x, y) = −0.4 ∈ [−1, 1]. Uved’te, jak ji lze převést na mı́ru
+nepodobnosti D(x, y) ∈ [0, 1].
+
+d) Vysvětlete potřebu normalizace vzdálenosti. Jak převedeme obecnou vzdálenost d(x, y) ∈
+[0, dmax] na normalizovanou vzdálenost dnorm(x, y) ∈ [0, 1], abychom mohli použ́ıt lineárńı
+přechod s(x, y) = 1− dnorm(x, y)? Uved’te výpočet pro d(x, y) = 3 při dmax = 12.

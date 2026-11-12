@@ -1,0 +1,92 @@
+For Python, the name of the main file should be main.py!
+
+Problem Description
+A fuzzy context describes the relationship between objects and attributes using real numbers in the interval [0, 1]. For each given pair of thresholds, construct a binary context and find all its formal concepts with sufficient support and all association rules with sufficient support and confidence equal to one.
+
+Objects are numbered 0, …, N − 1, and attributes are numbered 0, …, M − 1. For a fuzzy threshold f, an object has an attribute if and only if the corresponding value in the input matrix is greater than or equal to f.
+
+Print all concepts whose support is greater than or equal to the given threshold s. Print all association rules whose support is greater than or equal to s and whose confidence is exactly 1.
+
+Both the extent and the intent of a concept may be empty. Both sides of an association rule must be nonempty and mutually disjoint. Do not consider rules whose left-hand side is satisfied by no objects, because their confidence is undefined. Print every qualifying concept and rule exactly once.
+
+Input
+Read the input from standard input. The first line contains a positive integer T, the number of test cases. Each test case has the following structure:
+
+A line containing two positive integers N M, the number of objects and attributes, respectively.
+Exactly N lines, each containing M real numbers in the interval [0, 1]. Rows correspond to objects, and columns correspond to attributes.
+One line containing n fuzzy thresholds f₁, …, fₙ, where n ≥ 1.
+One line containing exactly n support thresholds s₁, …, sₙ.
+All thresholds belong to the interval [0, 1]. The number n is not given separately; it is determined by the number of values on the fuzzy-threshold line. Values at matching positions form pairs (fᵢ, sᵢ), rather than a Cartesian product. Evaluate each pair independently using the original fuzzy matrix.
+
+Numbers on each line are separated by spaces. Real numbers use a decimal point. The input is correctly formatted and satisfies the stated constraints. Test case sizes and result counts will be kept within reasonable limits; the number of rules for a single pair of thresholds will not exceed the range of int.
+
+Output
+Write the results to standard output. Process test cases in input order and, within each test case, process threshold pairs in the order of their positions. For each pair (f, s), print one block in the following order:
+
+A line containing the number of qualifying concepts K:
+
+Number of concepts with support>=s is: K
+Here, s is the support threshold formatted as F2, that is, with exactly two digits after the decimal separator. Use the original threshold value for support comparisons, not the value rounded for output.
+
+Exactly K lines, each containing one concept in the following format:
+
+({o1,o2,...},{p1,p2,...})
+The first set is the extent, and the second is the intent. Print the indices within each set in ascending order. Represent an empty set as {}. Sort concepts first by the number of objects in their extent, in ascending order, and then, for equal sizes, lexicographically by their extent: the smaller numerical index at the first differing position comes first. Each extent determines exactly one concept, so no further sorting criterion is required.
+
+A line containing the number of qualifying rules R:
+
+Number of rules with confidence=1 from concepts is: R
+Exactly R lines, each containing one rule in the following format:
+
+{a1,a2,...}=>{b1,b2,...}
+The left set is the left-hand side of the rule, and the right set is its right-hand side. Print the indices within each set in ascending order. Sort rules using the following criteria, in the stated order:
+
+the number of attributes on the left-hand side, in ascending order;
+for equal lengths, lexicographically by the left-hand side;
+for identical left-hand sides, the number of attributes on the right-hand side, in ascending order;
+for equal right-hand-side lengths, lexicographically by the right-hand side.
+Lexicographic comparisons always use numerical indices, not their textual representations. The length of a set is its number of elements; rules are not sorted by the total number of attributes on both sides.
+
+Follow the specified heading text, capitalization, and spacing exactly. Concept and rule representations contain no spaces. Print counts and indices as integers. All real numbers printed must use the F2 format; the only real number in this output is s. The sample uses a decimal point; the locale used for judging will be consistent.
+
+Do not print fuzzy or binary matrices, the fuzzy threshold, test case numbers, the support of individual rules, or any additional comments. Blocks follow one another without blank lines. If K or R is zero, print no items after the corresponding heading. End every line, including the last one, with a newline.
+
+Sample Input
+2
+3 3
+1.0 0.8 0.2
+1.0 0.8 0.9
+0.1 0.1 0.9
+0.5 1.0
+0.5 1.0
+2 3
+1.0 1.0 1.0
+0.8 0.9 0.7
+0.5
+1.0
+Sample Output
+Number of concepts with support>=0.50 is: 3
+({0,1},{0,1})
+({1,2},{2})
+({0,1,2},{})
+Number of rules with confidence=1 from concepts is: 2
+{0}=>{1}
+{1}=>{0}
+Number of concepts with support>=1.00 is: 1
+({0,1,2},{})
+Number of rules with confidence=1 from concepts is: 0
+Number of concepts with support>=1.00 is: 1
+({0,1},{0,1,2})
+Number of rules with confidence=1 from concepts is: 12
+{0}=>{1}
+{0}=>{2}
+{0}=>{1,2}
+{1}=>{0}
+{1}=>{2}
+{1}=>{0,2}
+{2}=>{0}
+{2}=>{1}
+{2}=>{0,1}
+{0,1}=>{2}
+{0,2}=>{1}
+{1,2}=>{0}
