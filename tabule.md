@@ -1,18 +1,29 @@
-# 🎓 CVIČENÍ 5: TOPOLOGIE A METRICKÉ PROSTORY (TABULE)
+# 🎓 CVIČENÍ 5 & 6: TOPOLOGIE & GEOMETRIE VYSOKÝCH DIMENZÍ (TABULE)
 
-> *"Topologie je geometrie na gumovém listu papíru – nezajímá ji přesná vzdálenost na milimetry, ale pouze to, co je 'blízko', co je 'uvnitř', co je 'spojené' a co lze oddělit."*
+> *"Topologie zkoumá prostor bez pravítka (vnitřek, hranici, souvislost). Geometrie vysokých dimenzí naopak ukazuje, jak se naše intuice z 2D a 3D hroutí, když dimenze vystřelí k nekonečnu: veškerá hmota se vytlačí na povrch, koule má objem nula a náhodné vektory jsou na sebe kolmé."*
 
 ---
 
-## 📌 ROADMAPA CVIČENÍ & PRŮBĚH TESTOVÁNÍ
+## 📌 MASTER ROADMAPA CVIČENÍ & PROGRESS TRACKING
 
-| Blok / Příklad | Téma & Klíčové koncepty | Stav | Odkaz na teorii & řešení |
+### 🟢 Část I: Cvičení 5 – Topologie a metrické prostory
+| Blok / Příklad | Téma & Klíčové koncepty | Stav | Rychlý skok |
 | :---: | :--- | :---: | :---: |
-| **Blok 1 (Příklad 1)** | **Eukleidovský prostor na $\mathbb{R}$**<br>• Vnitřek $\operatorname{int}$, uzávěr $\operatorname{cl}$, hranice $\partial$<br>• Hromadné body $A'$ vs. izolované body $\operatorname{Iso}(A)$<br>• Spojitý interval $A$ vs. hustá množina zlomků $B = \mathbb{Q} \cap [0, 1]$ | 🔄 *Na řadě k testování* | [Přejít na řešení](#-příklad-1-eukleidovský-prostor-mathbbr-d_2) |
-| **Blok 2 (Příklad 2)** | **Konečný topologický prostor $(X, \tau)$**<br>• Hledání uzavřených množin jako doplňků $X \setminus U$<br>• $\operatorname{int}$, $\operatorname{cl}$, $\partial$ v abstraktní topologii<br>• Minimální báze $\mathcal{B}$ (nerozložitelné otevřené množiny)<br>• Souvislost prostoru (existence netriviálních clopen množin) | ⏳ *Čeká* | [Přejít na řešení](#-příklad-2-konečný-topologický-prostor) |
-| **Blok 3 (Příklad 3)** | **Pawlakova topologie & Rough Sets**<br>• Rozklad $U/R$ jako báze topologie $\mathcal{B}_R$<br>• Dolní aproximace $\underline{R}(A) = \operatorname{int}(A)$ (jistota)<br>• Horní aproximace $\overline{R}(A) = \operatorname{cl}(A)$ (možnost)<br>• Oblast nejistoty $\operatorname{BN}_R(A) = \partial A$<br>• Proč netriviální Pawlakův prostor není $T_0$ ani metrizovatelný | ⏳ *Čeká* | [Přejít na řešení](#-příklad-3-pawlakova-topologie) |
-| **Blok 4 (Příklad 4)** | **Oddělovací axiomy ($T_0, T_1, T_2$) & Metrizovatelnost**<br>• Hierarchie: $T_2 \implies T_1 \implies T_0$<br>• $T_1 \iff$ jednobodové množiny $\{x\}$ jsou uzavřené<br>• $T_2 \iff$ disjunktní bubliny pro různé body<br>• Test: Indiskrétní, Sierpińského a Kofinitní topologie | ⏳ *Čeká* | [Přejít na řešení](#-příklad-4-oddělovací-axiomy-t_0-t_1-t_2-a-metrizovatelnost) |
-| **Blok 5 (Příklad 5)** | **Spojitá zobrazení mezi topologiemi**<br>• Definice: $\forall V \in \tau_Y : f^{-1}(V) \in \tau_X$<br>• Spojitost z konečného prostoru do konečného<br>• Zobrazení z diskrétního prostoru vs. do diskrétního prostoru | ⏳ *Čeká* | [Přejít na řešení](#-příklad-5-spojité-zobrazení-f--x-tau_x-to-y-tau_y) |
+| **Blok 1 (Příklad 1)** | **Eukleidovský prostor na $\mathbb{R}$**<br>• $\operatorname{int}$, $\operatorname{cl}$, $\partial$<br>• Hromadné body $A'$ vs. izolované body $\operatorname{Iso}(A)$<br>• Interval $(0, 2] \cup \{4\}$ vs. racionální čísla $\mathbb{Q} \cap [0, 1]$ | 🔄 *Aktivní* | [Přejít na řešení](#-příklad-1-eukleidovský-prostor-mathbbr-d_2) |
+| **Blok 2 (Příklad 2)** | **Konečný topologický prostor $(X, \tau)$**<br>• Uzavřené množiny $\mathcal{F} = \{X \setminus U\}$<br>• $\operatorname{int}$, $\operatorname{cl}$, $\partial$ v libovolné topologii<br>• Minimální báze $\mathcal{B}$ (nerozložitelné otevřené množiny)<br>• Souvislost prostoru (clopen množiny) | ⏳ *Čeká* | [Přejít na řešení](#-příklad-2-konečný-topologický-prostor) |
+| **Blok 3 (Příklad 3)** | **Pawlakova topologie & Rough Sets**<br>• Rozklad $U/R$ jako báze $\mathcal{B}_R$<br>• Dolní aproximace $\underline{R}(A) = \operatorname{int}(A)$ (100% jistota)<br>• Horní aproximace $\overline{R}(A) = \operatorname{cl}(A)$ (možnost)<br>• Oblast nejistoty $\operatorname{BN}_R(A) = \partial A$<br>• Proč Pawlak není $T_0$ ani metrizovatelný | ⏳ *Čeká* | [Přejít na řešení](#-příklad-3-pawlakova-topologie) |
+| **Blok 4 (Příklad 4)** | **Oddělovací axiomy ($T_0, T_1, T_2$) & Metrizovatelnost**<br>• Hierarchie: $T_2 \implies T_1 \implies $T_0$<br>• $T_1 \iff$ jednobodové množiny jsou uzavřené<br>• $T_2 \iff$ disjunktní okolí (Hausdorff)<br>• Analýza: Indiskrétní, Sierpińského a Kofinitní prostor | ⏳ *Čeká* | [Přejít na řešení](#-příklad-4-oddělovací-axiomy-t_0-t_1-t_2-a-metrizovatelnost) |
+| **Blok 5 (Příklad 5)** | **Spojitá zobrazení mezi topologiemi**<br>• Podmínka: $\forall V \in \tau_Y : f^{-1}(V) \in \tau_X$<br>• Zobrazení na konečných množinách<br>• Diskrétní topologie: z diskrétního vs. do diskrétního | ⏳ *Čeká* | [Přejít na řešení](#-příklad-5-spojité-zobrazení-f--x-tau_x-to-y-tau_y) |
+
+---
+
+### 🟣 Část II: Cvičení 6 – Geometrie vysokých dimenzí & Prokletí dimenzionality
+| Blok / Příklad | Téma & Klíčové koncepty | Stav | Rychlý skok |
+| :---: | :--- | :---: | :---: |
+| **Blok 6 (Příklad 1)** | **Objem hyperkoule $K_D(r)$ vs. hyperkrychle $C_D(r)$**<br>• Vzorec s Gama funkcí $\Gamma$, $\lim_{D \to \infty} V(K_D(r)) = 0$<br>• Koncentrace objemu ve slupce: poměr $(1 - \varepsilon)^D \to 0$<br>• Proč koule tvoří 0 % opsané krychle a rohy krychle trčí do dálky | ⏳ *Čeká* | [Přejít na teorii & řešení](#-cvičení-6-geometrie-vysokých-dimenzí-teorie--řešení) |
+| **Blok 7 (Příklad 2)** | **Shell Phenomenon & Koncentrace normy**<br>• Náhodný vektor $x \in \mathbb{R}^D$ s i.i.d. složkami<br>• Střední hodnota a rozptyl $\frac{1}{D}\|x\|_2^2$, zákon velkých čísel<br>• Typická vzdálenost roste jako $\sqrt{D}$ (body v tenké slupce)<br>• Jednotková krychle $[0, 1]^D$ vs. jednotková sféra $S^{D-1}$ | ⏳ *Čeká* | [Přejít na Příklad 2 Cv6](#-příklad-2-cv6-shell-phenomenon--koncentrace-normy) |
+| **Blok 8 (Příklad 3)** | **Ortogonalita náhodných směrů ve vysokých dimenzích**<br>• Kosinová podobnost na sféře $S^{D-1}$: $\mathbb{E}[\cos \theta] = 0, \operatorname{Var} = 1/D$<br>• $\lim_{D \to \infty} \cos \theta = 0 \implies \theta \to 90^\circ$ (téměř jistá kolmost)<br>• Odlišné chování v kladném ortantu krychle $[0, 1]^D$ ($\cos \theta \to 3/4$)<br>• Dopady na reprezentaci dat (HDC vs. selhání metrik) | ⏳ *Čeká* | [Přejít na Příklad 3 Cv6](#-příklad-3-cv6-ortogonalita-náhodných-směrů) |
+| **Blok 9 (Příklad 4)** | **Řídkost prostoru & Selhání prostorových stromů (k-d stromy)**<br>• Exponenciální exploze buněk: $m^D = 5^{20} \approx 9.54 \times 10^{13}$<br>• Průměrná zaplněnost pro $N = 10\,000$ bodů ($\approx 10^{-10}$)<br>• Proč k-d stromy selhávají při hledání sousedů (degradace na $O(N)$) | ⏳ *Čeká* | [Přejít na Příklad 4 Cv6](#-příklad-4-cv6-řídkost-prostoru--k-d-stromy) |
 
 ---
 
@@ -351,3 +362,271 @@ Všechny vzory jsou otevřené v $X$ $\implies$ **$f$ JE SPOJITÉ**.
 - Její vzor je $\operatorname{id}^{-1}(\{0\}) = \{0\}$.
 - Je jednoprvková množina $\{0\}$ otevřená v eukleidovské topologii $(\mathbb{R}, \tau_{\text{std}})$? **Není!** (Neobsahuje žádný otevřený interval $(-\varepsilon, \varepsilon)$).
 - Vzor otevřené množiny není otevřený $\implies$ **$\operatorname{id}$ NENÍ SPOJITÉ**.
+
+
+---
+
+# 🔮 CVIČENÍ 6: GEOMETRIE VYSOKÝCH DIMENZÍ (PROKLETÍ DIMENZIONALITY)
+
+> *"V našem 3D světě máme intuici: v pomeranči je dužina uvnitř a slupka je tenká; v krabici koule zabírá většinu místa. Ve vysokých dimenzích ($D \ge 20$) se geometrie zblázní: v pomeranči je 99,9 % objemu v tenké slupce a dužina neexistuje, koule zabírá 0 % krabice a náhodně vystřelené šípy jsou na sebe vždycky kolmé."*
+
+---
+
+## 🟣 KAPITOLA 1: ČTYŘI PARADOXY VYSOKÝCH DIMENZÍ (INTUICE OD NULY)
+
+### 1. Paradox pomeranče (Všechna hmota je na povrchu)
+Vezmi kouli o poloměru $r = 1$ v $D$ dimenzích. Její objem je úměrný $r^D$:
+$$V(K_D(r)) = C_D \cdot r^D$$
+Když sloupneme z povrchu tenounkou slupku o tloušťce $\varepsilon = 0{,}1$ (např. 1 mm z 1 cm koule), zbyde vnitřní koule o poloměru $r = 1 - \varepsilon = 0{,}9$.
+Jaký díl objemu zůstal uvnitř?
+$$\frac{V(K_D(1 - \varepsilon))}{V(K_D(1))} = \frac{C_D (1 - \varepsilon)^D}{C_D \cdot 1^D} = (1 - \varepsilon)^D$$
+- Ve 2D ($D = 2$): $(0{,}9)^2 = 0{,}81$ $\implies$ uvnitř je $81\%$, ve slupce je jen $19\%$.
+- Ve 3D ($D = 3$): $(0{,}9)^3 = 0{,}729$ $\implies$ uvnitř je $73\%$, ve slupce $27\%$.
+- V 50D ($D = 50$): $(0{,}9)^{50} \approx 0{,}00515$ $\implies$ **uvnitř je jen $0{,}5\%$, ve slupce je $99{,}5\%$ objemu!**
+- V 100D ($D = 100$): $(0{,}9)^{100} \approx 0{,}000026$ $\implies$ **ve slupce je $99{,}997\%$ objemu!**
+
+👉 **Závěr 1:** Ve vysokých dimenzích je prakticky veškerý objem tělesa natlačen v tenoučké vnější slupce u povrchu. Vnitřek tělesa je "prázdný".
+
+---
+
+### 2. Paradox krabice s ježkem (Koule má nulový objem, krychle má nekonečné rohy)
+Představ si hyperkrychli $C_D(1) = [-1, 1]^D$ o hraně délky $2$ a do ní vepsanou hyperkouli $K_D(1)$ o poloměru $1$.
+- Objem krychle: $V(C_D(1)) = 2^D$.
+- Objem koule: $V(K_D(1)) = \frac{\pi^{D/2}}{\Gamma(D/2 + 1)} \cdot 1^D$.
+- Podíl objemu koule vůči krychli:
+  $$\frac{V(K_D(1))}{V(C_D(1))} = \frac{\pi^{D/2}}{2^D \cdot \Gamma(D/2 + 1)} = \frac{(\sqrt{\pi}/2)^D}{\Gamma(D/2 + 1)}$$
+  Protože $\sqrt{\pi}/2 \approx 1{,}77/2 = 0{,}886 < 1$ a navíc jmenovatel roste faktoriálově ($\Gamma(k+1) = k!$):
+  $$\lim_{D \to \infty} \frac{V(K_D(1))}{V(C_D(1))} = 0$$
+
+Kam ten objem krychle zmizel? Do **rohů**!
+Vzdálenost ze středu krychle $[0, \dots, 0]$ do jejího rohu $[1, 1, \dots, 1]$ je:
+$$d_{\text{roh}} = \sqrt{1^2 + 1^2 + \dots + 1^2} = \sqrt{D}$$
+Zatímco koule končí ve vzdálenosti $1$, rohy krychle trčí do dálky $\sqrt{D}$!
+- Pro $D = 100$ je vzdálenost do rohu $\sqrt{100} = 10$ (desetkrát dál než povrch koule!).
+- Hyperkrychle ve vysoké dimenzi nevypadá jako krabička, ale jako **ježek s $2^D$ extrémně dlouhými ostny (rohy)**, v jejichž špičkách je uvězněn veškerý objem.
+
+---
+
+### 3. Shell Phenomenon (Koncentrace normy)
+Mějme náhodný vektor $x = (X_1, \dots, X_D)^T$, jehož složky jsou i.i.d. náhodné veličiny se střední hodnotou čtverce $\mathbb{E}[X_i^2] = 1$ (např. standardní normální rozdělení $N(0, 1)$).
+Norma na druhou je:
+$$\|x\|_2^2 = \sum_{i=1}^D X_i^2$$
+Normovaný průměr:
+$$Y_D = \frac{1}{D} \|x\|_2^2 = \frac{1}{D} \sum_{i=1}^D X_i^2$$
+- Střední hodnota: $\mathbb{E}[Y_D] = \frac{1}{D} \cdot D \cdot 1 = 1$.
+- Rozptyl: $\operatorname{Var}(Y_D) = \frac{1}{D^2} \sum \operatorname{Var}(X_i^2) = \frac{\sigma^2}{D} \xrightarrow{D \to \infty} 0$.
+
+Podle Zákona velkých čísel (ZVČ) platí, že s rostoucí dimenzí $D$ je náhodná odchylka od 1 nulová:
+$$\frac{1}{D} \|x\|_2^2 \approx 1 \implies \|x\|_2 \approx \sqrt{D}$$
+👉 **Závěr 3:** Náhodný bod v prostoru neleží náhodně rozptýlen v kouli o poloměru $\sqrt{D}$. Leží **s pravděpodobností limitně rovnou 1 v tenoučké sférické slupce o poloměru přesně $\sqrt{D}$**! Vzdálenost od středu je deterministicky $\sqrt{D}$.
+
+---
+
+### 4. Všechno je na sebe kolmé (Téměř jistá ortogonalita)
+Vezměme dva nezávislé náhodné vektory $u, v$ z povrchu jednotkové sféry $S^{D-1}$.
+Jejich kosinová podobnost je:
+$$\cos \theta = \frac{u^T v}{\|u\| \|v\|} = u^T v = \sum_{i=1}^D U_i V_i$$
+- Ze symetrie sféry je střední hodnota $\mathbb{E}[\cos \theta] = 0$.
+- Rozptyl je $\operatorname{Var}(\cos \theta) = \frac{1}{D}$.
+- Pro $D \to \infty$ rozptyl klesá k 0, takže:
+  $$\cos \theta \xrightarrow{P} 0 \implies \theta \to 90^\circ$$
+
+👉 **Závěr 4:** Ve vysokých dimenzích jsou libovolné dva náhodně vybrané vektory prakticky **dokonale kolmé**.
+- *Výhoda:* Můžeme do prostoru uložit obrovské množství vzájemně neinterferujících konceptů (např. word embeddings, hyperdimenzionální paměti).
+- *Nevýhoda:* Selhávají metriky – všechny vzdálenosti mezi body se stávají téměř stejnými ($\|u - v\|^2 = \|u\|^2 + \|v\|^2 - 2u^Tv \approx 1 + 1 - 0 = 2 \implies \|u-v\| \approx \sqrt{2}$). Ztrácí se kontrast mezi "blízkým" a "vzdáleným" sousedem!
+
+---
+
+# ✍️ ŘEŠENÍ PŘÍKLADŮ ZE CVIČENÍ 6
+
+---
+
+## 📌 PŘÍKLAD 1: Geometrie hyperkoule a hyperkrychle
+
+Zadání: Hyperkoule $K_D(r) = \{x \in \mathbb{R}^D : \|x\|_2 \le r\}$ a hyperkrychle $C_D(r) = [-r, r]^D$.
+
+### a) Objem jednotkové koule $V(K_D(1))$
+Vzorec:
+$$V(K_D(r)) = \frac{\pi^{D/2}}{\Gamma(D/2 + 1)} r^D$$
+Pro jednotkovou kouli ($r = 1$):
+- **$D = 2$:**
+  $$V(K_2(1)) = \frac{\pi^{2/2}}{\Gamma(1 + 1)} \cdot 1^2 = \frac{\pi^1}{\Gamma(2)} = \frac{\pi}{1} = \pi \approx 3{,}1416$$
+- **$D = 4$:**
+  $$V(K_4(1)) = \frac{\pi^{4/2}}{\Gamma(2 + 1)} \cdot 1^4 = \frac{\pi^2}{\Gamma(3)} = \frac{\pi^2}{2} \approx \frac{9{,}8696}{2} \approx 4{,}9348$$
+- **Limita $\lim_{D \to \infty} V(K_D(r))$ pro $r > 0$:**
+  Čitatel roste exponenciálně: $\pi^{D/2} r^D = (\sqrt{\pi} r)^D$.
+  Jmenovatel roste faktoriálově: $\Gamma(D/2 + 1) \sim (D/2)!$.
+  Faktoriál roste nekonečněkrát rychleji než jakákoliv exponenciála (podle Stirlingova vzorce $k! \approx \sqrt{2\pi k} (k/e)^k$).
+  $$\lim_{D \to \infty} V(K_D(r)) = 0 \quad (\forall r > 0)$$
+
+#### 📋 Výsledná tabulka Příklad 1 (a):
+| $D = 2$ | $D = 4$ | $\lim_{D \to \infty} V(K_D(r))$ pro $r > 0$ |
+| :---: | :---: | :---: |
+| $\pi \approx 3{,}14$ | $\frac{\pi^2}{2} \approx 4{,}93$ | $0$ |
+
+---
+
+### b) Objem slupky hyperkoule
+- Poloměr vnitřní části: $r = 1 - \varepsilon$.
+- Poměr objemu vnitřní koule vůči celé kouli:
+  $$\frac{V(K_D(1 - \varepsilon))}{V(K_D(1))} = \frac{\frac{\pi^{D/2}}{\Gamma(D/2+1)} (1-\varepsilon)^D}{\frac{\pi^{D/2}}{\Gamma(D/2+1)} 1^D} = (1 - \varepsilon)^D$$
+- Podíl objemu vnější slupky o tloušťce $\varepsilon$:
+  $$\text{Slupka} = 1 - \frac{V(K_D(1 - \varepsilon))}{V(K_D(1))} = 1 - (1 - \varepsilon)^D$$
+
+Výpočty pro zadané hodnoty:
+1. $D = 5, \varepsilon = 0{,}1$:
+   - Vnitřek: $(1 - 0{,}1)^5 = 0{,}9^5 = 0{,}59049 \approx 59{,}05\%$
+   - Slupka: $1 - 0{,}59049 = 0{,}40951 \approx 40{,}95\%$
+2. $D = 5, \varepsilon = 0{,}01$:
+   - Vnitřek: $(1 - 0{,}01)^5 = 0{,}99^5 \approx 0{,}95099 \approx 95{,}10\%$
+   - Slupka: $1 - 0{,}95099 = 0{,}04901 \approx 4{,}90\%$
+3. $D = 50, \varepsilon = 0{,}1$:
+   - Vnitřek: $(0{,}9)^{50} \approx 0{,}00515 \approx 0{,}52\%$
+   - Slupka: $1 - 0{,}00515 = 0{,}99485 \approx 99{,}48\%$
+4. $D = 50, \varepsilon = 0{,}01$:
+   - Vnitřek: $(0{,}99)^{50} \approx 0{,}60501 \approx 60{,}50\%$
+   - Slupka: $1 - 0{,}60501 = 0{,}39499 \approx 39{,}50\%$
+
+#### 📋 Výsledná tabulka Příklad 1 (b):
+| $D$ | $\varepsilon$ | $V(K_D(1 - \varepsilon)) / V(K_D(1))$ | Podíl objemu vnější slupky |
+| :---: | :---: | :---: | :---: |
+| 5 | 0,1 | $0{,}5905$ ($59{,}05\%$) | $0{,}4095$ ($40{,}95\%$) |
+| 5 | 0,01 | $0{,}9510$ ($95{,}10\%$) | $0{,}0490$ ($4{,}90\%$) |
+| 50 | 0,1 | $0{,}0052$ ($0{,}52\%$) | $0{,}9948$ ($99{,}48\%$) |
+| 50 | 0,01 | $0{,}6050$ ($60{,}50\%$) | $0{,}3950$ ($39{,}50\%$) |
+
+---
+
+### c) Srovnání koule s hyperkrychlí a geometrické závěry
+Opsaná hyperkrychle je $C_D(1) = [-1, 1]^D$. Její délka hrany je $2$, tedy objem je $V(C_D(1)) = 2^D$.
+Podíl objemů:
+$$\frac{V(K_D(1))}{V(C_D(1))} = \frac{\pi^{D/2}}{2^D \Gamma(D/2 + 1)} = \frac{(\sqrt{\pi}/2)^D}{\Gamma(D/2 + 1)}$$
+Pro $D = 2$: $\frac{\pi}{4} \approx 78{,}5\%$.
+Pro $D = 10$: $\approx 0{,}25\%$.
+Pro $D \to \infty$: poměr jde limitně k $0$.
+
+**Hlavní geometrické závěry o rozložení hmoty ve vysokých dimenzích:**
+1. **Koncentrace ve slupce:** V kouli se prakticky veškerý objem nachází v bezprostřední blízkosti povrchu (ve slupce o tloušťce $\varepsilon$). Vnitřek je z pohledu objemu prázdný.
+2. **Koncentrace v rozích krychle:** Koule zabírá ve srovnání s opsanou krychlí zanedbatelnou část prostoru. Veškerý objem krychle je soustředěn v jejích $2^D$ rozích ("hyperhrotech"), jejichž vzdálenost od počátku roste jako $\sqrt{D}$.
+
+---
+
+## 📌 PŘÍKLAD 2: Koncentrace normy (Shell phenomenon)
+
+Vektor $x = (X_1, \dots, X_D)^T$, $X_i$ jsou i.i.d., $\mathbb{E}[X_i^2] = 1$, $\operatorname{Var}(X_i^2) = \sigma^2 < \infty$.
+
+### a) Střední hodnota, rozptyl a konvergence
+Uvažujme normovaný kvadrát normy:
+$$Y_D = \frac{1}{D} \|x\|_2^2 = \frac{1}{D} \sum_{i=1}^D X_i^2$$
+
+1. **Střední hodnota:**
+   $$\mathbb{E}[Y_D] = \mathbb{E}\left[\frac{1}{D} \sum_{i=1}^D X_i^2\right] = \frac{1}{D} \sum_{i=1}^D \mathbb{E}[X_i^2] = \frac{1}{D} \cdot D \cdot 1 = 1$$
+2. **Rozptyl:**
+   Díky nezávislosti složek $X_i$:
+   $$\operatorname{Var}(Y_D) = \operatorname{Var}\left(\frac{1}{D} \sum_{i=1}^D X_i^2\right) = \frac{1}{D^2} \sum_{i=1}^D \operatorname{Var}(X_i^2) = \frac{1}{D^2} \cdot D \cdot \sigma^2 = \frac{\sigma^2}{D}$$
+3. **Popis konvergence pomocí zákona velkých čísel:**
+   - Protože $\lim_{D \to \infty} \operatorname{Var}(Y_D) = \lim_{D \to \infty} \frac{\sigma^2}{D} = 0$, z Čebyševovy nerovnosti plyne **Slabý zákon velkých čísel**:
+     $$Y_D \xrightarrow{P} 1 \quad \text{pro } D \to \infty$$
+   - Náhodná veličina $\frac{1}{D} \|x\|_2^2$ konverguje v pravděpodobnosti (i skoro jistě dle Silného ZVČ) ke konstantě $1$.
+
+---
+
+### b) Růst typické vzdálenosti od počátku
+Typická eukleidovská norma (vzdálenost od počátku) je:
+$$\|x\|_2 = \sqrt{\|x\|_2^2} = \sqrt{D \cdot Y_D} \approx \sqrt{D \cdot 1} = \sqrt{D}$$
+- Typická vzdálenost roste úměrně **$\sqrt{D}$**.
+- Relativní odchylka od této hodnoty jde k nule:
+  $$\frac{\|x\|_2}{\sqrt{D}} \xrightarrow{P} 1$$
+- Body tedy neleží náhodně v celém objemu koule o poloměru $\sqrt{D}$, ale leží v extrémně tenké sférické slupce ("shell") o poloměru přesně $\sqrt{D}$.
+
+---
+
+### c) Jednotková krychle $[0, 1]^D$ vs. jednotková sféra $S^{D-1}$
+1. **Jednotková sféra $S^{D-1}$:**
+   - Z definice sféry $S^{D-1} = \{x \in \mathbb{R}^D : \|x\|_2 = 1\}$ má **každý** bod normu přesně rovnou $1$.
+   - Zde je norma konstantní deterministicky, bez jakéhokoliv rozptylu.
+2. **Jednotková krychle $[0, 1]^D$:**
+   - Pro rovnoměrně náhodně vybraný bod v krychli jsou složky $X_i \sim U(0, 1)$.
+   - $\mathbb{E}[X_i^2] = \int_0^1 t^2 \, dt = \left[\frac{t^3}{3}\right]_0^1 = \frac{1}{3}$.
+   - Tedy dle ZVČ:
+     $$\frac{1}{D} \|x\|_2^2 \xrightarrow{P} \frac{1}{3} \implies \|x\|_2 \approx \sqrt{\frac{D}{3}}$$
+   - Norma bodů z krychle tedy není $1$, ale roste s dimenzí jako $\sqrt{D/3}$. Navíc všechny body leží v kladném ortantu (mají všechny složky $X_i \ge 0$).
+
+---
+
+## 📌 PŘÍKLAD 3: Ortogonalita náhodných směrů
+
+### a) Kosinová podobnost na sféře $S^{D-1}$ a vzájemný úhel
+Mějme dva nezávislé náhodné vektory $u, v \in S^{D-1}$. Protože mají jednotkovou normu ($\|u\| = \|v\| = 1$), je jejich kosinová podobnost rovna skalárnímu součinu:
+$$\cos \theta = u^T v = \sum_{i=1}^D U_i V_i$$
+1. **Střední hodnota:**
+   Díky nezávislosti a symetrii rozdělení na sféře kolem počátku je $\mathbb{E}[U_i] = 0$:
+   $$\mathbb{E}[\cos \theta] = \sum_{i=1}^D \mathbb{E}[U_i] \cdot \mathbb{E}[V_i] = 0$$
+2. **Rozptyl:**
+   Lze ukázat, že $\operatorname{Var}(\cos \theta) = \frac{1}{D}$.
+3. **Limitní chování pro $D \to \infty$:**
+   $$\cos \theta \xrightarrow{P} 0$$
+   Úhel mezi vektory:
+   $$\theta = \arccos(\cos \theta) \xrightarrow{P} \arccos(0) = \frac{\pi}{2} = 90^\circ$$
+   👉 Dva náhodné vektory z jednotkové sféry jsou ve vysokých dimenzích **téměř jistě navzájem ortogonální (kolmé)**.
+
+---
+
+### b) Náhodné vektory z jednotkové krychle $[0, 1]^D$
+V krychli $[0, 1]^D$ jsou všechny souřadnice nezáporné ($X_i \in [0, 1], Y_i \in [0, 1]$), tedy všechny vektory leží v **jediném kladném ortantu**.
+Pro nezávislé uniformní vektory $X, Y \in [0, 1]^D$:
+- $\mathbb{E}[X_i] = \frac{1}{2}$, $\mathbb{E}[X_i^2] = \frac{1}{3}$.
+- Skalární součin: $\mathbb{E}[X^T Y] = \sum_{i=1}^D \mathbb{E}[X_i] \mathbb{E}[Y_i] = D \cdot \frac{1}{2} \cdot \frac{1}{2} = \frac{D}{4}$.
+- Normy: $\|X\|_2 \approx \sqrt{D/3}$, $\|Y\|_2 \approx \sqrt{D/3}$.
+- Kosinová podobnost:
+  $$\cos \theta = \frac{X^T Y}{\|X\|_2 \|Y\|_2} \approx \frac{\frac{D}{4}}{\sqrt{\frac{D}{3}} \cdot \sqrt{\frac{D}{3}}} = \frac{\frac{D}{4}}{\frac{D}{3}} = \frac{3}{4} = 0{,}75$$
+- Typický úhel:
+  $$\theta \approx \arccos(0{,}75) \approx 41{,}4^\circ$$
+👉 V krychli $[0, 1]^D$ vektory **nejsou ortogonální**! Svírají ostrý úhel $\approx 41{,}4^\circ$, protože jsou natlačeny v jednom rohu (kladném ortantu).
+
+---
+
+### c) Důsledky pro reprezentaci dat
+- **Proč to usnadňuje reprezentaci dat (Výhoda):**
+  - Téměř ortogonalita umožňuje reprezentovat obrovské množství nezávislých konceptů bez vzájemného rušení (interference).
+  - Využívá se v neuronových sítích, sémantických embeddingách textu (Word2Vec, transformer embeddings) a v hyperdimenzionálních výpočtech (HDC/VSA – Hyperdimensional Computing).
+- **Proč to komplikuje reprezentaci dat (Nevýhoda):**
+  - **Ztráta kontrastu vzdáleností:** Všechny páry náhodných bodů jsou od sebe stejně daleko:
+    $$\|u - v\|_2^2 = \|u\|_2^2 + \|v\|_2^2 - 2u^T v \approx 1 + 1 - 0 = 2 \implies \|u - v\|_2 \approx \sqrt{2}$$
+  - Metody založené na vzdálenostech (k-NN, $k$-means, DBSCAN) ztrácejí smysl, protože vzdálenost k "nejbližšímu sousedovi" je téměř stejná jako vzdálenost k "nejvzdálenějšímu bodu" (tzv. distance concentration phenomenon).
+
+---
+
+## 📌 PŘÍKLAD 4: Řídkost prostoru a selhání prostorových indexů
+
+Zadání: Prostor dimenze $D = 20$, každý příznak rozdělen na $m = 5$ stejných intervalů.
+
+### a) Celkový počet buněk (krychliček)
+Každá dimenze je rozdělena na $m$ intervalů. Počet všech kombinací buněk je:
+$$\text{Počet buněk} = m^D = 5^{20}$$
+Výpočet hodnoty:
+$$5^{20} = (5^4)^5 = 625^5 = 95\,367\,431\,640\,625 \approx 9{,}54 \times 10^{13}$$
+Vznikne více než **95 bilionů** buněk!
+
+---
+
+### b) Průměrná zaplněnost pro $N = 10\,000$ bodů
+Máme datový soubor velikosti $N = 10^4 = 10\,000$.
+Průměrný počet bodů na buňku:
+$$\text{Zaplněnost} = \frac{N}{m^D} = \frac{10^4}{5^{20}} = \frac{10\,000}{95\,367\,431\,640\,625} \approx 1{,}0486 \times 10^{-10} \text{ bodu/buňku}$$
+👉 Průměrná zaplněnost je zhruba **jedna desetimiliardtina bodu na buňku**.
+Z toho plyne, že $99{,}99999999\%$ všech buněk je naprosto prázdných! Data jsou v prostoru extrémně řídká (prostor je prakticky prázdný).
+
+---
+
+### c) Proč selhávají k-d stromy při vyhledávání sousedů ve vysokých dimenzích
+1. **Princip $k$-d stromu v nízkých dimenzích (2D/3D):**
+   - Strom dělí prostor rekurzivně nadrovinami kolmými na osy.
+   - Při hledání nejbližšího souseda dotazu $q$ si strom pamatuje dosavadní nejmenší vzdálenost $r_{\min}$.
+   - Pokud je vzdálenost dotazu $q$ od dělící nadroviny větší než $r_{\min}$, **může celou protější větev stromu bezpečně zahodit (ořezat)**.
+2. **Kolaps ve vysokých dimenzích ($D \ge 20$):**
+   - Kvůli extrémní řídkosti prostoru je nejbližší soused od bodu $q$ velmi daleko (vzdálenost $r_{\min}$ je srovnatelná s rozměry celého prostoru).
+   - Koule o poloměru $r_{\min}$ se středem v $q$ je obrovská a **protíná téměř všechny dělící nadroviny** ve všech dimenzích.
+   - Podmínka pro ořezání větve téměř nikdy nenastane.
+   - Algoritmus je nucen projít a prozkoumat prakticky **všechny větve stromu**.
+   - Složitost vyhledávání degraduje z optimálního $O(\log N)$ na lineární skenování $O(N)$ – navíc se zbytečnou režií stromové struktury, takže $k$-d strom je ve vysokých dimenzích pomalejší než triviální brute-force porovnání!

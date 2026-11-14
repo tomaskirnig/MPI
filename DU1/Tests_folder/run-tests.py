@@ -106,7 +106,10 @@ def run_test(
 
     with open(actual_stdout, "wb") as stdout_file:
         with open(actual_stderr, "wb") as stderr_file:
-            command = [binary] + args
+            if binary.endswith(".py"):
+                command = [sys.executable, binary] + (args or [])
+            else:
+                command = [binary] + (args or [])
             stdin_file = (
                 open(resolve_path(name, stdin), "rb") if stdin is not None else subprocess.DEVNULL
             )
