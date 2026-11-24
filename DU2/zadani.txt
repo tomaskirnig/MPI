@@ -1,0 +1,97 @@
+Implement a console program in C# that compares principal component analysis (PCA), metric multidimensional scaling (MDS), and sparse Achlioptas random projection (RP). For each requested dimension, report the specified metrics and find the smallest dimension that meets each method's threshold. Use only the standard library of the chosen language. Implement the numerical methods with arrays or lists, loops, and 64-bit floating-point arithmetic (float in Python, double in C# and Java).
+
+Input
+Read from standard input. The first line contains the number of test cases T. Each case has the following lines, in order.
+
+N D m R, the numbers of observations, attributes per observation, requested dimensions, and RP repetitions per dimension.
+N lines with D real numbers each, giving the rows of the N×D
+ matrix $X$.
+One line with m strictly increasing integers $d_1,\ldots,d_m$.
+One line q epsilonMDS epsilonRP, giving the minimum explained-variance ratio for PCA and the maximum normalized stresses for MDS and RP.
+The input satisfies these bounds.
+
+$1\le T\le 10$, $2\le N\le 50$, $2\le D\le 20$, and $1\le R\le 20$.
+$1\le m\le D$ and $1\le d_1<\cdots<d_m\le D$.
+$0<q\le 1$, $\varepsilon_{\mathrm{MDS}}\ge 0$, and $\varepsilon_{\mathrm{RP}}\ge 0$.
+Each observation value is finite and has absolute value at most $10^6$. Each case has a pair of observations at Euclidean distance at least $10^{-6}$.
+The sum of $\binom{N}{2}\sum_{j=1}^m d_j$ over all cases is at most $100\,000$.
+Use a decimal point for real numbers.
+
+Output
+For each case, print Case k: on its own line, with k starting at 1. Then print one row per requested dimension in input order. Each row has exactly eight whitespace-separated fields.
+
+d CEVR S_PCA K_PCA S_MDS K_MDS mean_S_RP mean_K_RP
+d is the dimension and CEVR is the cumulative explained-variance ratio from PCA. S_PCA and S_MDS are normalized stresses, and K_PCA and K_MDS are distance concentrations. The last two fields are the RP aggregates defined below. Print d as an integer and all other fields to four decimal places with a decimal point. Omit the column headings.
+
+After the dimension rows, print Minima PCA=... MDS=... RP=... on its own line. Each value is the smallest requested dimension that meets the corresponding criterion. Use -1 when no requested dimension qualifies. Compare unrounded values.
+
+| Method | Criterion | | --- | --- | | PCA | $\mathrm{CEVR}(d)\ge q$ | | MDS | $S(Y_d^{\mathrm{MDS}})\le\varepsilon_{\mathrm{MDS}}$ | | RP | $\overline S^{\mathrm{RP}}(d)\le\varepsilon_{\mathrm{RP}}$ |
+
+Distance measures
+Use the original attribute scales. For a matrix $Z$ whose rows represent the observations, compute $\rho_{ij}(Z)=\sqrt{\sum_k(Z_{ik}-Z_{jk})^2}$ for each pair $i<j$. Compute the original distances $\delta_{ij}=\rho_{ij}(X)$ once per case. Define raw stress $F$ and normalized stress $S$ by
+
+F(Z)=∑i<j(δij−ρij(Z))2,S(Z)=F(Z)∑i<jδ2ij−−−−−−−√.
+
+Distance concentration is $K(Z)=\min_{i<j}\rho_{ij}(Z)/\max_{i<j}\rho_{ij}(Z)$. Use $K=-1$ if the maximum distance is zero. Use $K=0$ when the minimum is zero and the maximum is positive.
+
+PCA
+Subtract each column mean from $X$ to form $X_c$ and compute $G=X_c^\mathsf{T}X_c$. Find its eigenvalues and eigenvectors once per case using cyclic Jacobi rotations.
+
+Set $H=G$, $V=I_D$, and $\eta=10^{-12}\max_p G_{pp}$.
+In each sweep, visit all pairs $p<q$ in increasing order of $p$ and then $q$. Skip a pair if $|H_{pq}|\le\eta$. Stop after a sweep with no rotations or after 50 sweeps.
+For each rotation, save $a=H_{pp}$, $b=H_{pq}$, and $e=H_{qq}$, then compute
+
+τ=e−a2b,t=sgn+(τ)|τ|+1+τ2−−−−−√,c=11+t2−−−−−√,s=tc.
+
+Here $\operatorname{sgn}_+(\tau)$ is $+1$ for $\tau\ge0$ and $-1$ otherwise. Apply the rotation as follows.
+
+For each $k\notin{p,q}$, save $u=H_{kp}$ and $v=H_{kq}$, then set $H_{kp}=H_{pk}=cu-sv$ and $H_{kq}=H_{qk}=su+cv$.
+Set $H_{pp}=a-tb$, $H_{qq}=e+tb$, and $H_{pq}=H_{qp}=0$.
+For each row $k$ of $V$, save $u=V_{kp}$ and $v=V_{kq}$, then set $V_{kp}=cu-sv$ and $V_{kq}=su+cv$. 4. Treat diagonal entries of $H$ at or below $\eta$ as zero. Sort the resulting eigenvalues $\lambda_1,\ldots,\lambda_D$ in decreasing order and reorder the corresponding columns of $V$. Break ties by original column index.
+For each requested $d$, let $V_d$ contain the first $d$ reordered columns. Compute
+
+YPCAd=XcVd,CEVR(d)=∑dk=1λk∑Dk=1λk.
+
+Set the score columns associated with zero eigenvalues to zero. Set $\mathrm{CEVR}(d)=1$ when $d$ includes all positive eigenvalues. Report $\mathrm{CEVR}(d)$, $S(Y_d^{\mathrm{PCA}})$, and $K(Y_d^{\mathrm{PCA}})$.
+
+Metric MDS
+For each $d$, run one SMACOF optimization of $F$, starting at $Y^{(0)}=Y_d^{\mathrm{PCA}}$. Perform at most 500 updates.
+
+Start a zero $N\times d$ array $U$. For each pair $i0$, compute $r=\delta_{ij}/\rho_{ij}(Y^{(t)})$. For each coordinate $k$, add $r(Y^{(t)}{ik}-Y^{(t)}{jk})$ to $U_{ik}$ and subtract it from $U_{jk}$.
+Set $Y^{(t+1)}=U/N$ and compute $Q=\sum_{i<j}\rho_{ij}(Y^{(t+1)})^2$. Stop if $Q=0$. Starting with the second update, also stop if $(F(Y^{(t)})-F(Y^{(t+1)}))/Q<10^{-6}$.
+Use the last updated coordinates $Y_d^{\mathrm{MDS}}$ to report $S(Y_d^{\mathrm{MDS}})$ and $K(Y_d^{\mathrm{MDS}})$.
+
+Random projection
+For each requested $d$, generate $R$ fresh $D\times d$ matrices $A_t$. Independently draw each entry as $-1$, $0$, or $+1$ with probabilities $1/6$, $2/3$, and $1/6$, respectively. For example, draw a uniform integer from 0 through 5, mapping 0 to $-1$, 5 to $+1$, and the other four values to 0. The choice of generator and seed is free.
+
+For each repetition, compute $Z_t=\sqrt{3/d}\,XA_t$ and evaluate $S(Z_t)$ and $K(Z_t)$. Report the arithmetic mean $\overline S^{\mathrm{RP}}(d)$ of all $R$ stresses. Report the arithmetic mean of all $R$ concentrations as $\overline K^{\mathrm{RP}}(d)$, including valid zeros. If any repetition has $K(Z_t)=-1$, report $\overline K^{\mathrm{RP}}(d)=-1$.
+
+Assessment
+Check the output structure and dimension indices exactly. Compare PCA and MDS metrics against full-precision references with absolute tolerance $10^{-4}$, including output rounding. Check their minima against unrounded reference values. Choose tests with stable PCA truncation boundaries and thresholds.
+
+RP stress must be finite and nonnegative, and RP concentration must be -1.0000 or lie in $[0,1]$. If checking RP averages against a reference, use ranges that account for variation between runs. A printed RP stress $s$ can represent an unrounded value in $[\max(0,s-0.00005),s+0.00005]$. Accept an RP minimum that can be the first qualifying dimension within these intervals. Accept -1 if each requested dimension can fail its threshold.
+
+Example
+Input
+1
+10 5 4 10
+0 0 1 0 2
+1 0 2 1 2
+2 1 3 1 3
+3 1 4 2 3
+4 2 5 2 4
+0 2 1 2 4
+1 3 2 3 5
+2 3 3 4 5
+3 4 4 4 6
+4 4 5 5 6
+2 3 4 5
+0.98 0.05 0.35
+One possible output
+Case 1:
+2 0.9858 0.0175 0.1669 0.0152 0.1665 0.6293 -1.0000
+3 1.0000 0.0000 0.1836 0.0000 0.1836 0.3589 0.1293
+4 1.0000 0.0000 0.1836 0.0000 0.1836 0.3158 0.1314
+5 1.0000 0.0000 0.1836 0.0000 0.1836 0.2318 0.1806
+Minima PCA=2 MDS=2 RP=4
+The RP columns and minimum can vary with the random draws.
