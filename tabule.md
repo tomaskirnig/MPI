@@ -630,3 +630,176 @@ Z toho plyne, že $99{,}99999999\%$ všech buněk je naprosto prázdných! Data 
    - Podmínka pro ořezání větve téměř nikdy nenastane.
    - Algoritmus je nucen projít a prozkoumat prakticky **všechny větve stromu**.
    - Složitost vyhledávání degraduje z optimálního $O(\log N)$ na lineární skenování $O(N)$ – navíc se zbytečnou režií stromové struktury, takže $k$-d strom je ve vysokých dimenzích pomalejší než triviální brute-force porovnání!
+
+
+---
+
+# 🧠 MENTÁLNÍ MAPA: CVIČENÍ 6 & 7 (ŽIVÁ TABULE)
+
+```mermaid
+flowchart TD
+    R1["1a. Datová matice: řádek = bod, sloupec = dimenze D"]
+    R2["1b. Mocnina r^D a průměrování (rozptyl klesá)"]
+    R3["1c. Kosinus směru: cos(0°)=1 stejný, cos(90°)=0 kolmý"]
+
+    C1["2. Cv. 6: Objem ve slupce a řídkost m^D (selhání k-d stromů)"]
+    C2["3. Cv. 6: Koncentrace normy — body na jedné slupce"]
+    C3["4. Cv. 6: Náhodné směry téměř kolmé (sféra vs krychle)"]
+
+    PROB["Prokletí dimenzionality = potřeba snížit D"]
+
+    M1["5. Cv. 7: PCA — zachovej největší rozptyl (vlastní směry)"]
+    M2["6. Cv. 7: Náhodné projekce — rychlá zkratka (JL lemma)"]
+    M3["7. Cv. 7: NMF (čitelné části) a MDS (jen ze vzdáleností)"]
+    GOAL["8. Mentální mapa: kterou metodu kdy použít (Cv. 7 Příklad 5)"]
+
+    R1 --> C1
+    R2 --> C1
+    R2 --> C2
+    R3 --> C3
+    R2 --> C3
+
+    C1 --> PROB
+    C2 --> PROB
+    C3 --> PROB
+
+    PROB --> M1
+    PROB --> M2
+    PROB --> M3
+    R1 --> M1
+
+    M1 --> GOAL
+    M2 --> GOAL
+    M3 --> GOAL
+```
+
+---
+
+## Uzel 1a: Datová matice $X$ = tabulka bodů v $\mathbb{R}^D$
+
+**Proč tím začínáme:** V Cv. 6 se mluví o „bodech v $D$-dimenzionálním prostoru“, v Cv. 7 o „datové matici $X$“. Jsou to dva názvy pro **úplně tu samou věc**.
+
+### Bezpodmínečná pravda
+Každá datová matice $X$ o rozměru $N \times D$ je obyčejná tabulka:
+- **1 řádek** = **1 objekt** (člověk, obrázek, dokument) = **1 bod (vektor)** v prostoru $\mathbb{R}^D$.
+- **1 sloupec** = **1 příznak** (věk, výška, pixel) = **1 osa prostoru**.
+- **Počet řádků $N$** = kolik máme bodů.
+- **Počet sloupců $D$** = **dimenze prostoru**.
+
+### Konkrétní příklad přímo z Cv. 7 (Příklad 1)
+$$X = \begin{pmatrix} 1 & 1 \\ 3 & 4 \\ 5 & 1 \end{pmatrix}$$
+
+| | Sloupec 1 (osa $x_1$) | Sloupec 2 (osa $x_2$) | Geometricky |
+| :--- | :---: | :---: | :--- |
+| **Řádek 1 (objekt 1)** | $1$ | $1$ | bod $(1, 1)$ |
+| **Řádek 2 (objekt 2)** | $3$ | $4$ | bod $(3, 4)$ |
+| **Řádek 3 (objekt 3)** | $5$ | $1$ | bod $(5, 1)$ |
+
+- Tabulka má $N = 3$ řádky a $D = 2$ sloupce $\implies$ jsou to **3 body ve 2D rovině**.
+- Tabulka $10\,000 \times 20$ z Cv. 6 (Příklad 4) je úplně stejně jen **$10\,000$ bodů v $20$-dimenzionálním prostoru**.
+- **Propojení s celým Cv. 6 & Cv. 7:**
+  - **Cv. 6** ukazuje, co se pokazí, když je moc sloupců ($D$ je velké).
+  - **Cv. 7 (redukce dimenze)** vezme tabulku $N \times D$ a zmenší počet sloupců na $N \times k$ ($k \ll D$), aby se zachovalo to podstatné.
+
+
+### Jak vypadá tabulka před a po redukci dimenze (tvar, ne algoritmus)
+
+Redukce dimenze **nikdy nemaže objekty (řádky $N$)** — zmenšuje **jen počet sloupců** z $D$ na $k$:
+
+| Před redukcí ($3 \times 2$) | $\xrightarrow{\text{redukce do } k=1}$ | Po redukci ($3 \times 1$) |
+| :---: | :---: | :---: |
+| $\begin{pmatrix} 1 & 1 \\ 3 & 4 \\ 5 & 1 \end{pmatrix}$ | *(jak nová čísla spočítat přijde v uzlech 5–7)* | $\begin{pmatrix} -2 \\ 0 \\ 2 \end{pmatrix}$ |
+
+- Na začátku: $N = 500$ řádků, $D = 50$ sloupců $\implies$ tvar **$500 \times 50$**.
+- Po redukci do $k = 2$ dimenzí: pořád $500$ stejných bodů, každý popsaný jen $2$ čísly $\implies$ tvar **$500 \times 2$**.
+
+
+---
+
+## Uzel 1b: Mocnina $c^D$ a průměrování $D$ složek
+
+**Proč tohle potřebujeme:** Za všemi „paradoxy“ vysokých dimenzí v Cv. 6 stojí jen **dvě úplně obyčejná pravidla**. Jakmile je držíš v hlavě, celé Cv. 6 z nich přímo vypadne.
+
+### Bezpodmínečná pravda 1 — Mocnina $c^D$ (škálování podél každé osy)
+Objem (nebo počet buněk v mřížce) se v $D$ dimenzích násobí podél **každé z $D$ os zvlášť**, tedy **$D$-krát za sebou**:
+- Číslo menší než $1$ ($c < 1$) padá s rostoucím $D$ bleskově k **$0$**:
+  $$0{,}9^2 = 0{,}81 \quad\longrightarrow\quad 0{,}9^{50} \approx 0{,}005$$
+- Číslo větší než $1$ ($c > 1$) vystřelí s rostoucím $D$ bleskově k **$\infty$**:
+  $$5^2 = 25 \quad\longrightarrow\quad 5^{20} \approx 95\,000\,000\,000\,000$$
+
+### Bezpodmínečná pravda 2 — Průměr $D$ nezávislých čísel zmenšuje rozptyl
+- Hodíš **1 kostkou** $\implies$ výsledek silně kolísá ($1$ až $6$, velký rozptyl $\sigma^2$).
+- Hodíš **$D$ nezávislými kostkami** a spočítáš jejich průměr $\implies$ náhodné výkyvy nahoru a dolů se navzájem vyruší.
+- Přesné pravidlo (**Zákon velkých čísel**): rozptyl průměru $D$ nezávislých čísel klesá přesně $D$-krát:
+  $$\operatorname{Var}(\text{průměr } D \text{ složek}) = \frac{\sigma^2}{D} \xrightarrow{D \to \infty} 0$$
+
+### Propojení s mapou (proč se to vyplatí teď)
+- **Pravda 1 ($c^D$)** $\longrightarrow$ hned v **Uzlu 2** vysvětlí slupku koule ($(1-\varepsilon)^D$) i $5^{20}$ prázdných buněk.
+- **Pravda 2 ($\sigma^2/D \to 0$)** $\longrightarrow$ v **Uzlu 3** vysvětlí, proč mají všechny náhodné body skoro stejnou vzdálenost od počátku, a v **Uzlu 4**, proč jsou na sebe náhodné směry kolmé.
+
+
+### Konkrétní žebřík (jak to vidět okamžitě)
+
+1. **Zmenšení každé hrany na $0{,}5$:**
+   - **1D (úsečka):** $0{,}5^1 = 0{,}5$ (půlka)
+   - **2D (čtverec):** $0{,}5 \times 0{,}5 = 0{,}5^2 = 0{,}25$ (čtvrtina)
+   - **3D (krychle):** $0{,}5 \times 0{,}5 \times 0{,}5 = 0{,}5^3 = 0{,}125$ (osmina)
+   - **10D krychle:** desetkrát za sebou $0{,}5 \implies \mathbf{0{,}5^{10}}$ ($\approx 0{,}001$)
+
+2. **Rozptyl průměru ($\frac{\sigma^2}{D}$):**
+   - Při $D = 10$ dělíš rozptyl číslem $10$ ($\frac{\sigma^2}{10}$).
+   - Při $D = 1\,000$ dělíš číslem $1\,000$ ($\frac{\sigma^2}{1\,000}$).
+   - $D$ vyrostlo **$100\times$** $\implies$ rozptyl klesl přesně **$100\times$**.
+
+
+---
+
+## Uzel 1c: Kosinus směru ($\cos(0^\circ) = 1$, $\cos(90^\circ) = 0$)
+
+**Proč tohle potřebujeme:** V Cv. 6 (Příklad 3) se měří **kosinová podobnost** vektorů. Aby fungovala intuice pro „kolmé směry“, musí sedět, co znamená $1$, $0$ a $-1$.
+
+### Bezpodmínečná pravda
+**Kosinová podobnost $\cos(\theta)$ = kolik svého směru dva vektory sdílí** (číslo od $-1$ do $+1$):
+
+| Poloha vektorů | Úhel $\theta$ | Shoda směru | Hodnota $\cos(\theta)$ |
+| :--- | :---: | :---: | :---: |
+| **Stejný směr** ($\rightarrow \;\; \rightarrow$) | $0^\circ$ | $100\%$ | **$+1$** |
+| **Kolmé / ortogonální** ($\rightarrow \;\; \uparrow$) | $90^\circ$ | $0\%$ | **$0$** |
+| **Opačný směr** ($\leftarrow \;\; \rightarrow$) | $180^\circ$ | opak | **$-1$** |
+
+*(Pomůcka: představ si stín tyče pod úhlem $\theta$ na zemi. Leží na zemi ($0^\circ$) $\to$ plný stín $= 1$. Stojí kolmo ($90^\circ$) $\to$ nulový stín $= 0$.)*
+
+### Vzorec ze souřadnic (skalární součin)
+$$\cos(\theta) = \frac{u \cdot v}{\|u\|_2 \|v\|_2} = \frac{u_1 v_1 + u_2 v_2 + \dots + u_D v_D}{\|u\|_2 \|v\|_2}$$
+- Pro jednotkové vektory ($\|u\|_2 = \|v\|_2 = 1$) zmizí jmenovatel a platí přímo $\cos(\theta) = u_1 v_1 + \dots + u_D v_D$.
+
+### Propojení s mapou
+- V **Uzlu 4 (Cv. 6)** ukážeme, že pro náhodné vektory ve vysokém $D$ spadne $\cos(\theta) \to 0$, což znamená **téměř $90^\circ$ (kolmost)**.
+
+
+---
+
+## Uzel 2 (Cv. 6 — Příklad 1 & 4): Objem ve slupce, rohy krychle a řídkost $m^D$
+
+**Proč tohle všechno vzniká:** Z **Uzlu 1b** už znáš mocninu $c^D$. Všechny 3 následující „paradoxy“ z Cv. 6 jsou jen **ten samý vzorec $c^D$** použitý třikrát.
+
+### 1. Slupka hyperkoule (Cv. 6, Příklad 1b)
+- Celá koule má poloměr $1$; vnitřní jádro (bez slupky tloušťky $\varepsilon$) má poloměr $1 - \varepsilon$.
+- Z Uzlu 1b: podíl objemu jádra je přesně **$(1 - \varepsilon)^D$**, takže ve slupce je **$1 - (1 - \varepsilon)^D$**.
+- Pro $D = 50, \varepsilon = 0{,}1$: jádro má $0{,}9^{50} \approx 0{,}5\%$ $\implies$ **$99{,}5\%$ objemu je v tenké slupce**.
+
+### 2. Koule vs. opsaná krychle (Cv. 6, Příklad 1a & 1c)
+- Koule $K_D(1)$ končí ve vzdálenosti $1$ od středu.
+- Roh opsané krychle $[-1, 1]^D$ leží v bodě $(1, 1, \dots, 1)$ — Pythagorova věta v $D$ dimenzích dává jeho vzdálenost od středu:
+  $$d_{\text{roh}} = \sqrt{\underbrace{1^2 + 1^2 + \dots + 1^2}_{D\text{-krát}}} = \sqrt{D}$$
+- V $D = 100$ je roh ve vzdálenosti $\sqrt{100} = 10$ (10× dál než koule!).
+- Proto téměř všechen objem krychle uteče do **rohů** a poměr $\frac{V(K_D(1))}{V(C_D(1))} \to 0$. Dokonce i samotný objem koule $V(K_D(r)) \to 0$ pro $D \to \infty$ (jmenovatel $\Gamma(D/2+1)$ roste faktoriálově rychleji než čitatel).
+
+### 3. Řídkost prostoru $m^D$ a selhání $k$-d stromů (Cv. 6, Příklad 4)
+- Rozdělíš každou z $D$ os na $m$ intervalů $\implies$ vznikne **$m^D$ buněk** (opět mocnina $c^D$, teď s $c = m > 1$).
+- Pro $D = 20, m = 5$: $5^{20} \approx 9{,}54 \times 10^{13}$ buněk. Při $N = 10\,000$ bodech je téměř $100\%$ buněk prázdných.
+- **Proč selžou $k$-d stromy:** $k$-d strom zrychluje hledání souseda tak, že **ořezává** větve (krabice), do kterých vyhledávací koule kolem dotazu nezasáhne. Protože jsou ale data extrémně řídká, nejbližší soused je daleko, koule je obrovská a **protne skoro všechny dělící roviny** $\implies$ nic nejde oříznout $\implies$ strom spadne z $O(\log N)$ na $O(N)$ (pomalé projetí všech bodů).
+
+### Propojení s mapou
+- **Uzel 1b ($c < 1 \Rightarrow c^D \to 0$)** $\longrightarrow$ prázdné jádro koule.
+- **Uzel 1b ($c > 1 \Rightarrow c^D \to \infty$)** $\longrightarrow$ exploze buněk $m^D$ $\longrightarrow$ kolaps $k$-d stromů.
